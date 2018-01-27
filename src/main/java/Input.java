@@ -21,8 +21,8 @@ public class Input {
     public static void print(List<String> points){
         for(int i = 0; i < points.size(); i++){
             String x = points.get(i).replace("(","");
-            String y = x.replace(")","");
-            System.out.println(y);
+            String info = x.replace(")","");
+            System.out.println(info);
         }
     }
 
