@@ -12,6 +12,7 @@ public class Main {
         String pointSet = Input.pointSet();
         List<String> points = Input.pointInput(pointSet);
         Input.pointDivide(points);
-        Input.print();
+        //Input.print();
+        Input.distance();
     }
 }
