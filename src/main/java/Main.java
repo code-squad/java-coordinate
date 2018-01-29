@@ -6,14 +6,14 @@ public class Main {
         Input.firstInput();
         String pointSet = Input.pointSet();
         List<String> points = Input.pointInput(pointSet);
-        Input.pointDivide(points);
+        Point.pointDivide(points);
 
         DrawLine.draw();
         System.out.print(String.format("%3s","+"));
         System.out.println("------------------------------------------------");
         DrawLine.printNumber();
         System.out.println();
-        ResultView.distance();
+        ResultView.printResult();
 
     }
 }

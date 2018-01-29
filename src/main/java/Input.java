@@ -15,16 +15,8 @@ public class Input {
     }
 
     public static List<String> pointInput(String pointSet){
-        List<String> points = Arrays.asList(pointSet.split("-"));
-        return points;
+        return Arrays.asList(pointSet.split("-"));
     }
 
-    public static ArrayList<String> pointDivide(List<String> points){
-        ArrayList<String> pointDivde = new ArrayList();
-        for(int i = 0; i < points.size(); i++){
-            String info = points.get(i).substring(1,6);
-            ResultView.xyDivide(info);
-        }
-        return pointDivde;
-    }
+
 }

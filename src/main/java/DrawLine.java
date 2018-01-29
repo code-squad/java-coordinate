@@ -16,8 +16,8 @@ public class DrawLine {
     }
 
     public static void printStart(int x, int y){
-        for(int i = 0; i < ResultView.xPoints.size(); i++){
-            if(ResultView.yPoints.get(i) == y && ResultView.xPoints.get(i) == x)
+        for(int i = 0; i < Point.xPoints.size(); i++){
+            if(Point.yPoints.get(i) == y && Point.xPoints.get(i) == x)
                 System.out.print(" *");
             System.out.print(" ");
         }
