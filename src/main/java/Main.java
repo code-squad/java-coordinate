@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -10,6 +11,7 @@ public class Main {
         Input.firstInput();
         String pointSet = Input.pointSet();
         List<String> points = Input.pointInput(pointSet);
-        Input.print(points);
+        Input.pointDivide(points);
+        Input.print();
     }
 }
