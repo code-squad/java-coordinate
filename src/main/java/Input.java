@@ -18,5 +18,12 @@ public class Input {
         return Arrays.asList(pointSet.split("-"));
     }
 
+//    public List<String> pointDivide(List<String> points){
+//        for(int i = 0; i < points.size(); i++){
+//            String info = points.get(i).substring(1 , points.get(i).length()-1);
+//
+//        }
+//    }
+
 
 }

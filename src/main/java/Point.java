@@ -1,24 +1,27 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Point {
-    //ArrayList<Integer> xPoints = new ArrayList<>();
-    //ArrayList<Integer> yPoints = new ArrayList<>();
-    private int x, y;
+    private int x, y, size;
 
-    public static ArrayList<String> pointDivide(List<String> points){
-        ArrayList<String> pointDivde = new ArrayList();
-        for(int i = 0; i < points.size(); i++){
-            String info = points.get(i).substring(1 , points.get(i).length()-1);
-            xyDivide(info);
-        }
-        return pointDivde;
+    public Point(List <String> points){
+        String info = points.get(1).substring(1 , points.get(1).length()-1);
+        List<String> xyDivide = Arrays.asList(info.split(","));
+        x = Integer.parseInt(xyDivide.get(0));
+        y = Integer.parseInt(xyDivide.get(1));
+        size = xyDivide.size();
     }
 
-    public static void xyDivide(String xy){
-        List<String> xyDivde = Arrays.asList(xy.split(","));
-        xPoints.add(Integer.parseInt(xyDivde.get(0)));
-        yPoints.add(Integer.parseInt(xyDivde.get(1)));
+    public Integer xValue(){
+        return x;
     }
+
+    public Integer yValue(){
+        return y;
+    }
+
+    public Integer size(){
+        return size();
+    }
+
 }

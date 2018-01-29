@@ -6,14 +6,14 @@ public class Main {
         Input.firstInput();
         String pointSet = Input.pointSet();
         List<String> points = Input.pointInput(pointSet);
-        Point.pointDivide(points);
+        Line line = new Line(points);
 
-        DrawLine.draw();
+        line.draw();
         System.out.print(String.format("%3s","+"));
         System.out.println("------------------------------------------------");
-        DrawLine.printNumber();
+        line.printNumber();
         System.out.println();
-        ResultView.printResult();
+        ResultView.printResult(line);
 
     }
 }
