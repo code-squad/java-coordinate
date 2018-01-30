@@ -28,9 +28,14 @@ public class Draw {
             printPoint(x, y);
         }
     }
+    public boolean checkPoint(int x, int y, Point point){
+        if(point.xValue() == x && point.yValue() == y)
+            return true;
+        return false;
+    }
 
     public void printPoint(int x, int y){
-        if((point1.yValue() == y && point1.xValue() == x) || (point2.yValue() == y && point2.xValue() == x) || (point3.yValue() == y && point3.xValue() == x) || (point4.yValue() == y && point4.xValue() == x))
+        if(checkPoint(x, y,point1) || checkPoint(x, y,point2) || checkPoint(x, y, point3) || checkPoint(x, y, point4))
             System.out.print("*");
         System.out.print("  ");
 
