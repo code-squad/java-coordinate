@@ -5,7 +5,7 @@ public class Draw {
     private Point point2;
     private Point point3;
     private Point point4;
-
+    //List<Integer> points
     public Draw(List<String> points){
         point1 = new Point(points.get(0));
         point2 = new Point(points.get(1));

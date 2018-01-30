@@ -21,8 +21,8 @@ public class Square {
         return Math.abs(point3.yValue() - point2.yValue());
     }
 
-    public int area(int width, int height){
-        return width * height;
+    public int area(){
+        return width() * height();
     }
 
 }
