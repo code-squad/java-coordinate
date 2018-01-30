@@ -3,10 +3,14 @@ import java.util.List;
 public class Line {
     private Point point1;
     private Point point2;
+    private Point point3;
+    private Point point4;
 
     public Line(List<String> points){
         point1 = new Point(points.get(0));
         point2 = new Point(points.get(1));
+        point3 = new Point(points.get(2));
+        point4 = new Point(points.get(3));
     }
 
     public int xDistance(){
@@ -20,6 +24,18 @@ public class Line {
 
     public double calculateDistance(){
         return Math.sqrt(Math.pow(xDistance(), 2) + Math.pow(yDistance(), 2));
+    }
+
+    public int width(){
+        return Math.abs(point3.xValue() - point4.xValue());
+    }
+
+    public int height(){
+        return Math.abs(point3.yValue() - point2.yValue());
+    }
+
+    public int area(int width, int height){
+        return width * height;
     }
 
 
@@ -37,18 +53,32 @@ public class Line {
         for(int x =0; x < 25; x++){
             printPoint1(x, y);
             printPoint2(x, y);
+            printPoint3(x, y);
+            printPoint4(x, y);
         }
     }
 
     public void printPoint1(int x, int y){
             if(point1.yValue() == y && point1.xValue() == x)
-                System.out.print(" *");
+                System.out.print("*");
             System.out.print(" ");
     }
 
     public void printPoint2(int x, int y){
         if(point2.yValue() == y && point2.xValue() == x)
-            System.out.print(" *");
+            System.out.print("*");
+        System.out.print(" ");
+    }
+
+    public void printPoint3(int x, int y){
+        if(point3.yValue() == y && point3.xValue() == x)
+            System.out.print("*");
+        System.out.print(" ");
+    }
+
+    public void printPoint4(int x, int y){
+        if(point4.yValue() == y && point4.xValue() == x)
+            System.out.print("*");
         System.out.print(" ");
     }
 
