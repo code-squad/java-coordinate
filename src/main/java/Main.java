@@ -7,11 +7,11 @@ public class Main {
         String pointSet = Input.pointSet();
         List<String> points = Input.pointInput(pointSet);
         Line line = new Line(points);
-
-        line.draw();
+        Draw draw = new Draw(points);
+        draw.drawline();
         System.out.print(String.format("%3s","+"));
         System.out.println("------------------------------------------------");
-        line.printNumber();
+        draw.printNumber();
         System.out.println();
         ResultView.printResult(line);
 
