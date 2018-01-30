@@ -9,10 +9,6 @@ public class Line {
         point2 = new Point(points.get(1));
     }
 
-    public Integer sizeOf(List<String> points){
-        return points.size();
-    }
-
     public int xDistance(){
         return Math.abs(point2.xValue() - point1.xValue());
     }
@@ -40,6 +36,7 @@ public class Line {
     public void drawX(int y){
         for(int x =0; x < 25; x++){
             printPoint1(x, y);
+            printPoint2(x, y);
         }
     }
 
