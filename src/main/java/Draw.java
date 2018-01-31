@@ -1,16 +1,28 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Draw {
-    private Point point1;
-    private Point point2;
-    private Point point3;
-    private Point point4;
-    //List<Integer> points
+//    private Point point1;
+//    private Point point2;
+//    private Point point3;
+//    private Point point4;
+//    List<String> points;
+//    public Draw(List<String> points){
+//        point1 = new Point(points.get(0));
+//        point2 = new Point(points.get(1));
+//        point3 = new Point(points.get(2));
+//        point4 = new Point(points.get(3));
+//    }
+
+    ArrayList<Point> list = new ArrayList<>();
     public Draw(List<String> points){
-        point1 = new Point(points.get(0));
-        point2 = new Point(points.get(1));
-        point3 = new Point(points.get(2));
-        point4 = new Point(points.get(3));
+//        list.add(new Point(points.get(0)));
+//        list.add(new Point(points.get(1)));
+//        list.add(new Point(points.get(2)));
+//        list.add(new Point(points.get(3)));
+        for(int i = 0; i < points.size(); i++){
+            list.add(new Point(points.get(i)));
+        }
     }
 
     public void drawline(){
@@ -34,8 +46,15 @@ public class Draw {
         return false;
     }
 
+//    public void printPoint(int x, int y){
+//        if(checkPoint(x, y,point1) || checkPoint(x, y,point2) || checkPoint(x, y, point3) || checkPoint(x, y, point4))
+//            System.out.print("*");
+//        System.out.print("  ");
+//
+//    }
+
     public void printPoint(int x, int y){
-        if(checkPoint(x, y,point1) || checkPoint(x, y,point2) || checkPoint(x, y, point3) || checkPoint(x, y, point4))
+        if(checkPoint(x, y,list.get(0)) || checkPoint(x, y,list.get(1)) || checkPoint(x, y, list.get(2)) || checkPoint(x, y, list.get(3)))
             System.out.print("*");
         System.out.print("  ");
 
