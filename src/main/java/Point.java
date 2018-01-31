@@ -19,4 +19,19 @@ public class Point {
         return y;
     }
 
+    @Override
+    public boolean equals(Object obj){
+        if(obj instanceof Point){
+            Point point = (Point) obj;
+            return (x == point.x) && (y == point.y);
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode(){
+        int result = this.x + this.y;
+        return result;
+    }
 }
