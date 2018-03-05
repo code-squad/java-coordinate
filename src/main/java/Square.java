@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class Square {
+public class Square extends Figure {
     private Point point1;
     private Point point2;
     private Point point3;
@@ -21,7 +21,7 @@ public class Square {
         return Math.abs(point3.yValue() - point2.yValue());
     }
 
-    public int area(){
+    public double area(){
         return width() * height();
     }
 

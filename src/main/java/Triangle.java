@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class Triangle {
+public class Triangle extends Figure {
     private Point point1;
     private Point point2;
     private Point point3;
