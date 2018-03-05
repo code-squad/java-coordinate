@@ -22,8 +22,9 @@ public class Main {
             Square square = new Square(points);
             ResultView.printResult(square);
         }
+
         Draw draw = new Draw(points);
-        draw.drawline();
+        draw.drawline(numberOfPoints);
         System.out.print(String.format("%3s","+"));
         System.out.println("------------------------------------------------");
         draw.printNumber();

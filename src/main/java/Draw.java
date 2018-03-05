@@ -3,26 +3,25 @@ import java.util.List;
 
 public class Draw {
     private ArrayList<Point> list = new ArrayList<>();
-
     public Draw(List<String> points){
         for(int i = 0; i < points.size(); i++){
             list.add(new Point(points.get(i)));
         }
     }
 
-    public void drawline(){
+    public void drawline(int num){
         for(int y = 24; y > 0; y--){
             odd(y);
             notOdd(y);
             System.out.print("|");
-            drawX(y);
+            drawX(y, num);
             System.out.println();
         }
     }
 
-    public void drawX(int y){
+    public void drawX(int y, int num){
         for(int x =0; x < 25; x++){
-            printPoint(x, y);
+            printPoint(x, y, num);
         }
     }
     public boolean checkPoint(int x, int y, Point point){
@@ -31,10 +30,16 @@ public class Draw {
         return false;
     }
 
-    public void printPoint(int x, int y){
-        if(checkPoint(x, y,list.get(0)) || checkPoint(x, y,list.get(1)) || checkPoint(x, y, list.get(2)))
-            System.out.print("*");
+    public void printPoint(int x, int y, int num){
+        for(int i = 0; i < num; i++){
+            printStar(x, y, i);
+        }
         System.out.print("  ");
+    }
+
+    public void printStar(int x, int y, int i){
+        if(checkPoint(x, y, list.get(i)))
+            System.out.print("*");
     }
 
     public void odd(int i){
