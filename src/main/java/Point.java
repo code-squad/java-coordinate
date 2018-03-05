@@ -19,4 +19,23 @@ public class Point {
         return y;
     }
 
+    public double disance(Point point) {
+        return Math.pow((Math.pow(xValue() - point.xValue(), 2) + Math.pow(yValue() - point.yValue(), 2)), 0.5);
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if(obj instanceof Point){
+            Point point = (Point) obj;
+            return (x == point.x) && (y == point.y);
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode(){
+        int result = this.x + this.y;
+        return result;
+    }
 }
