@@ -14,7 +14,7 @@ public class Square {
     }
 
     public int width(){
-        return Math.abs(point3.xValue() - point4.xValue());
+        return Math.abs(point1.xValue() - point2.xValue());
     }
 
     public int height(){

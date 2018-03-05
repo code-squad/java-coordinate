@@ -11,22 +11,16 @@ public class Triangle {
         point3 = new Point(points.get(2));
     }
 
-    public double distanceA(){
-        int xDistance = point1.xValue() - point2.xValue();
-        int yDistance = point1.yValue() - point2.yValue();
-        return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+    private double distanceA(){
+        return point1.disance(point2);
     }
 
-    public double distanceB(){
-        int xDistance = point2.xValue() - point3.xValue();
-        int yDistance = point2.yValue() - point3.yValue();
-        return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+    private double distanceB(){
+        return point2.disance(point3);
     }
 
-    public double distanceC(){
-        int xDistance = point3.xValue() - point1.xValue();
-        int yDistance = point3.yValue() - point1.yValue();
-        return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+    private double distanceC(){
+        return point3.disance(point1);
     }
 
     public double area(){

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Draw {
-    ArrayList<Point> list = new ArrayList<>();
+    private ArrayList<Point> list = new ArrayList<>();
 
     public Draw(List<String> points){
         for(int i = 0; i < points.size(); i++){
@@ -30,12 +30,6 @@ public class Draw {
             return true;
         return false;
     }
-
-//    public void printPoint(int x, int y){
-//        if(checkPoint(x, y,list.get(0)) || checkPoint(x, y,list.get(1)) || checkPoint(x, y, list.get(2)) || checkPoint(x, y, list.get(3)))
-//            System.out.print("*");
-//        System.out.print("  ");
-//    }
 
     public void printPoint(int x, int y){
         if(checkPoint(x, y,list.get(0)) || checkPoint(x, y,list.get(1)) || checkPoint(x, y, list.get(2)))
