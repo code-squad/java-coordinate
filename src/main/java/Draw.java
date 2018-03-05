@@ -31,8 +31,14 @@ public class Draw {
         return false;
     }
 
+//    public void printPoint(int x, int y){
+//        if(checkPoint(x, y,list.get(0)) || checkPoint(x, y,list.get(1)) || checkPoint(x, y, list.get(2)) || checkPoint(x, y, list.get(3)))
+//            System.out.print("*");
+//        System.out.print("  ");
+//    }
+
     public void printPoint(int x, int y){
-        if(checkPoint(x, y,list.get(0)) || checkPoint(x, y,list.get(1)) || checkPoint(x, y, list.get(2)) || checkPoint(x, y, list.get(3)))
+        if(checkPoint(x, y,list.get(0)) || checkPoint(x, y,list.get(1)) || checkPoint(x, y, list.get(2)))
             System.out.print("*");
         System.out.print("  ");
     }
