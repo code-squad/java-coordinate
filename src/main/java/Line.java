@@ -10,5 +10,7 @@ public class Line extends Figure {
         return 0;
     }
 
-    double distance = super.distance(getPoint(1), getPoint(0));
+    public double distance() {
+        return super.distance(getPoint(1), getPoint(0));
+    }
 }

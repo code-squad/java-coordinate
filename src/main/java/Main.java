@@ -10,19 +10,19 @@ public class Main {
         int numberOfPoints = points.size();
 
         if(points.size() == 2) {
-            Line line = new Line(points);
-            ResultView.printResult(line);
+            Figure figure = new Line(points);
         }
 
         if(points.size() == 3) {
-            Triangle triangle = new Triangle(points);
-            ResultView.printResult(triangle);
+            Figure figure = new Triangle(points);
         }
 
         if(points.size() == 4) {
-            Square square = new Square(points);
-            ResultView.printResult(square);
+            Square figure = new Square(points);
+            ResultView.printResult(figure);
         }
+
+        ResultView.printResult(figure);
 
         Draw draw = new Draw(points);
         draw.drawline(numberOfPoints);
