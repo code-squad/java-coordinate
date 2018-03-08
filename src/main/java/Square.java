@@ -6,15 +6,10 @@ public class Square extends Figure {
         super(points);
     }
 
-    public int width() {
-        return Math.abs(super.values.get(0).xValue() - super.values.get(1).xValue());
-    }
-
-    public int height() {
-        return Math.abs(super.values.get(1).yValue() - super.values.get(2).yValue());
-    }
+    int width = (int)super.distance(getPoint(0), getPoint(1));
+    int height = (int)super.distance(getPoint(1), getPoint(2));
 
     public double area() {
-        return width() * height();
+        return width * height;
     }
 }

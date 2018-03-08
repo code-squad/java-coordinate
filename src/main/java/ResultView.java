@@ -8,6 +8,6 @@ public class ResultView {
     }
 
     public static void printResult(Line line) {
-        System.out.println("선의 길이 : " + line.calculateDistance());
+        System.out.println("선의 길이 : " + line.distance);
     }
 }
