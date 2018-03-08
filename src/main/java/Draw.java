@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Draw {
-    private ArrayList<Point> list = new ArrayList<>();
+    private List<Point> list = new ArrayList<>();
     public Draw(List<String> points){
         for(int i = 0; i < points.size(); i++){
             list.add(new Point(points.get(i)));
