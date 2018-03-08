@@ -6,6 +6,7 @@ public class Main {
         Input.firstInput();
         String pointSet = Input.pointSet();
         List<String> points = Input.pointInput(pointSet);
+
         int numberOfPoints = points.size();
 
         if(points.size() == 2) {
@@ -18,10 +19,10 @@ public class Main {
             ResultView.printResult(triangle);
         }
 
-        if(points.size() == 4) {
-            Square square = new Square(points);
-            ResultView.printResult(square);
-        }
+//        if(points.size() == 4) {
+//            Square square = new Square(points);
+//            ResultView.printResult(square);
+//        }
 
         Draw draw = new Draw(points);
         draw.drawline(numberOfPoints);
