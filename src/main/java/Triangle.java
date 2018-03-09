@@ -5,13 +5,9 @@ public class Triangle extends Figure implements Area {
         super(points);
     }
 
-    public double distance(int start, int end) {
-        return super.distance(getPoint(start), getPoint(end));
-    }
-
-    double a = distance(0, 1);
-    double b = distance(1, 2);
-    double c = distance(2, 0);
+    double a = super.getPoint(0).disance(super.getPoint(1));
+    double b = super.getPoint(1).disance(super.getPoint(2));
+    double c = super.getPoint(2).disance(super.getPoint(0));
 
     @Override
     public double area() {

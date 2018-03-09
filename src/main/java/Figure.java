@@ -13,13 +13,6 @@ public abstract class Figure {
     public Point getPoint(int i) {
         return values.get(i);
     }
-
-//    public double distance(List<String> points) {
-//        Line line = new Line(points);
-//        Point start = values.get(0);
-//        Point end = values.get(1);
-//        return line.distance(start, end);
-//    }
 }
 
 interface Area {
