@@ -11,8 +11,8 @@ public class Triangle extends Figure implements Area {
 
     @Override
     public double area() {
-        double s = (a + b + c / 2);
-        double result = Math.pow(s * (s - a) * (s - b) * (s - c), 0.5 );
+        double s = ((a + b + c) / 2);
+        double result = Math.pow((s * (s - a) * (s - b) * (s - c)) , 0.5);
         return Math.round((result * 100d) / 100d);
     }
 }
