@@ -1,10 +1,13 @@
 import java.util.List;
 
-public class ResultView {
-    public static void printResult(int i, List<String> points) {
+public class ResultView extends Figure {
+    public ResultView(List<String> points) {
+        super(points);
+    }
+    public void printResult(int i, List<String> points) {
         if (i == 2) {
             Line figure = new Line(points);
-            System.out.println("선의 길이 : " + figure.distance);
+            System.out.println("선의 길이 : " + figure.distance(super.getPoint(0), super.getPoint(1)));
         }
 
         if (i == 3) {

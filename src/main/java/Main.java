@@ -13,6 +13,7 @@ public class Main {
         System.out.println("------------------------------------------------");
         draw.printNumber();
         System.out.println();
-        ResultView.printResult(numberOfPoints, points);
+        ResultView result = new ResultView(points);
+        result.printResult(numberOfPoints, points);
     }
 }

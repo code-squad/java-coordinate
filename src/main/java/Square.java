@@ -2,19 +2,23 @@
 import java.util.List;
 
 public class Square extends Figure implements Area {
+    Line line;
+
     public Square(List<String> points) {
         super(points);
+        line = new Line(points);
     }
 
-    public int distance(int start, int end) {
-        return (int)super.distance(getPoint(start), getPoint(end));
+    public int width() {
+        return (int)line.distance(super.getPoint(0), super.getPoint(1));
     }
 
-    int width = distance(0, 1);
-    int height = distance(1, 2);
+    public int height() {
+        return (int)line.distance(super.getPoint(1), super.getPoint(2));
+    }
 
     @Override
     public double area() {
-        return width * height;
+        return width() * height();
     }
 }

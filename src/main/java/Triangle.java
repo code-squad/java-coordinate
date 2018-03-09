@@ -1,17 +1,16 @@
 import java.util.List;
 
 public class Triangle extends Figure implements Area {
+    Line line;
+    
     public Triangle (List<String> points) {
         super(points);
+        line = new Line(points);
     }
 
-    public double distance(int start, int end) {
-        return super.distance(getPoint(start), getPoint(end));
-    }
-
-    double a = distance(0, 1);
-    double b = distance(1, 2);
-    double c = distance(2, 0);
+    double a = line.distance(super.getPoint(0), super.getPoint(1));
+    double b = line.distance(super.getPoint(1), super.getPoint(2));
+    double c = line.distance(super.getPoint(2), super.getPoint(0));
 
     @Override
     public double area() {
