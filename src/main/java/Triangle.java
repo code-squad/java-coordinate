@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class Triangle extends Figure {
+public class Triangle extends Figure implements Area {
     public Triangle (List<String> points) {
         super(points);
     }
@@ -9,6 +9,7 @@ public class Triangle extends Figure {
     double b = super.distance(getPoint(1), getPoint(2));
     double c = super.distance(getPoint(2), getPoint(0));
 
+    @Override
     public double area() {
         double s = (a + b + c / 2);
         double result = Math.pow(s * (s - a) * (s - b) * (s - c), 0.5 );

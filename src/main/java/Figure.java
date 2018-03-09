@@ -18,6 +18,8 @@ public abstract class Figure {
     public double distance(Point first, Point second) {
         return Math.pow((Math.pow(first.xValue() - second.xValue(), 2) + Math.pow(first.yValue() - second.yValue(), 2)) , 0.5);
     }
+}
 
-    public abstract double area();
+interface Area {
+    public double area();
 }

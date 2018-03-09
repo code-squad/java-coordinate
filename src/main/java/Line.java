@@ -5,10 +5,5 @@ public class Line extends Figure {
         super(points);
     }
 
-    @Override
-    public double area() {
-        return 0;
-    }
-
     double distance = super.distance(getPoint(1), getPoint(0));
 }
