@@ -3,9 +3,10 @@ import java.util.List;
 
 public class Draw {
     private List<Point> list = new ArrayList<>();
+
     public Draw(List<String> points){
-        for(int i = 0; i < points.size(); i++){
-            list.add(new Point(points.get(i)));
+        for (String point : points) {
+            list.add(new Point(point));
         }
     }
 

@@ -2,10 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Figure {
-    private List<Point> values = new ArrayList<Point>();
+    private List<Point> values = new ArrayList<>();
 
     Figure(List<String> points) {
-        // 여기서 point처리
         for (String point : points) {
             values.add(new Point(point));
         }

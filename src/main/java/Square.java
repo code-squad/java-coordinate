@@ -6,8 +6,12 @@ public class Square extends Figure implements Area {
         super(points);
     }
 
-    int width = (int)super.distance(getPoint(0), getPoint(1));
-    int height = (int)super.distance(getPoint(1), getPoint(2));
+    public int distance(int start, int end) {
+        return (int)super.distance(getPoint(start), getPoint(end));
+    }
+
+    int width = distance(0, 1);
+    int height = distance(1, 2);
 
     @Override
     public double area() {
