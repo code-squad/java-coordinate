@@ -14,9 +14,12 @@ public abstract class Figure {
         return values.get(i);
     }
 
-    public double distance(Point first, Point second) {
-        return Math.pow((Math.pow(first.xValue() - second.xValue(), 2) + Math.pow(first.yValue() - second.yValue(), 2)) , 0.5);
-    }
+//    public double distance(List<String> points) {
+//        Line line = new Line(points);
+//        Point start = values.get(0);
+//        Point end = values.get(1);
+//        return line.distance(start, end);
+//    }
 }
 
 interface Area {

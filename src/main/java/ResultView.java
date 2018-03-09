@@ -4,7 +4,7 @@ public class ResultView {
     public static void printResult(int i, List<String> points) {
         if (i == 2) {
             Line figure = new Line(points);
-            System.out.println("선의 길이 : " + figure.distance);
+            System.out.println("선의 길이 : " + figure.distance());
         }
 
         if (i == 3) {
