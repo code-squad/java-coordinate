@@ -1,25 +1,11 @@
 import java.util.List;
 
-public class Line {
-    private Point point1;
-    private Point point2;
-
+public class Line extends Figure {
     public Line(List<String> points) {
-        point1 = new Point(points.get(0));
-        point2 = new Point(points.get(1));
+        super(points);
     }
 
-    public int xDistance(){
-        return Math.abs(point2.xValue() - point1.xValue());
+    public double distance(Point first, Point second) {
+        return Math.pow((Math.pow(first.xValue() - second.xValue(), 2) + Math.pow(first.yValue() - second.yValue(), 2)) , 0.5);
     }
-
-    public int yDistance() {
-        return Math.abs(point2.yValue() - point1.yValue());
-
-    }
-    public double calculateDistance(){
-        return Math.sqrt(Math.pow(xDistance(), 2) + Math.pow(yDistance(), 2));
-    }
-
-
 }

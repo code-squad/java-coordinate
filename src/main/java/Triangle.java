@@ -1,33 +1,21 @@
 import java.util.List;
 
-public class Triangle {
-    private Point point1;
-    private Point point2;
-    private Point point3;
-
-    public Triangle (List<String> points){
-        point1 = new Point(points.get(0));
-        point2 = new Point(points.get(1));
-        point3 = new Point(points.get(2));
+public class Triangle extends Figure implements Area {
+    Line line;
+    
+    public Triangle (List<String> points) {
+        super(points);
+        line = new Line(points);
     }
 
-    private double distanceA(){
-        return point1.disance(point2);
-    }
+    double a = line.distance(super.getPoint(0), super.getPoint(1));
+    double b = line.distance(super.getPoint(1), super.getPoint(2));
+    double c = line.distance(super.getPoint(2), super.getPoint(0));
 
-    private double distanceB(){
-        return point2.disance(point3);
-    }
-
-    private double distanceC(){
-        return point3.disance(point1);
-    }
-
-    public double area(){
-        double s = (distanceA() + distanceB() + distanceC()) / 2;
-        double result = Math.pow(s * (s - distanceA()) * (s - distanceB()) * (s - distanceC()), 0.5);
+    @Override
+    public double area() {
+        double s = (a + b + c / 2);
+        double result = Math.pow(s * (s - a) * (s - b) * (s - c), 0.5 );
         return Math.round((result * 100d) / 100d);
-
     }
-
 }
