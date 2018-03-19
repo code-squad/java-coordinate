@@ -1,4 +1,4 @@
-package domain;
+package domain.coordinate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,5 +44,15 @@ public class Coordinate {
 
     public int getYPositionLimit() {
         return Y_POS_LIMIT;
+    }
+
+    public void drawPosition(int xPosition, int yPosition) {
+        CoordinateLine searchCoordinateLine = coordinateLines.get(yPosition);
+        searchCoordinateLine.drawPosition(xPosition);
+    }
+
+    public boolean isDrawPosition(int xPosition, int yPosition) {
+        CoordinateLine searchCoordinateLine = coordinateLines.get(yPosition);
+        return searchCoordinateLine.isDrawPosition(xPosition);
     }
 }

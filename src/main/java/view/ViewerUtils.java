@@ -1,6 +1,6 @@
 package view;
 
-import domain.Coordinate;
+import domain.coordinate.Coordinate;
 
 public class ViewerUtils {
 

@@ -1,4 +1,4 @@
-package domain;
+package domain.coordinate;
 
 import java.util.ArrayList;
 
@@ -29,5 +29,15 @@ public class CoordinateLine {
 
     public boolean isValidXPosition(int xPosition) {
         return X_POS_LIMIT >= xPosition;
+    }
+
+    public void drawPosition(int xPosition) {
+        CoordinatePoint searchCoordinatePoint = coordinatePoints.get(xPosition);
+        searchCoordinatePoint.drawPostion();
+    }
+
+    public boolean isDrawPosition(int xPosition) {
+        CoordinatePoint searchCoordinatePoint = coordinatePoints.get(xPosition);
+        return searchCoordinatePoint.isDrawPosition();
     }
 }
