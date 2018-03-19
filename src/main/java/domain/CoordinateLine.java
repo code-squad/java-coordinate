@@ -2,25 +2,25 @@ package domain;
 
 import java.util.ArrayList;
 
-public class Line {
+public class CoordinateLine {
     private static final int X_POS_LIMIT = 24;
-    private ArrayList<Point> points = new ArrayList<>();
+    private ArrayList<CoordinatePoint> coordinatePoints = new ArrayList<>();
     private int yPosition;
 
-    Line(int yPosition) {
+    CoordinateLine(int yPosition) {
         this.yPosition = yPosition;
         makePoints();
     }
 
     private void makePoints() {
         for (int xPos = 0; xPos <= X_POS_LIMIT; xPos++) {
-            points.add(new Point(xPos));
+            coordinatePoints.add(new CoordinatePoint(xPos));
         }
     }
 
     public boolean isYAxisPosition(int xPosition) {
-        Point searchPoint = points.get(xPosition);
-        return searchPoint.isMatchPosition(0);
+        CoordinatePoint searchCoordinatePoint = coordinatePoints.get(xPosition);
+        return searchCoordinatePoint.isMatchPosition(0);
     }
 
     public boolean isXAxisPosition() {

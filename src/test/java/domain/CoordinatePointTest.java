@@ -5,16 +5,16 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class PointTest {
-    private Point point;
+public class CoordinatePointTest {
+    private CoordinatePoint coordinatePoint;
 
     @Before
     public void setUp() throws Exception {
-        point = new Point(24);
+        coordinatePoint = new CoordinatePoint(24);
     }
 
     @Test
     public void 자신의_위치가_맞는가() {
-        assertEquals(true, point.isMatchPosition(24));
+        assertEquals(true, coordinatePoint.isMatchPosition(24));
     }
 }

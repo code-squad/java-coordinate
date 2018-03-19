@@ -6,7 +6,7 @@ import java.util.List;
 public class Coordinate {
     private static Coordinate coordinate = new Coordinate();
     private static final int Y_POS_LIMIT = 24;
-    private List<Line> lines = new ArrayList<>();
+    private List<CoordinateLine> coordinateLines = new ArrayList<>();
 
     private Coordinate() {
         makeLines();
@@ -14,7 +14,7 @@ public class Coordinate {
 
     private void makeLines() {
         for (int yPos = 0; yPos <= Y_POS_LIMIT; yPos++) {
-            lines.add(new Line(yPos));
+            coordinateLines.add(new CoordinateLine(yPos));
         }
     }
 
@@ -23,23 +23,23 @@ public class Coordinate {
     }
 
     public boolean isYAxisPosition(int xPosition, int yPosition) {
-        Line searchLine = lines.get(yPosition);
-        return searchLine.isYAxisPosition(xPosition);
+        CoordinateLine searchCoordinateLine = coordinateLines.get(yPosition);
+        return searchCoordinateLine.isYAxisPosition(xPosition);
     }
 
     public boolean isXAxisPosition(int yPosition) {
-        Line searchLine = lines.get(yPosition);
-        return searchLine.isXAxisPosition();
+        CoordinateLine searchCoordinateLine = coordinateLines.get(yPosition);
+        return searchCoordinateLine.isXAxisPosition();
     }
 
     public boolean isValidYPosition(int yPosition) {
-        int limitYPos = lines.size() - 1;
+        int limitYPos = coordinateLines.size() - 1;
         return yPosition >= 0 && yPosition <= limitYPos;
     }
 
     public boolean isValidXPosition(int xPosition) {
-        Line firstLine = lines.get(0);
-        return firstLine.isValidXPosition(xPosition);
+        CoordinateLine firstCoordinateLine = coordinateLines.get(0);
+        return firstCoordinateLine.isValidXPosition(xPosition);
     }
 
     public int getYPositionLimit() {

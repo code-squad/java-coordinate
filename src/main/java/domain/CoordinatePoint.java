@@ -1,9 +1,9 @@
 package domain;
 
-class Point {
+class CoordinatePoint {
     private int position;
 
-    Point(int position) {
+    CoordinatePoint(int position) {
         this.position = position;
     }
 
