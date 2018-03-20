@@ -1,28 +1,29 @@
-package view;
+package view.util;
 
-import domain.Coordinate;
+import domain.point.Point;
+import view.coordinate.Coordinate;
 
 public class ViewerUtils {
 
+    public static String formatDistance(double distance) {
+        return String.format("%.3f", distance);
+    }
+
     public static String buildCoordinateView(Coordinate coordinate) {
         StringBuilder builder = new StringBuilder();
-        int yPosition = coordinate.getYPositionLimit();
-        while (coordinate.isValidYPosition(yPosition)) {
+        for (int yPosition = Point.Y_POSITION_LIMIT; yPosition >= 0; yPosition--) {
             builder.append(getYNumber(yPosition));
             builder.append(getXPositionView(coordinate, yPosition));
             builder.append("\n");
-            yPosition--;
         }
-        builder.append(getXNumberLine(coordinate));
+        builder.append(getXNumberLine());
         return builder.toString();
     }
 
-    private static String getXNumberLine(Coordinate coordinate) {
+    private static String getXNumberLine() {
         StringBuilder builder = new StringBuilder();
-        int xPosition = 0;
-        while (coordinate.isValidXPosition(xPosition)) {
+        for (int xPosition = 0; xPosition <= Point.X_POSITION_LIMIT; xPosition++) {
             builder.append(buildXNumberLine(xPosition));
-            xPosition++;
         }
         return builder.toString();
     }
@@ -43,10 +44,8 @@ public class ViewerUtils {
 
     private static String getXPositionView(Coordinate coordinate, int yPosition) {
         StringBuilder builder = new StringBuilder();
-        int xPosition = 0;
-        while (coordinate.isValidXPosition(xPosition)) {
+        for (int xPosition = 0; xPosition <= Point.X_POSITION_LIMIT; xPosition++) {
             builder.append(buildXPositionView(coordinate, xPosition, yPosition));
-            xPosition++;
         }
         return builder.toString();
     }
@@ -58,6 +57,13 @@ public class ViewerUtils {
 
         if (coordinate.isXAxisPosition(yPosition)) {
             return String.format("%s", getPositionLetter(PositionLetter.XAXIS));
+        }
+        return buildXDrawPositionView(coordinate, xPosition, yPosition);
+    }
+
+    private static String buildXDrawPositionView(Coordinate coordinate, int xPosition, int yPosition) {
+        if (coordinate.isDrawPosition(xPosition, yPosition)) {
+            return String.format("%3s", getPositionLetter(PositionLetter.MARK));
         }
         return String.format("%3s", getPositionLetter(PositionLetter.NORMAL));
     }
@@ -78,7 +84,8 @@ enum PositionLetter {
     AXIS("+"),
     XAXIS("---"),
     YAXIS("|"),
-    NORMAL(" ");
+    NORMAL(" "),
+    MARK("*");
 
     private String letter;
 
