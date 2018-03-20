@@ -10,13 +10,13 @@ public class CoordinateCalculator {
 
     private List<Row> rows = new ArrayList<>();
 
-    public CoordinateCalculator(){
-        for (int y = 0; y <= RANGE; y++){
-            rows.add(new Row(y));
+    public CoordinateCalculator() {
+        for (int y = 0; y <= RANGE; y++) {
+            rows.add(new Row());
         }
     }
 
-    public String buildCalc(){
+    public String buildCalc() {
         return Builder.startBuild(rows);
     }
 }
