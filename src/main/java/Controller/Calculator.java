@@ -19,7 +19,7 @@ public class Calculator {
     }
 
     private ArrayList<String> checkReturnCoordinates() {
-        return new ArrayList<>(Arrays.asList("0,0", "1,2", "2,2", "10,6"));
+        return new ArrayList<>(Arrays.asList("0,0", "1,1","2,2" ,"1,2"));
     }
 
     public static void calculate(){ }

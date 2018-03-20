@@ -8,7 +8,7 @@ public class BoardTest {
 
     @Test
     public void setPoint(){
-        Point point = Point.pointOf(1,1);
+        Point point = Point.of(1,1);
         Board board = Board.of();
         board.setPoint(1,1);
         assertThat(point, is(board.getPoint(1,1)));

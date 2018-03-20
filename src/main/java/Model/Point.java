@@ -10,7 +10,7 @@ public class Point {
         this.y = y;
     }
 
-    public static Point pointOf(int x, int y) {
+    public static Point of(int x, int y) {
         return new Point(x, y);
     }
 

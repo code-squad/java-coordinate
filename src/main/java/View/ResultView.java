@@ -35,6 +35,7 @@ public class ResultView {
         }
     }
 
+    // yet not perfect logic
     static String drawLine(int y, Board board){
         return IntStream.range(0, 24).mapToObj(i -> drawPoint(i, y, board)).collect(Collectors.joining(""));
     }
