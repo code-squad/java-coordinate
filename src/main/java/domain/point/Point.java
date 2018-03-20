@@ -1,5 +1,7 @@
 package domain.point;
 
+import java.util.Objects;
+
 public class Point {
     private static final int X_POSITION_LIMIT = 24;
     private static final int Y_POSITION_LIMIT = 24;
@@ -11,7 +13,7 @@ public class Point {
             throw new IllegalArgumentException("X 포지션 값 최대 " + X_POSITION_LIMIT + "까지 입니다.");
         }
 
-        if(!isValidYPosition(yPosition)) {
+        if (!isValidYPosition(yPosition)) {
             throw new IllegalArgumentException("Y 포지션 값 최대 " + Y_POSITION_LIMIT + "까지 입니다.");
         }
         this.xPosition = xPosition;
@@ -32,6 +34,27 @@ public class Point {
 
     public int getYPositionLimit() {
         return Y_POSITION_LIMIT;
+    }
+
+    public int getXPosition() {
+        return xPosition;
+    }
+
+    public int getYPosition() {
+        return yPosition;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Point point = (Point) obj;
+        return xPosition == point.xPosition && yPosition == point.yPosition;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(xPosition, yPosition);
     }
 }
 

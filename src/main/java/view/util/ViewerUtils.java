@@ -59,8 +59,11 @@ public class ViewerUtils {
         if (coordinate.isXAxisPosition(yPosition)) {
             return String.format("%s", getPositionLetter(PositionLetter.XAXIS));
         }
+        return buildXDrawPositionView(coordinate, xPosition, yPosition);
+    }
 
-        if(coordinate.isDrawPosition(xPosition, yPosition)) {
+    private static String buildXDrawPositionView(Coordinate coordinate, int xPosition, int yPosition) {
+        if (coordinate.isDrawPosition(xPosition, yPosition)) {
             return String.format("%3s", getPositionLetter(PositionLetter.MARK));
         }
         return String.format("%3s", getPositionLetter(PositionLetter.NORMAL));

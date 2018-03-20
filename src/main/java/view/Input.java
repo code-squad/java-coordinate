@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Input {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static Points getPoints(String printMessage, int validPointNum) throws IllegalArgumentException {
+    public static Points addPoints(String printMessage, int validPointNum) throws IllegalArgumentException {
         Viewer.viewMessage(printMessage);
         String[] coordinates = getCoordinates(validPointNum);
         Points pointRepo = Points.of();
@@ -27,8 +27,8 @@ public class Input {
     }
 
     private static void verifyPointNum(String[] coordinates, int validCoordinateNum) throws IllegalArgumentException {
-        if (validCoordinateNum > coordinates.length) {
-            throw new IllegalArgumentException(validCoordinateNum + "개 이상 좌표를 입력해야합니다.");
+        if (validCoordinateNum != coordinates.length) {
+            throw new IllegalArgumentException(validCoordinateNum + "개 좌표를 입력해야합니다.");
         }
     }
 

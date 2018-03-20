@@ -17,11 +17,12 @@ public class Main {
     }
 
     private static Points getPoints() {
-        Points pointRepo = null;
+        Points pointRepo = Points.of();
         try {
-            pointRepo = Input.getPoints("좌표를 입력하세요.", VALID_COORDINATE_NUM);
+            pointRepo = Input.addPoints("좌표를 입력하세요.", VALID_COORDINATE_NUM);
         } catch (IllegalArgumentException e) {
             Viewer.viewMessage(e.getMessage());
+            pointRepo.cleanPointRepository();
             pointRepo = getPoints();
         }
         return pointRepo;
