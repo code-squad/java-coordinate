@@ -45,7 +45,7 @@ public class Utils {
     }
 
     private static boolean isOutOfDomainRange(String number) {
-        return Integer.parseInt(number) >= 24;
+        return Integer.parseInt(number) > 24;
     }
 
     static Integer[] convertToIntegerArray(String[] set) {

@@ -11,13 +11,19 @@ public class CoordinateCalculator {
     private List<Row> rows = new ArrayList<>();
 
     public CoordinateCalculator(List<Integer[]> coordinates) {
-        for (Integer[] coordinate : coordinates) {
-
-        }
+        Coordinates coords = new Coordinates(coordinates);
 
         for (int y = 0; y <= RANGE; y++) {
-            rows.add(new Row());
+            rows.add(addRow(coords, y));
         }
+    }
+
+    Row addRow(Coordinates coords, int y) {
+        if (coords.containsY(y)) {
+            int x = coords.getXIndex(y);
+            return new Row(x);
+        }
+        return new Row(-1);
     }
 
     public String buildCalc() {

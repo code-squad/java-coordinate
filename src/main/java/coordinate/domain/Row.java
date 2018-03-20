@@ -5,19 +5,30 @@ import java.util.List;
 
 public class Row {
     private static final int DOMAIN = 24;
-    private final List<Point> points = new ArrayList<>();
+    private final List<Point> row = new ArrayList<>();
 
-    Row() {
+    Row(int dotIndex) {
         for (int x = 0; x <= DOMAIN; x++) {
-            points.add(Point.ofNoPoint());
+            row.add(addPoint(dotIndex, x));
         }
     }
 
+    Point addPoint(int dotIndex, int x){
+        if(x == dotIndex) {
+            return Point.ofPoint();
+        }
+        return Point.ofNoPoint();
+    }
+
     public boolean dotAtPoint(int x) {
-        return points.get(x).isDot();
+        return row.get(x).isDot();
     }
 
     public int getRowSize() {
-        return points.size();
+        return row.size();
+    }
+
+    public List<Point> getRow(){
+        return row;
     }
 }

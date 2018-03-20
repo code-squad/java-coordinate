@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
         List<Integer[]> coordinates = convertToCoordinates(promptUserInput());
 
-        CoordinateCalculator cc = new CoordinateCalculator();
+        CoordinateCalculator cc = new CoordinateCalculator(coordinates);
         Output.printGraph(cc);
 
 
