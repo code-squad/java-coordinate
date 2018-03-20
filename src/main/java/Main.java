@@ -21,6 +21,7 @@ public class Main {
             line = new Line(pointRepo);
         } catch (IllegalArgumentException e) {
             Viewer.viewMessage(e.getMessage());
+            System.exit(-1);
         }
         return line;
     }

@@ -3,11 +3,11 @@ package domain.figure;
 import domain.point.Point;
 import domain.point.Points;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 
 public class Line {
-    private static final int VALID_COORDINATE_NUM = 2;
+    public static final int VALID_COORDINATE_NUM = 2;
     private Points pointRepo;
 
     public Line(Points points) {
@@ -17,12 +17,12 @@ public class Line {
         this.pointRepo = points;
     }
 
-    private boolean isInvalidCoordinateNum(int pointNum) {
+    private static boolean isInvalidCoordinateNum(int pointNum) {
         return pointNum != VALID_COORDINATE_NUM;
     }
 
     public double calcDistance() {
-        ArrayList<Point> calcPoints = pointRepo.getPoints();
+        List<Point> calcPoints = pointRepo.getPoints();
         double xDiffSquare = calcDiffSquare(calcDiffPosition(calcPoints, Point::getXPosition));
         double yDiffSquare = calcDiffSquare(calcDiffPosition(calcPoints, Point::getYPosition));
         return calcSquareRoot(xDiffSquare + yDiffSquare);
@@ -36,7 +36,7 @@ public class Line {
         return Math.pow(positionDiff, 2);
     }
 
-    private static int calcDiffPosition(ArrayList<Point> calcPoints, Function<Point, Integer> getPosition) {
+    private static int calcDiffPosition(List<Point> calcPoints, Function<Point, Integer> getPosition) {
         return calcPoints.stream().map(getPosition).reduce((x1, x2) -> x2 - x1).get();
     }
 }

@@ -1,9 +1,10 @@
 package view.coordinate;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CoordinateLine {
-    private ArrayList<CoordinatePoint> coordinatePoints = new ArrayList<>();
+    private List<CoordinatePoint> coordinatePoints = new ArrayList<>();
     private int yPosition;
 
     CoordinateLine(int xPositionLimit, int yPosition) {
@@ -20,11 +21,6 @@ public class CoordinateLine {
 
     public boolean isXAxisPosition() {
         return this.yPosition == 0;
-    }
-
-    public boolean isValidXPosition(int xPosition) {
-        int xPositionLimit = coordinatePoints.size() - 1;
-        return xPositionLimit >= xPosition;
     }
 
     public void drawPosition(int xPosition) {

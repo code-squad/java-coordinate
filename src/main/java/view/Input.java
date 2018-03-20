@@ -3,6 +3,7 @@ package view;
 import domain.point.Points;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Input {
@@ -13,7 +14,7 @@ public class Input {
         String[] coordinates = getCoordinates();
         Points pointRepo = new Points();
         for (String coordinate : coordinates) {
-            ArrayList<Integer> pointNumbers = splitPointNums(coordinate);
+            List<Integer> pointNumbers = splitPointNums(coordinate);
             savePoint(pointRepo, pointNumbers);
         }
         return pointRepo;
@@ -28,8 +29,8 @@ public class Input {
         return coordinatesSource.split("-");
     }
 
-    private static ArrayList<Integer> splitPointNums(String coordinate) throws NumberFormatException {
-        ArrayList<Integer> splitPointNums = new ArrayList<>();
+    private static List<Integer> splitPointNums(String coordinate) throws NumberFormatException {
+        List<Integer> splitPointNums = new ArrayList<>();
         coordinate = coordinate.replaceAll("[()]", "");
         String[] points = coordinate.split(",");
         for (String pointMessage : points) {
@@ -47,7 +48,7 @@ public class Input {
         }
     }
 
-    private static void savePoint(Points pointRepo, ArrayList<Integer> pointNumbers) throws IllegalArgumentException {
+    private static void savePoint(Points pointRepo, List<Integer> pointNumbers) throws IllegalArgumentException {
         final int xPosition = 0;
         final int yPosition = 1;
         pointRepo.addPoint(pointNumbers.get(xPosition), pointNumbers.get(yPosition));

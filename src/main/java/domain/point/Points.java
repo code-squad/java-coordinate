@@ -1,9 +1,10 @@
 package domain.point;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Points {
-    private ArrayList<Point> points = new ArrayList<>();
+    private List<Point> points = new ArrayList<>();
 
     public void addPoint(int xPosition, int yPosition) throws IllegalArgumentException {
         Point point = new Point(xPosition, yPosition);
@@ -13,21 +14,21 @@ public class Points {
         points.add(point);
     }
 
-    public int getXPositionLimit() {
-        Point firstPoint = points.get(0);
-        return firstPoint.getXPositionLimit();
-    }
-
-    public int getYPositionLimit() {
-        Point firstPoint = points.get(0);
-        return firstPoint.getYPositionLimit();
-    }
-
-    public ArrayList<Point> getPoints() {
+    public List<Point> getPoints() {
         return this.points;
     }
 
     public int getSavedSize() {
         return points.size();
+    }
+
+    public int getPointXPosition(int position) {
+        Point searchPoint = points.get(position);
+        return searchPoint.getXPosition();
+    }
+
+    public int getPointYPosition(int position) {
+        Point searchPoint = points.get(position);
+        return searchPoint.getYPosition();
     }
 }
