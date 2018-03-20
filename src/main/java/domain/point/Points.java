@@ -35,7 +35,16 @@ public class Points {
         return firstPoint.getYPositionLimit();
     }
 
-    public ArrayList<Point> getPoints() {
+    public ArrayList<Point> getDrawPoints() {
         return this.points;
+    }
+
+    public ArrayList<Point> getDistanceCalcPoints() {
+        int calcNum = 2;
+        ArrayList<Point> distancePoints = new ArrayList<>();
+        for (int i = 0; i < calcNum; i++) {
+            distancePoints.add(points.get(i));
+        }
+        return distancePoints;
     }
 }

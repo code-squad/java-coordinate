@@ -1,4 +1,4 @@
-package domain.coordinate;
+package domain.calculator;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +11,7 @@ public class CoordinateTest {
 
     @Before
     public void setUp() throws Exception {
-        //coordinate = Coordinate.of();
+        //calculator = Coordinate.of();
     }
 
     @Test

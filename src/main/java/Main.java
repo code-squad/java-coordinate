@@ -1,4 +1,4 @@
-import domain.coordinate.CoordinateCalculator;
+import domain.calculator.CoordinateCalculator;
 import domain.point.Points;
 import view.Input;
 import view.Viewer;
@@ -13,7 +13,7 @@ public class Main {
     private static void start() {
         Points pointRepo = getPoints();
         Viewer.viewCoordinate(pointRepo);
-        Viewer.viewDistance(CoordinateCalculator.calcDistance());
+        Viewer.viewDistance(CoordinateCalculator.calcDistance(pointRepo));
     }
 
     private static Points getPoints() {

@@ -1,4 +1,4 @@
-package domain.coordinate;
+package domain.calculator;
 
 import org.junit.Before;
 import org.junit.Test;
