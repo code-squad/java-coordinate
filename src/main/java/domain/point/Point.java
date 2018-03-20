@@ -48,5 +48,13 @@ public class Point {
     public int hashCode() {
         return Objects.hash(xPosition, yPosition);
     }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "xPosition=" + xPosition +
+                ", yPosition=" + yPosition +
+                '}';
+    }
 }
 
