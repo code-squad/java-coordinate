@@ -19,10 +19,9 @@ public class ResultViewTest {
     }
     @Test
     public void drawPoint(){
-        Point point = Point.pointOf(1,1);
         Board board = Board.of();
         board.setPoint(1,1);
-        assertThat(ResultView.drawPoint(1, 1, board), is(".  "));
+        assertThat(ResultView.drawPoint(1, 1, board), is("*  "));
         assertThat(ResultView.drawPoint(1, 0, board), is("   "));
     }
 }

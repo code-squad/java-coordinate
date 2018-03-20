@@ -2,7 +2,6 @@ package Model;
 
 public class Board {
 
-
     private static Board board = new Board();
 
     private Point[][] points = new Point[24][24];

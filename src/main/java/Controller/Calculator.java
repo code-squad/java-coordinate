@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class Calculator {
 
-    private Board board = Board.of();
+    private static Board board = Board.of();
 
     public void initPoints(){
         ArrayList<String> coordinatePairs;
@@ -22,7 +22,7 @@ public class Calculator {
         return new ArrayList<>(Arrays.asList("0,0", "1,2", "2,2", "10,6"));
     }
 
-    public void calculate(){ }
+    public static void calculate(){ }
 
     public Board getBoard() {
         return board;
