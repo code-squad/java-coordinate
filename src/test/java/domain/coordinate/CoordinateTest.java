@@ -2,6 +2,7 @@ package domain.coordinate;
 
 import org.junit.Before;
 import org.junit.Test;
+import view.coordinate.Coordinate;
 
 import static org.junit.Assert.assertEquals;
 

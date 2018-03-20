@@ -1,4 +1,4 @@
-import domain.coordinate.Coordinate;
+import domain.coordinate.CoordinateCalculator;
 import domain.point.Points;
 import view.Input;
 import view.Viewer;
@@ -12,11 +12,8 @@ public class Main {
 
     private static void start() {
         Points pointRepo = getPoints();
-        Coordinate coordinate = new Coordinate(pointRepo);
-        Viewer.viewCoordinate(coordinate);
-
-        // TODO : 좌표들을 꺼내와서 좌표지에 표시하는 작업
-
+        Viewer.viewCoordinate(pointRepo);
+        Viewer.viewDistance(CoordinateCalculator.calcDistance());
     }
 
     private static Points getPoints() {

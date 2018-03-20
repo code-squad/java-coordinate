@@ -1,6 +1,6 @@
-package view;
+package view.util;
 
-import domain.coordinate.Coordinate;
+import view.coordinate.Coordinate;
 
 public class ViewerUtils {
 
@@ -59,6 +59,10 @@ public class ViewerUtils {
         if (coordinate.isXAxisPosition(yPosition)) {
             return String.format("%s", getPositionLetter(PositionLetter.XAXIS));
         }
+
+        if(coordinate.isDrawPosition(xPosition, yPosition)) {
+            return String.format("%3s", getPositionLetter(PositionLetter.MARK));
+        }
         return String.format("%3s", getPositionLetter(PositionLetter.NORMAL));
     }
 
@@ -78,7 +82,8 @@ enum PositionLetter {
     AXIS("+"),
     XAXIS("---"),
     YAXIS("|"),
-    NORMAL(" ");
+    NORMAL(" "),
+    MARK("*");
 
     private String letter;
 

@@ -1,4 +1,4 @@
-package domain.coordinate;
+package view.coordinate;
 
 class CoordinatePoint {
     private int position;
