@@ -1,18 +1,20 @@
 package coordinate.domain;
 
+import coordinate.view.Builder;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class CoordinateCalculator {
-    private List<Line> lines = new ArrayList<>();
+    private List<Row> rows = new ArrayList<>();
 
-    public CoordinateCalculator() {
-        for (int y = 0; y < 24; y++){
-            this.lines.add(new Line());
+    public CoordinateCalculator(){
+        for (int y = 0; y <= 24; y++){
+            rows.add(new Row(y));
         }
     }
 
-    public List<Line> getLines(){
-        return lines;
+    public String buildCalc(){
+        return Builder.startBuild(rows);
     }
 }
