@@ -8,10 +8,10 @@ import java.util.Scanner;
 public class Input {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static Points addPoints(String printMessage, int validPointNum) throws IllegalArgumentException {
+    public static Points getPoints(String printMessage) throws IllegalArgumentException {
         Viewer.viewMessage(printMessage);
-        String[] coordinates = getCoordinates(validPointNum);
-        Points pointRepo = Points.of();
+        String[] coordinates = getCoordinates();
+        Points pointRepo = new Points();
         for (String coordinate : coordinates) {
             ArrayList<Integer> pointNumbers = splitPointNums(coordinate);
             savePoint(pointRepo, pointNumbers);
@@ -19,17 +19,9 @@ public class Input {
         return pointRepo;
     }
 
-    private static String[] getCoordinates(int validPointNum) throws IllegalArgumentException {
+    private static String[] getCoordinates() {
         String coordinatesSource = scanner.nextLine();
-        String[] coordinates = splitCoordinates(coordinatesSource);
-        verifyPointNum(coordinates, validPointNum);
-        return coordinates;
-    }
-
-    private static void verifyPointNum(String[] coordinates, int validCoordinateNum) throws IllegalArgumentException {
-        if (validCoordinateNum != coordinates.length) {
-            throw new IllegalArgumentException(validCoordinateNum + "개 좌표를 입력해야합니다.");
-        }
+        return splitCoordinates(coordinatesSource);
     }
 
     private static String[] splitCoordinates(String coordinatesSource) {
@@ -38,10 +30,7 @@ public class Input {
 
     private static ArrayList<Integer> splitPointNums(String coordinate) throws NumberFormatException {
         ArrayList<Integer> splitPointNums = new ArrayList<>();
-
-        // TODO : 소스 단순화하기
-        coordinate = coordinate.replace("(", "");
-        coordinate = coordinate.replace(")", "");
+        coordinate = coordinate.replaceAll("[()]", "");
         String[] points = coordinate.split(",");
         for (String pointMessage : points) {
             int point = convertToNum(pointMessage);

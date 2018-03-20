@@ -4,6 +4,10 @@ import view.coordinate.Coordinate;
 
 public class ViewerUtils {
 
+    public static String formatDistance(double distance) {
+        return String.format("%.3f", distance);
+    }
+
     public static String buildCoordinateView(Coordinate coordinate) {
         StringBuilder builder = new StringBuilder();
         int yPosition = coordinate.getYPositionLimit();

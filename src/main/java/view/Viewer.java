@@ -11,7 +11,7 @@ public class Viewer {
 
     public static void viewCoordinate(Points pointRepo) {
         Coordinate coordinate = new Coordinate(pointRepo);
-        ArrayList<Point> points = pointRepo.getDrawPoints();
+        ArrayList<Point> points = pointRepo.getPoints();
         for (Point point : points) {
             coordinate.drawPosition(point.getXPosition(), point.getYPosition());
         }
@@ -24,7 +24,6 @@ public class Viewer {
     }
 
     public static void viewDistance(double distance) {
-        String formattedDistance = String.format("%.3f", distance);
-        System.out.println("두 점 사이 거리는 " + formattedDistance + " 입니다.");
+        System.out.println("두 점 사이 거리는 " + ViewerUtils.formatDistance(distance) + " 입니다.");
     }
 }
