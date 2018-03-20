@@ -5,15 +5,17 @@ import coordinate.domain.Row;
 import java.util.List;
 
 public class Builder {
+    private static final int GRAPH_LOCATION = 100;
 
     public static String startBuild(List<Row> rows){
         StringBuilder builder = new StringBuilder();
-        for(int y = 24; y >= 0; y--){
+        for(int y = rows.size() - 1; y >= 0; y--){
             builder.append(addRow(rows, y));
             builder.append("\n");
         }
-        builder.append(formatRow(addXLabel()));//add format spaces before x-label
-        builder.append(addXLabel());
+        String xLabel = addXLabel(rows.get(rows.size() - 1));
+        builder.append(formatRow(xLabel));//add format spaces before x-label
+        builder.append(xLabel);
 
         return builder.toString();
     }
@@ -36,7 +38,7 @@ public class Builder {
 
     static String formatRow(String row){
         StringBuilder builder = new StringBuilder();
-        int diff = 60 - row.length();
+        int diff = GRAPH_LOCATION - row.length();
         for(int i = 0; i < diff; i++){
             builder.append(" ");
         }
@@ -45,7 +47,7 @@ public class Builder {
 
     private static String addCoordinates(Row row, int y){
         StringBuilder builder = new StringBuilder();
-        for(int x = 0; x <= 24; x++){
+        for(int x = 0; x <= row.getRowSize() - 1; x++){
             builder.append(addPoint(row.dotAtPoint(x), x, y));
         }
         return builder.toString();
@@ -67,9 +69,9 @@ public class Builder {
         return "  "; //no dot
     }
 
-    private static String addXLabel(){
+    private static String addXLabel(Row row){
         StringBuilder builder = new StringBuilder();
-        for(int x = 2; x <= 24; x++){
+        for(int x = 2; x <= row.getRowSize() - 1; x++){
             builder.append(addXLabelNumber(x));
         }
         return builder.toString();
