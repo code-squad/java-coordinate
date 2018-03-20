@@ -23,4 +23,10 @@ public class Coordinates {
     public int getXIndex(int y) {
         return xCoord.get(yCoord.indexOf(y));
     }
+
+    public double calculateDistance(){
+        double xSquared = Math.pow(xCoord.get(0) - xCoord.get(1), 2);
+        double ySquared = Math.pow(yCoord.get(0) - yCoord.get(1), 2);
+        return Math.sqrt(xSquared + ySquared);
+    }
 }

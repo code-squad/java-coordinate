@@ -8,12 +8,13 @@ import java.util.List;
 public class CoordinateCalculator {
     private static final int RANGE = 24;
     private List<Row> rows = new ArrayList<>();
+    private final Coordinates coordinates;
 
-    public CoordinateCalculator(List<Integer[]> coordinates) {
-        Coordinates coords = new Coordinates(coordinates);
+    public CoordinateCalculator(List<Integer[]> coords) {
+        coordinates = new Coordinates(coords);
 
         for (int y = 0; y <= RANGE; y++) {
-            rows.add(addRow(coords, y));
+            rows.add(addRow(coordinates, y));
         }
     }
 
@@ -27,5 +28,9 @@ public class CoordinateCalculator {
 
     public String buildCalc() {
         return Builder.startBuild(rows);
+    }
+
+    public double calculateDistance(){
+        return coordinates.calculateDistance();
     }
 }

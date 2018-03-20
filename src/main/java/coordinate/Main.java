@@ -14,6 +14,7 @@ public class Main {
 
         CoordinateCalculator cc = new CoordinateCalculator(coordinates);
         Output.printGraph(cc);
+        Output.printDistance(cc);
     }
 
     public static String[] promptUserInput() {
