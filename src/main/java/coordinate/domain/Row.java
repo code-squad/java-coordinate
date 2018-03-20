@@ -13,8 +13,8 @@ public class Row {
         }
     }
 
-    Point addPoint(int dotIndex, int x){
-        if(x == dotIndex) {
+    Point addPoint(int dotIndex, int x) {
+        if (x == dotIndex) {
             return Point.ofPoint();
         }
         return Point.ofNoPoint();
@@ -26,9 +26,5 @@ public class Row {
 
     public int getRowSize() {
         return row.size();
-    }
-
-    public List<Point> getRow(){
-        return row;
     }
 }

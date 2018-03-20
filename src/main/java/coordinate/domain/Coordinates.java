@@ -9,18 +9,18 @@ public class Coordinates {
     private List<Integer> xCoord = new ArrayList<>();
     private List<Integer> yCoord = new ArrayList<>();
 
-    Coordinates(List<Integer[]> coordinates){
-        for(Integer[] coordinate : coordinates){
+    Coordinates(List<Integer[]> coordinates) {
+        for (Integer[] coordinate : coordinates) {
             this.xCoord.add(coordinate[X_INDEX]);
             this.yCoord.add(coordinate[Y_INDEX]);
         }
     }
 
-    public boolean containsY(int y){
+    public boolean containsY(int y) {
         return yCoord.contains(y);
     }
 
-    public int getXIndex(int y){
+    public int getXIndex(int y) {
         return xCoord.get(yCoord.indexOf(y));
     }
 }

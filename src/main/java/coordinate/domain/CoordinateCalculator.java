@@ -7,7 +7,6 @@ import java.util.List;
 
 public class CoordinateCalculator {
     private static final int RANGE = 24;
-
     private List<Row> rows = new ArrayList<>();
 
     public CoordinateCalculator(List<Integer[]> coordinates) {
@@ -18,7 +17,7 @@ public class CoordinateCalculator {
         }
     }
 
-    Row addRow(Coordinates coords, int y) {
+    private Row addRow(Coordinates coords, int y) {
         if (coords.containsY(y)) {
             int x = coords.getXIndex(y);
             return new Row(x);

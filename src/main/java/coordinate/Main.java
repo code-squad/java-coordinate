@@ -14,8 +14,6 @@ public class Main {
 
         CoordinateCalculator cc = new CoordinateCalculator(coordinates);
         Output.printGraph(cc);
-
-
     }
 
     public static String[] promptUserInput() {
@@ -24,7 +22,7 @@ public class Main {
         return Utils.checkInputFormat(coordinates);
     }
 
-    public static List<Integer[]> convertToCoordinates(String[] input) {
+    private static List<Integer[]> convertToCoordinates(String[] input) {
         return Utils.toIntegerCoordinates(input);
     }
 }
