@@ -10,7 +10,11 @@ public class CoordinateCalculator {
 
     private List<Row> rows = new ArrayList<>();
 
-    public CoordinateCalculator() {
+    public CoordinateCalculator(List<Integer[]> coordinates) {
+        for (Integer[] coordinate : coordinates) {
+
+        }
+
         for (int y = 0; y <= RANGE; y++) {
             rows.add(new Row());
         }

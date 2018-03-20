@@ -8,7 +8,7 @@ public class Output {
         System.out.println(result);
     }
 
-    public static void printMessage(String message){
+    public static void printMessage(String message) {
         System.out.println(message);
     }
 }
