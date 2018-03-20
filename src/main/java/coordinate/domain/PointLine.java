@@ -21,7 +21,7 @@ public class PointLine {
 		return new PointLine(pointLine, yAxis);
 	}
 
-	public void declareLabel() {
+	public String getLabel() {
 		if (Common.isOdd(yAxis)) {
 			label = "  ";
 		}
@@ -31,9 +31,6 @@ public class PointLine {
 		if (!Common.isOdd(yAxis) && yAxis < 10) {
 			label = " " + yAxis;
 		}
-	}
-
-	public String getLabel() {
 		return label;
 	}
 }

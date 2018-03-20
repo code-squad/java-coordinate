@@ -2,6 +2,8 @@ package coordinate.domain;
 
 import java.util.ArrayList;
 
+import coordinate.view.PrintManager;
+
 public class CoordinateManager {
 	private ArrayList<PointLine> coordinateManager;
 
@@ -11,9 +13,8 @@ public class CoordinateManager {
 
 	public static CoordinateManager init() {
 		ArrayList<PointLine> coordinateManager = new ArrayList<>();
-		for (int yAxis = 0; yAxis < Common.MAXSIZE + 1; yAxis++) {
+		for (int yAxis = 0; yAxis < PrintManager.MAXSIZE + 1; yAxis++) {
 			PointLine pointLine = PointLine.init(yAxis);
-			pointLine.declareLabel();
 			coordinateManager.add(pointLine);
 		}
 		return new CoordinateManager(coordinateManager);
