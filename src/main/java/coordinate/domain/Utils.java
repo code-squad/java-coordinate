@@ -26,7 +26,7 @@ public class Utils {
 
     public static String[] convertToStringArray(String set) {
         String[] xySplit = set.replaceAll("[()]", "").split("\\s*,\\s*");
-        if (isValidCoordinate(xySplit)) {
+        if (!isValidCoordinate(xySplit)) {
             System.out.println("좌표 포맷이 맞지 않습니다.");
             return CoordinateCalculatorConsole.promptUserInput();
         }
@@ -34,7 +34,17 @@ public class Utils {
     }
 
     public static boolean isValidCoordinate(String[] xySplit) {
-        return xySplit.length != 2;
+        if(xySplit.length != 2){
+            return false;
+        }
+        if(isOutOfDomainRange(xySplit[0]) || isOutOfDomainRange(xySplit[1])){
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isOutOfDomainRange(String number){
+        return Integer.parseInt(number) >= 24;
     }
 
     public static Integer[] convertToIntegerArray(String[] set) {
