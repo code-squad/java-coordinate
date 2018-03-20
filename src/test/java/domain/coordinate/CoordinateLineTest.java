@@ -11,8 +11,8 @@ public class CoordinateLineTest {
 
     @Before
     public void setUp() throws Exception {
-        coordinateLine1 = new CoordinateLine(0);
-        coordinateLine2 = new CoordinateLine(3);
+        //coordinateLine1 = new CoordinateLine(0);
+        //coordinateLine2 = new CoordinateLine(3);
     }
 
     @Test

@@ -1,32 +1,66 @@
 package view;
 
+import domain.point.Points;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Input {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static String getCoordinate(String printMessage) {
+    public static Points getPoints(String printMessage, int validPointNum) throws IllegalArgumentException {
         Viewer.viewMessage(printMessage);
-        String coordinateSources = scanner.nextLine();
-
-        /*
-        파싱해서 어디에 저장하고 리턴하기
-        1) 일단 "-"로 쪼갬
-        2) X,Y를 잘라서 어디에 저장함
-        3) Points에 저장해서 리턴하기
-
-        String target = "(10,10)-(14,15)";
-        String[] targetSplit1 = target.split("-");
-        for(String str : targetSplit1) {
-            str = str.replace("(", "");
-            str = str.replace(")", "");
-            String[] targetSplit = str.split(",");
-            for(String str2 : targetSplit) {
-                System.out.println(str2);
-            }
+        String[] coordinates = getCoordinates(validPointNum);
+        Points pointRepo = Points.of();
+        for (String coordinate : coordinates) {
+            ArrayList<Integer> pointNumbers = splitPointNums(coordinate);
+            savePoint(pointRepo, pointNumbers);
         }
-         */
+        return pointRepo;
+    }
 
-        return null;
+    private static String[] getCoordinates(int validPointNum) throws IllegalArgumentException {
+        String coordinatesSource = scanner.nextLine();
+        String[] coordinates = splitCoordinates(coordinatesSource);
+        verifyPointNum(coordinates, validPointNum);
+        return coordinates;
+    }
+
+    private static void verifyPointNum(String[] coordinates, int validCoordinateNum) throws IllegalArgumentException {
+        if (validCoordinateNum > coordinates.length) {
+            throw new IllegalArgumentException(validCoordinateNum + "개 이상 좌표를 입력해야합니다.");
+        }
+    }
+
+    private static String[] splitCoordinates(String coordinatesSource) {
+        return coordinatesSource.split("-");
+    }
+
+    private static ArrayList<Integer> splitPointNums(String coordinate) throws NumberFormatException {
+        ArrayList<Integer> splitPointNums = new ArrayList<>();
+
+        // TODO : 소스 단순화하기
+        coordinate = coordinate.replace("(", "");
+        coordinate = coordinate.replace(")", "");
+        String[] points = coordinate.split(",");
+        for (String pointMessage : points) {
+            int point = convertToNum(pointMessage);
+            splitPointNums.add(point);
+        }
+        return splitPointNums;
+    }
+
+    private static int convertToNum(String pointMessage) throws NumberFormatException {
+        try {
+            return Integer.parseInt(pointMessage);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("좌표 자리는 숫자만 입력해야합니다");
+        }
+    }
+
+    private static void savePoint(Points pointRepo, ArrayList<Integer> pointNumbers) throws IllegalArgumentException {
+        final int xPosition = 0;
+        final int yPosition = 1;
+        pointRepo.addPoint(pointNumbers.get(xPosition), pointNumbers.get(yPosition));
     }
 }

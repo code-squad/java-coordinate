@@ -3,17 +3,12 @@ package domain.coordinate;
 import java.util.ArrayList;
 
 public class CoordinateLine {
-    private static final int X_POS_LIMIT = 24;
     private ArrayList<CoordinatePoint> coordinatePoints = new ArrayList<>();
     private int yPosition;
 
-    CoordinateLine(int yPosition) {
+    CoordinateLine(int xPositionLimit, int yPosition) {
         this.yPosition = yPosition;
-        makePoints();
-    }
-
-    private void makePoints() {
-        for (int xPos = 0; xPos <= X_POS_LIMIT; xPos++) {
+        for (int xPos = 0; xPos <= xPositionLimit; xPos++) {
             coordinatePoints.add(new CoordinatePoint(xPos));
         }
     }
@@ -28,12 +23,13 @@ public class CoordinateLine {
     }
 
     public boolean isValidXPosition(int xPosition) {
-        return X_POS_LIMIT >= xPosition;
+        int xPositionLimit = coordinatePoints.size() - 1;
+        return xPositionLimit == xPosition;
     }
 
     public void drawPosition(int xPosition) {
         CoordinatePoint searchCoordinatePoint = coordinatePoints.get(xPosition);
-        searchCoordinatePoint.drawPostion();
+        searchCoordinatePoint.drawPosition();
     }
 
     public boolean isDrawPosition(int xPosition) {

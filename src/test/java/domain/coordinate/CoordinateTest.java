@@ -10,7 +10,7 @@ public class CoordinateTest {
 
     @Before
     public void setUp() throws Exception {
-        coordinate = Coordinate.of();
+        //coordinate = Coordinate.of();
     }
 
     @Test

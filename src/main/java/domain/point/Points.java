@@ -13,7 +13,17 @@ public class Points {
         return pointRepository;
     }
 
-    public void addPoint(int xPosition, int yPosition) {
+    public void addPoint(int xPosition, int yPosition) throws IllegalArgumentException {
         points.add(new Point(xPosition, yPosition));
+    }
+
+    public int getXPositionLimit() {
+        Point firstPoint = points.get(0);
+        return firstPoint.getXPositionLimit();
+    }
+
+    public int getYPositionLimit() {
+        Point firstPoint = points.get(0);
+        return firstPoint.getYPositionLimit();
     }
 }

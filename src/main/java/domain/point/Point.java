@@ -8,11 +8,11 @@ public class Point {
 
     Point(int xPosition, int yPosition) {
         if (!isValidXPosition(xPosition)) {
-            throw new IllegalArgumentException("에러메시지 작성하기");
+            throw new IllegalArgumentException("X 포지션 값 최대 " + X_POSITION_LIMIT + "까지 입니다.");
         }
 
         if(!isValidYPosition(yPosition)) {
-            throw new IllegalArgumentException("에러메세지 작성하기");
+            throw new IllegalArgumentException("Y 포지션 값 최대 " + Y_POSITION_LIMIT + "까지 입니다.");
         }
         this.xPosition = xPosition;
         this.yPosition = yPosition;
@@ -24,6 +24,14 @@ public class Point {
 
     private static boolean isValidYPosition(int yPosition) {
         return (yPosition >= 0 && yPosition <= Y_POSITION_LIMIT);
+    }
+
+    public int getXPositionLimit() {
+        return X_POSITION_LIMIT;
+    }
+
+    public int getYPositionLimit() {
+        return Y_POSITION_LIMIT;
     }
 }
 

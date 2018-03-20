@@ -13,7 +13,7 @@ class CoordinatePoint {
         return this.position == position;
     }
 
-    public void drawPostion() {
+    public void drawPosition() {
         if (isDraw) {
             throw new RuntimeException("이미 표시되어있습니다");
         }

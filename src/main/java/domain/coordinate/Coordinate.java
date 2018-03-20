@@ -1,25 +1,20 @@
 package domain.coordinate;
 
+import domain.point.Points;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Coordinate {
-    private static Coordinate coordinate = new Coordinate();
-    private static final int Y_POS_LIMIT = 24;
     private List<CoordinateLine> coordinateLines = new ArrayList<>();
 
-    private Coordinate() {
-        makeLines();
-    }
+    public Coordinate(Points pointRepo) {
+        int xPositionLimit = pointRepo.getXPositionLimit();
+        int yPositionLimit = pointRepo.getYPositionLimit();
 
-    private void makeLines() {
-        for (int yPos = 0; yPos <= Y_POS_LIMIT; yPos++) {
-            coordinateLines.add(new CoordinateLine(yPos));
+        for (int yPos = 0; yPos <= yPositionLimit; yPos++) {
+            coordinateLines.add(new CoordinateLine(xPositionLimit, yPos));
         }
-    }
-
-    public static Coordinate of() {
-        return coordinate;
     }
 
     public boolean isYAxisPosition(int xPosition, int yPosition) {
@@ -43,7 +38,7 @@ public class Coordinate {
     }
 
     public int getYPositionLimit() {
-        return Y_POS_LIMIT;
+        return coordinateLines.size() - 1;
     }
 
     public void drawPosition(int xPosition, int yPosition) {
