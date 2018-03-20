@@ -1,6 +1,7 @@
 package coordinate.domain;
 
 import coordinate.CoordinateCalculatorConsole;
+import coordinate.view.Output;
 
 import java.util.*;
 
@@ -9,8 +10,8 @@ public class Utils {
 
     public static String[] checkInputFormat(String input) {
         String[] splitInput = input.split("\\s*-\\s*");
-        if (splitInput.length > NUMBER_OF_POINTS) {
-            System.out.println("좌표는 최대 2개만 입력해주세요.");
+        if (splitInput.length != NUMBER_OF_POINTS) {
+            Output.printMessage("좌표를 2개 입력해주세요.");
             return CoordinateCalculatorConsole.promptUserInput();
         }
         return splitInput;

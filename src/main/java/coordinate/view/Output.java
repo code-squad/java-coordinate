@@ -7,4 +7,8 @@ public class Output {
         String result = cc.buildCalc();
         System.out.println(result);
     }
+
+    public static void printMessage(String message){
+        System.out.println(message);
+    }
 }
