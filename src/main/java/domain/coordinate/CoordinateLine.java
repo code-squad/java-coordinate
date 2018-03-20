@@ -24,7 +24,7 @@ public class CoordinateLine {
 
     public boolean isValidXPosition(int xPosition) {
         int xPositionLimit = coordinatePoints.size() - 1;
-        return xPositionLimit == xPosition;
+        return xPositionLimit >= xPosition;
     }
 
     public void drawPosition(int xPosition) {

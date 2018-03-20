@@ -1,10 +1,7 @@
 import domain.coordinate.Coordinate;
-import domain.point.Point;
 import domain.point.Points;
 import view.Input;
 import view.Viewer;
-
-import java.util.ArrayList;
 
 public class Main {
     private static final int VALID_COORDINATE_NUM = 2;
