@@ -8,21 +8,17 @@ import java.util.List;
 public class CoordinateCalculator {
     private static final int RANGE = 24;
     private List<Row> rows = new ArrayList<>();
-    private final Coordinates coordinates;
+    private final Points points;
 
-    public CoordinateCalculator(Coordinates coordinates) {
-        this.coordinates = coordinates;
+    public CoordinateCalculator(Points points) {
+        this.points = points;
         for (int y = 0; y <= RANGE; y++) {
-            rows.add(addRow(coordinates, y));
+            rows.add(addRow(points, y));
         }
     }
 
-    private Row addRow(Coordinates coords, int y) {
-        if (coords.containsY(y)) {
-            int x = coords.getXIndex(y);
-            return Row.ofPointOnRow(x);
-        }
-        return Row.ofPointNotOnRow();
+    private Row addRow(Points points, int y) {
+        return new Row(points.getPointsOnRowY(y)); //point가 있는 y번째 row에 x좌표
     }
 
     public String buildCalc() {
@@ -30,6 +26,6 @@ public class CoordinateCalculator {
     }
 
     public double calculateDistance() {
-        return coordinates.calculateDistance();
+        return points.calculateDistance();
     }
 }

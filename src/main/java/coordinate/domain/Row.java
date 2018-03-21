@@ -5,27 +5,19 @@ import java.util.List;
 
 public class Row {
     private static final int DOMAIN = 24;
-    private final List<Point> row = new ArrayList<>();
+    private final List<Coordinate> row = new ArrayList<>();
 
-    private Row(int dotIndex) {
+    Row(List<Integer> xCoordOfPoints) {
         for (int x = 0; x <= DOMAIN; x++) {
-            row.add(addPoint(dotIndex, x));
+            row.add(addCoordinate(xCoordOfPoints, x));
         }
     }
 
-    public static Row ofPointOnRow(int dotIndex) {
-        return new Row(dotIndex);
-    }
-
-    public static Row ofPointNotOnRow() {
-        return new Row(-1); // x never reaches -1
-    }
-
-    Point addPoint(int dotIndex, int x) {
-        if (x == dotIndex) {
-            return Point.ofPoint();
+    public Coordinate addCoordinate(List<Integer> xCoordOfPoints, int x){
+        if(xCoordOfPoints.contains(x)){
+            return Coordinate.ofPoint();
         }
-        return Point.ofNoPoint();
+        return Coordinate.ofNoPoint();
     }
 
     public boolean dotAtPoint(int x) {

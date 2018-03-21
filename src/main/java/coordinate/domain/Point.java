@@ -1,21 +1,23 @@
 package coordinate.domain;
 
 public class Point {
-    private final boolean dot;
+    private final int x;
+    private final int y;
 
-    private Point(boolean dot) {
-        this.dot = dot;
+    Point(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
-    public static Point ofPoint() {
-        return new Point(true);
+    public int getX() {
+        return x;
     }
 
-    public static Point ofNoPoint() {
-        return new Point(false);
+    public int getY() {
+        return y;
     }
 
-    public boolean isDot() {
-        return dot;
+    public boolean contains(int y) {
+        return this.y == y;
     }
 }
