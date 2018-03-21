@@ -26,8 +26,4 @@ public class RowTest {
     public void dotAtPoint() {
         assertEquals(true, row.dotAtPoint(2));
     }
-
-    @Test
-    public void getRowSize() {
-    }
 }
