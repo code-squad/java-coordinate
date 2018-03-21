@@ -6,6 +6,7 @@ import domain.figure.Triangle;
 import domain.point.Points;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -25,7 +26,7 @@ public class Input {
     }
 
     private static void verifyPoint(Points pointRepo) throws IllegalArgumentException {
-        if (Line.VALID_COORDINATE_NUM != pointRepo.getSavedSize() && Rectangle.VALID_COORDINATE_NUM != pointRepo.getSavedSize() && Triangle.VALID_COORDINATE_NUM != pointRepo.getSavedSize()) {
+        if (!CoordinateNum.isValidCoordinateNum(pointRepo.getSavedSize())) {
             throw new IllegalArgumentException("유효하지않은 좌표 개수입니다.");
         }
 
@@ -72,5 +73,21 @@ public class Input {
         final int xPosition = 0;
         final int yPosition = 1;
         pointRepo.addPoint(pointNumbers.get(xPosition), pointNumbers.get(yPosition));
+    }
+}
+
+enum CoordinateNum {
+    LINE(Line.VALID_COORDINATE_NUM),
+    RECT(Rectangle.VALID_COORDINATE_NUM),
+    TRIANGLE(Triangle.VALID_COORDINATE_NUM);
+
+    private int coordinateNum;
+
+    CoordinateNum(int coordinateNum) {
+        this.coordinateNum = coordinateNum;
+    }
+
+    public static boolean isValidCoordinateNum(int coordinateNum) {
+        return Arrays.stream(CoordinateNum.values()).map(shape -> shape.coordinateNum).anyMatch(num -> num == coordinateNum);
     }
 }
