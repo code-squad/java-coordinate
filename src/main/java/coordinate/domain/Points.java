@@ -74,8 +74,7 @@ public class Points {
         return number > DOMAIN_RANGE;
     }
 
-
-    public List<Integer> getPointsOnRowY(int y) {
+    List<Integer> getXOnRowY(int y) {
         List<Integer> pointsOnRowY = new ArrayList<>();
         for (Point point : points) {
             if (point.contains(y)) {
@@ -85,7 +84,7 @@ public class Points {
         return pointsOnRowY;
     }
 
-    public double calculateDistance() {
+    double calculateDistance() {
         double xSquared = Math.pow(points.get(0).getX() - points.get(1).getX(), 2);
         double ySquared = Math.pow(points.get(0).getY() - points.get(1).getY(), 2);
         return Math.sqrt(xSquared + ySquared);

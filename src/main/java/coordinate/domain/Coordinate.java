@@ -1,10 +1,10 @@
 package coordinate.domain;
 
 public class Coordinate {
-    private final boolean dot;
+    private final boolean point;
 
-    private Coordinate(boolean dot) {
-        this.dot = dot;
+    private Coordinate(boolean point) {
+        this.point = point;
     }
 
     public static Coordinate ofPoint() {
@@ -15,7 +15,7 @@ public class Coordinate {
         return new Coordinate(false);
     }
 
-    public boolean isDot() {
-        return dot;
+    public boolean isPoint() {
+        return point;
     }
 }

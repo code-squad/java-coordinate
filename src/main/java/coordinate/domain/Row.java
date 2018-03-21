@@ -13,15 +13,15 @@ public class Row {
         }
     }
 
-    public Coordinate addCoordinate(List<Integer> xCoordOfPoints, int x){
-        if(xCoordOfPoints.contains(x)){
+    public Coordinate addCoordinate(List<Integer> xCoordOfPoints, int x) {
+        if (xCoordOfPoints.contains(x)) {
             return Coordinate.ofPoint();
         }
         return Coordinate.ofNoPoint();
     }
 
-    public boolean dotAtPoint(int x) {
-        return row.get(x).isDot();
+    public boolean isPointAt(int x) {
+        return row.get(x).isPoint();
     }
 
     public int getRowSize() {

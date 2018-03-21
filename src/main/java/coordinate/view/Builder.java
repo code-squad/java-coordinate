@@ -49,7 +49,7 @@ public class Builder {
     private static String addCoordinates(Row row, int y) {
         StringBuilder builder = new StringBuilder();
         for (int x = 0; x <= row.getRowSize() - 1; x++) {
-            builder.append(addPoint(row.dotAtPoint(x), x, y));
+            builder.append(addPoint(row.isPointAt(x), x, y));
         }
         return builder.toString();
     }

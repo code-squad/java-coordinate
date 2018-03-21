@@ -18,7 +18,7 @@ public class CoordinateCalculator {
     }
 
     private Row addRow(Points points, int y) {
-        return new Row(points.getPointsOnRowY(y)); //point가 있는 y번째 row에 x좌표
+        return new Row(points.getXOnRowY(y)); //point가 있는 y번째 row에 x좌표
     }
 
     public String buildCalc() {

@@ -20,4 +20,10 @@ public class Point {
     public boolean contains(int y) {
         return this.y == y;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        Point point = (Point) o;
+        return point.x == this.x && point.y == this.y;
+    }
 }
