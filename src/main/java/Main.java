@@ -12,23 +12,29 @@ public class Main {
     private static void start() {
         Points pointRepo = getPoints();
         Viewer.viewCoordinate(pointRepo);
-
-        doSomething(pointRepo);
+        viewCalcResult(pointRepo);
     }
 
-    // TODO : 분기문 처리 어떻게 이쁘게 만들지 고민해보기
-    private static void doSomething(Points points) {
-        switch (points.getSavedSize()) {
-            case Line.VALID_COORDINATE_NUM :
-                Line line = new Line(points);
-                Viewer.viewDistance(line.calcDistance());
+    private static void viewCalcResult(Points pointRepo) {
+        switch (pointRepo.getSavedSize()) {
+            case Line.VALID_COORDINATE_NUM:
+                viewCalcDistance(pointRepo);
                 break;
 
-            case Rectangle.VALID_COORDINATE_NUM :
-                Rectangle rectangle = new Rectangle(points);
-                Viewer.viewWidth(rectangle.calcArea());
+            case Rectangle.VALID_COORDINATE_NUM:
+                viewCalcArea(pointRepo);
                 break;
         }
+    }
+
+    private static void viewCalcDistance(Points pointRepo) {
+        Line line = new Line(pointRepo);
+        Viewer.viewDistance(line.calcDistance());
+    }
+
+    private static void viewCalcArea(Points pointRepo) {
+        Rectangle rectangle = new Rectangle(pointRepo);
+        Viewer.viewWidth(rectangle.calcArea());
     }
 
     private static Points getPoints() {
