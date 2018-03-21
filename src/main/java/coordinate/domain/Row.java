@@ -7,10 +7,18 @@ public class Row {
     private static final int DOMAIN = 24;
     private final List<Point> row = new ArrayList<>();
 
-    Row(int dotIndex) {
+    private Row(int dotIndex) {
         for (int x = 0; x <= DOMAIN; x++) {
             row.add(addPoint(dotIndex, x));
         }
+    }
+
+    public static Row ofPointOnRow(int dotIndex) {
+        return new Row(dotIndex);
+    }
+
+    public static Row ofPointNotOnRow() {
+        return new Row(-1); // x never reaches -1
     }
 
     Point addPoint(int dotIndex, int x) {

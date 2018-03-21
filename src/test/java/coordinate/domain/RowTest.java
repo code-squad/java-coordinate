@@ -8,12 +8,11 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class RowTest {
-    private List<Point> list;
-    Row row;
+    private Row row;
 
     @Before
     public void setUp() throws Exception {
-        row = new Row(2);
+        row = Row.ofPointOnRow(2);
     }
 
     @Test

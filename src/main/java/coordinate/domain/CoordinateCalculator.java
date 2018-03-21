@@ -10,10 +10,8 @@ public class CoordinateCalculator {
     private List<Row> rows = new ArrayList<>();
     private final Coordinates coordinates;
 
-    public CoordinateCalculator(String[] coords) {
-
-        coordinates = new Coordinates(coords);
-
+    public CoordinateCalculator(Coordinates coordinates) {
+        this.coordinates = coordinates;
         for (int y = 0; y <= RANGE; y++) {
             rows.add(addRow(coordinates, y));
         }
@@ -22,16 +20,16 @@ public class CoordinateCalculator {
     private Row addRow(Coordinates coords, int y) {
         if (coords.containsY(y)) {
             int x = coords.getXIndex(y);
-            return new Row(x);
+            return Row.ofPointOnRow(x);
         }
-        return new Row(-1);
+        return Row.ofPointNotOnRow();
     }
 
     public String buildCalc() {
         return Builder.startBuild(rows);
     }
 
-    public double calculateDistance(){
+    public double calculateDistance() {
         return coordinates.calculateDistance();
     }
 }
