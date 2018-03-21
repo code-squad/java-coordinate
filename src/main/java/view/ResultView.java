@@ -13,7 +13,7 @@ public class ResultView {
     private static void printXAxis() {
         System.out.print("  " + "+");
         for (int i = 0; i <MAX ; i++) {
-            System.out.print(String.format("%2s", "-"));
+            System.out.print(String.format("%2s", "--"));
         }
         System.out.print("\n" + String.format("%-3s", "0"));
         for (int i = 1; i < 13; i++) {
@@ -21,12 +21,12 @@ public class ResultView {
         }
     }
 
-    private static void printYAxis(int index) {
+    private static int printYAxis(int index) {
         if (index % 2 == 0) {
             System.out.println(String.format("%-2s"+"|", index));
+            return index;
         }
-        if (index % 2 == 1) {
-            System.out.println(String.format("%-2s"+"|", "  "));
-        }
+        System.out.println(String.format("%-2s"+"|", "  "));
+        return index;
     }
 }
