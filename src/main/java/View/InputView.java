@@ -6,7 +6,6 @@ public class InputView {
 
     public static String initCoordinate() throws RuntimeException{
         Scanner scanner = new Scanner(System.in);
-            String coordinates = scanner.nextLine();
-            return coordinates;
+            return scanner.nextLine();
     }
 }

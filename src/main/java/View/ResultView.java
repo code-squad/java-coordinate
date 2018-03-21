@@ -1,17 +1,13 @@
 package View;
 
-import Controller.Calculator;
-import Model.Board;
-import Model.Figure;
-import Model.Point;
-
+import Domain.Figure;
+import Domain.Point;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ResultView {
 
-    public static void printBoard(Calculator controller) {
-        Figure figure = controller.getFigure();
+    public static void printBoard(Figure figure) {
         for (int y = 23; y >= 0; y--) {
             print(drawYaxis(y));
             print(drawLine(y, figure));
@@ -53,9 +49,9 @@ public class ResultView {
         print("    " + drawXaxisNumber());
     }
 
-//    public static void printCalculationResult(Calculator calculator) {
-//        System.out.println();
-//        System.out.println();
-//        print("두 점 사이의 거리는 " + calculator.getFigureArea());
-//    }
+    public static void printCalculationResult(Figure figure) {
+        System.out.println();
+        System.out.println();
+        print("두 점 사이의 거리는 " + figure.getArea());
+    }
 }

@@ -1,4 +1,4 @@
-package Controller;
+package Domain;
 
 import java.util.ArrayList;
 import java.util.HashSet;
