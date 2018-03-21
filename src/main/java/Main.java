@@ -1,5 +1,6 @@
 import domain.Line;
-import domain.figure.Rectangle;
+import domain.figure.Figure;
+import domain.figure.FigureCreator;
 import domain.point.Points;
 import view.Input;
 import view.Viewer;
@@ -16,25 +17,21 @@ public class Main {
     }
 
     private static void viewCalcResult(Points pointRepo) {
-        switch (pointRepo.getSavedSize()) {
-            case Line.VALID_COORDINATE_NUM:
-                viewCalcDistance(pointRepo);
-                break;
-
-            case Rectangle.VALID_COORDINATE_NUM:
-                viewCalcArea(pointRepo);
-                break;
+        if (Line.VALID_COORDINATE_NUM == pointRepo.getSavedSize()) {
+            viewCalcDistance(pointRepo);
+            return;
         }
+        viewCalcArea(pointRepo);
     }
 
     private static void viewCalcDistance(Points pointRepo) {
         Line line = new Line(pointRepo);
-        Viewer.viewDistance(line.calcDistance());
+        Viewer.viewDistance(line);
     }
 
     private static void viewCalcArea(Points pointRepo) {
-        Rectangle rectangle = new Rectangle(pointRepo);
-        Viewer.viewWidth(rectangle.calcArea());
+        Figure figure = FigureCreator.create(pointRepo);
+        Viewer.viewWidth(figure);
     }
 
     private static Points getPoints() {

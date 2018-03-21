@@ -1,5 +1,7 @@
 package view;
 
+import domain.Line;
+import domain.figure.Figure;
 import domain.point.Points;
 import view.coordinate.Coordinate;
 import view.util.ViewerUtils;
@@ -19,11 +21,11 @@ public class Viewer {
         System.out.println(message);
     }
 
-    public static void viewDistance(double distance) {
-        System.out.println("두 점 사이 거리는 " + ViewerUtils.formatDistance(distance) + " 입니다.");
+    public static void viewDistance(Line line) {
+        System.out.println("두 점 사이 거리는 " + ViewerUtils.formatDistance(line.calcDistance()) + " 입니다.");
     }
 
-    public static void viewWidth(int width) {
-        System.out.println("사각형 넓이는 " + width);
+    public static void viewWidth(Figure figure) {
+        System.out.println(figure.getFigureName() + " 넓이는 " + figure.calcArea());
     }
 }

@@ -2,10 +2,10 @@ package view;
 
 import domain.Line;
 import domain.figure.Rectangle;
+import domain.figure.Triangle;
 import domain.point.Points;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -25,7 +25,7 @@ public class Input {
     }
 
     private static void verifyPoint(Points pointRepo) throws IllegalArgumentException {
-        if (Line.VALID_COORDINATE_NUM != pointRepo.getSavedSize() && Rectangle.VALID_COORDINATE_NUM != pointRepo.getSavedSize()) {
+        if (Line.VALID_COORDINATE_NUM != pointRepo.getSavedSize() && Rectangle.VALID_COORDINATE_NUM != pointRepo.getSavedSize() && Triangle.VALID_COORDINATE_NUM != pointRepo.getSavedSize()) {
             throw new IllegalArgumentException("유효하지않은 좌표 개수입니다.");
         }
 
