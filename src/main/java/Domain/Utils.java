@@ -16,28 +16,28 @@ public class Utils {
         return (ArrayList<String>) coords;
     }
 
-    private static boolean isValidCoordinate(List<String> coords){
-        return coorMaxCheck(coords) && duplicatedCheck(coords);
+    static boolean isValidCoordinate(List<String> coords){
+        return coordInBoundaryCheck(coords) && duplicatedCheck(coords);
     }
 
-    private static boolean coorMaxCheck(List<String> coords){
+    static boolean coordInBoundaryCheck(List<String> coords){
         String listString = coords.stream().map(Object::toString).collect(Collectors.joining(","));
         String[] InputOneLine = listString.split(",");
         for (String coord : InputOneLine) {
-            return eachCoorMaxCheck(Integer.parseInt(coord));
+            eachCoordInBoundaryCheck(Integer.parseInt(coord));
         }
         return true;
     }
 
-    private static boolean eachCoorMaxCheck(int number){
-        if (number > 24) {
+    static boolean eachCoordInBoundaryCheck(int number){
+        if (number > 24 || number < 0) {
             System.out.println("Coordinates must be lower than 24.");
             throw new RuntimeException();
         }
         return true;
     }
 
-    private static List<String> inputParser(String inputRaw){
+    static List<String> inputParser(String inputRaw){
         String[] inputs = inputRaw.split("-");
         List<String> coords = new ArrayList<>();
         for (String input : inputs) {
@@ -46,7 +46,7 @@ public class Utils {
         return coords;
     }
 
-    private static boolean duplicatedCheck(List<String> coords){
+    static boolean duplicatedCheck(List<String> coords){
         Set<String> set = new HashSet<>(coords);
         if (set.size() != coords.size()){
             System.out.println("There are same coordinate pairs.");

@@ -9,9 +9,25 @@ import static java.lang.Math.sqrt;
 
 public class Figure {
 
-    private double area;
+    private double length;
 
-    private ArrayList<Point> points = new ArrayList<>();
+    private ArrayList<Point> points;
+
+    private Figure(){
+        this.points = new ArrayList<>();
+    }
+
+    private Figure(ArrayList<Point> points){
+        this.points = points;
+    }
+
+    public static Figure of(){
+        return new Figure();
+    }
+
+    public static Figure of(ArrayList<Point> points){
+        return new Figure(points);
+    }
 
     static ArrayList<Point> setCoordinates(ArrayList<String> coordinates) {
         ArrayList<Point> points = new ArrayList<>();
@@ -22,12 +38,12 @@ public class Figure {
         return points;
     }
 
-    public boolean isAtCoordinate(int x, int y) {
+    public boolean hasCoordinateAt(int x, int y) {
         return this.points.contains(Point.of(x, y));
     }
 
     public void calculateLine(){
-        this.area = calculate(this.points);
+        this.length = calculate(this.points);
     }
 
     static double calculate(ArrayList<Point> points) {
@@ -48,7 +64,7 @@ public class Figure {
         }
     }
 
-    public double getArea() {
-        return area;
+    public double getLength() {
+        return length;
     }
 }

@@ -26,7 +26,7 @@ public class ResultView {
     }
 
     static String drawPoint(int x, int y, Figure figure) {
-        if (figure.isAtCoordinate(x, y)) return Point.of(x, y).toString();
+        if (figure.hasCoordinateAt(x, y)) return Point.of(x, y).toString();
         return "  ";
     }
 
@@ -52,6 +52,6 @@ public class ResultView {
     public static void printCalculationResult(Figure figure) {
         System.out.println();
         System.out.println();
-        print("두 점 사이의 거리는 " + figure.getArea());
+        print("두 점 사이의 거리는 " + figure.getLength());
     }
 }
