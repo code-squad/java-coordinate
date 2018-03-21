@@ -14,10 +14,6 @@ public class Rectangle {
         this.pointRepo = pointRepo;
     }
 
-    public static boolean isRectPointNum(Points pointRepo) {
-        return pointRepo.getSavedSize() == VALID_COORDINATE_NUM;
-    }
-
     public static boolean isValidRectPoints(Points pointRepo) {
         List<Point> points = pointRepo.getPoints();
         return verifyRectPoints(points, Point::getXPosition) && verifyRectPoints(points, Point::getYPosition);
