@@ -8,9 +8,9 @@ public class Figure {
     public void calculateArea() {
     }
 
-    public void setPoint(ArrayList<String> coordinatePairs) {
-        for (String coordinatePair : coordinatePairs) {
-            String[] pair = coordinatePair.split(",");
+    public void setCoordinates(ArrayList<String> coordinates) {
+        for (String coordinate : coordinates) {
+            String[] pair = coordinate.split(",");
             points.add(Point.of(Integer.parseInt(pair[0]), Integer.parseInt(pair[1])));
         }
     }

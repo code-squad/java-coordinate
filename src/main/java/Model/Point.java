@@ -27,4 +27,12 @@ public class Point {
         }
         return false;
     }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getX() {
+        return x;
+    }
 }
