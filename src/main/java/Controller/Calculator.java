@@ -1,54 +1,38 @@
 package Controller;
 
 import Model.Board;
+import Model.Figure;
+import Model.Point;
 import View.InputView;
 import java.util.ArrayList;
 
-import static java.lang.Math.pow;
-import static java.lang.Math.sqrt;
-
 public class Calculator {
 
+    // 실제 포인트 정보는 figure에 있고, board는 빈껍데기처럼 print할때만 빌려 쓴다..?
+
     private static Board board = Board.of();
-    private static double figureArea;
+    private static Figure figure;
 
     public void initPoints() {
-        ArrayList<String> coordinatePairs; // point객체에게 위임하면 제거할 수 있을 듯.
+        ArrayList<String> coordinatePairs;
         try {
             System.out.println("Input coordinates. ex. (1,2)-(3,4)-(5,1)");
             coordinatePairs = Utils.checkReturnCoordinates(InputView.initCoordinate());
-            for (String coordinatePair : coordinatePairs) {
-                String[] pair = coordinatePair.split(",");
-                board.setPoint(Integer.parseInt(pair[0]), Integer.parseInt(pair[1]));
-            }
+            figure.setPoint(coordinatePairs);
         } catch (RuntimeException e) {
             initPoints();
         }
     }
 
-    public void calculateArea(){
-        figureArea = lineCalculate(board);
-    }
-
-    static String drawPoint(int x, int y, Board board){
-        try {
-            return board.getPoint(x, y).toString();
-        } catch (NullPointerException e) {
-            return "  ";
-        }
-    }
-
-    public static double lineCalculate(Board board) {
-
-        double xPowers = 0;
-        double yPowers = 0;
-
-        return sqrt(xPowers + yPowers);
+    public void calculate(){
+        figure.calculateArea();
     }
 
     public Board getBoard() {
         return board;
     }
 
-    public double getFigureArea() { return figureArea; }
+    public ArrayList<Point> getPoints() {
+        return figure.getPoints();
+    }
 }

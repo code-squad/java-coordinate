@@ -2,6 +2,8 @@ package View;
 
 import Controller.Calculator;
 import Model.Board;
+import Model.Figure;
+import Model.Point;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -9,13 +11,6 @@ import java.util.stream.IntStream;
 public class ResultView {
 
     public static void printBoard(Calculator controller) {
-        Board board = controller.getBoard();
-        for (int y = 23; y >= 0; y--) {
-            print(drawYaxis(y));
-            print(drawLine(y, board));
-            System.out.println();
-        }
-        drawXaxis();
     }
 
     private static void print(String string) {
