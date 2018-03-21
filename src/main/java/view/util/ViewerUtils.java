@@ -52,11 +52,11 @@ public class ViewerUtils {
 
     private static String buildXPositionView(Coordinate coordinate, int xPosition, int yPosition) {
         if (coordinate.isYAxisPosition(xPosition, yPosition)) {
-            return buildYAxisView(coordinate, yPosition);
+            return buildYAxisView(coordinate, xPosition, yPosition);
         }
 
         if (coordinate.isXAxisPosition(yPosition)) {
-            return String.format("%s", getPositionLetter(PositionLetter.XAXIS));
+            return buildXAxisView(coordinate, xPosition, yPosition);
         }
         return buildXDrawPositionView(coordinate, xPosition, yPosition);
     }
@@ -68,11 +68,22 @@ public class ViewerUtils {
         return String.format("%3s", getPositionLetter(PositionLetter.NORMAL));
     }
 
-    private static String buildYAxisView(Coordinate coordinate, int yPosition) {
+    private static String buildYAxisView(Coordinate coordinate, int xPosition, int yPosition) {
+        if (coordinate.isDrawPosition(xPosition, yPosition)) {
+            return getPositionLetter(PositionLetter.MARK);
+        }
+
         if (coordinate.isXAxisPosition(yPosition)) {
             return getPositionLetter(PositionLetter.AXIS);
         }
         return getPositionLetter(PositionLetter.YAXIS);
+    }
+
+    private static String buildXAxisView(Coordinate coordinate, int xPosition, int yPosition) {
+        if (coordinate.isDrawPosition(xPosition, yPosition)) {
+            return getPositionLetter(PositionLetter.MARK);
+        }
+        return String.format("%s", getPositionLetter(PositionLetter.XAXIS));
     }
 
     private static String getPositionLetter(PositionLetter position) {

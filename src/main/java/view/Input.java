@@ -1,8 +1,11 @@
 package view;
 
+import domain.Line;
+import domain.figure.Rectangle;
 import domain.point.Points;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,7 +20,24 @@ public class Input {
             List<Integer> pointNumbers = splitPointNums(coordinate);
             savePoint(pointRepo, pointNumbers);
         }
+        verifyPoint(pointRepo);
         return pointRepo;
+    }
+
+    private static void verifyPoint(Points pointRepo) throws IllegalArgumentException {
+        if (Line.VALID_COORDINATE_NUM != pointRepo.getSavedSize() && Rectangle.VALID_COORDINATE_NUM != pointRepo.getSavedSize()) {
+            throw new IllegalArgumentException("유효하지않은 좌표 개수입니다.");
+        }
+
+        if (Rectangle.VALID_COORDINATE_NUM == pointRepo.getSavedSize()) {
+            verifyRect(pointRepo);
+        }
+    }
+
+    private static void verifyRect(Points pointRepo) throws IllegalArgumentException {
+        if (!Rectangle.isValidRectPoints(pointRepo)) {
+            throw new IllegalArgumentException("사각형은 직사각형 좌표를 입력해야합니다.");
+        }
     }
 
     private static String[] getCoordinates() {
