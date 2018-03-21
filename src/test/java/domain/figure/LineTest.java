@@ -1,5 +1,6 @@
 package domain.figure;
 
+import domain.Line;
 import domain.point.Points;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,17 +16,6 @@ public class LineTest {
         pointRepo.addPoint(1, 2);
         pointRepo.addPoint(3, 4);
         line = new Line(pointRepo);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void 점이_2개_아닐때_생성되나() {
-        pointRepo.addPoint(5, 6);
-        new Line(pointRepo);
-    }
-
-    @Test
-    public void 점이_2개일때_생성되나() {
-        new Line(pointRepo);
     }
 
     @Test

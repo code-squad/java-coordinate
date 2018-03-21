@@ -1,4 +1,5 @@
-import domain.figure.Line;
+import domain.Line;
+import domain.figure.Rectangle;
 import domain.point.Points;
 import view.Input;
 import view.Viewer;
@@ -11,19 +12,23 @@ public class Main {
     private static void start() {
         Points pointRepo = getPoints();
         Viewer.viewCoordinate(pointRepo);
-        Line line = makeLine(pointRepo);
-        Viewer.viewDistance(line.calcDistance());
+
+        doSomething(pointRepo);
     }
 
-    private static Line makeLine(Points pointRepo) {
-        Line line = null;
-        try {
-            line = new Line(pointRepo);
-        } catch (IllegalArgumentException e) {
-            Viewer.viewMessage(e.getMessage());
-            System.exit(-1);
+    // TODO : 분기문 처리 어떻게 이쁘게 만들지 고민해보기
+    private static void doSomething(Points points) {
+        switch (points.getSavedSize()) {
+            case Line.VALID_COORDINATE_NUM :
+                Line line = new Line(points);
+                Viewer.viewDistance(line.calcDistance());
+                break;
+
+            case Rectangle.VALID_COORDINATE_NUM :
+                Rectangle rectangle = new Rectangle(points);
+                Viewer.viewWidth(rectangle.calcArea());
+                break;
         }
-        return line;
     }
 
     private static Points getPoints() {
