@@ -28,11 +28,8 @@ public class ResultView {
         }
 
     static String drawPoint(int x, int y, Board board){
-        try {
-            return board.getPoint(x, y).toString();
-        } catch (NullPointerException e) {
-            return "   ";
-        }
+        if (board.isEmpty(x, y)) return "  ";
+        return board.getPoint(x, y).toString();
     }
 
     // yet not perfect logic
@@ -41,16 +38,22 @@ public class ResultView {
     }
 
     static String drawXaxisLine(){
-        return IntStream.range(0, 24).mapToObj(i -> "----").collect(Collectors.joining(""));
+        return IntStream.range(0, 24).mapToObj(i -> "--").collect(Collectors.joining(""));
     }
 
     static String drawXaxisNumber() {
-        return IntStream.range(0, 13).mapToObj(i -> String.format("%7d", 2 * i)).collect(Collectors.joining(""));
+        return IntStream.range(0, 13).mapToObj(i -> String.format("%4d", 2 * i)).collect(Collectors.joining(""));
     }
 
     private static void drawXaxis(){
         print("      "+drawXaxisLine());
         System.out.println();
-        print(drawXaxisNumber());
+        print("    "+drawXaxisNumber());
+    }
+
+    public static void printCalculationResult(Calculator calculator) {
+        System.out.println();
+        System.out.println();
+        print("두 점 사이의 거리는 " + calculator.getFigureArea());
     }
 }
