@@ -1,42 +1,33 @@
 package coordinate.domain;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class CoordinateManager {
+public class Frame {
 	private ArrayList<PointLine> pointLines;
 
-	public CoordinateManager(ArrayList<PointLine> pointLines) {
+	public Frame(ArrayList<PointLine> pointLines) {
 		this.pointLines = pointLines;
 	}
 
-	public static CoordinateManager init(ArrayList<HashMap<String, Integer>> inputCoordinates) {
+	public static Frame init(ArrayList<Coordinate> inputCoordinates) {
 		ArrayList<PointLine> pointLines = new ArrayList<>();
 		for (int yAxis = 0; yAxis < Common.MAXSIZE + 1; yAxis++) {
 			PointLine pointLine = PointLine.init(yAxis, inputCoordinates);
 			pointLines.add(pointLine);
 		}
-		return new CoordinateManager(pointLines);
+		return new Frame(pointLines);
 	}
 
 	public int size() {
 		return pointLines.size();
 	}
 
-	public String getLabel(int i) {
-		return pointLines.get(i).getLabel();
-	}
-
-	public PointLine getPointLine(int i) {
-		return pointLines.get(i);
+	public String makeLabel(int i) {
+		return pointLines.get(i).makeLabel();
 	}
 
 	public String getLine(int i) {
 		return pointLines.get(i).getLine();
-	}
-
-	public int getPointsSize(int i) {
-		return pointLines.get(i).getPoints().size();
 	}
 
 }

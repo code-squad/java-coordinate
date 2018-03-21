@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import coordinate.domain.Common;
-import coordinate.domain.CoordinateManager;
+import coordinate.domain.Coordinate;
+import coordinate.domain.Frame;
 
-public class PrintManager {
+public class Print {
 
-	public static void drawYaxis(CoordinateManager pointLines) {
+	public static void drawYaxis(Frame pointLines) {
 		for (int yAxis = pointLines.size() - 1; yAxis > 0; yAxis--) {
-			System.out.print(pointLines.getLabel(yAxis) + "|");
+			System.out.print(pointLines.makeLabel(yAxis) + "|");
 			System.out.print(pointLines.getLine(yAxis));
 		}
 	}
@@ -38,7 +39,7 @@ public class PrintManager {
 		return "  ";
 	}
 
-	public static void printResult(ArrayList<HashMap<String, Integer>> inputCoordinates) {
+	public static void printResult(ArrayList<Coordinate> inputCoordinates) {
 		if (inputCoordinates.size() == 2) {
 			System.out.println("두점 사이의 거리는");
 			System.out.println(calcCoordinate(inputCoordinates));
@@ -47,7 +48,7 @@ public class PrintManager {
 		System.out.println("좌표계산기 종료");
 	}
 
-	public static double calcCoordinate(ArrayList<HashMap<String, Integer>> inputCoordinates) {
+	public static double calcCoordinate(ArrayList<Coordinate> inputCoordinates) {
 		double result = 0;
 		if (inputCoordinates.size() == 2) { // 두점인경우
 			result = calcTwoPointDistance(inputCoordinates);
@@ -55,11 +56,11 @@ public class PrintManager {
 		return result;
 	}
 
-	public static double calcTwoPointDistance(ArrayList<HashMap<String, Integer>> inputCoordinates) {
+	public static double calcTwoPointDistance(ArrayList<Coordinate> inputCoordinates) {
 		HashMap<String, Integer> tempMap = new HashMap<>();
 		for (int i = 0; i < inputCoordinates.size(); i++) {
-			tempMap.put("x" + (i + 1), inputCoordinates.get(i).get("x"));
-			tempMap.put("y" + (i + 1), inputCoordinates.get(i).get("y"));
+			tempMap.put("x" + (i + 1), inputCoordinates.get(i).getxAxis());
+			tempMap.put("y" + (i + 1), inputCoordinates.get(i).getyAxis());
 		}
 		return calcDetail(tempMap);
 	}

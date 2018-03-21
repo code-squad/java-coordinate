@@ -2,12 +2,10 @@ package coordinate.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class PointLine {
 	private ArrayList<Point> points;
 	private int yAxis;
-	private String label;
 	private String[] line;
 
 	public PointLine(ArrayList<Point> points, int yAxis) {
@@ -21,15 +19,15 @@ public class PointLine {
 		this.line = line;
 	}
 
-	public static PointLine init(int yAxis, ArrayList<HashMap<String, Integer>> inputCoordinates) {
+	public static PointLine init(int yAxis, ArrayList<Coordinate> inputCoordinates) {
 		ArrayList<Point> points = new ArrayList<>();
 		String[] line = new String[Common.MAXSIZE];
 		Arrays.fill(line, "  ");
 		int temp = 0;
 		for (int i = 0; i < inputCoordinates.size(); i++) {
-			if (yAxis == inputCoordinates.get(i).get("y")) {
-				points.add(new Point(inputCoordinates.get(i).get("x")));
-				line[inputCoordinates.get(i).get("x")] = "*";
+			if (yAxis == inputCoordinates.get(i).getyAxis()) {
+				points.add(new Point(inputCoordinates.get(i).getxAxis()));
+				line[inputCoordinates.get(i).getxAxis()] = "*";
 				temp++;
 			}
 		}
@@ -39,7 +37,8 @@ public class PointLine {
 		return new PointLine(points, yAxis, line);
 	}
 
-	public String getLabel() {
+	public String makeLabel() {
+		String label = "";
 		if (Common.isOdd(yAxis)) {
 			label = "  ";
 		}
