@@ -5,41 +5,40 @@ public class Point {
 	private int pointX;
 	private boolean coordinate;
 
-	public Point(int pointX, boolean input) {
+	private Point(int pointX, boolean coordinate) {
 		this.pointX = pointX;
-		this.coordinate = input;
+		this.coordinate = coordinate;
 	}
 
-	public boolean isNextTrue(int i) { // 입력된 좌표 값이 다음과 같으면 true 반환
-		return this.pointX + 1 == i;
+	public static Point coordinate(int i) {
+		return of(i, true);
 	}
 
-	public Point coordinate() { // isNextTrue면 좌표 생성
-		return of(pointX + 1, true);
+	public static Point makeNomal(int i) {
+		return of(i, false);
 	}
 
-	public Point next() {
-		return of(pointX + 1, false);
+	public static Point of(int pointX, boolean coordinate) {
+		return new Point(pointX, coordinate);
 	}
 
-	public static Point of(int pointX, boolean input) {
-		return new Point(pointX, input);
-	}
-
-	public boolean getCoordinate() {
+	public boolean isCoordinate() {
 		return this.coordinate;
+	}
+
+	public int getX() {
+		return this.pointX;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof Point) {
+		if (obj instanceof Point) {
 			Point point = (Point) obj;
-			if(pointX==point.pointX && coordinate==point.coordinate) {
+			if (pointX == point.pointX && coordinate == point.coordinate) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	
+
 }
