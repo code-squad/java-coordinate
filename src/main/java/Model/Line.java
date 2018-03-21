@@ -16,10 +16,6 @@ public class Line {
         return new Line(x, y);
     }
 
-    public Point get(int x){
-        return this.points[x];
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -38,8 +34,4 @@ public class Line {
         return new Line(this.points);
     }
 
-    public boolean isEmptyPoint(int x) {
-        if (points[x] == null) return true;
-        return false;
-    }
 }

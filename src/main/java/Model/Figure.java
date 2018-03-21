@@ -3,7 +3,8 @@ package Model;
 import java.util.ArrayList;
 
 public class Figure {
-    private ArrayList<Point> points;
+
+    private static ArrayList<Point> points = new ArrayList<>();
 
     public void calculateArea() {
     }
@@ -17,5 +18,9 @@ public class Figure {
 
     public ArrayList<Point> getPoints() {
         return points;
+    }
+
+    public boolean isAtCoordinate(int x, int y) {
+        return points.contains(Point.of(x, y));
     }
 }

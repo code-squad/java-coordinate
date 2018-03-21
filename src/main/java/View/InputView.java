@@ -9,5 +9,4 @@ public class InputView {
             String coordinates = scanner.nextLine();
             return coordinates;
     }
-
 }
