@@ -1,19 +1,23 @@
 package domain;
 
+import domain.point.Point;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 
 public class LineTest {
     private Line line;
-    private Points pointRepo = new Points();
 
     @Before
     public void setUp() throws Exception {
-        pointRepo.addPoint(1, 2);
-        pointRepo.addPoint(3, 4);
-        line = new Line(pointRepo);
+        ArrayList<Point> points = new ArrayList<>(
+                Arrays.asList(new Point(1, 2), new Point(3, 4))
+        );
+        line = new Line(points);
     }
 
     @Test

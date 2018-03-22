@@ -2,32 +2,31 @@ package domain;
 
 import domain.point.Point;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
     public static final int VALID_COORDINATE_NUM = 2;
-    private Point aSidePoint;
-    private Point bSidePoint;
+    private Point aSide;
+    private Point bSide;
 
-    public Line(ArrayList<Point> points) {
+    public Line(List<Point> points) {
         if (isInvalidPointNum(points)) {
             throw new IllegalArgumentException("좌표 입력 오류(" + VALID_COORDINATE_NUM + "개 되어야함)");
         }
-        aSidePoint = points.get(0);
-        bSidePoint = points.get(1);
+        aSide = points.get(0);
+        bSide = points.get(1);
     }
 
     public Line(Point aSidePoint, Point bSidePoint) {
-        this.aSidePoint = aSidePoint;
-        this.aSidePoint = bSidePoint;
+        this.aSide = aSidePoint;
+        this.bSide = bSidePoint;
     }
 
-    public static boolean isInvalidPointNum(ArrayList<Point> points) {
+    public static boolean isInvalidPointNum(List<Point> points) {
         return points.size() != VALID_COORDINATE_NUM;
     }
 
     public double calcDistance() {
-        return aSidePoint.calcDistance(bSidePoint);
+        return aSide.calcDistance(bSide);
     }
 }

@@ -5,11 +5,11 @@ import domain.point.Point;
 import view.Input;
 import view.Viewer;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CoordinateMain {
     public static void main(String[] args) {
-        ArrayList<Point> points = getPoints();
+        List<Point> points = getPoints();
         try {
             start(points);
         } catch (IllegalArgumentException e) {
@@ -17,7 +17,7 @@ public class CoordinateMain {
         }
     }
 
-    private static void start(ArrayList<Point> points) throws IllegalArgumentException {
+    private static void start(List<Point> points) throws IllegalArgumentException {
         Viewer.viewCoordinate(points);
 
         if (!Line.isInvalidPointNum(points)) {
@@ -30,8 +30,8 @@ public class CoordinateMain {
         Viewer.viewArea(figure);
     }
 
-    private static ArrayList<Point> getPoints() {
-        ArrayList<Point> points;
+    private static List<Point> getPoints() {
+        List<Point> points;
         try {
             points = Input.getPoints("좌표를 입력하세요.");
         } catch (IllegalArgumentException e) {

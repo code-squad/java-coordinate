@@ -8,27 +8,27 @@ import java.util.List;
 
 public class Triangle implements Figure {
     public static final int VALID_COORDINATE_NUM = 3;
-    private ArrayList<Point> points;
+    private List<Point> points;
 
-    Triangle(ArrayList<Point> points) {
-        if(isInvalidPointNum(points)) {
+    Triangle(List<Point> points) {
+        if (isInvalidPointNum(points)) {
             throw new IllegalArgumentException("좌표 입력 오류(" + VALID_COORDINATE_NUM + "개 되어야함)");
         }
         this.points = points;
     }
 
-    public static boolean isInvalidPointNum(ArrayList<Point> points) {
+    public static boolean isInvalidPointNum(List<Point> points) {
         return points.size() != VALID_COORDINATE_NUM;
     }
 
     @Override
     public double calcArea() {
-        ArrayList<Double> sidesLength = getSidesLength(points);
+        List<Double> sidesLength = getSidesLength();
         double requiredValue = sidesLength.stream().mapToDouble(i -> i).sum() / 2;
         return Math.sqrt(getInCalcValue(requiredValue, sidesLength));
     }
 
-    private double getInCalcValue(double requiredValue, ArrayList<Double> sidesLength) {
+    private double getInCalcValue(double requiredValue, List<Double> sidesLength) {
         double value = 1;
         for (double sideLength : sidesLength) {
             value *= requiredValue - sideLength;
@@ -36,8 +36,8 @@ public class Triangle implements Figure {
         return requiredValue * value;
     }
 
-    private ArrayList<Double> getSidesLength(List<Point> points) {
-        ArrayList<Double> sidesLength = new ArrayList<>();
+    private List<Double> getSidesLength() {
+        List<Double> sidesLength = new ArrayList<>();
         int aPointPos = 0;
         int bPointPos = aPointPos + 1;
         while (!isFinishGetSideLength(sidesLength)) {
@@ -45,16 +45,16 @@ public class Triangle implements Figure {
                 aPointPos++;
                 bPointPos = aPointPos + 1;
             }
-            sidesLength.add(getOneSideLength(points, aPointPos, bPointPos++));
+            sidesLength.add(getOneSideLength(aPointPos, bPointPos++));
         }
         return sidesLength;
     }
 
-    private double getOneSideLength(List<Point> points, int aPointPos, int bPointPos) {
-        return calcSideLength(points, aPointPos, bPointPos);
+    private double getOneSideLength(int aPointPos, int bPointPos) {
+        return calcSideLength(aPointPos, bPointPos);
     }
 
-    private boolean isFinishGetSideLength(ArrayList<Double> sidesLength) {
+    private boolean isFinishGetSideLength(List<Double> sidesLength) {
         return VALID_COORDINATE_NUM == sidesLength.size();
     }
 
@@ -62,7 +62,7 @@ public class Triangle implements Figure {
         return VALID_COORDINATE_NUM == positionIdx;
     }
 
-    private double calcSideLength(List<Point> points, int aSideIdx, int bSideIdx) {
+    private double calcSideLength(int aSideIdx, int bSideIdx) {
         Line line = new Line(points.get(aSideIdx), points.get(bSideIdx));
         return line.calcDistance();
     }

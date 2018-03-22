@@ -1,7 +1,12 @@
 package domain.figure;
 
+import domain.point.Point;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -10,10 +15,11 @@ public class TriangleTest {
 
     @Before
     public void setUp() throws Exception {
-        Points points = new Points();
-        points.addPoint(10, 10);
-        points.addPoint(14, 15);
-        points.addPoint(20, 8);
+        List<Point> points = new ArrayList<>(
+                Arrays.asList(new Point(10, 10),
+                        new Point(14, 15),
+                        new Point(20, 8)
+                ));
         triangle = new Triangle(points);
     }
 

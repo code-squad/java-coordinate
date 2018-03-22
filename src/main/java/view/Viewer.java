@@ -6,11 +6,11 @@ import domain.point.Point;
 import view.coordinate.Coordinate;
 import view.util.ViewerUtils;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Viewer {
 
-    public static void viewCoordinate(ArrayList<Point> points) {
+    public static void viewCoordinate(List<Point> points) {
         Coordinate coordinate = new Coordinate();
         for (Point point : points) {
             coordinate.drawPosition(point.getXPosition(), point.getYPosition());

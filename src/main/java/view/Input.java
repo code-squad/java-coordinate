@@ -13,10 +13,10 @@ import java.util.Scanner;
 public class Input {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static ArrayList<Point> getPoints(String printMessage) throws IllegalArgumentException {
+    public static List<Point> getPoints(String printMessage) throws IllegalArgumentException {
         Viewer.viewMessage(printMessage);
         String[] coordinates = getCoordinates();
-        ArrayList<Point> points = new ArrayList<>();
+        List<Point> points = new ArrayList<>();
         for (String coordinate : coordinates) {
             List<Integer> pointNumbers = splitPointNums(coordinate);
             savePoint(points, pointNumbers);
@@ -25,7 +25,7 @@ public class Input {
         return points;
     }
 
-    private static void verifyPoint(ArrayList<Point> points) throws IllegalArgumentException {
+    private static void verifyPoint(List<Point> points) throws IllegalArgumentException {
         if (!CoordinateNum.isValidCoordinateNum(points.size())) {
             throw new IllegalArgumentException("유효하지않은 좌표 개수입니다.");
         }
@@ -35,7 +35,7 @@ public class Input {
         }
     }
 
-    private static void verifyRect(ArrayList<Point> points) throws IllegalArgumentException {
+    private static void verifyRect(List<Point> points) throws IllegalArgumentException {
         if (!Rectangle.isValidRectPoints(points)) {
             throw new IllegalArgumentException("사각형은 직사각형 좌표를 입력해야합니다.");
         }
@@ -69,7 +69,7 @@ public class Input {
         }
     }
 
-    private static void savePoint(ArrayList<Point> points, List<Integer> pointNumbers) throws IllegalArgumentException {
+    private static void savePoint(List<Point> points, List<Integer> pointNumbers) throws IllegalArgumentException {
         final int xPosition = 0;
         final int yPosition = 1;
         Point point = new Point(pointNumbers.get(xPosition), pointNumbers.get(yPosition));

@@ -36,14 +36,6 @@ public class Point {
         return yPosition;
     }
 
-    public boolean isMatchXPosition(int xPosition) {
-        return this.xPosition == xPosition;
-    }
-
-    public boolean isMatchYPosition(int yPosition) {
-        return this.yPosition == yPosition;
-    }
-
     public double calcDistance(Point otherPoint) {
         double xDiffSquare = calcDiffSquare(this.xPosition, otherPoint.getXPosition());
         double yDiffSquare = calcDiffSquare(this.yPosition, otherPoint.getYPosition());
