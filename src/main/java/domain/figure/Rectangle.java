@@ -11,7 +11,7 @@ public class Rectangle implements Figure {
     private List<Point> points;
 
     Rectangle(List<Point> points) {
-        if(isInvalidPointNum(points)) {
+        if (isInvalidPointNum(points)) {
             throw new IllegalArgumentException("좌표 입력 오류(" + VALID_COORDINATE_NUM + "개 되어야함)");
         }
         this.points = points;
@@ -29,11 +29,23 @@ public class Rectangle implements Figure {
         return points.stream().map(getPosition).distinct().count() == (VALID_COORDINATE_NUM / 2);
     }
 
-    // TODO : 여기 바꾸기
     @Override
     public double calcArea() {
+        List<Double> sidesLength = getSidesLength();
+        return sidesLength.stream().reduce((height, length) -> height * length).get();
+    }
 
-        return 0;
+    @Override
+    public List<Double> getSidesLength() {
+        List<Double> sidesLength = new ArrayList<>();
+        Point standardPoint = points.get(0);
+        for (int i = 1; i < points.size(); i++) {
+            Point anotherPoint = points.get(i);
+            if (!standardPoint.isDiagonalRelation(anotherPoint)) {
+                sidesLength.add(standardPoint.calcDistance(anotherPoint));
+            }
+        }
+        return sidesLength;
     }
 
     @Override

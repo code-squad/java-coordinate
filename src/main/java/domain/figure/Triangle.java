@@ -36,7 +36,8 @@ public class Triangle implements Figure {
         return requiredValue * value;
     }
 
-    private List<Double> getSidesLength() {
+    @Override
+    public List<Double> getSidesLength() {
         List<Double> sidesLength = new ArrayList<>();
         int aPointPos = 0;
         int bPointPos = aPointPos + 1;

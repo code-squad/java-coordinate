@@ -26,7 +26,7 @@ public class RectangleTest {
 
     @Test
     public void 넓이계산() {
-        assertEquals(96, rect.calcArea());
+        assertEquals(96.0, rect.calcArea(), 0.1);
     }
 
     @Test

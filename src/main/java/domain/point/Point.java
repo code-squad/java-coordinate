@@ -36,6 +36,10 @@ public class Point {
         return yPosition;
     }
 
+    public boolean isDiagonalRelation(Point otherPoint) {
+        return (this.xPosition - otherPoint.getXPosition() != 0) && (this.yPosition - otherPoint.getYPosition() != 0);
+    }
+
     public double calcDistance(Point otherPoint) {
         double xDiffSquare = calcDiffSquare(this.xPosition, otherPoint.getXPosition());
         double yDiffSquare = calcDiffSquare(this.yPosition, otherPoint.getYPosition());
