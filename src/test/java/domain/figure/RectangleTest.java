@@ -45,20 +45,7 @@ public class RectangleTest {
     }
 
     @Test
-    public void 사각형_점_개수가_아님() {
-        Points pointRepo = new Points();
-        pointRepo.addPoint(22, 18);
-        pointRepo.addPoint(10, 10);
-        assertEquals(false, Rectangle.isRectPointNum(pointRepo));
-    }
-
-    @Test
-    public void 사각형_점_개수() {
-        Points pointRepo = new Points();
-        pointRepo.addPoint(22, 18);
-        pointRepo.addPoint(10, 10);
-        pointRepo.addPoint(10, 18);
-        pointRepo.addPoint(22, 10);
-        assertEquals(true, Rectangle.isRectPointNum(pointRepo));
+    public void 인스턴스_피규어_할당가능할까() {
+        assertEquals(true, rect instanceof Figure);
     }
 }
