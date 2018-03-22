@@ -1,11 +1,12 @@
-import Controller.Calculator;
+import Domain.Figure;
 import View.ResultView;
 
 public class Main {
     public static void main(String[] args) {
-        Calculator calculator = new Calculator();
-        calculator.initPoints(); // "0,0", "1,1", "1,2", "2,2"
-        ResultView.printBoard(calculator);
+        Figure figure = Figure.of();
+        figure.initPoints();
+        figure.calculateLine();
+        ResultView.printBoard(figure);
+        ResultView.printCalculationResult(figure);
     }
 }
-

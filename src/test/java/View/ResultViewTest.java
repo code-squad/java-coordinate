@@ -1,8 +1,13 @@
 package View;
 
-import Model.Board;
-import Model.Point;
+import Domain.Figure;
+import Domain.Point;
+import Domain.Points;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
@@ -19,9 +24,9 @@ public class ResultViewTest {
     }
     @Test
     public void drawPoint(){
-        Board board = Board.of();
-        board.setPoint(1,1);
-        assertThat(ResultView.drawPoint(1, 1, board), is("*  "));
-        assertThat(ResultView.drawPoint(1, 0, board), is("   "));
+        Points points = Points.of(Arrays.asList(Point.of(1,1), Point.of(2,2)));
+        Figure figure = Figure.of(points);
+        assertThat(ResultView.drawPoint(1, 1, figure), is(".  "));
+        assertThat(ResultView.drawPoint(1, 0, figure), is("  "));
     }
 }
