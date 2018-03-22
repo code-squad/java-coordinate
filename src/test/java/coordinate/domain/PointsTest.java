@@ -1,9 +1,7 @@
 package coordinate.domain;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +17,6 @@ public class PointsTest {
         points = new ArrayList<>();
     }
 
-    @Rule
-    public final ExpectedException exception = ExpectedException.none();
-
     @Test
     public void addPointsNormal() {
         List<Point> expected = new ArrayList<>();
@@ -30,10 +25,9 @@ public class PointsTest {
         assertArrayEquals(expected.toArray(), points.toArray());
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void addPointsThrowExceptionRedundantCoordinate() {
         addPoints(points, new int[]{1, 2});
-        exception.expect(IllegalArgumentException.class);
         addPoints(points, new int[]{1, 2});
     }
 }

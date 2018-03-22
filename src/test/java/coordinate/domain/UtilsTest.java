@@ -1,8 +1,6 @@
 package coordinate.domain;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,29 +10,23 @@ import static coordinate.domain.Utils.*;
 
 public class UtilsTest {
 
-    @Rule
-    public final ExpectedException exception = ExpectedException.none();
-
     @Test
     public void checkInputFormatNormal() {
         assertArrayEquals(new String[]{"(1,1)", "(2,2)"}, checkInputFormat("(1,1)-(2,2)"));
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void checkInputFormatThrowExceptionTooManyPoints() {
-        exception.expect(IllegalArgumentException.class);
         checkInputFormat("(1,1)-(2,2)-(3,3)");
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void checkInputFormatThrowExceptionNotEnoughPoints() {
-        exception.expect(IllegalArgumentException.class);
         checkInputFormat("(1,1)");
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void convertToIntegerArrayThrowExceptionDuringConversion() {
-        exception.expect(IllegalArgumentException.class);
         convertToIntegerArray("(1,x)");
     }
 

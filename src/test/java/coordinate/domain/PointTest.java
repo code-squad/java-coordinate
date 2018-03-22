@@ -1,16 +1,11 @@
 package coordinate.domain;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.*;
 import static coordinate.domain.Point.*;
 
 public class PointTest {
-
-    @Rule
-    public final ExpectedException exception = ExpectedException.none();
 
     @Test
     public void checkCoordinateValidityIsValid() {
@@ -19,21 +14,18 @@ public class PointTest {
         assertArrayEquals(expected, actual);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void checkCoordinateValidityNot2DCoordinate() {
-        exception.expect(IllegalArgumentException.class);
         checkCoordinateValidity(new int[]{1, 2, 3});
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void checkCoordinateValidityOutOfDomain() {
-        exception.expect(IllegalArgumentException.class);
         checkCoordinateValidity(new int[]{25, 2});
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void checkCoordinateValidityOutOfRange() {
-        exception.expect(IllegalArgumentException.class);
         checkCoordinateValidity(new int[]{1, 25});
     }
 }
