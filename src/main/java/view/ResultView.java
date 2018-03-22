@@ -1,7 +1,7 @@
-package View;
+package view;
 
-import Domain.Figure;
-import Domain.Point;
+import domain.Figure;
+import domain.Point;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

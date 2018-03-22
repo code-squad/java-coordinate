@@ -1,5 +1,5 @@
-import Domain.Figure;
-import View.ResultView;
+import domain.Figure;
+import view.ResultView;
 
 public class Main {
     public static void main(String[] args) {

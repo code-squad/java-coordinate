@@ -1,6 +1,6 @@
-package Domain;
+package domain;
 
-import View.InputView;
+import view.InputView;
 
 import java.util.*;
 

@@ -1,13 +1,11 @@
-package View;
+package view;
 
-import Domain.Figure;
-import Domain.Point;
-import Domain.Points;
+import domain.Figure;
+import domain.Point;
+import domain.Points;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
