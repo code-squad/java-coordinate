@@ -8,6 +8,9 @@ import java.util.stream.Collectors;
 
 public class Utils {
 
+    private static final int MAX_NUMBER = 24;
+    private static final int MIN_NUMBER = 0;
+
     public static ArrayList<String> checkReturnCoordinates(String coordinates) {
         List<String> coords = inputParser(coordinates);
         if (!isValidCoordinate(coords)){
@@ -30,7 +33,7 @@ public class Utils {
     }
 
     static boolean eachCoordInBoundaryCheck(int number){
-        if (number > 24 || number < 0) {
+        if (number > MAX_NUMBER || number < MIN_NUMBER) {
             System.out.println("Coordinates must be lower than 24.");
             throw new RuntimeException();
         }

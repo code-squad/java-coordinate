@@ -1,11 +1,13 @@
 package Domain;
 
+import java.util.Objects;
+
 public class Point {
 
     private int x;
     private int y;
 
-    private Point(int x, int y){
+    private Point(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -14,9 +16,12 @@ public class Point {
         return new Point(x, y);
     }
 
-    @Override
-    public String toString(){
-        return ".  ";
+    public int getY() {
+        return y;
+    }
+
+    public int getX() {
+        return x;
     }
 
     @Override
@@ -28,11 +33,16 @@ public class Point {
         return false;
     }
 
-    public int getY() {
-        return y;
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(x, y);
     }
 
-    public int getX() {
-        return x;
+    @Override
+    public String toString() {
+        return ".  ";
+
     }
+
 }

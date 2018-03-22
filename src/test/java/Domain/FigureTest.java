@@ -4,23 +4,19 @@ import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 
 public class FigureTest {
 
-    ArrayList<Point> points;
+    Points points;
 
     @Before
     public void setUp(){
-        points = new ArrayList<>(Arrays.asList(Point.of(1,1), Point.of(2,2)));
-    }
-
-    @Test
-    public void setCoordinates(){
-        ArrayList<String> coordinates = new ArrayList<>(Arrays.asList("1,2","3,4"));
-        assertThat(Figure.setCoordinates(coordinates), is(points));
+        points = Points.of(Arrays.asList(Point.of(1,1), Point.of(2,2)));
     }
 
     @Test
