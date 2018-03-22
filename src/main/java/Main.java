@@ -17,7 +17,7 @@ public class Main {
     }
 
     private static void viewCalcResult(Points pointRepo) {
-        if (Line.VALID_COORDINATE_NUM == pointRepo.getSavedSize()) {
+        if (pointRepo.isValidPointNum(Line.VALID_COORDINATE_NUM)) {
             viewCalcDistance(pointRepo);
             return;
         }
