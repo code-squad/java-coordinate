@@ -31,7 +31,7 @@ public class Main {
 
     private static void viewCalcArea(Points pointRepo) {
         Figure figure = FigureCreator.create(pointRepo);
-        Viewer.viewWidth(figure);
+        Viewer.viewArea(figure);
     }
 
     private static Points getPoints() {

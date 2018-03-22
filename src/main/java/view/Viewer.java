@@ -25,7 +25,7 @@ public class Viewer {
         System.out.println("두 점 사이 거리는 " + ViewerUtils.formatDistance(line.calcDistance()) + " 입니다.");
     }
 
-    public static void viewWidth(Figure figure) {
-        System.out.println(figure.getFigureName() + " 넓이는 " + figure.calcArea());
+    public static void viewArea(Figure figure) {
+        System.out.println(figure.getFigureName() + " 넓이는 " + ViewerUtils.formatWidth(figure.calcArea()));
     }
 }

@@ -9,7 +9,7 @@ public abstract class Figure {
         this.pointRepo = pointRepo;
     }
 
-    public abstract int calcArea();
+    public abstract double calcArea();
 
     public abstract String getFigureName();
 }

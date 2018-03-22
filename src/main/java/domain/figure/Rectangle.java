@@ -23,14 +23,14 @@ public class Rectangle extends Figure {
     }
 
     @Override
-    public int calcArea() {
+    public double calcArea() {
         List<Point> points = pointRepo.getPoints();
-        int length = getDiffPosition(points, Point::getXPosition);
-        int height = getDiffPosition(points, Point::getYPosition);
+        double length = getDiffPosition(points, Point::getXPosition);
+        double height = getDiffPosition(points, Point::getYPosition);
         return length * height;
     }
 
-    private int getDiffPosition(List<Point> points, Function<Point, Integer> getPosition) {
+    private double getDiffPosition(List<Point> points, Function<Point, Integer> getPosition) {
         return points.stream().map(getPosition).distinct().reduce((a, b) -> Math.abs(a - b)).get();
     }
 

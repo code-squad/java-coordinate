@@ -13,6 +13,17 @@ public class Line {
     public Line(Points points) {
         this.pointRepo = points;
     }
+
+    public Line(Point aSidePoint, Point bSidePoint) {
+        this(createPoints(aSidePoint, bSidePoint));
+    }
+
+    private static Points createPoints(Point aSidePoint, Point bSidePoint) {
+        Points pointRepo = new Points();
+        pointRepo.addPoint(aSidePoint.getXPosition(), aSidePoint.getYPosition());
+        pointRepo.addPoint(bSidePoint.getXPosition(), bSidePoint.getYPosition());
+        return pointRepo;
+    }
     
     public double calcDistance() {
         List<Point> calcPoints = pointRepo.getPoints();
