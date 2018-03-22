@@ -1,6 +1,6 @@
 import domain.Line;
 import domain.figure.Figure;
-import domain.figure.FigureCreator;
+import domain.figure.FigureFactory;
 import domain.point.Points;
 import view.Input;
 import view.Viewer;
@@ -30,7 +30,7 @@ public class Main {
     }
 
     private static void viewCalcArea(Points pointRepo) {
-        Figure figure = FigureCreator.create(pointRepo);
+        Figure figure = FigureFactory.of(pointRepo);
         Viewer.viewArea(figure);
     }
 
