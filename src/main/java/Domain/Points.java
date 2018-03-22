@@ -6,7 +6,10 @@ import java.util.Objects;
 
 public class Points {
 
+    public static final int LINE_POINT_NUMBER = 2;
+    public static final int RECTANGLE_POINT_NUMBER = 4;
     private List<Point> points;
+    private boolean line;
 
     private Points() {
     }
@@ -56,5 +59,13 @@ public class Points {
     public int hashCode() {
 
         return Objects.hash(points);
+    }
+
+    public boolean isLine() {
+        return points.size() == LINE_POINT_NUMBER;
+    }
+
+    public boolean isRectangle() {
+        return points.size() == RECTANGLE_POINT_NUMBER;
     }
 }

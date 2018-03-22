@@ -52,6 +52,6 @@ public class ResultView {
     public static void printCalculationResult(Figure figure) {
         System.out.println();
         System.out.println();
-        print("두 점 사이의 거리는 " + figure.getLength());
+        print(figure.toString() +":"+ figure.getArea());
     }
 }

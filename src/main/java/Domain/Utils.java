@@ -57,4 +57,21 @@ public class Utils {
         }
         return true;
     }
+
+    static ArrayList<String> figureCheckReturn(ArrayList<String> coordinates) {
+        Set<String> xCoords = new HashSet<>();
+        Set<String> yCoords = new HashSet<>();
+        for (String coordinate : coordinates) {
+            String[] coordPair = coordinate.split(",");
+            xCoords.add(coordPair[0]);
+            yCoords.add(coordPair[1]);
+        }
+        if (xCoords.size() != yCoords.size()) {
+            System.out.println("직사각형 또는 직선만 허용합니다.");
+            throw new RuntimeException();
+        }
+        return coordinates;
+    }
+
+
 }
