@@ -9,7 +9,7 @@ public class Frame {
 		this.pointLines = pointLines;
 	}
 
-	public static Frame init(ArrayList<Coordinate> inputCoordinates) {
+	public static Frame init(Coordinates inputCoordinates) {
 		ArrayList<PointLine> pointLines = new ArrayList<>();
 		for (int yAxis = 0; yAxis < Common.MAXSIZE + 1; yAxis++) {
 			PointLine pointLine = PointLine.init(yAxis, inputCoordinates);

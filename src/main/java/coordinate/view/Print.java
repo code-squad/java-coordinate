@@ -1,10 +1,8 @@
 package coordinate.view;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
+import coordinate.domain.Calculater;
 import coordinate.domain.Common;
-import coordinate.domain.Coordinate;
+import coordinate.domain.Coordinates;
 import coordinate.domain.Frame;
 
 public class Print {
@@ -39,35 +37,23 @@ public class Print {
 		return "  ";
 	}
 
-	public static void printResult(ArrayList<Coordinate> inputCoordinates) {
+	public static void printResult(Coordinates inputCoordinates, Calculater calculater) {
 		if (inputCoordinates.size() == 2) {
 			System.out.println("두점 사이의 거리는");
-			System.out.println(calcCoordinate(inputCoordinates));
+			System.out.println(calculater.calcTwoPointDistance());
 			return;
 		}
+		if (inputCoordinates.size() == 4) {
+			if (calculater.isSquare()) {
+				System.out.println("사각형의 넓이는");
+				System.out.println(calculater.calcFourPoint());
+				return;
+			}
+			System.out.println("직사각형 또는 정사각형이 아닙니다.");
+			return;
+		}
+
 		System.out.println("좌표계산기 종료");
-	}
-
-	public static double calcCoordinate(ArrayList<Coordinate> inputCoordinates) {
-		double result = 0;
-		if (inputCoordinates.size() == 2) { // 두점인경우
-			result = calcTwoPointDistance(inputCoordinates);
-		}
-		return result;
-	}
-
-	public static double calcTwoPointDistance(ArrayList<Coordinate> inputCoordinates) {
-		HashMap<String, Integer> tempMap = new HashMap<>();
-		for (int i = 0; i < inputCoordinates.size(); i++) {
-			tempMap.put("x" + (i + 1), inputCoordinates.get(i).getxAxis());
-			tempMap.put("y" + (i + 1), inputCoordinates.get(i).getyAxis());
-		}
-		return calcDetail(tempMap);
-	}
-
-	public static double calcDetail(HashMap<String, Integer> tempMap) {
-		return Math.sqrt(Math.pow((tempMap.get("x1") - tempMap.get("x2")), 2)
-				+ Math.pow((tempMap.get("y1") - tempMap.get("y2")), 2));
 	}
 
 }

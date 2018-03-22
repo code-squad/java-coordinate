@@ -19,15 +19,15 @@ public class PointLine {
 		this.line = line;
 	}
 
-	public static PointLine init(int yAxis, ArrayList<Coordinate> inputCoordinates) {
+	public static PointLine init(int yAxis, Coordinates inputCoordinates) {
 		ArrayList<Point> points = new ArrayList<>();
 		String[] line = new String[Common.MAXSIZE];
 		Arrays.fill(line, "  ");
 		int temp = 0;
 		for (int i = 0; i < inputCoordinates.size(); i++) {
-			if (yAxis == inputCoordinates.get(i).getyAxis()) {
-				points.add(new Point(inputCoordinates.get(i).getxAxis()));
-				line[inputCoordinates.get(i).getxAxis()] = "*";
+			if (yAxis == inputCoordinates.getyAxis(i)) {
+				points.add(new Point(inputCoordinates.getxAxis(i)));
+				line[inputCoordinates.getxAxis(i)] = "*";
 				temp++;
 			}
 		}

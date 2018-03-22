@@ -1,22 +1,22 @@
 package coordinate;
 
-import java.util.ArrayList;
-import coordinate.domain.Coordinate;
+import coordinate.domain.Calculater;
+import coordinate.domain.Coordinates;
 import coordinate.domain.Frame;
 import coordinate.view.Input;
 import coordinate.view.Print;
 
 public class Main {
 	public static void start() {
-		ArrayList<Coordinate> inputCoordinates = Input.inputCoordinate();
+		Coordinates inputCoordinates = Coordinates.of(Input.inputCoordinate());
 		Frame pointLines = Frame.init(inputCoordinates);
 		printManagerStart(pointLines, inputCoordinates);
 	}
 
-	public static void printManagerStart(Frame pointLines, ArrayList<Coordinate> inputCoordinates) {
+	public static void printManagerStart(Frame pointLines, Coordinates inputCoordinates) {
 		Print.drawYaxis(pointLines);
 		Print.drawXaxis();
-		Print.printResult(inputCoordinates);
+		Print.printResult(inputCoordinates, new Calculater(inputCoordinates));
 	}
 
 	public static void main(String[] args) {
