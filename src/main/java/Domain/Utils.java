@@ -11,12 +11,12 @@ public class Utils {
     private static final int MAX_NUMBER = 24;
     private static final int MIN_NUMBER = 0;
 
-    public static ArrayList<String> checkReturnCoordinates(String coordinates) {
+    public static List<String> checkReturnCoordinates(String coordinates) {
         List<String> coords = inputParser(coordinates);
         if (!isValidCoordinate(coords)){
             throw new RuntimeException();
         }
-        return (ArrayList<String>) coords;
+        return coords;
     }
 
     static boolean isValidCoordinate(List<String> coords){
@@ -58,7 +58,7 @@ public class Utils {
         return true;
     }
 
-    static ArrayList<String> figureCheckReturn(ArrayList<String> coordinates) {
+    static List<String> figureCheckReturn(List<String> coordinates) {
         Set<String> xCoords = new HashSet<>();
         Set<String> yCoords = new HashSet<>();
         for (String coordinate : coordinates) {
@@ -66,11 +66,10 @@ public class Utils {
             xCoords.add(coordPair[0]);
             yCoords.add(coordPair[1]);
         }
-        if (xCoords.size() != yCoords.size()) {
-            System.out.println("직사각형 또는 직선만 허용합니다.");
-            throw new RuntimeException();
-        }
-        return coordinates;
+        if (coordinates.size() == 4 && xCoords.size() == yCoords.size()) { return coordinates; }
+        if (coordinates.size() == 2) return coordinates;
+        System.out.println("직사각형 또는 직선만 혀용합니다.");
+        throw new RuntimeException();
     }
 
 

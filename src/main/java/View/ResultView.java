@@ -2,6 +2,7 @@ package View;
 
 import Domain.Figure;
 import Domain.Point;
+
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -52,6 +53,6 @@ public class ResultView {
     public static void printCalculationResult(Figure figure) {
         System.out.println();
         System.out.println();
-        print(figure.toString() +":"+ figure.getArea());
+        print(figure.toString() + ":" + figure.getArea());
     }
 }
