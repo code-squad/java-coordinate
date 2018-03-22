@@ -1,27 +1,44 @@
 package coordinate.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PointLine {
-	private ArrayList<Point> pointLine;
+	private ArrayList<Point> points;
 	private int yAxis;
-	private String label;
+	private String[] line;
 
-	public PointLine(ArrayList<Point> pointLine, int yAxis) {
-		this.pointLine = pointLine;
+	public PointLine(ArrayList<Point> points, int yAxis) {
+		this.points = points;
 		this.yAxis = yAxis;
 	}
 
-	public static PointLine init(int yAxis) {
-		ArrayList<Point> pointLine = new ArrayList<>();
-		/*
-		 * for (int xAxis = 0; xAxis < Common.MAXSIZE+1; xAxis++) {
-		 * pointLine.add(new Point(xAxis)); }
-		 */
-		return new PointLine(pointLine, yAxis);
+	public PointLine(ArrayList<Point> points, int yAxis, String[] line) {
+		this.points = points;
+		this.yAxis = yAxis;
+		this.line = line;
 	}
 
-	public String getLabel() {
+	public static PointLine init(int yAxis, ArrayList<Coordinate> inputCoordinates) {
+		ArrayList<Point> points = new ArrayList<>();
+		String[] line = new String[Common.MAXSIZE];
+		Arrays.fill(line, "  ");
+		int temp = 0;
+		for (int i = 0; i < inputCoordinates.size(); i++) {
+			if (yAxis == inputCoordinates.get(i).getyAxis()) {
+				points.add(new Point(inputCoordinates.get(i).getxAxis()));
+				line[inputCoordinates.get(i).getxAxis()] = "*";
+				temp++;
+			}
+		}
+		if (temp == 0) {
+			return new PointLine(points, yAxis);
+		}
+		return new PointLine(points, yAxis, line);
+	}
+
+	public String makeLabel() {
+		String label = "";
 		if (Common.isOdd(yAxis)) {
 			label = "  ";
 		}
@@ -32,5 +49,24 @@ public class PointLine {
 			label = " " + yAxis;
 		}
 		return label;
+	}
+
+	public ArrayList<Point> getPoints() {
+		return points;
+	}
+
+	public String getLine() {
+		if (points.size() != 0) {
+			return fillLine() + "\n";
+		}
+		return "\n";
+	}
+
+	public String fillLine() {
+		String temp = "";
+		for (int i = 0; i < line.length; i++) {
+			temp += line[i];
+		}
+		return temp;
 	}
 }
