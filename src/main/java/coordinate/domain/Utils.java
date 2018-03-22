@@ -41,10 +41,10 @@ public class Utils {
     }
 
     static int calculateArea(List<Point> points) {
-        List<Point> sortedByY = Points.sortPointsByY(points);
-        List<Point> sortedByX = Points.sortPointsByX(points);
-        int height = sortedByY.get(0).getY() - sortedByY.get(3).getY();
-        int length = sortedByX.get(0).getX() - sortedByX.get(3).getX();
+        Integer[] xCoordinates = Points.returnXSet(points);
+        Integer[] yCoordinates = Points.returnYSet(points);
+        int height = Math.abs(xCoordinates[0] - xCoordinates[1]);
+        int length = Math.abs(yCoordinates[0] - yCoordinates[1]);
         return height * length;
     }
 }

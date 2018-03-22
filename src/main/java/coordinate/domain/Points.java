@@ -42,28 +42,27 @@ public class Points {
         return pointsOnRowY;
     }
 
-    private static void checkSquare(List<Point> points) throws IllegalArgumentException {
-        if (!(checkYCoordinate(sortPointsByY(points)) && checkXCoordinate(sortPointsByX(points)))) {
+    static List<Point> checkSquare(List<Point> points) throws IllegalArgumentException {
+        if (returnXSet(points).length != returnYSet(points).length) {
             throw new IllegalArgumentException();
         }
-    }
-
-    private static boolean checkYCoordinate(List<Point> sortedByY) {
-        return sortedByY.get(0).getY() == sortedByY.get(1).getY() && sortedByY.get(2).getY() == sortedByY.get(3).getY();
-    }
-
-    private static boolean checkXCoordinate(List<Point> sortedByX) {
-        return sortedByX.get(0).getX() == sortedByX.get(1).getX() && sortedByX.get(2).getX() == sortedByX.get(3).getX();
-    }
-
-    static List<Point> sortPointsByY(List<Point> points) {
-        points.sort(Comparator.comparing(Point::getY));
         return points;
     }
 
-    static List<Point> sortPointsByX(List<Point> points) {
-        points.sort(Comparator.comparing(Point::getX));
-        return points;
+    static Integer[] returnXSet(List<Point> points) {
+        Set<Integer> xSet = new HashSet<>();
+        for (Point point : points) {
+            xSet.add(point.getX());
+        }
+        return xSet.toArray(new Integer[0]);
+    }
+
+    static Integer[] returnYSet(List<Point> points) {
+        Set<Integer> ySet = new HashSet<>();
+        for (Point point : points) {
+            ySet.add(point.getY());
+        }
+        return ySet.toArray(new Integer[0]);
     }
 
     public double calculateDistance() {
