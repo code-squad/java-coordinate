@@ -1,32 +1,26 @@
 package coordinate.domain;
 
+import coordinate.view.InputCoordinate;
+
 public class Point {
 
 	private int pointX;
-	private boolean coordinate;
+	private int pointY;
 
-	private Point(int pointX, boolean coordinate) {
+	public Point(int pointX, int pointY) {
+		if (pointX > 24 || pointY > 24) {
+			throw new IllegalArgumentException("24초과의 값은 좌표가 될 수 없습니다.");
+		}
+
 		this.pointX = pointX;
-		this.coordinate = coordinate;
+		this.pointY = pointY;
 	}
 
-	public static Point coordinate(int i) {
-		return of(i, true);
+	public int getPointX() {
+		return this.pointX;
 	}
 
-	public static Point makeNomal(int i) {
-		return of(i, false);
-	}
-
-	public static Point of(int pointX, boolean coordinate) {
-		return new Point(pointX, coordinate);
-	}
-
-	public boolean isCoordinate() {
-		return this.coordinate;
-	}
-
-	public int getX() {
+	public int getPointY() {
 		return this.pointX;
 	}
 
@@ -34,7 +28,7 @@ public class Point {
 	public boolean equals(Object obj) {
 		if (obj instanceof Point) {
 			Point point = (Point) obj;
-			if (pointX == point.pointX && coordinate == point.coordinate) {
+			if (pointX == point.pointX && pointY == point.pointY) {
 				return true;
 			}
 		}

@@ -2,27 +2,24 @@ package coordinate.view;
 
 import java.util.List;
 
-import coordinate.domain.CoordinateMake;
 import coordinate.domain.Line;
 import coordinate.domain.Point;
 
 public class BoardView {
 
-	public static void makeBoard(List<Line> lines) {
+	public static void makeBoard(List<Point> points) {
 		for (int i = 23; i >= 0; i--) {
-			BoardView.createY(i + 1);
-			BoardView.printPoint(i, lines);
+			createY(i + 1);
+			printPoint(i, points);
 		}
-		BoardView.createX();
+		createX();
 	}
 
 	public static void createY(int i) {
 		if (i % 2 == 0) {
 			System.out.printf("%2d", i);
-			System.out.print("|");
 		} else {
 			System.out.print("  ");
-			System.out.print("|");
 		}
 	}
 
@@ -43,22 +40,30 @@ public class BoardView {
 		System.out.println();
 	}
 
-	public static void printPoint(int i, List<Line> lines) {
-		Line line = lines.get(i);
+	public static void printPoint(int i, List<Point> points) {
 		for (int j = 0; j < 24; j++) {
-			BoardView.isCoordinate(i, j, line.getPoints());
+			int flag = isCoordinate(i, j, points);
+			if (j == 0 && flag == 0) {
+				System.out.print("|");
+			}
+			if (flag == 0) {
+				System.out.print("  ");
+			}
 		}
 		System.out.println();
 	}
 
-	public static void isCoordinate(int i, int j, List<Point> points) { // 좌표면 출력
-		if (points.get(j).isCoordinate()) {
-			System.out.print("● ");
-		}
-		 System.out.print("  ");
+	public static int isCoordinate(int i, int j, List<Point> points) { // 좌표면 출력
+		int flag = 0;
+		for (int k = 0; k < points.size(); k++)
+			if (points.get(k).getPointX() == j && points.get(k).getPointY() == i) {
+				System.out.print("● ");
+				flag++;
+			}
+		return flag;
 	}
-	
-	public static void solveLine(double length){
+
+	public static void solveLine(double length) {
 		System.out.println("두 점 사이 거리는 " + length);
 	}
 }
