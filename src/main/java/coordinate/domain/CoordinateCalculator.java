@@ -15,7 +15,7 @@ public class CoordinateCalculator {
         this.rows = calculatorInit(points);
     }
 
-    public static List<Row> calculatorInit(Points points) {
+    private static List<Row> calculatorInit(Points points) {
         List<Row> rows = new ArrayList<>();
         for (int y = 0; y <= RANGE; y++) {
             rows.add(addRow(points, y));
