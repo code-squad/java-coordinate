@@ -1,6 +1,5 @@
 package domain.figure;
 
-import domain.point.Points;
 import org.junit.Before;
 import org.junit.Test;
 

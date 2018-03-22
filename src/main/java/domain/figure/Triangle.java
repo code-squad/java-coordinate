@@ -2,21 +2,27 @@ package domain.figure;
 
 import domain.Line;
 import domain.point.Point;
-import domain.point.Points;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Triangle extends Figure {
+public class Triangle implements Figure {
     public static final int VALID_COORDINATE_NUM = 3;
+    private ArrayList<Point> points;
 
-    Triangle(Points pointRepo) {
-        super(pointRepo);
+    Triangle(ArrayList<Point> points) {
+        if(isInvalidPointNum(points)) {
+            throw new IllegalArgumentException("좌표 입력 오류(" + VALID_COORDINATE_NUM + "개 되어야함)");
+        }
+        this.points = points;
+    }
+
+    public static boolean isInvalidPointNum(ArrayList<Point> points) {
+        return points.size() != VALID_COORDINATE_NUM;
     }
 
     @Override
     public double calcArea() {
-        List<Point> points = super.getPoints();
         ArrayList<Double> sidesLength = getSidesLength(points);
         double requiredValue = sidesLength.stream().mapToDouble(i -> i).sum() / 2;
         return Math.sqrt(getInCalcValue(requiredValue, sidesLength));

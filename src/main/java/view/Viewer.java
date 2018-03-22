@@ -2,16 +2,18 @@ package view;
 
 import domain.Line;
 import domain.figure.Figure;
-import domain.point.Points;
+import domain.point.Point;
 import view.coordinate.Coordinate;
 import view.util.ViewerUtils;
 
+import java.util.ArrayList;
+
 public class Viewer {
 
-    public static void viewCoordinate(Points pointRepo) {
+    public static void viewCoordinate(ArrayList<Point> points) {
         Coordinate coordinate = new Coordinate();
-        for (int pos = 0; pos < pointRepo.getSavedSize(); pos++) {
-            coordinate.drawPosition(pointRepo.getPointXPosition(pos), pointRepo.getPointYPosition(pos));
+        for (Point point : points) {
+            coordinate.drawPosition(point.getXPosition(), point.getYPosition());
         }
         String coordinateView = ViewerUtils.buildCoordinateView(coordinate);
         System.out.println(coordinateView);

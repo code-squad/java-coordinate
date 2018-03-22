@@ -1,13 +1,15 @@
 package domain.figure;
 
-import domain.point.Points;
+import domain.point.Point;
+
+import java.util.ArrayList;
 
 public class FigureFactory {
 
-    public static Figure of(Points pointRepo) {
-        if (pointRepo.isValidPointNum(Triangle.VALID_COORDINATE_NUM)) {
-            return new Triangle(pointRepo);
+    public static Figure of(ArrayList<Point> points) {
+        if (Rectangle.isInvalidPointNum(points)) {
+            return new Triangle(points);
         }
-        return new Rectangle(pointRepo);
+        return new Rectangle(points);
     }
 }

@@ -1,34 +1,33 @@
 package domain;
 
 import domain.point.Point;
-import domain.point.Points;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 public class Line {
     public static final int VALID_COORDINATE_NUM = 2;
-    private Points pointRepo;
+    private Point aSidePoint;
+    private Point bSidePoint;
 
-    public Line(Points points) {
-        this.pointRepo = points;
+    public Line(ArrayList<Point> points) {
+        if (isInvalidPointNum(points)) {
+            throw new IllegalArgumentException("좌표 입력 오류(" + VALID_COORDINATE_NUM + "개 되어야함)");
+        }
+        aSidePoint = points.get(0);
+        bSidePoint = points.get(1);
     }
 
     public Line(Point aSidePoint, Point bSidePoint) {
-        this(createPoints(aSidePoint, bSidePoint));
+        this.aSidePoint = aSidePoint;
+        this.aSidePoint = bSidePoint;
     }
 
-    private static Points createPoints(Point aSidePoint, Point bSidePoint) {
-        Points pointRepo = new Points();
-        pointRepo.addPoint(aSidePoint.getXPosition(), aSidePoint.getYPosition());
-        pointRepo.addPoint(bSidePoint.getXPosition(), bSidePoint.getYPosition());
-        return pointRepo;
+    public static boolean isInvalidPointNum(ArrayList<Point> points) {
+        return points.size() != VALID_COORDINATE_NUM;
     }
-    
+
     public double calcDistance() {
-        List<Point> calcPoints = pointRepo.getPoints();
-        Point aSidePoint = calcPoints.get(0);
-        Point bSidePoint = calcPoints.get(1);
         return aSidePoint.calcDistance(bSidePoint);
     }
 }

@@ -8,7 +8,7 @@ public class Point {
     private int xPosition;
     private int yPosition;
 
-    Point(int xPosition, int yPosition) {
+    public Point(int xPosition, int yPosition) {
         if (!isValidXPosition(xPosition)) {
             throw new IllegalArgumentException("X 포지션 값 최대 " + X_POSITION_LIMIT + "까지 입니다.");
         }
@@ -34,6 +34,14 @@ public class Point {
 
     public int getYPosition() {
         return yPosition;
+    }
+
+    public boolean isMatchXPosition(int xPosition) {
+        return this.xPosition == xPosition;
+    }
+
+    public boolean isMatchYPosition(int yPosition) {
+        return this.yPosition == yPosition;
     }
 
     public double calcDistance(Point otherPoint) {
