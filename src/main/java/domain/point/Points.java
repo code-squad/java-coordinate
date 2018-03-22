@@ -32,6 +32,10 @@ public class Points {
         return searchPoint.getYPosition();
     }
 
+    public Point getPoint(int position) {
+        return points.get(position);
+    }
+
     public boolean isValidPointNum(int pointNum) {
         return points.size() == pointNum;
     }

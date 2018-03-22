@@ -27,20 +27,8 @@ public class Line {
     
     public double calcDistance() {
         List<Point> calcPoints = pointRepo.getPoints();
-        double xDiffSquare = calcDiffSquare(calcDiffPosition(calcPoints, Point::getXPosition));
-        double yDiffSquare = calcDiffSquare(calcDiffPosition(calcPoints, Point::getYPosition));
-        return calcSquareRoot(xDiffSquare + yDiffSquare);
-    }
-
-    private double calcSquareRoot(double num) {
-        return Math.sqrt(num);
-    }
-
-    private double calcDiffSquare(int positionDiff) {
-        return Math.pow(positionDiff, 2);
-    }
-
-    private static int calcDiffPosition(List<Point> calcPoints, Function<Point, Integer> getPosition) {
-        return calcPoints.stream().map(getPosition).reduce((x1, x2) -> x2 - x1).get();
+        Point aSidePoint = calcPoints.get(0);
+        Point bSidePoint = calcPoints.get(1);
+        return aSidePoint.calcDistance(bSidePoint);
     }
 }

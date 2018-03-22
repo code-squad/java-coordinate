@@ -16,7 +16,7 @@ public class Triangle extends Figure {
 
     @Override
     public double calcArea() {
-        List<Point> points = pointRepo.getPoints();
+        List<Point> points = super.getPoints();
         ArrayList<Double> sidesLength = getSidesLength(points);
         double requiredValue = sidesLength.stream().mapToDouble(i -> i).sum() / 2;
         return Math.sqrt(getInCalcValue(requiredValue, sidesLength));

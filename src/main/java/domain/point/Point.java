@@ -36,6 +36,25 @@ public class Point {
         return yPosition;
     }
 
+    public double calcDistance(Point otherPoint) {
+        double xDiffSquare = calcDiffSquare(this.xPosition, otherPoint.getXPosition());
+        double yDiffSquare = calcDiffSquare(this.yPosition, otherPoint.getYPosition());
+        return calcSquareRoot(xDiffSquare + yDiffSquare);
+    }
+
+    private double calcSquareRoot(double num) {
+        return Math.sqrt(num);
+    }
+
+    private double calcDiffSquare(int aSidePosition, int bSidePosition) {
+        int positionDiff = calcDiffPosition(aSidePosition, bSidePosition);
+        return Math.pow(positionDiff, 2);
+    }
+
+    private static int calcDiffPosition(int aSidePosition, int bSidePosition) {
+        return aSidePosition - bSidePosition;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;

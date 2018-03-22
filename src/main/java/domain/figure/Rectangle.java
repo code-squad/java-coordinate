@@ -22,12 +22,12 @@ public class Rectangle extends Figure {
         return points.stream().map(getPosition).distinct().count() == (VALID_COORDINATE_NUM / 2);
     }
 
+
+    // TODO : 여기 바꾸기....
     @Override
     public double calcArea() {
-        List<Point> points = pointRepo.getPoints();
-        double length = getDiffPosition(points, Point::getXPosition);
-        double height = getDiffPosition(points, Point::getYPosition);
-        return length * height;
+
+        return 0;
     }
 
     private double getDiffPosition(List<Point> points, Function<Point, Integer> getPosition) {
