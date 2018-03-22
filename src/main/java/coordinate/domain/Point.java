@@ -28,7 +28,7 @@ public class Point {
         return this.y == y;
     }
 
-    static int[] checkCoordinateValidity(int[] xySet) throws IllegalArgumentException{
+    static int[] checkCoordinateValidity(int[] xySet) throws IllegalArgumentException {
         if (!isValidCoordinate(xySet)) {
             Output.printMessage("좌표 포맷이 맞지 않습니다.");
             throw new IllegalArgumentException();

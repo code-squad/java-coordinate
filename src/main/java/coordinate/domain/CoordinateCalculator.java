@@ -34,4 +34,8 @@ public class CoordinateCalculator {
     public double calculateDistance() {
         return points.calculateDistance();
     }
+
+    public int calculateArea(){
+        return points.calculateArea();
+    }
 }

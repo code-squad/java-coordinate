@@ -15,6 +15,7 @@ public class Main {
 
         Output.printGraph(cc);
         Output.printDistance(cc);
+        Output.printArea(cc);
     }
 
     private static Points promptUserInput() {

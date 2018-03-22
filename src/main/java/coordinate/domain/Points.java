@@ -18,6 +18,7 @@ public class Points {
             int[] xySet = Utils.convertToIntegerArray(set);
             addPoints(points, xySet);
         }
+        checkSquare(points);
         return points;
     }
 
@@ -41,7 +42,35 @@ public class Points {
         return pointsOnRowY;
     }
 
+    private static void checkSquare(List<Point> points) throws IllegalArgumentException {
+        if (!(checkYCoordinate(sortPointsByY(points)) && checkXCoordinate(sortPointsByX(points)))) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static boolean checkYCoordinate(List<Point> sortedByY) {
+        return sortedByY.get(0).getY() == sortedByY.get(1).getY() && sortedByY.get(2).getY() == sortedByY.get(3).getY();
+    }
+
+    private static boolean checkXCoordinate(List<Point> sortedByX) {
+        return sortedByX.get(0).getX() == sortedByX.get(1).getX() && sortedByX.get(2).getX() == sortedByX.get(3).getX();
+    }
+
+    static List<Point> sortPointsByY(List<Point> points) {
+        points.sort(Comparator.comparing(Point::getY));
+        return points;
+    }
+
+    static List<Point> sortPointsByX(List<Point> points) {
+        points.sort(Comparator.comparing(Point::getX));
+        return points;
+    }
+
     public double calculateDistance() {
         return Utils.calculateDistance(points);
+    }
+
+    public int calculateArea() {
+        return Utils.calculateArea(points);
     }
 }
