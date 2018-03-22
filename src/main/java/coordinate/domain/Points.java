@@ -22,7 +22,7 @@ public class Points {
     }
 
     static List<Point> addPoints(List<Point> points, int[] xySet) throws IllegalArgumentException {
-        Point newPoint = new Point(xySet[Utils.X_INDEX], xySet[Utils.Y_INDEX]);
+        Point newPoint = new Point(xySet);
         if (points.contains(newPoint)) {
             Output.printMessage("중복된 좌표가 있습니다."); //중복 체크
             throw new IllegalArgumentException();

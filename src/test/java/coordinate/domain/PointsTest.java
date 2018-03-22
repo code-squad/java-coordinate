@@ -25,13 +25,13 @@ public class PointsTest {
     @Test
     public void addPointsNormal() {
         List<Point> expected = new ArrayList<>();
-        expected.add(new Point(1, 2));
+        expected.add(new Point(new int[]{1, 2}));
         points = addPoints(points, new int[]{1, 2});
         assertArrayEquals(expected.toArray(), points.toArray());
     }
 
     @Test
-    public void addPointsThrowException() {
+    public void addPointsThrowExceptionRedundantCoordinate() {
         addPoints(points, new int[]{1, 2});
         exception.expect(IllegalArgumentException.class);
         addPoints(points, new int[]{1, 2});

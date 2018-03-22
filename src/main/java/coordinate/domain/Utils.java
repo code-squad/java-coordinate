@@ -7,10 +7,6 @@ import java.util.List;
 
 public class Utils {
     private static final int NUMBER_OF_POINTS = 2;
-    private static final int DOMAIN_RANGE = 24;
-    private static final int COORDINATE_LENGTH = 2;
-    static final int X_INDEX = 0;
-    static final int Y_INDEX = 1;
 
     public static String[] checkInputFormat(String input) throws IllegalArgumentException {
         String[] splitInput = input.split("\\s*-\\s*");
@@ -30,10 +26,6 @@ public class Utils {
             Output.printMessage("좌표 포맷이 맞지 않습니다.");
             throw e;
         }
-        if (!isValidCoordinate(xySet)) {
-            Output.printMessage("좌표 포맷이 맞지 않습니다.");
-            throw new IllegalArgumentException();
-        }
         return xySet;
     }
 
@@ -45,20 +37,6 @@ public class Utils {
             throw e;
         }
         return xySet;
-    }
-
-    private static boolean isValidCoordinate(int[] xySet) {
-        if (xySet.length != COORDINATE_LENGTH) {
-            return false;
-        }
-        if (isOutOfDomainRange(xySet[X_INDEX]) || isOutOfDomainRange(xySet[Y_INDEX])) {
-            return false;
-        }
-        return true;
-    }
-
-    private static boolean isOutOfDomainRange(Integer number) {
-        return number > DOMAIN_RANGE;
     }
 
     static double calculateDistance(List<Point> points) {
