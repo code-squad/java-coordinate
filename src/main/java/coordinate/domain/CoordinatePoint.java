@@ -27,8 +27,20 @@ public class CoordinatePoint {
 	}
 
 	public double decideFigure() { // 도형의 타입을 결정해주고 결과 값을 반환
-		Line line = new Line(points);
-		return line.lineResult();
+		if (isLine()) {
+			Line line = new Line(points);
+			return line.lineResult();
+		}
+		Square square = new Square(points);
+		return square.area();
+	}
+
+	public boolean isLine() {
+		return points.size() == 2;
+	}
+
+	public boolean isSquare() {
+		return points.size() == 4;
 	}
 
 	public List<Point> getPoints() {

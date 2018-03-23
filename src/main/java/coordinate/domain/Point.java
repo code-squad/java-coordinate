@@ -11,23 +11,34 @@ public class Point {
 
 	public Point(String str) {
 		String[] pointXY = str.split(",");
+		if (pointXY.length != 2) {
+			throw new IllegalArgumentException("좌표의 값이 잘못 입력 되었습니다.");
+		}
+
 		this.pointX = Integer.parseInt(pointXY[0]);
 		this.pointY = Integer.parseInt(pointXY[1]);
 
 		if (pointX < 0 || pointX > 24 || pointY < 0 || pointY > 24) {
 			throw new IllegalArgumentException("24초과의 값은 좌표가 될 수 없습니다.");
 		}
-		if (pointXY.length != 2) {
-			throw new IllegalArgumentException("좌표의 값이 잘못 입력 되었습니다.");
-		}
 	}
 
-	public int getHigh(Point otherPoint) {
+	public int getHeight(Point otherPoint) {
 		return Math.abs(this.pointY - otherPoint.getPointY());
 	}
 
 	public int getWidth(Point otherPoint) {
 		return Math.abs(this.pointX - otherPoint.getPointX());
+	}
+
+	public boolean isNotSameXY(Point otherPoint) {
+		return (this.pointX!=otherPoint.getPointX() && 
+				this.pointY!=otherPoint.getPointY());
+	}
+	
+	public boolean isSameXOrY(Point otherPoint) {
+		return (this.pointX==otherPoint.getPointX() || 
+				this.pointY==otherPoint.getPointY());
 	}
 
 	public int getPointX() {
@@ -53,5 +64,7 @@ public class Point {
 		}
 		return false;
 	}
+	
+	
 
 }

@@ -19,7 +19,7 @@ public class Line {
 
 	public double lineResult() {
 		double width = first.getWidth(second);
-		double height = first.getHigh(second);
+		double height = first.getHeight(second);
 		return lineLength(width, height);
 	}
 

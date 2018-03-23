@@ -21,7 +21,7 @@ public class CoordinateTest {
 		Point test = new Point(testNum1);
 		Point test2 = new Point(testNum2);
 
-		assertThat(test.getHigh(test2), is(8));
+		assertThat(test.getHeight(test2), is(8));
 		assertThat(test.getWidth(test2), is(3));
 	}
 
