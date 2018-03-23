@@ -4,11 +4,10 @@ import domain.point.Point;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class TriangleTest {
     private Triangle triangle;
@@ -27,5 +26,10 @@ public class TriangleTest {
     @Test
     public void 인스턴스_피규어_할당가능할까() {
         assertEquals(true, triangle instanceof Figure);
+    }
+
+    @Test
+    public void 인스턴스_넓이_구할수있을까() {
+        assertEquals(true, triangle instanceof AreaCalculable);
     }
 }

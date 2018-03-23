@@ -6,7 +6,7 @@ import domain.point.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Triangle implements Figure {
+public class Triangle extends Figure {
     public static final int VALID_COORDINATE_NUM = 3;
     private List<Point> points;
 
