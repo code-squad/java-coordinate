@@ -1,5 +1,7 @@
 package coordinate.domain;
 
+import java.util.Objects;
+
 import coordinate.view.InputCoordinate;
 
 public class Point {
@@ -7,12 +9,16 @@ public class Point {
 	private int pointX;
 	private int pointY;
 
-	public Point(String[] pointXY) {
+	public Point(String str) {
+		String[] pointXY = str.split(",");
 		this.pointX = Integer.parseInt(pointXY[0]);
 		this.pointY = Integer.parseInt(pointXY[1]);
 
 		if (pointX < 0 || pointX > 24 || pointY < 0 || pointY > 24) {
 			throw new IllegalArgumentException("24초과의 값은 좌표가 될 수 없습니다.");
+		}
+		if (pointXY.length != 2) {
+			throw new IllegalArgumentException("좌표의 값이 잘못 입력 되었습니다.");
 		}
 	}
 
@@ -30,6 +36,11 @@ public class Point {
 
 	public int getPointY() {
 		return this.pointY;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(pointX, pointY);
 	}
 
 	@Override

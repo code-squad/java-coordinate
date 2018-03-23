@@ -9,6 +9,10 @@ public class Line {
 	private Point second;
 
 	public Line(List<Point> points) {
+		if (points.size() != 2) {
+			throw new IllegalArgumentException("선이 아닙니다.");
+		}
+
 		this.first = points.get(0);
 		this.second = points.get(1);
 	}
