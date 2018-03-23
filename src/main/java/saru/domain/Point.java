@@ -23,7 +23,7 @@ public class Point {
         isExist = true;
     }
 
-    double calcRowLine(Point endPoint) {
+    double calcLengthWith(Point endPoint) {
         double powX = Math.pow(x - endPoint.getX(), 2);
         double powY = Math.pow(x - endPoint.getY(), 2);
         return Math.sqrt(powX + powY);

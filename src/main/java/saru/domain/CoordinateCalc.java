@@ -29,7 +29,7 @@ public class CoordinateCalc {
 
     public double calcProc() {
         // TODO 직선인 경우 거리계산
-        return userInput.get(FIRST_INDEX).calcRowLine(userInput.get(SECOND_INDEX));
+        return userInput.get(FIRST_INDEX).calcLengthWith(userInput.get(SECOND_INDEX));
     }
 
     public List<RowLine> getRowLines() {
