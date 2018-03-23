@@ -55,4 +55,25 @@ public class PointTest {
         Point secondPoint = new Point(24, 24);
         assertEquals(true, firstPoint.equals(secondPoint));
     }
+
+    @Test
+    public void 거리_계산() {
+        Point aSide = new Point(10, 10);
+        Point bSide = new Point(22, 10);
+        assertEquals(12.000, aSide.calcDistance(bSide), 0.01);
+    }
+
+    @Test
+    public void 대각선_관계일때() {
+        Point aSide = new Point(10, 10);
+        Point bSide = new Point(22, 18);
+        assertEquals(true, aSide.isDiagonalRelation(bSide));
+    }
+
+    @Test
+    public void 대각선_관계_아닐때() {
+        Point aSide = new Point(10, 10);
+        Point bSide = new Point(10, 18);
+        assertEquals(false, aSide.isDiagonalRelation(bSide));
+    }
 }
