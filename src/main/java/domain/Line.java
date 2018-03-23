@@ -1,35 +1,32 @@
 package domain;
 
 import domain.point.Point;
-import domain.point.Points;
 
 import java.util.List;
-import java.util.function.Function;
 
 public class Line {
     public static final int VALID_COORDINATE_NUM = 2;
-    private Points pointRepo;
+    private Point aSide;
+    private Point bSide;
 
-    public Line(Points points) {
-        this.pointRepo = points;
+    public Line(List<Point> points) {
+        if (isInvalidPointNum(points)) {
+            throw new IllegalArgumentException("좌표 입력 오류(" + VALID_COORDINATE_NUM + "개 되어야함)");
+        }
+        aSide = points.get(0);
+        bSide = points.get(1);
     }
-    
+
+    public Line(Point aSidePoint, Point bSidePoint) {
+        this.aSide = aSidePoint;
+        this.bSide = bSidePoint;
+    }
+
+    public static boolean isInvalidPointNum(List<Point> points) {
+        return points.size() != VALID_COORDINATE_NUM;
+    }
+
     public double calcDistance() {
-        List<Point> calcPoints = pointRepo.getPoints();
-        double xDiffSquare = calcDiffSquare(calcDiffPosition(calcPoints, Point::getXPosition));
-        double yDiffSquare = calcDiffSquare(calcDiffPosition(calcPoints, Point::getYPosition));
-        return calcSquareRoot(xDiffSquare + yDiffSquare);
-    }
-
-    private double calcSquareRoot(double num) {
-        return Math.sqrt(num);
-    }
-
-    private double calcDiffSquare(int positionDiff) {
-        return Math.pow(positionDiff, 2);
-    }
-
-    private static int calcDiffPosition(List<Point> calcPoints, Function<Point, Integer> getPosition) {
-        return calcPoints.stream().map(getPosition).reduce((x1, x2) -> x2 - x1).get();
+        return aSide.calcDistance(bSide);
     }
 }

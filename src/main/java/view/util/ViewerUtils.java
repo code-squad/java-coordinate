@@ -9,6 +9,10 @@ public class ViewerUtils {
         return String.format("%.3f", distance);
     }
 
+    public static String formatWidth(double width) {
+        return String.format("%.1f", width);
+    }
+
     public static String buildCoordinateView(Coordinate coordinate) {
         StringBuilder builder = new StringBuilder();
         for (int yPosition = Point.Y_POSITION_LIMIT; yPosition >= 0; yPosition--) {

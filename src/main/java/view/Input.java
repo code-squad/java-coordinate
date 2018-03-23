@@ -2,7 +2,8 @@ package view;
 
 import domain.Line;
 import domain.figure.Rectangle;
-import domain.point.Points;
+import domain.figure.Triangle;
+import domain.point.Point;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,30 +13,30 @@ import java.util.Scanner;
 public class Input {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static Points getPoints(String printMessage) throws IllegalArgumentException {
+    public static List<Point> getPoints(String printMessage) throws IllegalArgumentException {
         Viewer.viewMessage(printMessage);
         String[] coordinates = getCoordinates();
-        Points pointRepo = new Points();
+        List<Point> points = new ArrayList<>();
         for (String coordinate : coordinates) {
             List<Integer> pointNumbers = splitPointNums(coordinate);
-            savePoint(pointRepo, pointNumbers);
+            savePoint(points, pointNumbers);
         }
-        verifyPoint(pointRepo);
-        return pointRepo;
+        verifyPoint(points);
+        return points;
     }
 
-    private static void verifyPoint(Points pointRepo) throws IllegalArgumentException {
-        if (Line.VALID_COORDINATE_NUM != pointRepo.getSavedSize() && Rectangle.VALID_COORDINATE_NUM != pointRepo.getSavedSize()) {
+    private static void verifyPoint(List<Point> points) throws IllegalArgumentException {
+        if (!CoordinateNum.isValidCoordinateNum(points.size())) {
             throw new IllegalArgumentException("유효하지않은 좌표 개수입니다.");
         }
 
-        if (Rectangle.VALID_COORDINATE_NUM == pointRepo.getSavedSize()) {
-            verifyRect(pointRepo);
+        if (!Rectangle.isInvalidPointNum(points)) {
+            verifyRect(points);
         }
     }
 
-    private static void verifyRect(Points pointRepo) throws IllegalArgumentException {
-        if (!Rectangle.isValidRectPoints(pointRepo)) {
+    private static void verifyRect(List<Point> points) throws IllegalArgumentException {
+        if (!Rectangle.isValidRectPoints(points)) {
             throw new IllegalArgumentException("사각형은 직사각형 좌표를 입력해야합니다.");
         }
     }
@@ -68,9 +69,26 @@ public class Input {
         }
     }
 
-    private static void savePoint(Points pointRepo, List<Integer> pointNumbers) throws IllegalArgumentException {
+    private static void savePoint(List<Point> points, List<Integer> pointNumbers) throws IllegalArgumentException {
         final int xPosition = 0;
         final int yPosition = 1;
-        pointRepo.addPoint(pointNumbers.get(xPosition), pointNumbers.get(yPosition));
+        Point point = new Point(pointNumbers.get(xPosition), pointNumbers.get(yPosition));
+        points.add(point);
+    }
+}
+
+enum CoordinateNum {
+    LINE(Line.VALID_COORDINATE_NUM),
+    RECT(Rectangle.VALID_COORDINATE_NUM),
+    TRIANGLE(Triangle.VALID_COORDINATE_NUM);
+
+    private int coordinateNum;
+
+    CoordinateNum(int coordinateNum) {
+        this.coordinateNum = coordinateNum;
+    }
+
+    public static boolean isValidCoordinateNum(int coordinateNum) {
+        return Arrays.stream(CoordinateNum.values()).map(shape -> shape.coordinateNum).anyMatch(num -> num == coordinateNum);
     }
 }

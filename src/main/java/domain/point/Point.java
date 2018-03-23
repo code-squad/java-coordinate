@@ -8,7 +8,7 @@ public class Point {
     private int xPosition;
     private int yPosition;
 
-    Point(int xPosition, int yPosition) {
+    public Point(int xPosition, int yPosition) {
         if (!isValidXPosition(xPosition)) {
             throw new IllegalArgumentException("X 포지션 값 최대 " + X_POSITION_LIMIT + "까지 입니다.");
         }
@@ -34,6 +34,29 @@ public class Point {
 
     public int getYPosition() {
         return yPosition;
+    }
+
+    public boolean isDiagonalRelation(Point otherPoint) {
+        return (this.xPosition - otherPoint.getXPosition() != 0) && (this.yPosition - otherPoint.getYPosition() != 0);
+    }
+
+    public double calcDistance(Point otherPoint) {
+        double xDiffSquare = calcDiffSquare(this.xPosition, otherPoint.getXPosition());
+        double yDiffSquare = calcDiffSquare(this.yPosition, otherPoint.getYPosition());
+        return calcSquareRoot(xDiffSquare + yDiffSquare);
+    }
+
+    private double calcSquareRoot(double num) {
+        return Math.sqrt(num);
+    }
+
+    private double calcDiffSquare(int aSidePosition, int bSidePosition) {
+        int positionDiff = calcDiffPosition(aSidePosition, bSidePosition);
+        return Math.pow(positionDiff, 2);
+    }
+
+    private static int calcDiffPosition(int aSidePosition, int bSidePosition) {
+        return aSidePosition - bSidePosition;
     }
 
     @Override

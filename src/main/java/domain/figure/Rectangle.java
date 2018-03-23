@@ -1,21 +1,27 @@
 package domain.figure;
 
 import domain.point.Point;
-import domain.point.Points;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-public class Rectangle {
+public class Rectangle implements Figure {
     public static final int VALID_COORDINATE_NUM = 4;
-    private Points pointRepo;
+    private List<Point> points;
 
-    public Rectangle(Points pointRepo) {
-        this.pointRepo = pointRepo;
+    Rectangle(List<Point> points) {
+        if (isInvalidPointNum(points)) {
+            throw new IllegalArgumentException("좌표 입력 오류(" + VALID_COORDINATE_NUM + "개 되어야함)");
+        }
+        this.points = points;
     }
 
-    public static boolean isValidRectPoints(Points pointRepo) {
-        List<Point> points = pointRepo.getPoints();
+    public static boolean isInvalidPointNum(List<Point> points) {
+        return points.size() != VALID_COORDINATE_NUM;
+    }
+
+    public static boolean isValidRectPoints(List<Point> points) {
         return verifyRectPoints(points, Point::getXPosition) && verifyRectPoints(points, Point::getYPosition);
     }
 
@@ -23,14 +29,27 @@ public class Rectangle {
         return points.stream().map(getPosition).distinct().count() == (VALID_COORDINATE_NUM / 2);
     }
 
-    public int calcArea() {
-        List<Point> points = pointRepo.getPoints();
-        int length = getDiffPosition(points, Point::getXPosition);
-        int height = getDiffPosition(points, Point::getYPosition);
-        return length * height;
+    @Override
+    public double calcArea() {
+        List<Double> sidesLength = getSidesLength();
+        return sidesLength.stream().reduce((height, length) -> height * length).get();
     }
 
-    private int getDiffPosition(List<Point> points, Function<Point, Integer> getPosition) {
-        return points.stream().map(getPosition).distinct().reduce((a, b) -> Math.abs(a - b)).get();
+    @Override
+    public List<Double> getSidesLength() {
+        List<Double> sidesLength = new ArrayList<>();
+        Point standardPoint = points.get(0);
+        for (int i = 1; i < points.size(); i++) {
+            Point anotherPoint = points.get(i);
+            if (!standardPoint.isDiagonalRelation(anotherPoint)) {
+                sidesLength.add(standardPoint.calcDistance(anotherPoint));
+            }
+        }
+        return sidesLength;
+    }
+
+    @Override
+    public String getFigureName() {
+        return "사각형";
     }
 }
