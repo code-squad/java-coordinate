@@ -1,5 +1,7 @@
 package coordinate.domain;
 
+import java.util.HashMap;
+
 public class Calculater {
 	public static final int SQUARELINE = 4;
 	public static final String XAXIS = "x";
@@ -16,10 +18,27 @@ public class Calculater {
 				+ Math.pow(inputCoordinates.getyAxis(AXIS) - inputCoordinates.getyAxis(AXIS + 1), 2));
 	}
 
+	public double calcTwoPointDistance(int axis) {
+		if (axis == 2) {
+			return Math.sqrt(Math.pow(inputCoordinates.getxAxis(AXIS) - inputCoordinates.getxAxis(axis), 2)
+					+ Math.pow(inputCoordinates.getyAxis(AXIS) - inputCoordinates.getyAxis(axis), 2));
+		}
+		return Math.sqrt(Math.pow(inputCoordinates.getxAxis(AXIS) - inputCoordinates.getxAxis(AXIS + 1), 2)
+				+ Math.pow(inputCoordinates.getyAxis(AXIS) - inputCoordinates.getyAxis(AXIS + 1), 2));
+	}
+
+	public double calcThreePointDistance() {
+		double a = calcTwoPointDistance(0);
+		double b = calcTwoPointDistance(1);
+		double c = calcTwoPointDistance(2);
+		double s = (a + b + c) / 2;
+		return s;
+	}
+
 	public int calcFourPoint() {
 		int result = 0;
 		for (int i = 0; i < inputCoordinates.size(); i++) {
-			result =  Math.abs((int)calcFourPoint(i));
+			result = Math.abs((int) calcFourPoint(i));
 		}
 		return result;
 	}
@@ -39,26 +58,54 @@ public class Calculater {
 	}
 
 	public Boolean isSquare() {
-		int temp = 0;
+		HashMap<String, Integer> tempMap = new HashMap<>();
+		tempMap.put("xTemp", 0);
+		tempMap.put("yTemp", 0);
 		for (int i = 0; i < inputCoordinates.size() - 1; i++) {
-			temp = calcIsSquare(i, temp);
+			tempMap = calcIsSquare(i, tempMap);
 		}
-		return temp == SQUARELINE;
+
+		if ((tempMap.get("xTemp") + tempMap.get("yTemp")) == 4) {
+			return true;
+		}
+
+		return false;
 	}
 
-	public int calcIsSquare(int i, int temp) {
+	public HashMap<String, Integer> calcIsSquare(int i, HashMap<String, Integer> temp) {
 		for (int j = i + 1; j < inputCoordinates.size(); j++) {
 			temp = calcSameAxis(i, j, temp);
 		}
 		return temp;
 	}
 
-	public int calcSameAxis(int i, int j, int temp) {
+	public boolean isTriangle() {
+		HashMap<String, Integer> tempMap = new HashMap<>();
+		tempMap.put("xTemp", 0);
+		tempMap.put("yTemp", 0);
+		for (int i = 0; i < inputCoordinates.size() - 1; i++) {
+			tempMap = calcIsTriangle(i, tempMap);
+		}
+		if (tempMap.get("xTemp") == 3 || tempMap.get("yTemp") == 3) {
+			return false;
+		}
+
+		return true;
+	}
+
+	public HashMap<String, Integer> calcIsTriangle(int i, HashMap<String, Integer> temp) {
+		for (int j = i + 1; j < inputCoordinates.size(); j++) {
+			temp = calcSameAxis(i, j, temp);
+		}
+		return temp;
+	}
+
+	public HashMap<String, Integer> calcSameAxis(int i, int j, HashMap<String, Integer> temp) {
 		if (inputCoordinates.isSameAxis(i, j, XAXIS)) {
-			temp++;
+			temp.replace("xTemp", temp.get("xTemp") + 1);
 		}
 		if (inputCoordinates.isSameAxis(i, j, YAXIS)) {
-			temp++;
+			temp.replace("yTemp", temp.get("yTemp") + 1);
 		}
 		return temp;
 	}

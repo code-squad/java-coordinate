@@ -43,6 +43,18 @@ public class Print {
 			System.out.println(calculater.calcTwoPointDistance());
 			return;
 		}
+		
+		if (inputCoordinates.size() == 3) {
+			if (calculater.isTriangle()) {
+				System.out.println("삼각형의 넓이는");
+				System.out.println(calculater.calcThreePointDistance());
+				return;
+			}
+			System.out.println("삼각형이 아닙니다.");
+			return;
+		}
+		
+		
 		if (inputCoordinates.size() == 4) {
 			if (calculater.isSquare()) {
 				System.out.println("사각형의 넓이는");
