@@ -10,15 +10,6 @@ public class CoordinateMain {
     public static void main(String[] args) {
         ArrayList<Point> points = new ArrayList<>(InputView.getCoordinates());
         CoordinateBase coordinateBase = new CoordinateBase(points);
-
-//        for (Line line : coordinateBase.getLines()) {
-//            if(line != null) {
-//                System.out.println(line.toString());
-//            }
-//        }
-//        for (Point point : points) {
-//            System.out.println(point.toString());
-//        }
         ResultView.printCoordinates(coordinateBase);
         ResultView.printCalculate(points);
     }
