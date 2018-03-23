@@ -1,11 +1,10 @@
-package View;
+package view;
 
-import Domain.Figure;
-import Domain.Point;
-import Domain.Points;
+import domain.Figure;
+import domain.Point;
+import domain.Points;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,8 +23,8 @@ public class ResultViewTest {
     }
     @Test
     public void drawPoint(){
-        Points points = Points.of(Arrays.asList(Point.of(1,1), Point.of(2,2)));
-        Figure figure = Figure.of(points);
+        List<String> coordinates = Arrays.asList("1,1", "1,4");
+        Figure figure = Figure.of(coordinates);
         assertThat(ResultView.drawPoint(1, 1, figure), is(".  "));
         assertThat(ResultView.drawPoint(1, 0, figure), is("  "));
     }
