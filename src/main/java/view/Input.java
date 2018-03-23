@@ -73,7 +73,15 @@ public class Input {
         final int xPosition = 0;
         final int yPosition = 1;
         Point point = new Point(pointNumbers.get(xPosition), pointNumbers.get(yPosition));
+
+        if (isExistDuplicatePoint(points, point)) {
+            throw new IllegalArgumentException("위치가 같은 점(point)이 존재합니다.");
+        }
         points.add(point);
+    }
+
+    static boolean isExistDuplicatePoint(List<Point> points, Point addPoint) {
+        return points.contains(addPoint);
     }
 }
 

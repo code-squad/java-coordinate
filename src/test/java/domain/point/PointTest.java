@@ -76,4 +76,18 @@ public class PointTest {
         Point bSide = new Point(10, 18);
         assertEquals(false, aSide.isDiagonalRelation(bSide));
     }
+
+    @Test
+    public void 다른좌표_같은점인가() {
+        Point aSide = new Point(10, 10);
+        Point bSide = new Point(10, 18);
+        assertEquals(false, aSide.equals(bSide));
+    }
+
+    @Test
+    public void 같은좌표_같은점인가() {
+        Point aSide = new Point(10, 10);
+        Point bSide = new Point(10, 10);
+        assertEquals(true, aSide.equals(bSide));
+    }
 }
