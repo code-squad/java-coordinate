@@ -19,6 +19,16 @@ public class Point {
         return false;
     }
 
+    void draw() {
+        isExist = true;
+    }
+
+    double calcRowLine(Point endPoint) {
+        double powX = Math.pow(x - endPoint.getX(), 2);
+        double powY = Math.pow(x - endPoint.getY(), 2);
+        return Math.sqrt(powX + powY);
+    }
+
     public double getX() {
         return x;
     }
@@ -29,13 +39,5 @@ public class Point {
 
     public boolean isExist() {
         return isExist;
-    }
-
-    void draw() {
-        isExist = true;
-    }
-
-    void erase() {
-        isExist = false;
     }
 }

@@ -2,14 +2,14 @@ package saru.domain;
 
 import java.util.*;
 
-public class Line {
+public class RowLine {
     private List<Point> points;
 
-    private Line(List<Point> points) {
+    private RowLine(List<Point> points) {
         this.points = points;
     }
 
-    public static Line init(int columnNum, int nowRow) {
+    public static RowLine init(int columnNum, int nowRow) {
         List<Point> points = new ArrayList<>();
 
         // line 초기화
@@ -17,7 +17,7 @@ public class Line {
             points.add(new Point(i, nowRow, false));
         }
 
-        return new Line(points);
+        return new RowLine(points);
     }
 
     public List<Point> getPoints() {

@@ -6,18 +6,21 @@ import static saru.view.Output.MAX_VALUE;
 
 // Calc?
 public class CoordinateCalc {
+    private static final int FIRST_INDEX = 0;
+    private static final int SECOND_INDEX = 1;
+
     public CoordinateCalc(List<Point> userInput) {
         this.userInput = userInput;
-        initLines();
+        initRowLines();
     }
 
-    private List<Line> lines = new ArrayList<>();
+    private List<RowLine> rowLines = new ArrayList<>();
     private List<Point> userInput;
 
-    private void initLines() {
+    private void initRowLines() {
         // lines 초기화
         for (int i = 0; i < MAX_VALUE; i++) {
-            this.lines.add(Line.init(MAX_VALUE, i));
+            this.rowLines.add(RowLine.init(MAX_VALUE, i));
         }
 
         // 하나씩 빼서 해당 위치에 draw
@@ -26,11 +29,11 @@ public class CoordinateCalc {
 
     public double calcProc() {
         // TODO 직선인 경우 거리계산
-        return calcLine(userInput.get(0), userInput.get(1));
+        return userInput.get(FIRST_INDEX).calcRowLine(userInput.get(SECOND_INDEX));
     }
 
-    public List<Line> getLines() {
-        return lines;
+    public List<RowLine> getRowLines() {
+        return rowLines;
     }
 
     private void userInputDrawProc() {
@@ -42,22 +45,16 @@ public class CoordinateCalc {
 
     private void drawPoint(int x, int y) {
         // y에 해당하는 라인을 찾는다
-        Line foundLine = getYLine((MAX_VALUE - 1) - y);
+        RowLine foundRowLine = getYLine((MAX_VALUE - 1) - y);
 
         // 라인에서 x를 가진 Point 찾는다
-        Point foundPoint = foundLine.getSameXPointFor(x);
+        Point foundPoint = foundRowLine.getSameXPointFor(x);
 
         // 찾은 라인의 x에 해당하는 포인터에 메시지 전달
         foundPoint.draw();
     }
 
-    private double calcLine(Point startPoint, Point endPoint) {
-        double powX = Math.pow(startPoint.getX() - endPoint.getX(), 2);
-        double powY = Math.pow(startPoint.getY() - endPoint.getY(), 2);
-        return Math.sqrt(powX + powY);
-    }
-
-    private Line getYLine(int y) {
-        return lines.get(y);
+    private RowLine getYLine(int y) {
+        return rowLines.get(y);
     }
 }

@@ -6,31 +6,31 @@ import java.util.*;
 
 public class Output {
 
-    public static final String LENGTH_TWO_POINT = "두 점 사이 거리는";
+    public static final String LENGTH_TWO_POINT = "두 점 사이 거리는 ";
     public static final int MAX_VALUE = 25;
     private static final int EVEN = 2;
 
-    private List<Line> lines;
+    private List<RowLine> rowLines;
 
-    public Output(List<Line> lines) {
-        this.lines = lines;
+    public Output(List<RowLine> rowLines) {
+        this.rowLines = rowLines;
     }
 
     public void printVerticalAxis() {
         // 한줄씩 출력
         for (int i = 0; i < MAX_VALUE; i++) {
             // 수평 출력
-            printLine(i);
+            printRowLine(i);
             System.out.println();
         }
     }
 
     // 인덴트 2
-    private void printLine(int row) {
-        Line line = lines.get(row);
+    private void printRowLine(int row) {
+        RowLine rowLine = rowLines.get(row);
 
         // 하나씩 출력
-        List<Point> points = line.getPoints();
+        List<Point> points = rowLine.getPoints();
         List<String> verticalNum = generateReverse();
 
         for (int j = 0; j < points.size(); j++) {
