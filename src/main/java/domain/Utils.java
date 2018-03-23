@@ -58,7 +58,7 @@ public class Utils {
         return true;
     }
 
-    static List<String> figureCheckReturn(List<String> coordinates) {
+    public static List<String> figureCheckReturn(List<String> coordinates) {
         Set<String> xCoords = new HashSet<>();
         Set<String> yCoords = new HashSet<>();
         for (String coordinate : coordinates) {
