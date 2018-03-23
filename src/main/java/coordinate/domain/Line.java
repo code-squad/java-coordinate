@@ -12,6 +12,9 @@ public class Line {
 	}
 
 	public static Line of(ArrayList<Point> points) {
+		if (points.size() != 2) {
+			throw new IllegalArgumentException("점이 2개가 아닙니다.");
+		}
 		return new Line(points.get(0), points.get(1));
 	}
 

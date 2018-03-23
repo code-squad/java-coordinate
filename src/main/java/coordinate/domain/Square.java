@@ -1,7 +1,6 @@
 package coordinate.domain;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Square {
 	private ArrayList<Point> points;
@@ -15,71 +14,46 @@ public class Square {
 	}
 
 	public boolean isSquare() {
-		HashMap<String, Integer> tempMap = new HashMap<>();
-		tempMap.put("xTemp", 0);
-		tempMap.put("yTemp", 0);
+		int flag = 0;
 		for (int i = 0; i < points.size() - 1; i++) {
-			tempMap = calcIsSquare(i, tempMap);
+			for (int j = i + 1; j < points.size(); j++) {
+				if (points.get(i).isSameXaxis(points.get(j).getxAxis())) {
+					flag++;
+				}
+				if (points.get(i).isSameYaxis(points.get(j).getyAxis())) {
+					flag++;
+				}
+			}
 		}
-		if ((tempMap.get("xTemp") + tempMap.get("yTemp")) == 4) {
-			return true;
-		}
-
-		return false;
+		return flag == 4;
 	}
-
-	public HashMap<String, Integer> calcIsSquare(int i, HashMap<String, Integer> temp) {
-		for (int j = i + 1; j < points.size(); j++) {
-			temp = calcSameAxis(i, j, temp);
-		}
-		return temp;
-	}
-
-	public HashMap<String, Integer> calcSameAxis(int i, int j, HashMap<String, Integer> temp) {
-		if (isSameAxis(i, j, "x")) {
-			temp.replace("xTemp", temp.get("xTemp") + 1);
-		}
-		if (isSameAxis(i, j, "y")) {
-			temp.replace("yTemp", temp.get("yTemp") + 1);
-		}
-		return temp;
-	}
-	
 
 	public double getArea() {
-		int result = 0;
-		for (int i = 0; i < points.size(); i++) {
-			result = Math.abs((int) calcFourPoint(i));
+		double width = 0;
+		double height = 0;
+		for (int i = 0; i < points.size() - 1; i++) {
+			width = calcWidth(i, width);
+			height = calcHeight(i, height);
 		}
-		return result;
+		return Math.abs(width * height);
 	}
 
-	public Boolean isSameAxis(int i, int j, String name) {
-		if (name.equals("x")) {
-			return points.get(i).getxAxis() == points.get(j).getxAxis();
-		}
-		return points.get(i).getyAxis() == points.get(j).getyAxis();
-	}
-
-	public double calcFourPoint(int i) {
-		int width = 0;
-		int height = 0;
-		for (int j = 1; j < points.size(); j++) {
-			if (!isSameAxis(i, j, "x")) {
-				width = distanceTwoAxis(i, j, "x");
-			}
-			if (!isSameAxis(i, j, "y")) {
-				height = distanceTwoAxis(i, j, "y");
+	public double calcWidth(int i, double width) {
+		for (int j = i + 1; j < points.size(); j++) {
+			if (points.get(i).isSameXaxis(points.get(j).getxAxis())) {
+				width = points.get(i).getDistance(points.get(j));
 			}
 		}
-		return width * height;
+		return width;
 	}
 
-	public int distanceTwoAxis(int i, int j, String name) {
-		if (name.equals("x")) {
-			return points.get(i).getxAxis() - points.get(j).getxAxis();
+	public double calcHeight(int i, double height) {
+		for (int j = i + 1; j < points.size(); j++) {
+			if (points.get(i).isSameYaxis(points.get(j).getyAxis())) {
+				height = points.get(i).getDistance(points.get(j));
+			}
 		}
-		return points.get(i).getyAxis() - points.get(j).getyAxis();
+		return height;
 	}
 
 }

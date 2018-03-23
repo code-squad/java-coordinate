@@ -8,19 +8,15 @@ import coordinate.domain.Square;
 public class Print {
 	public static String drawFrame(int yAxis, ArrayList<Point> points) {
 		String label = drawLabel(yAxis);
-		int beforePointPosition = 0;
+		int beforeXaxis = 0;
+		String pointLine = "";
 		for (int i = 0; i < points.size(); i++) {
-			label += points.get(i).drawPoint(yAxis, beforePointPosition);
-			beforePointPosition = a(beforePointPosition, yAxis, i, points);
+			if (points.get(i).isSameYaxis(yAxis)) {
+				pointLine = points.get(i).drawPoint(beforeXaxis, i, pointLine);
+				beforeXaxis = points.get(i).getxAxis();
+			}
 		}
-		return label;
-	}
-
-	public static int a(int beforePointPosition, int yAxis, int i, ArrayList<Point> points) {
-		if (points.get(i).isSameYaxis(yAxis)) {
-			beforePointPosition = points.get(i).getxAxis();
-		}
-		return beforePointPosition;
+		return label + pointLine;
 	}
 
 	public static String drawLabel(int yAxis) {
