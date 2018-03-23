@@ -2,30 +2,22 @@ package coordinate.domain;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 import static coordinate.domain.Point.*;
 
 public class PointTest {
 
     @Test
-    public void checkCoordinateValidityIsValid() {
-        int[] expected = new int[]{1, 2};
-        int[] actual = checkCoordinateValidity(new int[]{1, 2});
-        assertArrayEquals(expected, actual);
+    public void checkDomainRangeNormal() {
+        checkDomainRange(24, 24); // void
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void checkCoordinateValidityNot2DCoordinate() {
-        checkCoordinateValidity(new int[]{1, 2, 3});
+    public void checkDomainRangeExceptionOutOfDomain() {
+        checkDomainRange(25, 0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void checkCoordinateValidityOutOfDomain() {
-        checkCoordinateValidity(new int[]{25, 2});
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void checkCoordinateValidityOutOfRange() {
-        checkCoordinateValidity(new int[]{1, 25});
+    public void checkDomainRangeExceptionOutOfRange() {
+        checkDomainRange(0, 25);
     }
 }

@@ -13,7 +13,7 @@ public class Point {
         this.y = y;
     }
 
-    void checkDomainRange(int x, int y) throws IllegalArgumentException {
+    static void checkDomainRange(int x, int y) throws IllegalArgumentException {
         if (isOutOfDomainRange(x) || isOutOfDomainRange(y)) {
             throw new IllegalArgumentException();
         }
