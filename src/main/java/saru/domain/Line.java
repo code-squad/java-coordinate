@@ -3,7 +3,7 @@ package saru.domain;
 import java.util.*;
 
 public class Line {
-    List<Point> points;
+    private List<Point> points;
 
     private Line(List<Point> points) {
         this.points = points;

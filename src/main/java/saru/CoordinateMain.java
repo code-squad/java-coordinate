@@ -3,25 +3,23 @@ package saru;
 import saru.domain.*;
 import saru.view.*;
 
-import java.util.*;
+import static saru.view.Output.LENGTH_TWO_POINT;
 
 public class CoordinateMain {
-    public static void main(String[] args) {
-        CoordinateCalc coordinateCalc = new CoordinateCalc();
-        coordinateCalc.InitLines();
-        List<Line> lines = coordinateCalc.getLines();
-        coordinateCalc.drawPoint(10, 10);
-        coordinateCalc.drawPoint(4, 4);
-        coordinateCalc.drawPoint(0, 1);
-        coordinateCalc.drawPoint(7, 0);
 
-        Output output = new Output(lines);
+
+    public static void main(String[] args) {
+        // 사용자 문자열 입력 (10,10)-(14,15)
+        Input userInput = new Input();
+
+        // Calc에 input을 생성자로 넘긴다
+        CoordinateCalc coordinateCalc = new CoordinateCalc(userInput.getUserInput());
+
+        Output output = new Output(coordinateCalc.getLines());
         output.printVerticalAxis();
         output.printHorizontalAxis();
 
-        Point point1 = new Point(3, 3, true);
-        Point point2 = new Point(4, 4, true);
-
-        System.out.println(coordinateCalc.calcLine(point1, point2));
+        System.out.print(LENGTH_TWO_POINT);
+        System.out.println(coordinateCalc.calcProc());
     }
 }

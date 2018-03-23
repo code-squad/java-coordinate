@@ -1,11 +1,12 @@
 package saru.view;
 
-import saru.domain.Line;
-import saru.domain.Point;
+import saru.domain.*;
 
 import java.util.*;
 
 public class Output {
+
+    public static final String LENGTH_TWO_POINT = "두 점 사이 거리는";
     public static final int MAX_VALUE = 25;
     private static final int EVEN = 2;
 
@@ -24,6 +25,7 @@ public class Output {
         }
     }
 
+    // 인덴트 2
     private void printLine(int row) {
         Line line = lines.get(row);
 
@@ -53,6 +55,7 @@ public class Output {
         return false;
     }
 
+    // 라인수
     private void printSymbol(int row, int column) {
         if (row == (MAX_VALUE - 1) && column == 0) {
             System.out.printf("%-2s", "+");
@@ -82,6 +85,7 @@ public class Output {
         for (int i : genList) {
             System.out.printf("%-4d", i);
         }
+        System.out.println();
     }
 
     private void insertNum(List<Integer> resultList, int i) {
