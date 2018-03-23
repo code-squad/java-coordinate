@@ -15,12 +15,7 @@ public class RectangleTest {
 
     @Before
     public void setUp() throws Exception {
-        List<Point> points = new ArrayList<>(
-                Arrays.asList(
-                        new Point(22, 18), new Point(10, 10),
-                        new Point(10, 18), new Point(22, 10)
-                )
-        );
+        List<Point> points = Arrays.asList(new Point(22, 18), new Point(10, 10), new Point(10, 18), new Point(22, 10));
         rect = new Rectangle(points);
     }
 
@@ -31,23 +26,13 @@ public class RectangleTest {
 
     @Test
     public void 직사각형이_아닌_점() {
-        List<Point> points = new ArrayList<>(
-                Arrays.asList(
-                        new Point(21, 18), new Point(10, 10),
-                        new Point(10, 14), new Point(22, 10)
-                )
-        );
+        List<Point> points = Arrays.asList(new Point(21, 18), new Point(10, 10), new Point(10, 14), new Point(22, 10));
         assertEquals(false, Rectangle.isValidRectPoints(points));
     }
 
     @Test
     public void 직사각형인_점() {
-        List<Point> points = new ArrayList<>(
-                Arrays.asList(
-                        new Point(22, 18), new Point(10, 10),
-                        new Point(10, 18), new Point(22, 10)
-                )
-        );
+        List<Point> points = Arrays.asList(new Point(22, 18), new Point(10, 10), new Point(10, 18), new Point(22, 10));
         assertEquals(true, Rectangle.isValidRectPoints(points));
     }
 
