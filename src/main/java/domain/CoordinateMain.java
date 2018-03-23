@@ -1,16 +1,19 @@
 package domain;
 
 import view.InputView;
-import view.ResultView;
-
-import javax.xml.transform.Result;
-import java.util.ArrayList;
 
 public class CoordinateMain {
     public static void main(String[] args) {
-        ArrayList<Point> points = new ArrayList<>(InputView.getCoordinates());
-        CoordinateBase coordinateBase = new CoordinateBase(points);
-        ResultView.printCoordinates(coordinateBase);
-        ResultView.printCalculate(points);
+        Boolean validation = true;
+
+        do{
+            CoordinateBase coordinateBase = new CoordinateBase(InputView.getCoordinates());
+            validation = coordinateBase.points.contains(null);
+            if(validation) {
+                System.out.println("입력 범위를 초과하였습니다. 0~24");
+            }
+        }while(validation);
+        System.out.println("is valid");
+        //        ResultView.printCoordinates(coordinateBase);
     }
 }
