@@ -5,7 +5,7 @@ import java.util.List;
 public class Line extends Figure {
 
     Line(List<String> coordinates) {
-        super.points = Points.setCoordinates(coordinates);
+        super.points = Points.initCoordinates(coordinates);
     }
 
     @Override

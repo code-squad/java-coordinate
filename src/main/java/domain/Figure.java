@@ -16,7 +16,7 @@ public class Figure {
 
     public static Figure of(List<String> coordinates) {
         coordinates = Utils.figureCheckReturn(coordinates);
-        if (Points.setCoordinates(coordinates).isRectangle()) return new Rectangle(coordinates);
+        if (Points.isRectangle(coordinates)) return new Rectangle(coordinates);
         return new Line(coordinates);
     }
 

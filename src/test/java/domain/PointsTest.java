@@ -15,31 +15,7 @@ public class PointsTest {
     public void setCoordinates(){
         Points points = Points.of(Arrays.asList(Point.of(1,1), Point.of(2,2)));
         List<String> coordinates = Arrays.asList("1,1","2,2");
-        assertThat(Points.setCoordinates(coordinates), is(points));
-    }
-
-    @Test
-    public void isRectangle_true(){
-        Points points = Points.of(Arrays.asList(Point.of(1,1), Point.of(2,2), Point.of(1,1), Point.of(2,2)));
-        assertThat(points.isRectangle(), is(true));
-    }
-
-    @Test
-    public void isRectangle_false(){
-        Points points = Points.of(Arrays.asList(Point.of(1,1), Point.of(2,2), Point.of(3,3)));
-        assertThat(points.isRectangle(), is(false));
-    }
-
-    @Test
-    public void isLine_true(){
-        Points points = Points.of(Arrays.asList(Point.of(1,1), Point.of(2,2)));
-        assertThat(points.isLine(), is(true));
-    }
-
-    @Test
-    public void isLine_false(){
-        Points points = Points.of(Arrays.asList(Point.of(1,1)));
-        assertThat(points.isLine(), is(false));
+        assertThat(Points.initCoordinates(coordinates), is(points));
     }
 
     @Test
@@ -51,7 +27,7 @@ public class PointsTest {
     @Test
     public void calculateRectangle(){
         Points points = Points.of(Arrays.asList(Point.of(1,1), Point.of(5,1), Point.of(1,3), Point.of(5,3)));
-        assertEquals(8, points.calculateRectangle());
+        assertEquals(8, points.calculateRectangle(), 0.001);
     }
 
     @Test
@@ -64,5 +40,30 @@ public class PointsTest {
     public void contains_false(){
         Points points = Points.of(Arrays.asList(Point.of(1,1), Point.of(5,1), Point.of(1,3)));
         assertThat(points.contains(1,5), is(false));
+    }
+
+
+    @Test
+    public void isRectangle_true(){
+        List<String> coordinates = Arrays.asList("1,1", "2,2", "1,1", "2,2");
+        assertThat(Points.isRectangle(coordinates), is(true));
+    }
+
+    @Test
+    public void isRectangle_false(){
+        List<String> coordinates = Arrays.asList("1,1", "2,2", "1,1");
+        assertThat(Points.isRectangle(coordinates), is(false));
+    }
+
+    @Test
+    public void isLine_true(){
+        List<String> coordinates = Arrays.asList("1,1", "2,2");
+        assertThat(Points.isLine(coordinates), is(true));
+    }
+
+    @Test
+    public void isLine_false(){
+        List<String> coordinates = Arrays.asList("1,1", "2,2", "1,1");
+        assertThat(Points.isLine(coordinates), is(false));
     }
 }

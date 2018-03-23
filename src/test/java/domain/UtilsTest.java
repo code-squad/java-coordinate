@@ -101,4 +101,5 @@ public class UtilsTest {
         assertThat(Utils.figureCheckReturn(coordinates), is(coordinates));
     }
 
+
 }

@@ -12,7 +12,12 @@ public class Point {
         this.y = y;
     }
 
-    public static Point of(int x, int y) {
+    public static Point of(String coordinate) {
+        String[] pair = coordinate.split(",");
+        return new Point(Integer.parseInt(pair[0]), Integer.parseInt(pair[1]));
+    }
+
+    public static Point of(int x, int y){
         return new Point(x, y);
     }
 

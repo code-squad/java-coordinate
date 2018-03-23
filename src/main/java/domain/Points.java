@@ -1,18 +1,14 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-
-import static com.google.common.math.IntMath.pow;
-import static java.lang.Math.sqrt;
+import java.util.*;
+import static domain.Utils.calculateLineBwPoints;
 
 public class Points {
 
     private List<Point> points;
 
-    private Points() { }
+    private Points() {
+    }
 
     private Points(List<Point> points) {
         this.points = points;
@@ -26,11 +22,10 @@ public class Points {
         return new Points(points);
     }
 
-    public static Points setCoordinates(List<String> coordinates) {
+    public static Points initCoordinates(List<String> coordinates) {
         ArrayList<Point> points = new ArrayList<>();
         for (String coordinate : coordinates) {
-            String[] pair = coordinate.split(",");
-            points.add(Point.of(Integer.parseInt(pair[0]), Integer.parseInt(pair[1])));
+            points.add(Point.of(coordinate));
         }
         return Points.of(points);
     }
@@ -39,31 +34,25 @@ public class Points {
         return points.contains(Point.of(x, y));
     }
 
-    public boolean isRectangle() { return points.size() == 4; }
-
-    public boolean isLine() { return points.size() == 2; }
-
-    public double calculateLine() {
-        double xPowers = pow(points.get(0).getX() - points.get(1).getX(), 2);
-        double yPowers = pow(points.get(0).getY() - points.get(1).getY(), 2);
-        double length = sqrt(xPowers + yPowers);
-        return length;
+    public static boolean isRectangle(List<String> coordinates) {
+        return coordinates.size() == 4;
     }
 
-    public int calculateRectangle() {
-        List<Integer> xCoords = new ArrayList<>();
-        List<Integer> yCoords = new ArrayList<>();
-        final int RECTANGLE_CONSTANT = 4;
-        for (int i = 0; i < RECTANGLE_CONSTANT; i++) {
-            xCoords.add(points.get(i).getX());
-            yCoords.add(points.get(i).getY());
+    public static boolean isLine(List<String> coordinates) {
+        return coordinates.size() == 2;
+    }
+
+    public double calculateLine() {
+        return calculateLineBwPoints(points.get(0), points.get(1));
+    }
+
+    public double calculateRectangle() {
+        ArrayList<Double> eachLengths = new ArrayList<>();
+        for (int i = 1; i < points.size(); i++) {
+            eachLengths.add(calculateLineBwPoints(points.get(0), points.get(i)));
         }
-        Collections.sort(xCoords);
-        Collections.sort(yCoords);
-        int xLength = Math.abs(xCoords.get(0) - xCoords.get(xCoords.size() - 1));
-        int yLength = Math.abs(yCoords.get(0) - yCoords.get(xCoords.size() - 1));
-        int area = xLength * yLength;
-        return area;
+        Collections.sort(eachLengths);
+        return eachLengths.get(0) * eachLengths.get(1);
     }
 
     @Override
