@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-public class Rectangle implements Figure {
+public class Rectangle extends Figure {
     public static final int VALID_COORDINATE_NUM = 4;
     private List<Point> points;
 

@@ -40,4 +40,9 @@ public class RectangleTest {
     public void 인스턴스_피규어_할당가능할까() {
         assertEquals(true, rect instanceof Figure);
     }
+
+    @Test
+    public void 인스턴스_넓이_구할수있을까() {
+        assertEquals(true, rect instanceof AreaCalculable);
+    }
 }
