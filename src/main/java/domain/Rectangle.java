@@ -9,7 +9,7 @@ public class Rectangle extends Figure {
     }
 
     public void calculate() {
-        super.area = super.points.calculateArea();
+        super.area = super.points.calculateRectangle();
     }
 
     @Override

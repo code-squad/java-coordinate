@@ -50,7 +50,7 @@ public class Points {
         return length;
     }
 
-    public int calculateArea() {
+    public int calculateRectangle() {
         List<Integer> xCoords = new ArrayList<>();
         List<Integer> yCoords = new ArrayList<>();
         final int RECTANGLE_CONSTANT = 4;
