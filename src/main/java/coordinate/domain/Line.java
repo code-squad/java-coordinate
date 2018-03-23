@@ -8,23 +8,18 @@ public class Line {
 	private Point first;
 	private Point second;
 
-	public Line(Point first, Point second) {
-		this.first = first;
-		this.second = second;
+	public Line(List<Point> points) {
+		this.first = points.get(0);
+		this.second = points.get(1);
 	}
 
 	public double lineResult() {
-		double width = absoluteValue(first.getPointX(), second.getPointX());
-		double height = absoluteValue(first.getPointY(), second.getPointY());
+		double width = first.getWidth(second);
+		double height = first.getHigh(second);
 		return lineLength(width, height);
 	}
 
-	public double lineLength(double width, double height) {
+	public static double lineLength(double width, double height) {
 		return Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
 	}
-
-	public double absoluteValue(int first, int second) {
-		return Math.abs(first - second);
-	}
-
 }

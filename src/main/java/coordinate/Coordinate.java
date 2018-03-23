@@ -11,8 +11,10 @@ import coordinate.view.InputCoordinate;
 public class Coordinate {
 	public static void main(String[] args) {
 		String inputNumber = InputCoordinate.Input();
+
 		CoordinatePoint point = new CoordinatePoint(inputNumber);
 		double length = point.decideFigure();
+
 		BoardView.makeBoard(point.getPoints());
 		BoardView.solveLine(length);
 	}
