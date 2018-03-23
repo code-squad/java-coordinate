@@ -1,45 +1,57 @@
 package coordinate.domain;
 
+import java.util.Objects;
+
+import coordinate.view.InputCoordinate;
+
 public class Point {
 
 	private int pointX;
-	private boolean coordinate;
+	private int pointY;
 
-	public Point(int pointX, boolean input) {
-		this.pointX = pointX;
-		this.coordinate = input;
+	public Point(String str) {
+		String[] pointXY = str.split(",");
+		this.pointX = Integer.parseInt(pointXY[0]);
+		this.pointY = Integer.parseInt(pointXY[1]);
+
+		if (pointX < 0 || pointX > 24 || pointY < 0 || pointY > 24) {
+			throw new IllegalArgumentException("24초과의 값은 좌표가 될 수 없습니다.");
+		}
+		if (pointXY.length != 2) {
+			throw new IllegalArgumentException("좌표의 값이 잘못 입력 되었습니다.");
+		}
 	}
 
-	public boolean isNextTrue(int i) { // 입력된 좌표 값이 다음과 같으면 true 반환
-		return this.pointX + 1 == i;
+	public int getHigh(Point otherPoint) {
+		return Math.abs(this.pointY - otherPoint.getPointY());
 	}
 
-	public Point coordinate() { // isNextTrue면 좌표 생성
-		return of(pointX + 1, true);
+	public int getWidth(Point otherPoint) {
+		return Math.abs(this.pointX - otherPoint.getPointX());
 	}
 
-	public Point next() {
-		return of(pointX + 1, false);
+	public int getPointX() {
+		return this.pointX;
 	}
 
-	public static Point of(int pointX, boolean input) {
-		return new Point(pointX, input);
+	public int getPointY() {
+		return this.pointY;
 	}
 
-	public boolean getCoordinate() {
-		return this.coordinate;
+	@Override
+	public int hashCode() {
+		return Objects.hash(pointX, pointY);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof Point) {
+		if (obj instanceof Point) {
 			Point point = (Point) obj;
-			if(pointX==point.pointX && coordinate==point.coordinate) {
+			if (pointX == point.pointX && pointY == point.pointY) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	
+
 }
