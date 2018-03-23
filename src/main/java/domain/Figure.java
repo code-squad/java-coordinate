@@ -38,29 +38,6 @@ public class Figure {
         if (points.isRectangle()) area = calculateRectangleArea(this.points);
     }
 
-    static double calculateLine(Points points) {
-        double xPowers = pow(points.getX(0) - points.getX(1), 2);
-        double yPowers = pow(points.getY(0) - points.getY(1), 2);
-        double length = sqrt(xPowers + yPowers);
-        return length;
-    }
-
-    static int calculateRectangleArea(Points points) {
-        List<Integer> xCoords = new ArrayList<>();
-        List<Integer> yCoords = new ArrayList<>();
-        final int RECTANGLE_CONSTANT = 4;
-        for (int i = 0; i < RECTANGLE_CONSTANT; i++) {
-            xCoords.add(points.getX(i));
-            yCoords.add(points.getY(i));
-        }
-        Collections.sort(xCoords);
-        Collections.sort(yCoords);
-        int xLength = Math.abs(xCoords.get(0) - xCoords.get(xCoords.size() - 1));
-        int yLength = Math.abs(yCoords.get(0) - yCoords.get(xCoords.size() - 1));
-        int area = xLength * yLength;
-        return area;
-    }
-
     public void initPoints() {
         List<String> coordinates;
         try {
