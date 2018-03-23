@@ -15,11 +15,7 @@ public class TriangleTest {
 
     @Before
     public void setUp() throws Exception {
-        List<Point> points = new ArrayList<>(
-                Arrays.asList(new Point(10, 10),
-                        new Point(14, 15),
-                        new Point(20, 8)
-                ));
+        List<Point> points = Arrays.asList(new Point(10, 10), new Point(14, 15), new Point(20, 8));
         triangle = new Triangle(points);
     }
 
