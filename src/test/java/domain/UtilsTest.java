@@ -89,17 +89,5 @@ public class UtilsTest {
         Utils.checkReturnCoordinates("(0,1)-(3,-1)");
     }
 
-    @Test
-    public void figureCheckReturn_ordinal_Rectangle(){
-        List<String> coordinates = Arrays.asList("0,1", "5,1", "0,3", "5,3");
-        assertThat(Utils.figureCheckReturn(coordinates), is(coordinates));
-    }
-
-    @Test
-    public void figureCheckReturn_ordinal_Line(){
-        List<String> coordinates = Arrays.asList("0,1", "5,1");
-        assertThat(Utils.figureCheckReturn(coordinates), is(coordinates));
-    }
-
 
 }

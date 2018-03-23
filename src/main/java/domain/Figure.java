@@ -15,9 +15,7 @@ public class Figure {
     }
 
     public static Figure of(List<String> coordinates) {
-        coordinates = Utils.figureCheckReturn(coordinates);
-        if (Points.isRectangle(coordinates)) return new Rectangle(coordinates);
-        return new Line(coordinates);
+        return FigureFactory.create(coordinates);
     }
 
     public boolean hasCoordinateAt(int x, int y) {
