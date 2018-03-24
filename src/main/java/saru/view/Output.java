@@ -5,7 +5,7 @@ import saru.domain.*;
 import java.util.*;
 
 public class Output {
-    static final int MAX_VALUE = 25;
+    private static final int MAX_VALUE = 25;
     private static final int EVEN = 2;
     private static final String LENGTH_TWO_POINT = "두 점 사이 거리는 ";
 

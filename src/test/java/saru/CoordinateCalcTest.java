@@ -10,8 +10,6 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
 
 public class CoordinateCalcTest {
     private static final int MAX_VALUE = 24;
@@ -55,19 +53,13 @@ public class CoordinateCalcTest {
     @Test
     public void checkUserInputSuccess() {
         String userInputString = "(0,0)-(4,5)";
-        List<Point> points;
-
-        points = Input.getSplitedUserInputString(userInputString);
-        assertTrue(Input.checkPointRange(points));
+        Input.getSplitedUserInputString(userInputString);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void checkUserInputFail() {
         String userInputString = "(200,10)-(114,15)";
-        List<Point> points;
-
-        points = Input.getSplitedUserInputString(userInputString);
-        assertFalse(Input.checkPointRange(points));
+        Input.getSplitedUserInputString(userInputString);
     }
 
     @Test

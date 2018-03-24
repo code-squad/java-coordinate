@@ -1,7 +1,5 @@
 package saru.view;
 
-import static saru.view.Output.MAX_VALUE;
-
 import saru.domain.*;
 
 import java.util.*;
@@ -20,62 +18,56 @@ public class Input {
         // empty
     }
 
-    public static List<Point> getUserInput() {
+    // 라인수
+    public static List<Point> getUserInputProc() {
         // 유저에게 텍스트 입력 받는다
-        List<Point> points;
+        List<Point> points = null;
+        boolean isSuccess;
 
         do {
-            System.out.println();
+            String userInputString = getUserInput();
 
-            System.out.println(INPUT_USER_INPUT);
-            String userInputString = scanner.nextLine();
-            points = getSplitedUserInputString(userInputString);
-        } while (!checkPointRange(points));
+            try {
+                points = getSplitedUserInputString(userInputString);
+                isSuccess = true;
+            } catch (IllegalArgumentException e) {
+                isSuccess = false;
+            }
+        } while (!isSuccess);
 
         return points;
     }
 
-    public static boolean checkPointRange(List<Point> points) {
-        int checkedNum = 0;
-
-        for (Point point : points) {
-            checkedNum += checkXYRange(point.getX(), point.getY());
-        }
-
-        if (checkedNum != 0) {
-            System.out.println(INPUT_RANGE_ERROR);
-            return false;
-        }
-        return true;
+    private static String getUserInput() {
+        System.out.println();
+        System.out.println(INPUT_USER_INPUT);
+        return scanner.nextLine();
     }
 
-    private static int checkXYRange(double x, double y) {
-        if (x < 0 || x > MAX_VALUE) {
-            return 1;
+    private static void loopAssignmentProc(String[] lineSplitArr, List<Point> points) {
+        for (int i = 0; i < LINE_POINT_COUNT; i++) {
+            String pointSplitArr[] = lineSplitArr[i].split(REGEX);
+            assignmentSplitString(points, pointSplitArr);
         }
-
-        if (y < 0 || y > MAX_VALUE) {
-            return 1;
-        }
-
-        return 0;
     }
 
     private static void assignmentSplitString(List<Point> points, String[] pointSplitArr) {
-        // 첫 문자가 구분자라서 0번 인덱스는 ""(empty string)
-        points.add(new Point(Double.parseDouble(pointSplitArr[FIRST_INDEX]),
-                Double.parseDouble(pointSplitArr[SECOND_INDEX]),
-                true));
+        try {
+            // 첫 문자가 구분자라서 0번 인덱스는 ""(empty string)
+            points.add(new Point(Double.parseDouble(pointSplitArr[FIRST_INDEX]),
+                    Double.parseDouble(pointSplitArr[SECOND_INDEX]),
+                    true));
+        } catch (IllegalArgumentException e) {
+            System.out.println(INPUT_RANGE_ERROR);
+            throw new IllegalArgumentException(e);
+        }
     }
 
     public static List<Point> getSplitedUserInputString(String userInputString) {
         String[] lineSplitArr = userInputString.split("-");
         List<Point> points = new ArrayList<>();
 
-        for (int i = 0; i < LINE_POINT_COUNT; i++) {
-            String pointSplitArr[] = lineSplitArr[i].split(REGEX);
-            assignmentSplitString(points, pointSplitArr);
-        }
+        loopAssignmentProc(lineSplitArr, points);
 
         return points;
     }
