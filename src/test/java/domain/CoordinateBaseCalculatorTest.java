@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
-public class CoordinateCalculatorTest {
+public class CoordinateBaseCalculatorTest {
     ArrayList<Point> points;
     @Before
     public void setup() {

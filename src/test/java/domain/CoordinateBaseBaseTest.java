@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.*;
 
-public class CoordinateBaseTest {
+public class CoordinateBaseBaseTest {
     ArrayList<Point> points;
     CoordinateBase coordinateBase;
 

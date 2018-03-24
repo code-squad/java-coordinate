@@ -20,17 +20,6 @@ public class Point {
         return null;
     }
 
-//    public static ArrayList<Point> makePoints(List<String> numbers) {
-//        ArrayList<Point> points = new ArrayList<>();
-//        int x, y;
-//        for (int i = 0; i < numbers.size(); i = i + 2) {
-//            x = Integer.parseInt(numbers.get(i));
-//            y = Integer.parseInt(numbers.get(i+1));
-//            points.add(new Point(x, y));
-//        }
-//        return points;
-//    }
-
     // todo 현재 포인트와 입력받은 포인트와의 거리
     public Double getDistance(Point otherPoint) {
         Line line = new Line(this, otherPoint);
@@ -56,9 +45,9 @@ public class Point {
             if( o1 > o2 ) {
                 return -1;
             }
-//            if( o1 < o2 ) {
-//                return 1;
-//            }
+            if( o1 < o2 ) {
+                return 1;
+            }
             return 0;
         }
     };
