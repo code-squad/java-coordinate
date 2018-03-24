@@ -2,7 +2,7 @@ package coordinate.domain;
 
 import java.util.List;
 
-public class Line {
+public class Line extends Shape {
     private static final int FIRST_POINT = 0;
     private static final int SECOND_POINT = 1;
     private static final int NUMBER_OF_POINTS = 2;
@@ -16,7 +16,7 @@ public class Line {
         return new Line(points);
     }
 
-    public double calculateDistance() {
+    public double calculate() {
         return points.get(FIRST_POINT).calculateDistanceFrom(points.get(SECOND_POINT));
     }
 

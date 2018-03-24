@@ -38,7 +38,7 @@ public class Square extends Shape {
         return xDuplicates.get(FIRST_DUPLICATE).calculateDistanceFrom(xDuplicates.get(SECOND_DUPLICATE));
     }
 
-    public double calculateArea() {
+    public double calculate() {
         return calculateBase() * calculateHeight();
     }
 }

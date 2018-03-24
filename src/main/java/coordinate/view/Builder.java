@@ -12,11 +12,11 @@ public class Builder {
     public static String startBuild(List<Coordinate> coordinates) {
         StringBuilder builder = new StringBuilder();
         for (Coordinate coordinate : Lists.reverse(coordinates)) {
-            addYLabel(coordinates, coordinate); //add y-label
-            addCoordinate(coordinate); //add coordinate
-            addNewLine(coordinates, coordinate); //add new line if x == 24
+            builder.append(addYLabel(coordinates, coordinate)); //add y-label
+            builder.append(addCoordinate(coordinate)); //add coordinate
+            builder.append(addNewLine(coordinates, coordinate)); //add new line if x == 24
         }
-        addXLabel();//add x-label
+        builder.append(addXLabel());//add x-label
         return builder.toString();
     }
 

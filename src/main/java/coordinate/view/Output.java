@@ -2,8 +2,6 @@ package coordinate.view;
 
 import coordinate.domain.*;
 
-import java.util.List;
-
 public class Output {
 
     public static void printMessage(String message) {
@@ -15,12 +13,12 @@ public class Output {
         System.out.println(result);
     }
 
-    public static void printLength(Line line) {
-        System.out.println("두 좌표 사이의 거리는: " + line.calculateDistance());
+    public static void printLength(Shape line) {
+        System.out.println("두 좌표 사이의 거리는: " + line.calculate());
     }
 
     public static void printArea(Shape shape) {
-        String area = String.valueOf(shape.calculateArea());
+        String area = String.valueOf(shape.calculate());
         System.out.println("네 개의 좌표의 면적은: " + area);
     }
 }

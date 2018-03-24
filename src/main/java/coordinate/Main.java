@@ -10,9 +10,11 @@ public class Main {
 
     public static void main(String[] args) {
         List<Point> points = promptUserInput();
+
+        Shape shape = Shape.ofShape(points);
         CoordinateCalculator cc = new CoordinateCalculator(points);
 
-        printResult(cc, points);
+        printResult(cc, shape);
     }
 
     private static List<Point> promptUserInput() {
@@ -26,16 +28,14 @@ public class Main {
         return points;
     }
 
-    private static void printResult(CoordinateCalculator cc, List<Point> points) {
+    private static void printResult(CoordinateCalculator cc, Shape shape) {
         Output.printFigure(cc);
 
-        Line line = Line.ofLine(points);
-        if (line.isLine()) {
-            Output.printLength(line);
+        if (Shape.isLine(shape)) {
+            Output.printLength(shape);
         }
-        Square square = Square.ofSquare(points);
-        if (square.isSquare()) {
-            Output.printArea(square);
+        if (Shape.isSquare(shape)) {
+            Output.printArea(shape);
         }
     }
 }
