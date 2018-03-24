@@ -2,20 +2,19 @@ package saru.domain;
 
 import java.util.*;
 
-import static saru.view.Output.MAX_VALUE;
-
 // Calc?
 public class CoordinateCalc {
+    private static final int MAX_VALUE = 25;
     private static final int FIRST_INDEX = 0;
     private static final int SECOND_INDEX = 1;
+
+    private List<RowLine> rowLines = new ArrayList<>();
+    private List<Point> userInput;
 
     public CoordinateCalc(List<Point> userInput) {
         this.userInput = userInput;
         initRowLines();
     }
-
-    private List<RowLine> rowLines = new ArrayList<>();
-    private List<Point> userInput;
 
     private void initRowLines() {
         // lines 초기화
@@ -24,7 +23,7 @@ public class CoordinateCalc {
         }
 
         // 하나씩 빼서 해당 위치에 draw
-        userInputDrawProc();
+//        userInputDrawProc();
     }
 
     public double calcProc() {
@@ -36,19 +35,28 @@ public class CoordinateCalc {
         return rowLines;
     }
 
-    private void userInputDrawProc() {
+    public void userInputDrawProc() {
         // userInput 돌면서 그리기
-        for (Point point : userInput) {
-            drawPoint((int) point.getX(), (int) point.getY());
+
+        // TODO 에러
+
+        for (int i = 0; i < userInput.size(); i++) {
+            drawPoint(userInput.get(i));
         }
+
+//        for (Point point : userInput) {
+//            drawPoint(point);
+//        }
     }
 
-    private void drawPoint(int x, int y) {
+    public void drawPoint(Point point) {
         // y에 해당하는 라인을 찾는다
-        RowLine foundRowLine = getYLine((MAX_VALUE - 1) - y);
+        int toFindY = (int)((MAX_VALUE - 1) - point.getY());
+        RowLine foundRowLine = getYLine(toFindY);
 
         // 라인에서 x를 가진 Point 찾는다
-        Point foundPoint = foundRowLine.getSameXPointFor(x);
+        int toFindX = (int)point.getX();
+        Point foundPoint = foundRowLine.getSameXPointFor(toFindX);
 
         // 찾은 라인의 x에 해당하는 포인터에 메시지 전달
         foundPoint.draw();

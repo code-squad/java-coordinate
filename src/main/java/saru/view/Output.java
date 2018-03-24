@@ -5,18 +5,27 @@ import saru.domain.*;
 import java.util.*;
 
 public class Output {
-
-    public static final String LENGTH_TWO_POINT = "두 점 사이 거리는 ";
-    public static final int MAX_VALUE = 25;
+    static final int MAX_VALUE = 25;
     private static final int EVEN = 2;
+    private static final String LENGTH_TWO_POINT = "두 점 사이 거리는 ";
 
-    private List<RowLine> rowLines;
+    private static List<RowLine> rowLines;
 
-    public Output(List<RowLine> rowLines) {
-        this.rowLines = rowLines;
+    private Output() {
+        // empty
     }
 
-    public void printVerticalAxis() {
+    public static void initOutput(CoordinateCalc coordinateCalc) {
+        rowLines = coordinateCalc.getRowLines();
+
+        printVerticalAxis();
+        printHorizontalAxis();
+
+        System.out.print(LENGTH_TWO_POINT);
+        System.out.print(coordinateCalc.calcProc());
+    }
+
+    private static void printVerticalAxis() {
         // 한줄씩 출력
         for (int i = 0; i < MAX_VALUE; i++) {
             // 수평 출력
@@ -26,7 +35,7 @@ public class Output {
     }
 
     // 인덴트 2
-    private void printRowLine(int row) {
+    private static void printRowLine(int row) {
         RowLine rowLine = rowLines.get(row);
 
         // 하나씩 출력
@@ -47,7 +56,7 @@ public class Output {
         }
     }
 
-    private boolean printDot(Point point) {
+    private static boolean printDot(Point point) {
         if (point.isExist()) {
             System.out.printf("%-2s", ".");
             return true;
@@ -56,7 +65,7 @@ public class Output {
     }
 
     // 라인수
-    private void printSymbol(int row, int column) {
+    private static void printSymbol(int row, int column) {
         if (row == (MAX_VALUE - 1) && column == 0) {
             System.out.printf("%-2s", "+");
             return;
@@ -75,11 +84,11 @@ public class Output {
         System.out.printf("%-2s", " ");
     }
 
-    public void printHorizontalAxis() {
+    private static void printHorizontalAxis() {
         printHorizontalNum();
     }
 
-    private void printHorizontalNum() {
+    private static void printHorizontalNum() {
         List<Integer> genList = generate(0, MAX_VALUE);
         System.out.print("  ");
         for (int i : genList) {
@@ -88,20 +97,20 @@ public class Output {
         System.out.println();
     }
 
-    private void insertNum(List<Integer> resultList, int i) {
+    private static void insertNum(List<Integer> resultList, int i) {
         if (i % EVEN == 0) {
             resultList.add(i);
         }
     }
 
-    public List<String> generateReverse() {
+    private static List<String> generateReverse() {
         List<String> resultList = Arrays.asList("24", "  ", "22", "  ", "20",
                 "  ", "18", "  ", "16", "  ", "14", "  ", "12", "  ", "10",
                 "  ", " 8", "  ", " 6", "  ", " 4", "  ", " 2", "  ", "  ");
         return resultList;
     }
 
-    public List<Integer> generate(int start, int end) {
+    private static List<Integer> generate(int start, int end) {
         List<Integer> resultList = new ArrayList<>();
         for (int i = start; i <= end; i++) {
             insertNum(resultList, i);

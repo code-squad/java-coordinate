@@ -5,6 +5,12 @@ public class Point {
     private double y;
     private boolean isExist;
 
+    public Point(double x, double y) {
+        this.x = x;
+        this.y = y;
+        this.isExist = false;
+    }
+
     public Point(double x, double y, boolean isExist) {
         this.x = x;
         this.y = y;

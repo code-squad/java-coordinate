@@ -14,7 +14,7 @@ public class RowLine {
 
         // line 초기화
         for (int i = 0; i < columnNum; i++) {
-            points.add(new Point(i, nowRow, false));
+            points.add(new Point(i, nowRow));
         }
 
         return new RowLine(points);

@@ -14,9 +14,13 @@ public class Input {
     private static final int LINE_POINT_COUNT = 2;
     private static final String REGEX = "[\\(,\\)]";
 
-    private Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
-    public List<Point> getUserInput() {
+    private Input() {
+        // empty
+    }
+
+    public static List<Point> getUserInput() {
         // 유저에게 텍스트 입력 받는다
         List<Point> points;
 
@@ -31,7 +35,7 @@ public class Input {
         return points;
     }
 
-    public boolean checkPointRange(List<Point> points) {
+    public static boolean checkPointRange(List<Point> points) {
         int checkedNum = 0;
 
         for (Point point : points) {
@@ -45,7 +49,7 @@ public class Input {
         return true;
     }
 
-    private int checkXYRange(double x, double y) {
+    private static int checkXYRange(double x, double y) {
         if (x < 0 || x > MAX_VALUE) {
             return 1;
         }
@@ -57,14 +61,14 @@ public class Input {
         return 0;
     }
 
-    private void assignmentSplitString(List<Point> points, String[] pointSplitArr) {
+    private static void assignmentSplitString(List<Point> points, String[] pointSplitArr) {
         // 첫 문자가 구분자라서 0번 인덱스는 ""(empty string)
         points.add(new Point(Double.parseDouble(pointSplitArr[FIRST_INDEX]),
                 Double.parseDouble(pointSplitArr[SECOND_INDEX]),
                 true));
     }
 
-    public List<Point> getSplitedUserInputString(String userInputString) {
+    public static List<Point> getSplitedUserInputString(String userInputString) {
         String[] lineSplitArr = userInputString.split("-");
         List<Point> points = new ArrayList<>();
 
