@@ -5,7 +5,7 @@ import saru.domain.*;
 import java.util.*;
 
 public class Output {
-    private static final int MAX_VALUE = 25;
+    static final int MAX_VALUE =25;
     private static final int EVEN = 2;
     private static final String LENGTH_TWO_POINT = "두 점 사이 거리는 ";
 
@@ -21,8 +21,17 @@ public class Output {
         printVerticalAxis();
         printHorizontalAxis();
 
+        printLineLength(coordinateCalc);
+    }
+
+    private static void printLineLength(CoordinateCalc coordinateCalc) {
         System.out.print(LENGTH_TWO_POINT);
-        System.out.print(coordinateCalc.calcProc());
+
+        try {
+            System.out.print(coordinateCalc.calcProc());
+        } catch (IllegalArgumentException e) {
+            System.out.println("계산 에러");
+        }
     }
 
     private static void printVerticalAxis() {
