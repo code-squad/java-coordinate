@@ -17,7 +17,7 @@ public class Square extends Shape {
     }
 
     public boolean isSquare() {
-        return getXDuplicates(points) == getYDuplicates(points);
+        return getXDuplicates(points).size() == getYDuplicates(points).size();
     }
 
     private static List<Point> getYDuplicates(List<Point> points) {

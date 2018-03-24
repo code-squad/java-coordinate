@@ -14,7 +14,7 @@ public class CoordinateCalculator {
         this.coordinates = initCoordinates(points);
     }
 
-    private static List<Coordinate> initCoordinates() {
+    private static List<Coordinate> initCoordinates(List<Point> points) {
         List<Coordinate> coordinates = new ArrayList<>();
         for (int y = 0; y <= RANGE; y++) {
             initXY(coordinates, points, y);
@@ -22,22 +22,16 @@ public class CoordinateCalculator {
         return coordinates;
     }
 
-    private static List<Coordinate> initXY(List<Coordinate> coordinates, int y) {
+    private static List<Coordinate> initXY(List<Coordinate> coordinates, List<Point> points, int y) {
         for (int x = DOMAIN; x >= 0; x--) {
-            compareXY(coordinates, points, x, y);
+            coordinates.add(createCoordinate(points, x, y));
         }
         return coordinates;
     }
 
-    private static List<Coordinate> compareXY(List<Coordinate> coordinates, int x, int y) {
-        for (Point point : points) {
-            coordinates.add(createCoordinate(point, x, y));
-        }
-        return coordinates;
-    }
-
-    private static Coordinate createCoordinate(int x, int y) {
-        if (point.xEquals(x) && point.yEquals(y)) {
+    private static Coordinate createCoordinate(List<Point> points, int x, int y) {
+        boolean isMatch = points.stream().anyMatch(p -> p.xEquals(x) && p.yEquals(y));
+        if (isMatch) {
             return Coordinate.ofPoint(x, y);
         }
         return Coordinate.ofNoPoint(x, y);
