@@ -10,9 +10,7 @@ public class Point {
     private boolean isExist;
 
     public Point(double x, double y) {
-        this.x = x;
-        this.y = y;
-        this.isExist = false;
+        this(x, y, false);
     }
 
     public Point(double x, double y, boolean isExist) {

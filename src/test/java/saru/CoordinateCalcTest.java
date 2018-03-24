@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 
 public class CoordinateCalcTest {
@@ -19,6 +20,12 @@ public class CoordinateCalcTest {
         Point point = new Point(1, 24, true);
         assertThat(point.getX(), is(1.0));
         assertThat(point.getY(), is(24.0));
+    }
+
+    @Test
+    public void pointConstructorOverloadingExistFalse() {
+        Point point = new Point(1, 24);
+        assertFalse(point.isExist());
     }
 
     @Test
