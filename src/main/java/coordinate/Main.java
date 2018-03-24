@@ -19,7 +19,7 @@ public class Main {
         List<Point> points;
         try {
             Output.printMessage("좌표를 다음과 같은 포맷으로 입력해주세요: (1,2)-(3,4)");
-            points = Points.processCoordinates(Input.takeCoordinates());
+            points = Utils.processCoordinates(Input.takeCoordinates());
         } catch (IllegalArgumentException e) {
             return promptUserInput();
         }
@@ -28,11 +28,14 @@ public class Main {
 
     private static void printResult(CoordinateCalculator cc, List<Point> points) {
         Output.printFigure(cc);
-        if (Line.isLine(points)) {
-            Output.printDistance(points);
+
+        Line line = Line.ofLine(points);
+        if (line.isLine()) {
+            Output.printLength(line);
         }
-        if (Square.isSquare(points)) {
-            Output.printArea(Square.newSquareInstance(points));
+        Square square = Square.ofSquare(points);
+        if (square.isSquare()) {
+            Output.printArea(square);
         }
     }
 }

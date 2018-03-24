@@ -2,14 +2,16 @@ package coordinate.domain;
 
 import coordinate.view.Output;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Utils {
     private static final int COORDINATE_LENGTH = 2;
     private static final int LINE_POINTS = 2;
     private static final int SQUARE_POINTS = 4;
-    static final int X_INDEX = 0;
-    static final int Y_INDEX = 1;
+    private static final int X_INDEX = 0;
+    private static final int Y_INDEX = 1;
 
     static String[] checkInputFormat(String input) throws IllegalArgumentException {
         String[] splitInput = input.split("\\s*-\\s*");
@@ -20,8 +22,33 @@ public class Utils {
         throw new IllegalArgumentException();
     }
 
+    public static List<Point> processCoordinates(String input) throws IllegalArgumentException {
+        List<Point> points = new ArrayList<>();
+        String[] splitInput = Utils.checkInputFormat(input);
+        for (String set : splitInput) {
+            int[] xySet = Utils.convertToIntegerArray(set);
+            points = addPoint(points, xySet);
+        }
+        if (isDuplicate(points)) {
+            Output.printMessage("중복되는 좌표가 있습니다.");
+            throw new IllegalArgumentException();
+        }
+        return points;
+    }
 
-    static int[] convertToIntegerArray(String set) throws IllegalArgumentException {
+    static List<Point> addPoint(List<Point> points, int[] xySet) {
+        Point newPoint = new Point(xySet[X_INDEX], xySet[Y_INDEX]);
+        points.add(newPoint);
+        return points;
+    }
+
+    static boolean isDuplicate(List<Point> points) {
+        long notDuplicateCount = points.stream().distinct().count();
+        return (points.size() == 2 && notDuplicateCount != 2)
+                || (points.size() == SQUARE_POINTS && notDuplicateCount != 4);
+    }
+
+    static int[] convertToIntegerArray(String set) {
         String[] xySplit = set.replaceAll("[()]", "").split("\\s*,\\s*");
         return convertCoordinatesToIntegers(xySplit);
     }

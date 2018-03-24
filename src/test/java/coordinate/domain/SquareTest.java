@@ -45,4 +45,14 @@ public class SquareTest {
         List<Point> points = Arrays.asList(p1, p2, p3, p4);
         assertEquals(false, isSquare(points)); //returns the same points list
     }
+
+    @Test
+    public void isSquareTest() {
+        Point p1 = new Point(0, 0);
+        Point p2 = new Point(10, 0);
+        Point p3 = new Point(0, 10);
+        Point p4 = new Point(10, 10);
+        List<Point> points = Arrays.asList(p1, p2, p3, p4);
+        assertEquals(true, isSquare(points));
+    }
 }

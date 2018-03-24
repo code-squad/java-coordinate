@@ -5,14 +5,22 @@ import java.util.List;
 public class Line {
     private static final int FIRST_POINT = 0;
     private static final int SECOND_POINT = 1;
+    private static final int NUMBER_OF_POINTS = 2;
+    private final List<Point> points;
 
-    public static double calculateDistance(List<Point> points) {
-        double xSquared = Math.pow(points.get(FIRST_POINT).getX() - points.get(SECOND_POINT).getX(), 2);
-        double ySquared = Math.pow(points.get(FIRST_POINT).getY() - points.get(SECOND_POINT).getY(), 2);
-        return Math.sqrt(xSquared + ySquared);
+    private Line(List<Point> points) {
+        this.points = points;
     }
 
-    public static boolean isLine(List<Point> points) {
-        return points.size() == 2;
+    public static Line ofLine(List<Point> points) {
+        return new Line(points);
+    }
+
+    public double calculateDistance() {
+        return points.get(FIRST_POINT).calculateDistanceFrom(points.get(SECOND_POINT));
+    }
+
+    public boolean isLine() {
+        return points.size() == NUMBER_OF_POINTS;
     }
 }

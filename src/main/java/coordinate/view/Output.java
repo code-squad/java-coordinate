@@ -15,8 +15,8 @@ public class Output {
         System.out.println(result);
     }
 
-    public static void printDistance(List<Point> points) {
-        System.out.println("두 좌표 사이의 거리는: " + Line.calculateDistance(points));
+    public static void printLength(Line line) {
+        System.out.println("두 좌표 사이의 거리는: " + line.calculateDistance());
     }
 
     public static void printArea(Shape shape) {
