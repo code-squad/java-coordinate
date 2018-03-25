@@ -49,6 +49,15 @@ public class Point {
 		return this.yAxis == yAxis;
 	}
 
+	public Boolean isSameXaxis(int xAxis) {
+		return this.xAxis == xAxis;
+	}
+
+	public Boolean isOneLine(Point anotherPoint, Point otherPoint) {
+		return (isSameYaxis(anotherPoint.yAxis) && isSameYaxis(otherPoint.yAxis))
+				|| (isSameXaxis(anotherPoint.xAxis) && isSameXaxis(otherPoint.xAxis));
+	}
+
 	public double getDistance(Point otherPoint) {
 		return Math.sqrt(Math.pow(xAxis - otherPoint.getxAxis(), 2) + Math.pow(yAxis - otherPoint.getyAxis(), 2));
 	}

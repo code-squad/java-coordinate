@@ -28,7 +28,7 @@ public class SquareTest {
 
 	@Test
 	public void testGetArea() {
-		assertThat(square.getArea(), is(9.0));
+		assertThat(String.format("%.1f", square.getArea()), is("9.0"));
 	}
 
 	@Test
