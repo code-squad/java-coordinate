@@ -14,7 +14,7 @@ public class CoordinateMain {
                 System.out.println("입력 범위를 초과하였습니다. 0~24");
             }
         } while (validation);
-        ResultView.printPoints(coordinateBase.getPointsList(coordinateBase.getPoints()));
+        ResultView.printPoints(coordinateBase.getPoints());
         ResultView.printCalculation(coordinateBase.getPoints());
     }
 }

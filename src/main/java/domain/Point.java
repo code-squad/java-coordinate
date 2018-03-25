@@ -22,8 +22,11 @@ public class Point {
 
     // todo 현재 포인트와 입력받은 포인트와의 거리
     public Double getDistance(Point otherPoint) {
-        Line line = new Line(this, otherPoint);
-        return line.getLength();
+        int aX = this.getX();
+        int aY = this.getY();
+        int bX = otherPoint.getX();
+        int bY = otherPoint.getY();
+        return Math.sqrt(Math.pow((aX - bX), 2) + Math.pow((aY - bY), 2));
     }
 
     public int getX() {
@@ -39,16 +42,21 @@ public class Point {
         return "x : " + this.x + ", y : " + this.y;
     }
 
-    public static Comparator<Integer> descSort = new Comparator<Integer>() {
+    public static Comparator<Point> descSort = new Comparator<Point>() {
         @Override
-        public int compare(Integer o1, Integer o2) {
-            if( o1 > o2 ) {
-                return -1;
+        public int compare(Point o1, Point o2) {
+            Integer o1Y = o1.getY();
+            Integer o2Y = o2.getY();
+            int compareResult = o1Y.compareTo(o2Y);
+
+            if (compareResult != 0) {
+                return compareResult * -1; // 기본값에 -1을 곱하면 descending
             }
-            if( o1 < o2 ) {
-                return 1;
-            }
-            return 0;
+
+            Integer o1X = o1.getX();
+            Integer o2X = o2.getX();
+            compareResult = o1X.compareTo(o2X);
+            return compareResult * -1;
         }
     };
 }
