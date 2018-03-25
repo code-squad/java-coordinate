@@ -6,33 +6,51 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static coordinate.domain.Line.*;
 
 public class LineTest {
+    private Line line;
+    private List<Point> points;
 
     @Test
     public void calculateDistanceTest() {
-        List<Point> points;
         points = Arrays.asList(new Point(0, 0), new Point(10, 10));
+        line = Line.ofLine(points);
         double expected = Math.sqrt(Math.pow(10, 2) + Math.pow(10, 2));
-        assertEquals(expected, calculateDistance(points), 0.001);
+        assertEquals(expected, line.calculate(), 0.001);
+    }
+
+    @Test
+    public void isMatchTrue() {
+        points = Arrays.asList(new Point(0, 0), new Point(10, 10));
+        line = Line.ofLine(points);
+        assertEquals(true, line.isMatch(0, 0));
+    }
+
+    @Test
+    public void isMatchFalse() {
+        points = Arrays.asList(new Point(0, 0), new Point(10, 10));
+        line = Line.ofLine(points);
+        assertEquals(false, line.isMatch(5, 5));
     }
 
     @Test
     public void isLineTrue() {
-        List<Point> points = Arrays.asList(new Point(0, 0), new Point(10, 10));
-        assertEquals(true, isLine(points));
+        points = Arrays.asList(new Point(0, 0), new Point(10, 10));
+        line = Line.ofLine(points);
+        assertEquals(true, line.isLine());
     }
 
     @Test
-    public void isLineFalseOnlyOnePoint() {
-        List<Point> points = Arrays.asList(new Point(0, 0));
-        assertEquals(false, isLine(points));
+    public void isLineFalseLessThanTwoPoints() {
+        points = Arrays.asList(new Point(0, 0));
+        line = Line.ofLine(points);
+        assertEquals(false, line.isLine());
     }
 
     @Test
-    public void isLineFalseOnlyMoreThanTwoPoints() {
-        List<Point> points = Arrays.asList(new Point(0, 0), new Point(10, 10), new Point(10, 0));
-        assertEquals(false, isLine(points));
+    public void isLineFalseMoreThanTwoPoints() {
+        points = Arrays.asList(new Point(0, 0), new Point(10, 10), new Point(10, 0));
+        line = Line.ofLine(points);
+        assertEquals(false, line.isLine());
     }
 }

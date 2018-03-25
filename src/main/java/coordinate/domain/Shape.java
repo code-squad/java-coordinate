@@ -21,13 +21,5 @@ public abstract class Shape {
         throw new IllegalArgumentException();
     }
 
-    public static boolean isLine(Shape shape) { //이게 괜찮을지 모르겠다
-        return shape instanceof Line;
-    }
-
-    public static boolean isSquare(Shape shape) { //이게 괜찮을지 모르겠다
-        return shape instanceof Square;
-    }
-
     public abstract boolean isMatch(int x, int y);
 }

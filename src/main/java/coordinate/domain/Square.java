@@ -6,6 +6,7 @@ public class Square extends Shape {
     private static final int ANY_POINT = 3;
     private static final int FIRST_POINT = 0;
     private static final int SECOND_POINT = 1;
+    private static final int POINTS_PER_SIDE = 2;
     private final List<Point> points;
 
     private Square(List<Point> points) {
@@ -17,26 +18,22 @@ public class Square extends Shape {
     }
 
     public boolean isSquare() {
-        return getPointsOnSameX(points).size() == getPointsOnSameY(points).size();
-    }
-
-    private static List<Point> getPointsOnSameY(List<Point> points) {
-        return points.get(ANY_POINT).getPointsOnSameY(points.subList(0, ANY_POINT));
-    }
-
-    private static List<Point> getPointsOnSameX(List<Point> points) {
-        return points.get(ANY_POINT).getPointsOnSameX(points.subList(0, ANY_POINT));
+        List<Point> pointsOnSameRow = points.get(ANY_POINT).getPointsOnSameRow(points);
+        List<Point> pointsOnSameColumn = points.get(ANY_POINT).getPointsOnSameColumn(points);
+        return pointsOnSameRow.size() == POINTS_PER_SIDE && pointsOnSameColumn.size() == POINTS_PER_SIDE;
     }
 
     double calculateHeight() {
-        Point firstPoint = getPointsOnSameY(points).get(FIRST_POINT);
-        Point secondPoint = getPointsOnSameY(points).get(SECOND_POINT);
+        List<Point> pointsOnSameColumn = points.get(ANY_POINT).getPointsOnSameColumn(points);
+        Point firstPoint = pointsOnSameColumn.get(FIRST_POINT);
+        Point secondPoint = pointsOnSameColumn.get(SECOND_POINT);
         return firstPoint.calculateDistanceFrom(secondPoint);
     }
 
     double calculateBase() {
-        Point firstPoint = getPointsOnSameX(points).get(FIRST_POINT);
-        Point secondPoint = getPointsOnSameX(points).get(SECOND_POINT);
+        List<Point> pointsOnSameRow = points.get(ANY_POINT).getPointsOnSameRow(points);
+        Point firstPoint = pointsOnSameRow.get(FIRST_POINT);
+        Point secondPoint = pointsOnSameRow.get(SECOND_POINT);
         return firstPoint.calculateDistanceFrom(secondPoint);
     }
 

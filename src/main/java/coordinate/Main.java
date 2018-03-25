@@ -34,10 +34,10 @@ public class Main {
     private static void printResult(CoordinateCalculator cc, Shape shape) {
         Output.printFigure(cc);
 
-        if (Shape.isLine(shape)) {
+        if (shape instanceof Line) {
             Output.printLength(shape);
         }
-        if (Shape.isSquare(shape)) {
+        if (shape instanceof Square) {
             Output.printArea(shape);
         }
     }

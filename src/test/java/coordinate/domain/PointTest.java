@@ -2,9 +2,30 @@ package coordinate.domain;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static coordinate.domain.Point.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class PointTest {
+
+    @Test
+    public void calculateDistanceFromTest() {
+        Point point1 = new Point(0, 0);
+        Point point2 = new Point(3, 4);
+        double distance = point1.calculateDistanceFrom(point2);
+        assertEquals(5, distance, 0.001);
+    }
+
+    @Test
+    public void getPointsOnSameY() {
+        Point point = new Point(0, 0);
+        List<Point> points = Arrays.asList(new Point(0, 5), new Point(5, 0), new Point(5, 5));
+        List<Point> expected = Arrays.asList(new Point(0,), new Point())
+        assertArrayEquals();
+    }
 
     @Test
     public void checkDomainRangeNormal() {

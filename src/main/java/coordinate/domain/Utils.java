@@ -2,9 +2,7 @@ package coordinate.domain;
 
 import coordinate.view.Output;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Utils {
     private static final int COORDINATE_LENGTH = 2;
@@ -43,9 +41,11 @@ public class Utils {
     }
 
     static boolean isDuplicate(List<Point> points) {
-        long notDuplicateCount = points.stream().distinct().count();
-        return (points.size() == 2 && notDuplicateCount != 2)
-                || (points.size() == SQUARE_POINTS && notDuplicateCount != 4);
+        Set<Point> unique = new HashSet<>();
+        for (Point point : points) {
+            if (!unique.add(point)) return true;
+        }
+        return false;
     }
 
     static int[] convertToIntegerArray(String set) {

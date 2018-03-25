@@ -31,11 +31,11 @@ public class CoordinateCalculator {
 
     private static Coordinate createCoordinate(Shape shape, int x, int y) {
         boolean match = false;
-        if (Shape.isLine(shape)) {
+        if (shape instanceof Line) {
             Line line = (Line) shape;
             match = line.isMatch(x, y);
         }
-        if (Shape.isSquare(shape)) {
+        if (shape instanceof Square) {
             Square square = (Square) shape;
             match = square.isMatch(x, y);
         }

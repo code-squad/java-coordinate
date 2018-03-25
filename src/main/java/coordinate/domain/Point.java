@@ -20,7 +20,11 @@ public class Point {
         }
     }
 
-    public double calculateDistanceFrom(Point point) {
+    private static boolean isOutOfDomainRange(Integer number) {
+        return number > DOMAIN_RANGE;
+    }
+
+    double calculateDistanceFrom(Point point) {
         double xSquared = Math.pow(point.subtractX(x), 2);
         double ySquared = Math.pow(point.subtractY(y), 2);
         return Math.sqrt(xSquared + ySquared);
@@ -34,35 +38,43 @@ public class Point {
         return this.y - y;
     }
 
-    private static boolean isOutOfDomainRange(Integer number) {
-        return number > DOMAIN_RANGE;
+    List<Point> getPointsOnSameRow(List<Point> points) {
+        List<Point> pointsOnSameRow = new ArrayList<>();
+        for (Point point : points) {
+            if (point.yEquals(y)) {
+                pointsOnSameRow.add(point);
+            }
+        }
+        return pointsOnSameRow;
     }
 
-    public boolean xEquals(int x) {
+    public List<Point> getPointsOnSameColumn(List<Point> points) {
+        List<Point> pointsOnSameColumn = new ArrayList<>();
+        for (Point point : points) {
+            if (point.xEquals(x)) {
+                pointsOnSameColumn.add(point);
+            }
+        }
+        return pointsOnSameColumn;
+    }
+
+    boolean xEquals(int x) {
         return this.x == x;
     }
 
-    public boolean yEquals(int y) {
+    boolean yEquals(int y) {
         return this.y == y;
     }
 
-    public List<Point> getPointsOnSameX(List<Point> points) {
-        List<Point> commonX = new ArrayList<>();
-        for (Point point : points) {
-            if (!point.xEquals(x)) {
-                commonX.add(point);
-            }
-        }
-        return commonX;
+    @Override
+    public boolean equals(Object o) {
+        Point p = (Point) o;
+        boolean c =  p.xEquals(x) && p.yEquals(y);
+        return c;
     }
 
-    public List<Point> getPointsOnSameY(List<Point> points) {
-        List<Point> commonY = new ArrayList<>();
-        for (Point point : points) {
-            if (!point.yEquals(y)) {
-                commonY.add(point);
-            }
-        }
-        return commonY;
+    @Override
+    public int hashCode() {
+        return x * y;
     }
 }
