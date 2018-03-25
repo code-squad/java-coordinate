@@ -31,7 +31,7 @@ public class Builder {
         return "";
     }
 
-    private static String addCoordinate(Coordinate coordinate) {
+    static String addCoordinate(Coordinate coordinate) {
         String element = "  ";
         if (coordinate.isOnYAxis() && coordinate.yIsOneDigit()) {
             element = " |";
@@ -72,7 +72,7 @@ public class Builder {
         return builder.toString();
     }
 
-    private static String addXLabelNumber(int x) {
+    static String addXLabelNumber(int x) {
         if (x == 0) {
             return "  " + x;
         }

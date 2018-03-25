@@ -7,10 +7,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static coordinate.domain.Square.*;
 
 public class SquareTest {
     private List<Point> points;
+    private Square square;
 
     @Before
     public void setUp() {
@@ -19,21 +19,22 @@ public class SquareTest {
         Point p3 = new Point(0, 10);
         Point p4 = new Point(10, 10);
         points = Arrays.asList(p1, p2, p3, p4);
+        square = Square.ofSquare(points);
     }
 
     @Test
     public void calculateBaseTest() {
-        assertEquals(10, calculateBase(points));
+        assertEquals(10.0, square.calculateBase(), 0.001);
     }
 
     @Test
     public void calculateHeightTest() {
-        assertEquals(10, calculateHeight(points));
+        assertEquals(10.0, square.calculateHeight(), 0.001);
     }
 
     @Test
     public void isSquareTrue() {
-        assertEquals(true, isSquare(points)); //returns the same points list
+        assertEquals(true, square.isSquare()); //returns the same points list
     }
 
     @Test
@@ -43,16 +44,17 @@ public class SquareTest {
         Point p3 = new Point(0, 10);
         Point p4 = new Point(10, 10);
         List<Point> points = Arrays.asList(p1, p2, p3, p4);
-        assertEquals(false, isSquare(points)); //returns the same points list
+        square = Square.ofSquare(points);
+        assertEquals(false, square.isSquare()); //returns the same points list
     }
 
     @Test
-    public void isSquareTest() {
-        Point p1 = new Point(0, 0);
-        Point p2 = new Point(10, 0);
-        Point p3 = new Point(0, 10);
-        Point p4 = new Point(10, 10);
-        List<Point> points = Arrays.asList(p1, p2, p3, p4);
-        assertEquals(true, isSquare(points));
+    public void isMatchTrue() {
+        assertEquals(true, square.isMatch(0, 0));
+    }
+
+    @Test
+    public void isMatchFalse() {
+        assertEquals(false, square.isMatch(1, 1));
     }
 }

@@ -69,12 +69,12 @@ public class Point {
     @Override
     public boolean equals(Object o) {
         Point p = (Point) o;
-        boolean c =  p.xEquals(x) && p.yEquals(y);
+        boolean c = p.xEquals(x) && p.yEquals(y);
         return c;
     }
 
     @Override
     public int hashCode() {
-        return x * y;
+        return (31 * x) + (17 * y);
     }
 }

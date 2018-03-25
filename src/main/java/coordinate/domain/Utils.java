@@ -34,7 +34,7 @@ public class Utils {
         return points;
     }
 
-    static List<Point> addPoint(List<Point> points, int[] xySet) {
+    private static List<Point> addPoint(List<Point> points, int[] xySet) {
         Point newPoint = new Point(xySet[X_INDEX], xySet[Y_INDEX]);
         points.add(newPoint);
         return points;

@@ -20,11 +20,17 @@ public class PointTest {
     }
 
     @Test
-    public void getPointsOnSameY() {
-        Point point = new Point(0, 0);
-        List<Point> points = Arrays.asList(new Point(0, 5), new Point(5, 0), new Point(5, 5));
-        List<Point> expected = Arrays.asList(new Point(0,), new Point())
-        assertArrayEquals();
+    public void getPointsOnSameRowTest() {
+        List<Point> points = Arrays.asList(new Point(0, 0), new Point(0, 5), new Point(5, 0), new Point(5, 5));
+        List<Point> expected = Arrays.asList(new Point(0, 0), new Point(5, 0));
+        assertArrayEquals(expected.toArray(), points.get(0).getPointsOnSameRow(points).toArray());
+    }
+
+    @Test
+    public void getPointsOnSameColumnTest() {
+        List<Point> points = Arrays.asList(new Point(0, 0), new Point(0, 5), new Point(5, 0), new Point(5, 5));
+        List<Point> expected = Arrays.asList(new Point(0, 0), new Point(0, 5));
+        assertArrayEquals(expected.toArray(), points.get(0).getPointsOnSameColumn(points).toArray());
     }
 
     @Test
