@@ -3,9 +3,9 @@ package coordinate.domain;
 import java.util.List;
 
 public class Square extends Shape {
-    private static final int ANY_POINT = 0;
+    private static final int ANY_POINT = 3;
     private static final int FIRST_DUPLICATE = 0;
-    private static final int SECOND_DUPLICATE = 0;
+    private static final int SECOND_DUPLICATE = 1;
     private final List<Point> points;
 
     private Square(List<Point> points) {
@@ -17,25 +17,27 @@ public class Square extends Shape {
     }
 
     public boolean isSquare() {
-        return getXDuplicates(points).size() == getYDuplicates(points).size();
+        return getPointsOnSameX(points).size() == getPointsOnSameY(points).size();
     }
 
-    private static List<Point> getYDuplicates(List<Point> points) {
-        return points.get(ANY_POINT).getYDuplicates(points);
+    private static List<Point> getPointsOnSameY(List<Point> points) {
+        return points.get(ANY_POINT).getPointsOnSameY(points.subList(0, ANY_POINT));
     }
 
-    private static List<Point> getXDuplicates(List<Point> points) {
-        return points.get(ANY_POINT).getXDuplicates(points);
+    private static List<Point> getPointsOnSameX(List<Point> points) {
+        return points.get(ANY_POINT).getPointsOnSameX(points.subList(0, ANY_POINT));
     }
 
     double calculateHeight() {
-        List<Point> yDuplicates = getYDuplicates(points);
-        return yDuplicates.get(FIRST_DUPLICATE).calculateDistanceFrom(yDuplicates.get(SECOND_DUPLICATE));
+        Point firstPoint = getPointsOnSameY(points).get(FIRST_DUPLICATE);
+        Point secondPoint = getPointsOnSameY(points).get(SECOND_DUPLICATE);
+        return firstPoint.calculateDistanceFrom(secondPoint);
     }
 
     double calculateBase() {
-        List<Point> xDuplicates = getXDuplicates(points);
-        return xDuplicates.get(FIRST_DUPLICATE).calculateDistanceFrom(xDuplicates.get(SECOND_DUPLICATE));
+        Point firstPoint = getPointsOnSameX(points).get(FIRST_DUPLICATE);
+        Point secondPoint = getPointsOnSameX(points).get(SECOND_DUPLICATE);
+        return firstPoint.calculateDistanceFrom(secondPoint);
     }
 
     public double calculate() {

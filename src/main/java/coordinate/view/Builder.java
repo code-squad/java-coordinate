@@ -14,55 +14,67 @@ public class Builder {
         for (Coordinate coordinate : Lists.reverse(coordinates)) {
             builder.append(addYLabel(coordinates, coordinate)); //add y-label
             builder.append(addCoordinate(coordinate)); //add coordinate
-            builder.append(addNewLine(coordinates, coordinate)); //add new line if x == 24
+            builder.append(addNewLine(coordinate)); //add new line if x == 24
         }
         builder.append(addXLabel());//add x-label
         return builder.toString();
     }
 
     static String addYLabel(List<Coordinate> coordinates, Coordinate coordinate) {
-        StringBuilder builder = new StringBuilder();
-        if (coordinate.yIsEven()) {
-            return builder.append(coordinates.indexOf(coordinate)).toString();
+        if (coordinate.isFirst() && coordinate.yIsEven()) { //if coordinate x == 0 and x is even, add the number before the coordinate
+            return String.valueOf((coordinates.indexOf(coordinate) / 24) - 1);
         }
-        return builder.append(" ").toString();
+        if (coordinate.isFirst() && !coordinate.yIsEven()) { //if coordinate x == 0 and x is odd, add a space before the coordinate
+            return " ";
+        }
+        return "";
     }
 
     private static String addCoordinate(Coordinate coordinate) {
-        StringBuilder builder = new StringBuilder();
-        if (coordinate.isOnYAxis()) {
-            builder.append(" |");
+        String element = "  ";
+        if (coordinate.isOnYAxis() && coordinate.yIsOneDigit()) {
+            element = " |";
+        }
+        if (coordinate.isOnYAxis() && coordinate.yIsEven() && !coordinate.yIsOneDigit()) {
+            element = "|";
+        }
+        if (coordinate.isOnYAxis() && !coordinate.yIsEven() && !coordinate.yIsOneDigit()) {
+            element = " |";
         }
         if (coordinate.isOnXAxis()) {
-            builder.append(" -");
+            element = " -";
         }
         if (coordinate.isOnXAxis() && coordinate.isOnYAxis()) { //(0,0)
-            builder.append(" +");
+            element = " +";
         }
-        if (coordinate.isPoint()) {
-            builder.append(" *");
+        if (coordinate.isPoint() && coordinate.yIsOneDigit()) {
+            element = " *";
         }
-        builder.append("  ");
-        return builder.toString();
+        if (coordinate.isPoint() && !coordinate.yIsOneDigit()) {
+            element = "*";
+        }
+        return element;
     }
 
-    private static String addNewLine(List<Coordinate> coordinates, Coordinate coordinate) {
-        StringBuilder builder = new StringBuilder();
-        if (coordinates.indexOf(coordinate) == DOMAIN) {
-            builder.append("\n");
+    private static String addNewLine(Coordinate coordinate) {
+        if (coordinate.isLast()) {
+            return "\n";
         }
-        return builder.toString();
+        return "";
     }
 
     private static String addXLabel() {
         StringBuilder builder = new StringBuilder();
-        for (int x = 2; x <= DOMAIN; x++) {
+        for (int x = 0; x <= DOMAIN; x++) {
             builder.append(addXLabelNumber(x));
         }
         return builder.toString();
     }
 
     private static String addXLabelNumber(int x) {
+        if (x == 0) {
+            return "  " + x;
+        }
         if (x % 2 == 0 && String.valueOf(x).length() < 2) {
             return " " + x;
         }
@@ -72,3 +84,4 @@ public class Builder {
         return "  ";
     }
 }
+//(0,0)-(10,0)-(0,10)-(10,10)

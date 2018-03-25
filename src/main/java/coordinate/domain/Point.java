@@ -1,7 +1,6 @@
 package coordinate.domain;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class Point {
     private static final int DOMAIN_RANGE = 24;
@@ -24,14 +23,14 @@ public class Point {
     public double calculateDistanceFrom(Point point) {
         double xSquared = Math.pow(point.subtractX(x), 2);
         double ySquared = Math.pow(point.subtractY(y), 2);
-        return Math.sqrt(xSquared - ySquared);
+        return Math.sqrt(xSquared + ySquared);
     }
 
     private int subtractX(int x) {
         return this.x - x;
     }
 
-    private double subtractY(int y) {
+    private int subtractY(int y) {
         return this.y - y;
     }
 
@@ -47,17 +46,23 @@ public class Point {
         return this.y == y;
     }
 
-    public List<Point> getXDuplicates(List<Point> points) {
-        return points.stream().filter(point -> point.xEquals(x)).collect(Collectors.toList());
+    public List<Point> getPointsOnSameX(List<Point> points) {
+        List<Point> commonX = new ArrayList<>();
+        for (Point point : points) {
+            if (!point.xEquals(x)) {
+                commonX.add(point);
+            }
+        }
+        return commonX;
     }
 
-    public List<Point> getYDuplicates(List<Point> points) {
-        return points.stream().filter(point -> point.yEquals(y)).collect(Collectors.toList());
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        Point p = (Point) o;
-        return p.xEquals(x) && p.yEquals(y);
+    public List<Point> getPointsOnSameY(List<Point> points) {
+        List<Point> commonY = new ArrayList<>();
+        for (Point point : points) {
+            if (!point.yEquals(y)) {
+                commonY.add(point);
+            }
+        }
+        return commonY;
     }
 }

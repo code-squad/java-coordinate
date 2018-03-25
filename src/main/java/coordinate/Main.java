@@ -28,6 +28,16 @@ public class Main {
         return points;
     }
 
+    private static Shape initShape(List<Point> points){
+        try {
+            return Shape.ofShape(points);
+        }
+        catch(IllegalArgumentException e){
+            Output.printMessage("직사각형이 아닙니다.");
+
+        }
+    }
+
     private static void printResult(CoordinateCalculator cc, Shape shape) {
         Output.printFigure(cc);
 

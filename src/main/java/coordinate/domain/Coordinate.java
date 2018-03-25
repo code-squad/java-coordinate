@@ -19,8 +19,20 @@ public class Coordinate {
         return new Coordinate(false, x, y);
     }
 
-    public boolean yIsEven(){
+    public boolean isFirst() {
+        return x == 0;
+    }
+
+    public boolean isLast() {
+        return x == 24;
+    }
+
+    public boolean yIsEven() {
         return y % 2 == 0;
+    }
+
+    public boolean yIsOneDigit() {
+        return String.valueOf(y).length() == 1;
     }
 
     public boolean isOnYAxis() {
