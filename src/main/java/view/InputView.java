@@ -11,6 +11,7 @@ public class InputView {
         System.out.println("좌표를 입력하세요.");
         String userInput = scanner.next();
         userInput = userInput.replaceAll("[()]", ""); // 11,12-13,14
+
         return Arrays.asList(userInput.split("[-,]")); // [11, 12, 13, 14]
     }
 }

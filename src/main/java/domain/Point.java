@@ -20,7 +20,6 @@ public class Point {
         return null;
     }
 
-    // todo 현재 포인트와 입력받은 포인트와의 거리
     public Double getDistance(Point otherPoint) {
         int aX = this.getX();
         int aY = this.getY();
@@ -41,22 +40,4 @@ public class Point {
     public String toString() {
         return "x : " + this.x + ", y : " + this.y;
     }
-
-    public static Comparator<Point> descSort = new Comparator<Point>() {
-        @Override
-        public int compare(Point o1, Point o2) {
-            Integer o1Y = o1.getY();
-            Integer o2Y = o2.getY();
-            int compareResult = o1Y.compareTo(o2Y);
-
-            if (compareResult != 0) {
-                return compareResult * -1; // 기본값에 -1을 곱하면 descending
-            }
-
-            Integer o1X = o1.getX();
-            Integer o2X = o2.getX();
-            compareResult = o1X.compareTo(o2X);
-            return compareResult * -1;
-        }
-    };
 }
