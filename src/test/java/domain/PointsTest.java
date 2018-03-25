@@ -19,21 +19,9 @@ public class PointsTest {
     }
 
     @Test
-    public void calculateLine(){
+    public void calculateLineBwPoints(){
         Points points = Points.of(Arrays.asList(Point.of(1,1), Point.of(2,2)));
-        assertEquals(1.414, points.calculateLine(), 0.001);
-    }
-
-    @Test
-    public void calculateTriangle(){
-        Points points = Points.of(Arrays.asList(Point.of(0,0), Point.of(0,1), Point.of(1, 0)));
-        assertEquals(0.5, points.calculateTriangle(), 0.001);
-    }
-
-    @Test
-    public void calculateRectangle(){
-        Points points = Points.of(Arrays.asList(Point.of(1,1), Point.of(5,1), Point.of(1,3), Point.of(5,3)));
-        assertEquals(8, points.calculateRectangle(), 0.001);
+        assertEquals(1.414, points.calculateLineBwPoints(0, 1), 0.001);
     }
 
     @Test

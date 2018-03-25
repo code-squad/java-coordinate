@@ -13,9 +13,9 @@ public class FigureTest {
 
     @Test
     public void hasCoordinateAt() {
-        Figure figure;
         List<String> coordinates = Arrays.asList("1,1", "2,2");
-        figure = Figure.createFigure(coordinates);
+        FigureMaker figureMaker = new concreteFigureMaker();
+        Figure figure = figureMaker.initFigure(coordinates);
         assertThat(figure.hasCoordinateAt(1, 1), is(true));
         assertThat(figure.hasCoordinateAt(2, 2), is(true));
     }

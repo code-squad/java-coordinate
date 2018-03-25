@@ -1,8 +1,6 @@
 package view;
 
-import domain.Figure;
-import domain.Point;
-import domain.Points;
+import domain.*;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -24,7 +22,8 @@ public class ResultViewTest {
     @Test
     public void drawPoint(){
         List<String> coordinates = Arrays.asList("1,1", "1,4");
-        Figure figure = Figure.createFigure(coordinates);
+        FigureMaker figureMaker = new concreteFigureMaker();
+        Figure figure = figureMaker.initFigure(coordinates);
         assertThat(ResultView.drawPoint(1, 1, figure), is(".  "));
         assertThat(ResultView.drawPoint(1, 0, figure), is("  "));
     }

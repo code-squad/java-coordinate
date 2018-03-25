@@ -1,5 +1,7 @@
 import domain.Figure;
+import domain.FigureMaker;
 import domain.InputUtil;
+import domain.concreteFigureMaker;
 import view.InputView;
 import view.ResultView;
 
@@ -17,8 +19,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Figure figure;
-        figure = Figure.createFigure(initCoordinates());
+        FigureMaker figureMaker = new concreteFigureMaker();
+        Figure figure = figureMaker.initFigure(initCoordinates());
         figure.calculate();
         ResultView.printBoard(figure);
         ResultView.printCalculationResult(figure);

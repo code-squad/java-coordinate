@@ -1,8 +1,6 @@
 package domain;
 
-import java.util.*;
-
-public class Figure {
+public abstract class Figure {
 
     Points points;
 
@@ -12,14 +10,10 @@ public class Figure {
         return points.contains(x, y);
     }
 
-    public void calculate() { }
+    public abstract void calculate();
 
     public double getArea() {
         return area;
     }
-
-    public static Figure createFigure(List<String> coordinates){
-        return null;
-    };
 
 }
