@@ -9,33 +9,26 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        List<Point> points = promptUserInput();
+        Shape shape = initShape();
+        CoordinateCalculator calculator = initCalculator(shape);
 
-        Shape shape = Shape.ofShape(points);
-        CoordinateCalculator cc = new CoordinateCalculator(points);
-
-        printResult(cc, shape);
+        printResult(calculator, shape);
     }
 
-    private static List<Point> promptUserInput() {
-        List<Point> points;
+    private static Shape initShape() {
+        Shape shape;
         try {
-            Output.printMessage("좌표를 다음과 같은 포맷으로 입력해주세요: (1,2)-(3,4)");
-            points = Utils.processCoordinates(Input.takeCoordinates());
+            Output.printMessage("선이나 직사각형 좌표를 다음과 같은 포맷으로 입력해주세요.\n선일 경우: (1,2)-(3,4)\n직사각형일 경우: (0,0)-(1,0)-(0,1)-(1,1)");
+            List<Point> points = Utils.processCoordinates(Input.takeCoordinates());
+            shape = Shape.ofShape(points);
         } catch (IllegalArgumentException e) {
-            return promptUserInput();
+            return initShape();
         }
-        return points;
+        return shape;
     }
 
-    private static Shape initShape(List<Point> points){
-        try {
-            return Shape.ofShape(points);
-        }
-        catch(IllegalArgumentException e){
-            Output.printMessage("직사각형이 아닙니다.");
-
-        }
+    private static CoordinateCalculator initCalculator(Shape shape) {
+        return new CoordinateCalculator(shape);
     }
 
     private static void printResult(CoordinateCalculator cc, Shape shape) {

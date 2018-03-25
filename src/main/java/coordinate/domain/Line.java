@@ -20,6 +20,10 @@ public class Line extends Shape {
         return points.get(FIRST_POINT).calculateDistanceFrom(points.get(SECOND_POINT));
     }
 
+    public boolean isMatch(int x, int y) {
+        return points.stream().anyMatch(p -> p.xEquals(x) && p.yEquals(y));
+    }
+
     public boolean isLine() {
         return points.size() == NUMBER_OF_POINTS;
     }

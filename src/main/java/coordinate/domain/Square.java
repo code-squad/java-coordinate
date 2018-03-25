@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Square extends Shape {
     private static final int ANY_POINT = 3;
-    private static final int FIRST_DUPLICATE = 0;
-    private static final int SECOND_DUPLICATE = 1;
+    private static final int FIRST_POINT = 0;
+    private static final int SECOND_POINT = 1;
     private final List<Point> points;
 
     private Square(List<Point> points) {
@@ -29,18 +29,22 @@ public class Square extends Shape {
     }
 
     double calculateHeight() {
-        Point firstPoint = getPointsOnSameY(points).get(FIRST_DUPLICATE);
-        Point secondPoint = getPointsOnSameY(points).get(SECOND_DUPLICATE);
+        Point firstPoint = getPointsOnSameY(points).get(FIRST_POINT);
+        Point secondPoint = getPointsOnSameY(points).get(SECOND_POINT);
         return firstPoint.calculateDistanceFrom(secondPoint);
     }
 
     double calculateBase() {
-        Point firstPoint = getPointsOnSameX(points).get(FIRST_DUPLICATE);
-        Point secondPoint = getPointsOnSameX(points).get(SECOND_DUPLICATE);
+        Point firstPoint = getPointsOnSameX(points).get(FIRST_POINT);
+        Point secondPoint = getPointsOnSameX(points).get(SECOND_POINT);
         return firstPoint.calculateDistanceFrom(secondPoint);
     }
 
     public double calculate() {
         return calculateBase() * calculateHeight();
+    }
+
+    public boolean isMatch(int x, int y) {
+        return points.stream().anyMatch(p -> p.xEquals(x) && p.yEquals(y));
     }
 }

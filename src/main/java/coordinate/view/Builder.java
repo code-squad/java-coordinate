@@ -8,6 +8,7 @@ import java.util.List;
 import static coordinate.domain.CoordinateCalculator.DOMAIN;
 
 public class Builder {
+    private static final int ROW_SIZE = 25;
 
     public static String startBuild(List<Coordinate> coordinates) {
         StringBuilder builder = new StringBuilder();
@@ -22,7 +23,7 @@ public class Builder {
 
     static String addYLabel(List<Coordinate> coordinates, Coordinate coordinate) {
         if (coordinate.isFirst() && coordinate.yIsEven()) { //if coordinate x == 0 and x is even, add the number before the coordinate
-            return String.valueOf((coordinates.indexOf(coordinate) / 24) - 1);
+            return String.valueOf((coordinates.indexOf(coordinate) / ROW_SIZE));
         }
         if (coordinate.isFirst() && !coordinate.yIsEven()) { //if coordinate x == 0 and x is odd, add a space before the coordinate
             return " ";
@@ -84,4 +85,3 @@ public class Builder {
         return "  ";
     }
 }
-//(0,0)-(10,0)-(0,10)-(10,10)

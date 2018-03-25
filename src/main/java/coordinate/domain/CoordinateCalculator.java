@@ -10,28 +10,36 @@ public class CoordinateCalculator {
     public static final int DOMAIN = 24;
     private final List<Coordinate> coordinates;
 
-    public CoordinateCalculator(List<Point> points) {
-        this.coordinates = initCoordinates(points);
+    public CoordinateCalculator(Shape shape) {
+        this.coordinates = initCoordinates(shape);
     }
 
-    private static List<Coordinate> initCoordinates(List<Point> points) {
+    private static List<Coordinate> initCoordinates(Shape shape) {
         List<Coordinate> coordinates = new ArrayList<>();
         for (int y = 0; y <= RANGE; y++) {
-            initXY(coordinates, points, y);
+            initXY(coordinates, shape, y);
         }
         return coordinates;
     }
 
-    private static List<Coordinate> initXY(List<Coordinate> coordinates, List<Point> points, int y) {
+    private static List<Coordinate> initXY(List<Coordinate> coordinates, Shape shape, int y) {
         for (int x = DOMAIN; x >= 0; x--) {
-            coordinates.add(createCoordinate(points, x, y));
+            coordinates.add(createCoordinate(shape, x, y));
         }
         return coordinates;
     }
 
-    private static Coordinate createCoordinate(List<Point> points, int x, int y) {
-        boolean isMatch = points.stream().anyMatch(p -> p.xEquals(x) && p.yEquals(y));
-        if (isMatch) {
+    private static Coordinate createCoordinate(Shape shape, int x, int y) {
+        boolean match = false;
+        if (Shape.isLine(shape)) {
+            Line line = (Line) shape;
+            match = line.isMatch(x, y);
+        }
+        if (Shape.isSquare(shape)) {
+            Square square = (Square) shape;
+            match = square.isMatch(x, y);
+        }
+        if (match) {
             return Coordinate.ofPoint(x, y);
         }
         return Coordinate.ofNoPoint(x, y);
