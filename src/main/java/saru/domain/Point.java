@@ -40,11 +40,7 @@ public class Point {
     }
 
     boolean hasX(double x) {
-        if (this.x == x) {
-            return true;
-        }
-
-        return false;
+        return this.x == x;
     }
 
     void draw() {

@@ -6,10 +6,30 @@ import java.util.*;
 public class CoordinateCalc {
     private static final int MAX_VALUE = 25;
 
-    private List<RowLine> rowLines = new ArrayList<>();
-    private List<Point> userInput;
+    public SHAPE_TYPE checkShapeType(Set<Point> userInput) {
+        switch (userInput.size()) {
+            case 1:
+                return SHAPE_TYPE.POINT;
+            case 2:
+                return SHAPE_TYPE.LINE;
+            default:
+                break;
+        }
 
-    public CoordinateCalc(List<Point> userInput) {
+        return SHAPE_TYPE.NONE;
+    }
+
+    public enum SHAPE_TYPE {
+        POINT,
+        LINE,
+        NONE
+    }
+
+    private List<RowLine> rowLines = new ArrayList<>();
+
+    private Set<Point> userInput;
+
+    public CoordinateCalc(Set<Point> userInput) {
         this.userInput = userInput;
         initRowLines();
     }
@@ -50,6 +70,10 @@ public class CoordinateCalc {
 
         // 찾은 라인의 x에 해당하는 포인터에 메시지 전달
         foundPoint.draw();
+    }
+
+    public Set<Point> getUserInput() {
+        return userInput;
     }
 
     private RowLine getYLine(int y) {

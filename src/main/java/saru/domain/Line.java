@@ -3,12 +3,9 @@ package saru.domain;
 import java.util.*;
 
 public class Line {
-    private static final int START_INDEX = 0;
-    private static final int END_INDEX = 1;
+    private Set<Point> userInput;
 
-    private List<Point> userInput;
-
-    Line(List<Point> userInput) {
+    Line(Set<Point> userInput) {
         if (userInput.size() != 2) {
             throw new IllegalArgumentException("라인의 포인트 수가 잘못됨");
         }
@@ -17,6 +14,10 @@ public class Line {
     }
 
     double calcLineLength() {
-        return userInput.get(START_INDEX).calcLengthWith(userInput.get(END_INDEX));
+        Iterator iter = userInput.iterator();
+        Point startPoint = (Point) iter.next();
+        Point endPoint = (Point) iter.next();
+
+        return startPoint.calcLengthWith(endPoint);
     }
 }

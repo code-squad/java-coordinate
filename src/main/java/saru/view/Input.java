@@ -4,6 +4,8 @@ import saru.domain.*;
 
 import java.util.*;
 
+// SonarLint StandOutput warning 방지용
+@java.lang.SuppressWarnings("squid:S106")
 public class Input {
     private static final String INPUT_USER_INPUT = "좌표를 입력하세요.";
     private static final String INPUT_RANGE_ERROR = "범위가 잘못 되었습니다. 다시 입력하세요";
@@ -19,9 +21,9 @@ public class Input {
     }
 
     // 라인수
-    public static List<Point> getUserInputProc() {
+    public static Set<Point> getUserInputProc() {
         // 유저에게 텍스트 입력 받는다
-        List<Point> points = null;
+        Set<Point> points = null;
         boolean isSuccess;
 
         do {
@@ -44,14 +46,14 @@ public class Input {
         return scanner.nextLine();
     }
 
-    private static void loopAssignmentProc(String[] lineSplitArr, List<Point> points) {
+    private static void loopAssignmentProc(String[] lineSplitArr, Set<Point> points) {
         for (int i = 0; i < LINE_POINT_COUNT; i++) {
-            String pointSplitArr[] = lineSplitArr[i].split(REGEX);
+            String[] pointSplitArr = lineSplitArr[i].split(REGEX);
             assignmentSplitString(points, pointSplitArr);
         }
     }
 
-    private static void assignmentSplitString(List<Point> points, String[] pointSplitArr) {
+    private static void assignmentSplitString(Set<Point> points, String[] pointSplitArr) {
         try {
             // 첫 문자가 구분자라서 0번 인덱스는 ""(empty string)
             points.add(new Point(Double.parseDouble(pointSplitArr[FIRST_INDEX]),
@@ -63,9 +65,9 @@ public class Input {
         }
     }
 
-    public static List<Point> getSplitedUserInputString(String userInputString) {
+    public static Set<Point> getSplitedUserInputString(String userInputString) {
         String[] lineSplitArr = userInputString.split("-");
-        List<Point> points = new ArrayList<>();
+        Set<Point> points = new HashSet<>();
 
         loopAssignmentProc(lineSplitArr, points);
 
