@@ -9,18 +9,21 @@ public class Point {
 	private int pointX;
 	private int pointY;
 
-	public Point(String str) {
+	public Point(int pointX, int pointY) {
+		if (pointX < 0 || pointX > 24 || pointY < 0 || pointY > 24) {
+			throw new IllegalArgumentException("24초과의 값은 좌표가 될 수 없습니다.");
+		}
+
+		this.pointX = pointX;
+		this.pointY = pointY;
+	}
+
+	public static Point of(String str) {
 		String[] pointXY = str.split(",");
 		if (pointXY.length != 2) {
 			throw new IllegalArgumentException("좌표의 값이 잘못 입력 되었습니다.");
 		}
-
-		this.pointX = Integer.parseInt(pointXY[0]);
-		this.pointY = Integer.parseInt(pointXY[1]);
-
-		if (pointX < 0 || pointX > 24 || pointY < 0 || pointY > 24) {
-			throw new IllegalArgumentException("24초과의 값은 좌표가 될 수 없습니다.");
-		}
+		return new Point(Integer.parseInt(pointXY[0]), Integer.parseInt(pointXY[1]));
 	}
 
 	public int getHeight(Point otherPoint) {
@@ -31,14 +34,14 @@ public class Point {
 		return Math.abs(this.pointX - otherPoint.getPointX());
 	}
 
-	public boolean isNotSameXY(Point otherPoint) {
-		return (this.pointX!=otherPoint.getPointX() && 
-				this.pointY!=otherPoint.getPointY());
+	public double lineLength(Point otherPoint) {
+		double height = getWidth(otherPoint);
+		double width = getHeight(otherPoint);
+		return Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
 	}
-	
+
 	public boolean isSameXOrY(Point otherPoint) {
-		return (this.pointX==otherPoint.getPointX() || 
-				this.pointY==otherPoint.getPointY());
+		return (this.pointX == otherPoint.getPointX() || this.pointY == otherPoint.getPointY());
 	}
 
 	public int getPointX() {
@@ -64,7 +67,4 @@ public class Point {
 		}
 		return false;
 	}
-	
-	
-
 }
