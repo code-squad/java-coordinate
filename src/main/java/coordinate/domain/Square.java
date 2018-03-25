@@ -14,18 +14,17 @@ public class Square {
 	}
 
 	public boolean isSquare() {
-		int flag = 0;
 		for (int i = 0; i < points.size() - 1; i++) {
+			boolean checkAxis = false;
 			for (int j = i + 1; j < points.size(); j++) {
-				if (points.get(i).isSameXaxis(points.get(j).getxAxis())) {
-					flag++;
-				}
-				if (points.get(i).isSameYaxis(points.get(j).getyAxis())) {
-					flag++;
-				}
+				Line line = new Line(points.get(i), points.get(j));
+				checkAxis |= line.isSameXaxis() || line.isSameYaxis();
+			}
+			if (!checkAxis) {
+				return false;
 			}
 		}
-		return flag == 4;
+		return true;
 	}
 
 	public double getArea() {
@@ -38,22 +37,34 @@ public class Square {
 		return Math.abs(width * height);
 	}
 
+	public double calcHeight(int i, double height) {
+		for (int j = i + 1; j < points.size(); j++) {
+			Line line = new Line(points.get(i), points.get(j));
+			height = calcHeight(line, height);
+		}
+		return height;
+	}
+
 	public double calcWidth(int i, double width) {
 		for (int j = i + 1; j < points.size(); j++) {
-			if (points.get(i).isSameXaxis(points.get(j).getxAxis())) {
-				width = points.get(i).getDistance(points.get(j));
-			}
+			Line line = new Line(points.get(i), points.get(j));
+			width = calcWidth(line, width);
 		}
 		return width;
 	}
 
-	public double calcHeight(int i, double height) {
-		for (int j = i + 1; j < points.size(); j++) {
-			if (points.get(i).isSameYaxis(points.get(j).getyAxis())) {
-				height = points.get(i).getDistance(points.get(j));
-			}
+	public double calcHeight(Line line, double height) {
+		if (line.isSameYaxis()) {
+			height = line.getDistance();
 		}
 		return height;
+	}
+
+	public double calcWidth(Line line, double width) {
+		if (line.isSameXaxis()) {
+			width = line.getDistance();
+		}
+		return width;
 	}
 
 }

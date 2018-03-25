@@ -16,7 +16,7 @@ public class Input {
 
 		for (int i = 0; i < coordinates.size(); i++) {
 			coordinates.set(i, coordinates.get(i).substring(1, coordinates.get(i).length() - 1));
-			inputPoints.add(new Point(coordinates.get(i)));
+			inputPoints.add(Point.of(coordinates.get(i)));
 		}
 
 		return inputPoints;

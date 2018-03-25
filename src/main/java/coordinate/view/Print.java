@@ -12,7 +12,7 @@ public class Print {
 		String pointLine = "";
 		for (int i = 0; i < points.size(); i++) {
 			if (points.get(i).isSameYaxis(yAxis)) {
-				pointLine = points.get(i).drawPoint(beforeXaxis, i, pointLine);
+				pointLine = points.get(i).drawPoint(beforeXaxis, pointLine);
 				beforeXaxis = points.get(i).getxAxis();
 			}
 		}

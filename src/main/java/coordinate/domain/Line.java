@@ -22,4 +22,12 @@ public class Line {
 		return first.getDistance(second);
 	}
 
+	public boolean isSameXaxis() {
+		return first.getxAxis() == second.getxAxis();
+	}
+
+	public boolean isSameYaxis() {
+		return first.getyAxis() == second.getyAxis();
+	}
+
 }
