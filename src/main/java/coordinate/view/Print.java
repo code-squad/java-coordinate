@@ -1,73 +1,91 @@
 package coordinate.view;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
-import coordinate.domain.Common;
-import coordinate.domain.Coordinate;
-import coordinate.domain.Frame;
+import coordinate.domain.Line;
+import coordinate.domain.Point;
+import coordinate.domain.Square;
 
 public class Print {
-
-	public static void drawYaxis(Frame pointLines) {
-		for (int yAxis = pointLines.size() - 1; yAxis > 0; yAxis--) {
-			System.out.print(pointLines.makeLabel(yAxis) + "|");
-			System.out.print(pointLines.getLine(yAxis));
+	public static String drawFrame(int yAxis, ArrayList<Point> points) {
+		String label = drawLabel(yAxis);
+		int beforeXaxis = 0;
+		String pointLine = "";
+		for (int i = 0; i < points.size(); i++) {
+			if (points.get(i).isSameYaxis(yAxis)) {
+				pointLine = points.get(i).drawPoint(beforeXaxis, pointLine);
+				beforeXaxis = points.get(i).getxAxis();
+			}
 		}
+		return label + pointLine;
+	}
+
+	public static String drawLabel(int yAxis) {
+		if (yAxis % 2 == 0) {
+			return isOverTen(yAxis);
+		}
+		return "  |";
+	}
+
+	public static String isOverTen(int yAxis) {
+		if (yAxis < 10) {
+			return " " + yAxis + "|";
+		}
+		return yAxis + "|";
+	}
+
+	public static void printFrame(ArrayList<Point> points) {
+		for (int yAxis = 24; yAxis > 0; yAxis--) {
+			System.out.println(drawFrame(yAxis, points));
+		}
+		drawXaxis();
 	}
 
 	public static void drawXaxis() {
-		printXaxisBar();
-		for (int i = 0; i < Common.MAXSIZE + 1; i++) {
-			System.out.print(printxValue(i));
+		System.out.print("  *");
+		for (int xAxis = 0; xAxis < 25; xAxis++) {
+			System.out.print("──");
 		}
-		System.out.println("\n\n");
-	}
-
-	public static void printXaxisBar() {
-		System.out.print("  " + "*");
-		for (int i = 0; i < Common.MAXSIZE + 1; i++) {
-			System.out.print("───");
+		System.out.print("\n ");
+		for (int xAxis = 0; xAxis < 25; xAxis++) {
+			System.out.print(drawXaxis(xAxis));
 		}
-		System.out.println();
-		System.out.print("  ");
 	}
 
-	public static String printxValue(int i) {
-		if (!Common.isOdd(i))
-			return i + "  ";
-		return "  ";
+	public static String drawXaxis(int xAxis) {
+		if (xAxis % 2 == 0) {
+			return String.valueOf(xAxis) + " ";
+		}
+		return " ";
 	}
 
-	public static void printResult(ArrayList<Coordinate> inputCoordinates) {
-		if (inputCoordinates.size() == 2) {
-			System.out.println("두점 사이의 거리는");
-			System.out.println(calcCoordinate(inputCoordinates));
+	public static void printResult(ArrayList<Point> points) {
+		if (points.size() == 2) {
+			lineResult(points);
+		}
+		if (points.size() == 4) {
+			isSquare(points);
+		}
+	}
+
+	public static void isSquare(ArrayList<Point> points) {
+		Square square = Square.of(points);
+		if (square.isSquare()) {
+			squareResult(points);
 			return;
 		}
-		System.out.println("좌표계산기 종료");
+		System.out.println("\n직사각형 또는 정사각형이 아닙니다.");
 	}
 
-	public static double calcCoordinate(ArrayList<Coordinate> inputCoordinates) {
-		double result = 0;
-		if (inputCoordinates.size() == 2) { // 두점인경우
-			result = calcTwoPointDistance(inputCoordinates);
-		}
-		return result;
+	public static void lineResult(ArrayList<Point> points) {
+		System.out.println("\n두점 사이의 거리는");
+		Line line = Line.of(points);
+		System.out.println(line.getDistance());
 	}
 
-	public static double calcTwoPointDistance(ArrayList<Coordinate> inputCoordinates) {
-		HashMap<String, Integer> tempMap = new HashMap<>();
-		for (int i = 0; i < inputCoordinates.size(); i++) {
-			tempMap.put("x" + (i + 1), inputCoordinates.get(i).getxAxis());
-			tempMap.put("y" + (i + 1), inputCoordinates.get(i).getyAxis());
-		}
-		return calcDetail(tempMap);
-	}
-
-	public static double calcDetail(HashMap<String, Integer> tempMap) {
-		return Math.sqrt(Math.pow((tempMap.get("x1") - tempMap.get("x2")), 2)
-				+ Math.pow((tempMap.get("y1") - tempMap.get("y2")), 2));
+	public static void squareResult(ArrayList<Point> points) {
+		System.out.println("\n사각형의 넓이는");
+		Square square = Square.of(points);
+		System.out.println(square.getArea());
 	}
 
 }
