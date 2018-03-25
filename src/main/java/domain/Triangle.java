@@ -2,21 +2,19 @@ package domain;
 
 import java.util.List;
 
+import static domain.FigureUtil.isTriangle;
+
 public class Triangle extends Figure {
 
     Triangle(List<String> coordinates) {
         super.points = Points.initCoordinates(coordinates);
     }
 
-    public static Figure createFigure(List<String> coordinates){
-        if (!isTriangle(coordinates)){
+    public static Figure createFigure(List<String> coordinates) {
+        if (!isTriangle(coordinates)) {
             throw new RuntimeException();
         }
         return new Triangle(coordinates);
-    }
-
-    static boolean isTriangle(List<String> coordinates) {
-        return coordinates.size() == 3;
     }
 
     @Override

@@ -2,6 +2,8 @@ package domain;
 
 import java.util.List;
 
+import static domain.FigureUtil.isLine;
+
 public class Line extends Figure {
 
     Line(List<String> coordinates) {
@@ -15,9 +17,7 @@ public class Line extends Figure {
         return new Line(coordinates);
     }
 
-    static boolean isLine(List<String> coordinates) {
-        return coordinates.size() == 2;
-    }
+
 
     @Override
     public void calculate() {

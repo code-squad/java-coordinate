@@ -1,5 +1,5 @@
 import domain.Figure;
-import domain.Utils;
+import domain.InputUtil;
 import view.InputView;
 import view.ResultView;
 
@@ -10,7 +10,7 @@ public class Main {
     private static List<String> initCoordinates() {
         System.out.println("Input coordinates. ex. (1,2)-(3,4)-(5,1)");
         try {
-            return Utils.checkReturnCoordinates(InputView.getCoordinate());
+            return InputUtil.checkReturnCoordinates(InputView.getCoordinate());
         } catch (RuntimeException e) {
             return initCoordinates();
         }

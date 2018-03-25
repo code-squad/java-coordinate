@@ -24,7 +24,7 @@ public class ResultViewTest {
     @Test
     public void drawPoint(){
         List<String> coordinates = Arrays.asList("1,1", "1,4");
-        Figure figure = Figure.of(coordinates);
+        Figure figure = Figure.createFigure(coordinates);
         assertThat(ResultView.drawPoint(1, 1, figure), is(".  "));
         assertThat(ResultView.drawPoint(1, 0, figure), is("  "));
     }

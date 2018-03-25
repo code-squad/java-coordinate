@@ -15,7 +15,7 @@ public class FigureTest {
     public void hasCoordinateAt() {
         Figure figure;
         List<String> coordinates = Arrays.asList("1,1", "2,2");
-        figure = Figure.of(coordinates);
+        figure = Figure.createFigure(coordinates);
         assertThat(figure.hasCoordinateAt(1, 1), is(true));
         assertThat(figure.hasCoordinateAt(2, 2), is(true));
     }

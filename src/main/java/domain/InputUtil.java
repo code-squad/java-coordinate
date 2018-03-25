@@ -7,7 +7,7 @@ import static com.google.common.math.IntMath.pow;
 import static java.lang.Math.abs;
 import static java.lang.Math.sqrt;
 
-public class Utils {
+public class InputUtil {
 
     private static final int MAX_NUMBER = 24;
     private static final int MIN_NUMBER = 0;

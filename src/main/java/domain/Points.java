@@ -2,7 +2,7 @@ package domain;
 
 import java.util.*;
 
-import static domain.Utils.calculateLineBwPoints;
+import static domain.InputUtil.calculateLineBwPoints;
 import static java.lang.Math.sqrt;
 
 public class Points {
