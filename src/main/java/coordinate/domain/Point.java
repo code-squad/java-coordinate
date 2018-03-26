@@ -1,6 +1,7 @@
 package coordinate.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import coordinate.view.Input;
 
@@ -85,11 +86,21 @@ public class Point {
 	}
 
 	public static ArrayList<Point> isSamePoint(ArrayList<Point> inputPoints, int i, int j) {
-		if (inputPoints.get(i).equals(inputPoints.get(j))) {
+
+		HashSet<Point> checker = new HashSet<>();
+		checker.addAll(inputPoints);
+
+		if (inputPoints.size() != checker.size()) {
 			System.out.println("위치가 같은 점(point)이 존재합니다. 세 점의 위치는 달라야 합니다.");
 			return Input.inputPoints();
 		}
 		return inputPoints;
+	}
+
+	@Override
+	public int hashCode() {
+		String point = "x:" + xAxis + "y:" + yAxis;
+		return point.hashCode();
 	}
 
 	@Override
