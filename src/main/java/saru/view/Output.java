@@ -4,10 +4,11 @@ import saru.domain.*;
 
 import java.util.*;
 
+// SonarLint StandOutput warning 방지용
+@java.lang.SuppressWarnings("squid:S106")
 public class Output {
-    static final int MAX_VALUE =25;
+    private static final int MAX_VALUE = 25;
     private static final int EVEN = 2;
-    private static final String LENGTH_TWO_POINT = "두 점 사이 거리는 ";
 
     private static List<RowLine> rowLines;
 
@@ -21,16 +22,17 @@ public class Output {
         printVerticalAxis();
         printHorizontalAxis();
 
-        printLineLength(coordinateCalc);
+        printCalcResult(coordinateCalc);
     }
 
-    private static void printLineLength(CoordinateCalc coordinateCalc) {
-        System.out.print(LENGTH_TWO_POINT);
-
+    private static void printCalcResult(CoordinateCalc coordinateCalc) {
+        // TODO 출력할때 객체 리턴?
         try {
-            System.out.print(coordinateCalc.calcProc());
+            Result result = coordinateCalc.calcProc();
+            System.out.print(result.getPointNum() + " : " +
+                    result.getResultValue());
         } catch (IllegalArgumentException e) {
-            System.out.println("계산 에러");
+            System.out.println("입력값이 잘못 되었습니다.");
         }
     }
 
@@ -39,6 +41,7 @@ public class Output {
         for (int i = 0; i < MAX_VALUE; i++) {
             // 수평 출력
             printRowLine(i);
+
             System.out.println();
         }
     }
@@ -113,10 +116,9 @@ public class Output {
     }
 
     private static List<String> generateReverse() {
-        List<String> resultList = Arrays.asList("24", "  ", "22", "  ", "20",
+        return Arrays.asList("24", "  ", "22", "  ", "20",
                 "  ", "18", "  ", "16", "  ", "14", "  ", "12", "  ", "10",
                 "  ", " 8", "  ", " 6", "  ", " 4", "  ", " 2", "  ", "  ");
-        return resultList;
     }
 
     private static List<Integer> generate(int start, int end) {

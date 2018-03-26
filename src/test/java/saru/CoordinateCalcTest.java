@@ -32,11 +32,11 @@ public class CoordinateCalcTest {
     public void drawPoint() {
         Point point1 = new Point(4, 4);
 
-        List<Point> points = new ArrayList<>();
+        Set<Point> points = new HashSet<>();
         points.add(point1);
 
         CoordinateCalc coordinateCalc = new CoordinateCalc(points);
-        coordinateCalc.drawPoint(points.get(0));
+        coordinateCalc.drawPoint(points.iterator().next());
 
         RowLine foundRowLines = coordinateCalc.getRowLines().get(MAX_VALUE - 4);
         Point foundPoint = foundRowLines.getPoints().get(4);
@@ -48,13 +48,13 @@ public class CoordinateCalcTest {
         Point point1 = new Point(3, 3, true);
         Point point2 = new Point(4, 4, true);
 
-        List<Point> points = new ArrayList<>();
+        Set<Point> points = new HashSet<>();
         points.add(point1);
         points.add(point2);
 
         CoordinateCalc coordinateCalc = new CoordinateCalc(points);
-
-        assertEquals(1.414, coordinateCalc.calcProc(), 0.001);
+        Result result = coordinateCalc.calcProc();
+        assertEquals(1.414, result.getResultValue(), 0.001);
     }
 
     @Test
@@ -70,12 +70,32 @@ public class CoordinateCalcTest {
     }
 
     @Test
-    public void getUserInputString() {
-        List<Point> result = Input.getSplitedUserInputString("(10,10)-(14,15)");
+    public void checkPointsNum() {
+        // 해쉬셋에 저장한다. 중복과 관련.
+        Point point1 = new Point(3, 3, true);
+        Point point2 = new Point(4, 4, true);
 
-        assertEquals(10, result.get(0).getX(), 0.001);
-        assertEquals(10, result.get(0).getY(), 0.001);
-        assertEquals(14, result.get(1).getX(), 0.001);
-        assertEquals(15, result.get(1).getY(), 0.001);
+        Set<Point> points = new HashSet<>();
+        points.add(point1);
+        points.add(point2);
+
+        // 갯수를 확인한다
+        assertEquals(2, points.size());
+    }
+
+    @Test
+    public void checkShapeType() {
+        Point point1 = new Point(3, 3, true);
+        Point point2 = new Point(4, 4, true);
+
+        Set<Point> points = new HashSet<>();
+        points.add(point1);
+        points.add(point2);
+
+        CoordinateCalc coordinateCalc = new CoordinateCalc(points);
+        Set<Point> userInput = coordinateCalc.getUserInput();
+        CoordinateCalc.SHAPE_TYPE shapeType = coordinateCalc.checkShapeType(userInput);
+
+        assertEquals(CoordinateCalc.SHAPE_TYPE.LINE, shapeType);
     }
 }

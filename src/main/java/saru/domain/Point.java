@@ -1,5 +1,7 @@
 package saru.domain;
 
+import java.util.Objects;
+
 public class Point {
     private static final int MAX_VALUE = 24;
     private static final String INVALID_X_POSITION = "올바르지 못한 x 좌표 입력";
@@ -40,11 +42,7 @@ public class Point {
     }
 
     boolean hasX(double x) {
-        if (this.x == x) {
-            return true;
-        }
-
-        return false;
+        return this.x == x;
     }
 
     void draw() {
@@ -53,7 +51,29 @@ public class Point {
 
     double calcLengthWith(Point endPoint) {
         double powX = Math.pow(x - endPoint.getX(), 2);
-        double powY = Math.pow(x - endPoint.getY(), 2);
+        double powY = Math.pow(y - endPoint.getY(), 2);
         return Math.sqrt(powX + powY);
+    }
+
+    boolean checkSameX(Point otherPoint) {
+        return this.x == otherPoint.getX();
+    }
+
+    boolean checkSameY(Point otherPoint) {
+        return this.y == otherPoint.getY();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return Double.compare(point.x, x) == 0 &&
+                Double.compare(point.y, y) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }
