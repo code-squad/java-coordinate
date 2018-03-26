@@ -18,7 +18,10 @@ public class Main {
     private static Shape initShape() {
         Shape shape;
         try {
-            Output.printMessage("선이나 직사각형 좌표를 다음과 같은 포맷으로 입력해주세요.\n선일 경우: (1,2)-(3,4)\n직사각형일 경우: (0,0)-(1,0)-(0,1)-(1,1)");
+            Output.printMessage("선이나 직사각형 좌표를 다음과 같은 포맷으로 입력해주세요.\n" +
+                    "선일 경우: (1,2)-(3,4)\n" +
+                    "직사각형일 경우: (0,0)-(1,0)-(0,1)-(1,1)\n" +
+                    "삼각형일 경우: (1,1)-(5,5)-(10,8)");
             List<Point> points = Utils.processCoordinates(Input.takeCoordinates());
             shape = Shape.ofShape(points);
         } catch (IllegalArgumentException e) {
@@ -38,7 +41,10 @@ public class Main {
             Output.printLength(shape);
         }
         if (shape instanceof Square) {
-            Output.printArea(shape);
+            Output.printSquareArea(shape);
+        }
+        if (shape instanceof Triangle) {
+            Output.printTriangleArea(shape);
         }
     }
 }

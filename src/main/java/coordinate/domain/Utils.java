@@ -6,14 +6,16 @@ import java.util.*;
 
 public class Utils {
     private static final int COORDINATE_LENGTH = 2;
-    private static final int LINE_POINTS = 2;
-    private static final int SQUARE_POINTS = 4;
+    private static final int LINE = 2;
+    private static final int SQUARE = 4;
+    private static final int TRIANGLE = 3;
+
     private static final int X_INDEX = 0;
     private static final int Y_INDEX = 1;
 
     static String[] checkInputFormat(String input) throws IllegalArgumentException {
         String[] splitInput = input.split("\\s*-\\s*");
-        if (splitInput.length == LINE_POINTS || splitInput.length == SQUARE_POINTS) {
+        if (splitInput.length == LINE || splitInput.length == SQUARE || splitInput.length == TRIANGLE) {
             return splitInput;
         }
         Output.printMessage("좌표를 2개나 4개를 입력해주세요.");

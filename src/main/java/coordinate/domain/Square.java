@@ -3,10 +3,7 @@ package coordinate.domain;
 import java.util.List;
 
 public class Square extends Shape {
-    private static final int FIRST = 0;
-    private static final int SECOND = 1;
-    private static final int THIRD = 1;
-    private static final int FOURTH = 3;
+    private static final int POINTS_PER_SIDE = 2;
     private final List<Point> points;
 
     private Square(List<Point> points) {
@@ -28,7 +25,8 @@ public class Square extends Shape {
     }
 
     static boolean twoPoints(List<Point> points, Point point) {
-        return point.getPointsPerRow(points).size() != 2 || point.getPointsPerColumn(points).size() != 2;
+        return point.getPointsPerRow(points).size() != POINTS_PER_SIDE
+                || point.getPointsPerColumn(points).size() != POINTS_PER_SIDE;
     }
 
 
