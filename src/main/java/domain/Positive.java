@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Positive {
 
     private int number;
@@ -12,11 +14,21 @@ public class Positive {
         number = num;
     }
 
-    public int getWidth(Positive x) {
-        return Math.abs(this.number - x.number);
+    public int getDiff(Positive num) {
+        return Math.abs(this.number - num.number);
     }
 
-    public int getHeight(Positive y) {
-        return Math.abs(this.number - y.number);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Positive positive = (Positive) o;
+        return number == positive.number;
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(number);
     }
 }

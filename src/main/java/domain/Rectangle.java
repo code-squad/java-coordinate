@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 import static domain.FigureUtil.isRectangle;
-import static domain.InputUtil.calculateLineBwPoints;
 
 public class Rectangle extends Figure {
 

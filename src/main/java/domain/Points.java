@@ -2,11 +2,6 @@ package domain;
 
 import java.util.*;
 
-import static domain.InputUtil.calculateLineBwPoints;
-import static java.lang.Math.abs;
-import static java.lang.Math.pow;
-import static java.lang.Math.sqrt;
-
 public class Points {
 
     private List<Point> points;

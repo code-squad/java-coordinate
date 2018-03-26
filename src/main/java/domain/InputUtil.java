@@ -59,9 +59,4 @@ public class InputUtil {
         return true;
     }
 
-    static double calculateLineBwPoints(Point point1, Point point2) {
-        int xLine = abs(point1.getX() - point2.getX());
-        int yLine = abs(point1.getY() - point2.getY());
-        return sqrt((double) (pow(xLine, 2) + pow(yLine, 2)));
-    }
 }
