@@ -14,11 +14,7 @@ public class Coordinate {
         ArrayList<String> points = UserInput.getPoints(scanner);
         Line line = new Line(points);
 
-        Output.draw();
-        System.out.print(String.format("%3s", "+"));
-        System.out.println("------------------------------------------------");
-        Output.printNumber();
-        System.out.println();
+        Output.draw(line);
         Output.printResult(line);
     }
 }
