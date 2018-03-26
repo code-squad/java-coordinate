@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import coordinate.domain.Line;
 import coordinate.domain.Point;
 import coordinate.domain.Square;
+import coordinate.domain.Triangle;
 
 public class Print {
 	public static String drawFrame(int yAxis, ArrayList<Point> points) {
@@ -62,9 +63,23 @@ public class Print {
 		if (points.size() == 2) {
 			lineResult(points);
 		}
+
+		if (points.size() == 3) {
+			isTriangle(points);
+		}
+
 		if (points.size() == 4) {
 			isSquare(points);
 		}
+	}
+
+	public static void isTriangle(ArrayList<Point> points) {
+		Triangle triangle = Triangle.of(points);
+		if (triangle.isTriangle()) {
+			triangleResult(points);
+			return;
+		}
+		System.out.println("\n삼각형이 아닙니다.");
 	}
 
 	public static void isSquare(ArrayList<Point> points) {
@@ -82,10 +97,15 @@ public class Print {
 		System.out.println(line.getDistance());
 	}
 
+	public static void triangleResult(ArrayList<Point> points) {
+		System.out.println("\n삼각형의 넓이는");
+		System.out.printf("%.1f", Triangle.getArea(points));
+	}
+
 	public static void squareResult(ArrayList<Point> points) {
 		System.out.println("\n사각형의 넓이는");
 		Square square = Square.of(points);
-		System.out.println(square.getArea());
+		System.out.printf("%.1f", square.getArea());
 	}
 
 }
