@@ -24,10 +24,10 @@ public class Square {
             throw new IllegalArgumentException();
         }
 
-        double maxX = SquareUtil.getMaxXValue(userInput);
-        double minX = SquareUtil.getMinXValue(userInput);
-        double maxY = SquareUtil.getMaxYValue(userInput);
-        double minY = SquareUtil.getMinYValue(userInput);
+        double maxX = Util.getMaxXValue(userInput);
+        double minX = Util.getMinXValue(userInput);
+        double maxY = Util.getMaxYValue(userInput);
+        double minY = Util.getMinYValue(userInput);
 
         return (maxX - minX) * (maxY - minY);
     }

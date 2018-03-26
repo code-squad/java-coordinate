@@ -9,14 +9,20 @@ public class CoordinateCalc {
     private static final int MAX_VALUE = 25;
     private static final int POINT_ONE = 1;
     private static final int POINT_TWO = 2;
+    private static final int POINT_THREE = 3;
     private static final int POINT_FOUR = 4;
 
     public enum SHAPE_TYPE {
         POINT,
         LINE,
+        TRIANGLE,
         SQUARE,
         NONE
     }
+
+    private List<RowLine> rowLines = new ArrayList<>();
+
+    private Set<Point> userInput;
 
     public SHAPE_TYPE checkShapeType(Set<Point> userInput) {
         switch (userInput.size()) {
@@ -24,16 +30,14 @@ public class CoordinateCalc {
                 return SHAPE_TYPE.POINT;
             case POINT_TWO:
                 return SHAPE_TYPE.LINE;
+            case POINT_THREE:
+                return SHAPE_TYPE.TRIANGLE;
             case POINT_FOUR:
                 return SHAPE_TYPE.SQUARE;
             default:
                 throw new IllegalArgumentException();
         }
     }
-
-    private List<RowLine> rowLines = new ArrayList<>();
-
-    private Set<Point> userInput;
 
     public CoordinateCalc(Set<Point> userInput) {
         this.userInput = userInput;
@@ -52,8 +56,9 @@ public class CoordinateCalc {
             case LINE:
                 return new Result(SHAPE_TYPE.LINE, new Line(userInput).calcLineLength());
             case SQUARE:
-                // TODO SQURE 계산
                 return new Result(SHAPE_TYPE.SQUARE, new Square(userInput).area());
+            case TRIANGLE:
+                return new Result(SHAPE_TYPE.TRIANGLE, new Triangle(userInput).area());
         }
         throw new IllegalArgumentException();
     }
@@ -64,8 +69,6 @@ public class CoordinateCalc {
 
     public void userInputDrawProc() {
         // userInput 돌면서 그리기
-
-        // TODO reflection 에러?
         for (Point point : userInput) {
             drawPoint(point);
         }
