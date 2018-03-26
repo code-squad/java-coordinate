@@ -24,14 +24,6 @@ public class Point {
         return new Point(x, y);
     }
 
-    public int getY() {
-        return y.getNumber();
-    }
-
-    public int getX() {
-        return x.getNumber();
-    }
-
     public double getLengthBwTwoPoints(Point otherPoint){
         return abs(pow(getXDiff(otherPoint), 2) + pow(getYDiff(otherPoint), 2));
     }
@@ -41,7 +33,7 @@ public class Point {
     }
 
     int getYDiff(Point otherPoint){
-        return this.y.getWidth(otherPoint.y);
+        return this.y.getHeight(otherPoint.y);
     }
 
     @Override
