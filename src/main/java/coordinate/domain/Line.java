@@ -3,7 +3,7 @@ package coordinate.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Line {
+public class Line extends Figure {
 
 	private Point first;
 	private Point second;
@@ -17,7 +17,7 @@ public class Line {
 		this.second = points.get(1);
 	}
 
-	public double lineResult() {
+	public double area() {
 		return first.lineLength(second);
 	}
 

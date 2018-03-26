@@ -2,7 +2,7 @@ package coordinate.domain;
 
 import java.util.List;
 
-public class Triangle {
+public class Triangle extends Figure {
 
 	private double line1;
 	private double line2;
@@ -37,7 +37,7 @@ public class Triangle {
 		double line3 = p3.lineLength(p1);
 		return new Triangle(line1, line2, line3);
 	}
-	
+
 	public static boolean isTriangle(List<Point> points) {
 		return points.size() == 3;
 	}

@@ -15,28 +15,25 @@ public class CoordinatePoint {
 		checkSamePoint(points);
 	}
 
-	public List<Point> dividePoint(String[] str) {
+	public List<Point> dividePoint(String[] strs) {
 		List<Point> points = new ArrayList<>();
 
-		for (int i = 0; i < str.length; i++) {
-			str[i] = str[i].substring(1, str[i].length() - 1);
-			Point coordinate = Point.of(str[i]);
+		for (String str : strs) {
+			str = str.substring(1, str.length() - 1);
+			Point coordinate = Point.of(str);
 			points.add(coordinate);
 		}
 		return points;
 	}
 
-	public double decideFigure() { // 도형의 타입을 결정해주고 결과 값을 반환
+	public Figure decideFigure() { // 도형의 타입을 결정해주고 결과 값을 반환
 		if (Line.isLine(points)) {
-			Line line = new Line(points);
-			return line.lineResult();
+			return new Line(points);
 		}
 		if (Triangle.isTriangle(points)) {
-			Triangle triangle = Triangle.of(points);
-			return triangle.area();
+			return Triangle.of(points);
 		}
-		Square square = Square.init(points);
-		return square.area();
+		return Square.init(points);
 	}
 
 	public List<Point> getPoints() {
