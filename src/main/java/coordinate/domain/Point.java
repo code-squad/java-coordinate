@@ -4,7 +4,6 @@ import java.util.*;
 
 public class Point {
     private static final int DOMAIN_RANGE = 24;
-
     private final int x;
     private final int y;
 
@@ -38,7 +37,11 @@ public class Point {
         return this.y - y;
     }
 
-    List<Point> getPointsPerRow(List<Point> points) {
+    boolean arwTwoPointsPerRow(List<Point> points) {
+        return getPointsOnSameRow(points).size() == 2;
+    }
+
+    List<Point> getPointsOnSameRow(List<Point> points) {
         List<Point> pointsOnSameRow = new ArrayList<>();
         for (Point point : points) {
             if (point.yEquals(y)) {
@@ -48,7 +51,11 @@ public class Point {
         return pointsOnSameRow;
     }
 
-    List<Point> getPointsPerColumn(List<Point> points) {
+    boolean areTwoPointsPerColumn(List<Point> points) {
+        return getPointsOnSameColumn(points).size() == 2;
+    }
+
+    List<Point> getPointsOnSameColumn(List<Point> points) {
         List<Point> pointsOnSameColumn = new ArrayList<>();
         for (Point point : points) {
             if (point.xEquals(x)) {

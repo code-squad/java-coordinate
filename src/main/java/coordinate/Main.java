@@ -23,7 +23,7 @@ public class Main {
                     "직사각형일 경우: (0,0)-(1,0)-(0,1)-(1,1)\n" +
                     "삼각형일 경우: (1,1)-(5,5)-(10,8)");
             List<Point> points = Utils.processCoordinates(Input.takeCoordinates());
-            shape = Shape.ofShape(points);
+            shape = Factory.ofShape(points);
         } catch (IllegalArgumentException e) {
             return initShape();
         }
