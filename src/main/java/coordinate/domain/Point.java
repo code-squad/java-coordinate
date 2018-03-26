@@ -6,11 +6,13 @@ import coordinate.view.InputCoordinate;
 
 public class Point {
 
+	private final int MIN = 0;
+	private final int MAX = 24;
 	private int pointX;
 	private int pointY;
 
 	public Point(int pointX, int pointY) {
-		if (pointX < 0 || pointX > 24 || pointY < 0 || pointY > 24) {
+		if (pointX < MIN || pointX > MAX || pointY < MIN || pointY > MAX) {
 			throw new IllegalArgumentException("24초과의 값은 좌표가 될 수 없습니다.");
 		}
 

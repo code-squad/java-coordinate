@@ -13,6 +13,7 @@ import coordinate.domain.CoordinatePoint;
 import coordinate.domain.Line;
 import coordinate.domain.Point;
 import coordinate.domain.Square;
+import coordinate.domain.Triangle;
 
 public class CoordinateTest {
 
@@ -96,4 +97,16 @@ public class CoordinateTest {
 		Square.check(points);
 	}
 
+	@Test
+	public void triangleAreaTest() {
+		List<Point> points = Arrays.asList(new Point(6, 20), new Point(17, 20), new Point(15, 4));
+		Triangle test = Triangle.of(points);
+		assertEquals(88, test.area(), 0.001);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void notTriangleExceptionTest() {
+		List<Point> points = Arrays.asList(new Point(17, 20), new Point(15, 4));
+		Triangle test = Triangle.of(points);
+	}
 }

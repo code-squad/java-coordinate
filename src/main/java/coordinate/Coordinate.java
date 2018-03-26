@@ -16,6 +16,6 @@ public class Coordinate {
 		double length = point.decideFigure();
 
 		BoardView.makeBoard(point.getPoints());
-		BoardView.solveLine(length);
+		BoardView.solveLine(length, point.getPoints());
 	}
 }
