@@ -10,6 +10,9 @@ public class Triangle {
 	}
 
 	public static Triangle of(ArrayList<Point> points) {
+		if (points.size() != 3) {
+			throw new IllegalArgumentException("점이 3개가 아닙니다.");
+		}
 		return new Triangle(points);
 	}
 
@@ -22,7 +25,7 @@ public class Triangle {
 	}
 
 	public boolean isTriangle() {
-		if (!(points.get(0).isOneLine(points.get(1), points.get(2)))) {
+		if (!(Point.isOneLine(points.get(0), points.get(1), points.get(2)))) {
 			return true;
 		}
 		return false;

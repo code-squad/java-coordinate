@@ -53,9 +53,9 @@ public class Point {
 		return this.xAxis == xAxis;
 	}
 
-	public Boolean isOneLine(Point anotherPoint, Point otherPoint) {
-		return (isSameYaxis(anotherPoint.yAxis) && isSameYaxis(otherPoint.yAxis))
-				|| (isSameXaxis(anotherPoint.xAxis) && isSameXaxis(otherPoint.xAxis));
+	public static Boolean isOneLine(Point point, Point anotherPoint, Point otherPoint) {
+		return (point.isSameYaxis(anotherPoint.yAxis) && point.isSameYaxis(otherPoint.yAxis))
+				|| (point.isSameXaxis(anotherPoint.xAxis) && point.isSameXaxis(otherPoint.xAxis));
 	}
 
 	public double getDistance(Point otherPoint) {
