@@ -2,31 +2,55 @@ package coordinate.domain;
 
 import coordinate.view.Output;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Utils {
-    private static final int NUMBER_OF_POINTS = 2;
+    private static final int COORDINATE_LENGTH = 2;
+    private static final int LINE_POINTS = 2;
+    private static final int SQUARE_POINTS = 4;
+    private static final int X_INDEX = 0;
+    private static final int Y_INDEX = 1;
 
-    public static String[] checkInputFormat(String input) throws IllegalArgumentException {
+    static String[] checkInputFormat(String input) throws IllegalArgumentException {
         String[] splitInput = input.split("\\s*-\\s*");
-        if (splitInput.length != NUMBER_OF_POINTS) {
-            Output.printMessage("좌표를 2개 입력해주세요.");
-            throw new IllegalArgumentException();
+        if (splitInput.length == LINE_POINTS || splitInput.length == SQUARE_POINTS) {
+            return splitInput;
         }
-        return splitInput;
+        Output.printMessage("좌표를 2개나 4개를 입력해주세요.");
+        throw new IllegalArgumentException();
     }
 
-    static int[] convertToIntegerArray(String set) throws IllegalArgumentException {
-        String[] xySplit = set.replaceAll("[()]", "").split("\\s*,\\s*");
-        int[] xySet;
-        try {
-            xySet = convertCoordinatesToIntegers(xySplit);
-        } catch (IllegalArgumentException e) {
-            Output.printMessage("좌표 포맷이 맞지 않습니다.");
-            throw e;
+    public static List<Point> processCoordinates(String input) throws IllegalArgumentException {
+        List<Point> points = new ArrayList<>();
+        String[] splitInput = Utils.checkInputFormat(input);
+        for (String set : splitInput) {
+            int[] xySet = Utils.convertToIntegerArray(set);
+            points = addPoint(points, xySet);
         }
-        return xySet;
+        if (isDuplicate(points)) {
+            Output.printMessage("중복되는 좌표가 있습니다.");
+            throw new IllegalArgumentException();
+        }
+        return points;
+    }
+
+    private static List<Point> addPoint(List<Point> points, int[] xySet) {
+        Point newPoint = new Point(xySet[X_INDEX], xySet[Y_INDEX]);
+        points.add(newPoint);
+        return points;
+    }
+
+    static boolean isDuplicate(List<Point> points) {
+        Set<Point> unique = new HashSet<>();
+        for (Point point : points) {
+            if (!unique.add(point)) return true;
+        }
+        return false;
+    }
+
+    static int[] convertToIntegerArray(String set) {
+        String[] xySplit = set.replaceAll("[()]", "").split("\\s*,\\s*");
+        return convertCoordinatesToIntegers(xySplit);
     }
 
     private static int[] convertCoordinatesToIntegers(String[] set) throws IllegalArgumentException {
@@ -34,14 +58,17 @@ public class Utils {
         try {
             xySet = Arrays.stream(set).mapToInt(Integer::parseInt).toArray();
         } catch (IllegalArgumentException e) {
+            Output.printMessage("좌표가 숫자가 아닙니다.");
             throw e;
         }
-        return xySet;
+        return checkCoordinateValidity(xySet);
     }
 
-    static double calculateDistance(List<Point> points) {
-        double xSquared = Math.pow(points.get(0).getX() - points.get(1).getX(), 2);
-        double ySquared = Math.pow(points.get(0).getY() - points.get(1).getY(), 2);
-        return Math.sqrt(xSquared + ySquared);
+    private static int[] checkCoordinateValidity(int[] xySet) throws IllegalArgumentException {
+        if (xySet.length != COORDINATE_LENGTH) {
+            Output.printMessage("(x, y) 값만 입력해주세요.");
+            throw new IllegalArgumentException();
+        }
+        return xySet;
     }
 }

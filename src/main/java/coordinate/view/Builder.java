@@ -1,84 +1,81 @@
 package coordinate.view;
 
-import coordinate.domain.Row;
+import com.google.common.collect.Lists;
+import coordinate.domain.Coordinate;
 
 import java.util.List;
 
+import static coordinate.domain.CoordinateCalculator.DOMAIN;
+
 public class Builder {
-    private static final int GRAPH_LOCATION = 100;
+    private static final int ROW_SIZE = 25;
 
-    public static String startBuild(List<Row> rows) {
+    public static String startBuild(List<Coordinate> coordinates) {
         StringBuilder builder = new StringBuilder();
-        for (int y = rows.size() - 1; y >= 0; y--) {
-            builder.append(addRow(rows, y));
-            builder.append("\n");
+        for (Coordinate coordinate : Lists.reverse(coordinates)) {
+            builder.append(addYLabel(coordinates, coordinate)); //add y-label
+            builder.append(addCoordinate(coordinate)); //add coordinate
+            builder.append(addNewLine(coordinate)); //add new line if x == 24
         }
-        String xLabel = addXLabel(rows.get(rows.size() - 1));
-        builder.append(formatRow(xLabel));//add format spaces before x-label
-        builder.append(xLabel);
-
+        builder.append(addXLabel());//add x-label
         return builder.toString();
     }
 
-    private static String addRow(List<Row> rows, int y) {
-        StringBuilder builder = new StringBuilder();
-        builder.append(addYLabel(y)); //append y-label
-        builder.append(addCoordinates(rows.get(y), y)); //append row
-        builder.insert(0, formatRow(builder.toString())); //format to align y-axis
-
-        return builder.toString();
+    private static String addYLabel(List<Coordinate> coordinates, Coordinate coordinate) {
+        if (coordinate.isFirst() && coordinate.yIsEven()) { //if coordinate x == 0 and x is even, add the number before the coordinate
+            return String.valueOf((coordinates.indexOf(coordinate) / ROW_SIZE));
+        }
+        if (coordinate.isFirst() && !coordinate.yIsEven()) { //if coordinate x == 0 and x is odd, add a space before the coordinate
+            return " ";
+        }
+        return "";
     }
 
-    static String addYLabel(int y) {
-        StringBuilder builder = new StringBuilder();
-        if (y % 2 == 0) {
-            return builder.append(y).toString();
+    static String addCoordinate(Coordinate coordinate) {
+        String element = "  ";
+        if (coordinate.isOnYAxis() && coordinate.yIsOneDigit()) {
+            element = " |";
         }
-        return builder.append(" ").toString();
+        if (coordinate.isOnYAxis() && coordinate.yIsEven() && !coordinate.yIsOneDigit()) {
+            element = "|";
+        }
+        if (coordinate.isOnYAxis() && !coordinate.yIsEven() && !coordinate.yIsOneDigit()) {
+            element = " |";
+        }
+        if (coordinate.isOnXAxis()) {
+            element = " -";
+        }
+        if (coordinate.isOnXAxis() && coordinate.isOnYAxis()) { //(0,0)
+            element = " +";
+        }
+        if (coordinate.isPoint()){// && coordinate.yIsOneDigit()) {
+            element = " *";
+        }
+//        if (coordinate.isPoint() && !coordinate.yIsOneDigit()) {
+//            element = "*";
+//        }
+        return element;
     }
 
-    static String formatRow(String row) {
-        StringBuilder builder = new StringBuilder();
-        int diff = GRAPH_LOCATION - row.length();
-        for (int i = 0; i < diff; i++) {
-            builder.append(" ");
+    private static String addNewLine(Coordinate coordinate) {
+        if (coordinate.isLast()) {
+            return "\n";
         }
-        return builder.toString();
+        return "";
     }
 
-    private static String addCoordinates(Row row, int y) {
+    private static String addXLabel() {
         StringBuilder builder = new StringBuilder();
-        for (int x = 0; x <= row.getRowSize() - 1; x++) {
-            builder.append(addPoint(row.isPointAt(x), x, y));
-        }
-        return builder.toString();
-    }
-
-    static String addPoint(boolean isDot, int x, int y) {
-        if (!isDot && x == 0 && y == 0) { //(0,0) and no dot
-            return " +";
-        }
-        if (!isDot && x == 0) { //(0,y) and no dot
-            return " |";
-        }
-        if (!isDot && y == 0) { //(x,0) and no dot
-            return " -";
-        }
-        if (isDot) {
-            return " *";
-        }
-        return "  "; //no dot
-    }
-
-    private static String addXLabel(Row row) {
-        StringBuilder builder = new StringBuilder();
-        for (int x = 2; x <= row.getRowSize() - 1; x++) {
+        for (int x = 0; x <= DOMAIN; x++) {
             builder.append(addXLabelNumber(x));
         }
         return builder.toString();
     }
 
     static String addXLabelNumber(int x) {
+        if (x == 0) {
+            return "  " + x;
+        }
         if (x % 2 == 0 && String.valueOf(x).length() < 2) {
             return " " + x;
         }

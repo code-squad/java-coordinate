@@ -1,31 +1,44 @@
 package coordinate;
 
-import coordinate.domain.CoordinateCalculator;
-import coordinate.domain.Points;
-import coordinate.domain.Utils;
+import coordinate.domain.*;
 import coordinate.view.Input;
 import coordinate.view.Output;
+
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-        Points points = promptUserInput();
+        Shape shape = initShape();
+        CoordinateCalculator calculator = initCalculator(shape);
 
-        CoordinateCalculator cc = new CoordinateCalculator(points);
-
-        Output.printGraph(cc);
-        Output.printDistance(cc);
+        printResult(calculator, shape);
     }
 
-    private static Points promptUserInput() {
-        Points points;
+    private static Shape initShape() {
+        Shape shape;
         try {
-            Output.printMessage("좌표를 다음과 같은 포맷으로 입력해주세요: (1,2)-(3,4)");
-            String[] input = Utils.checkInputFormat(Input.takeCoordinates());
-            points = new Points(input);
+            Output.printMessage("선이나 직사각형 좌표를 다음과 같은 포맷으로 입력해주세요.\n선일 경우: (1,2)-(3,4)\n직사각형일 경우: (0,0)-(1,0)-(0,1)-(1,1)");
+            List<Point> points = Utils.processCoordinates(Input.takeCoordinates());
+            shape = Shape.ofShape(points);
         } catch (IllegalArgumentException e) {
-            return promptUserInput();
+            return initShape();
         }
-        return points;
+        return shape;
+    }
+
+    private static CoordinateCalculator initCalculator(Shape shape) {
+        return new CoordinateCalculator(shape);
+    }
+
+    private static void printResult(CoordinateCalculator cc, Shape shape) {
+        Output.printFigure(cc);
+
+        if (shape instanceof Line) {
+            Output.printLength(shape);
+        }
+        if (shape instanceof Square) {
+            Output.printArea(shape);
+        }
     }
 }

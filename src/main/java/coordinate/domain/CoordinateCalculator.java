@@ -6,32 +6,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CoordinateCalculator {
-    private static final int RANGE = 24;
-    private List<Row> rows;
-    private final Points points;
+    public static final int RANGE = 24;
+    public static final int DOMAIN = 24;
+    private final List<Coordinate> coordinates;
 
-    public CoordinateCalculator(Points points) {
-        this.points = points;
-        this.rows = calculatorInit(points);
+    public CoordinateCalculator(Shape shape) {
+        this.coordinates = initCoordinates(shape);
     }
 
-    private static List<Row> calculatorInit(Points points) {
-        List<Row> rows = new ArrayList<>();
+    private static List<Coordinate> initCoordinates(Shape shape) {
+        List<Coordinate> coordinates = new ArrayList<>();
         for (int y = 0; y <= RANGE; y++) {
-            rows.add(addRow(points, y));
+            initXY(coordinates, shape, y);
         }
-        return rows;
+        return coordinates;
     }
 
-    private static Row addRow(Points points, int y) {
-        return new Row(points.getXOnRowY(y)); //point가 있는 y번째 row에 x좌표
+    private static List<Coordinate> initXY(List<Coordinate> coordinates, Shape shape, int y) {
+        for (int x = DOMAIN; x >= 0; x--) {
+            coordinates.add(createCoordinate(shape, x, y));
+        }
+        return coordinates;
+    }
+
+    private static Coordinate createCoordinate(Shape shape, int x, int y) {
+        if (shape.isMatch(x, y)) {
+            return Coordinate.ofPoint(x, y);
+        }
+        return Coordinate.ofNoPoint(x, y);
     }
 
     public String buildCalc() {
-        return Builder.startBuild(rows);
-    }
-
-    public double calculateDistance() {
-        return points.calculateDistance();
+        return Builder.startBuild(coordinates);
     }
 }

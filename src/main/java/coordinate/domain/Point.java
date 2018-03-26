@@ -1,58 +1,80 @@
 package coordinate.domain;
 
-import coordinate.view.Output;
+import java.util.*;
 
 public class Point {
     private static final int DOMAIN_RANGE = 24;
-    private static final int COORDINATE_LENGTH = 2;
-    private static final int X_INDEX = 0;
-    private static final int Y_INDEX = 1;
+
     private final int x;
     private final int y;
 
-    Point(int[] xySet) {
-        xySet = checkCoordinateValidity(xySet);
-        this.x = xySet[X_INDEX];
-        this.y = xySet[Y_INDEX];
+    Point(int x, int y) {
+        checkDomainRange(x, y);
+        this.x = x;
+        this.y = y;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public boolean contains(int y) {
-        return this.y == y;
-    }
-
-    static int[] checkCoordinateValidity(int[] xySet) throws IllegalArgumentException{
-        if (!isValidCoordinate(xySet)) {
-            Output.printMessage("좌표 포맷이 맞지 않습니다.");
+    static void checkDomainRange(int x, int y) throws IllegalArgumentException {
+        if (isOutOfDomainRange(x) || isOutOfDomainRange(y)) {
             throw new IllegalArgumentException();
         }
-        return xySet;
-    }
-
-    private static boolean isValidCoordinate(int[] xySet) {
-        if (xySet.length != COORDINATE_LENGTH) {
-            return false;
-        }
-        if (isOutOfDomainRange(xySet[X_INDEX]) || isOutOfDomainRange(xySet[Y_INDEX])) {
-            return false;
-        }
-        return true;
     }
 
     private static boolean isOutOfDomainRange(Integer number) {
         return number > DOMAIN_RANGE;
     }
 
+    double calculateDistanceFrom(Point point) {
+        double xSquared = Math.pow(point.subtractX(x), 2);
+        double ySquared = Math.pow(point.subtractY(y), 2);
+        return Math.sqrt(xSquared + ySquared);
+    }
+
+    private int subtractX(int x) {
+        return this.x - x;
+    }
+
+    private int subtractY(int y) {
+        return this.y - y;
+    }
+
+    List<Point> getPointsPerRow(List<Point> points) {
+        List<Point> pointsOnSameRow = new ArrayList<>();
+        for (Point point : points) {
+            if (point.yEquals(y)) {
+                pointsOnSameRow.add(point);
+            }
+        }
+        return pointsOnSameRow;
+    }
+
+    List<Point> getPointsPerColumn(List<Point> points) {
+        List<Point> pointsOnSameColumn = new ArrayList<>();
+        for (Point point : points) {
+            if (point.xEquals(x)) {
+                pointsOnSameColumn.add(point);
+            }
+        }
+        return pointsOnSameColumn;
+    }
+
+    boolean xEquals(int x) {
+        return this.x == x;
+    }
+
+    boolean yEquals(int y) {
+        return this.y == y;
+    }
+
     @Override
     public boolean equals(Object o) {
-        Point point = (Point) o;
-        return point.x == this.x && point.y == this.y;
+        Point p = (Point) o;
+        boolean c = p.xEquals(x) && p.yEquals(y);
+        return c;
+    }
+
+    @Override
+    public int hashCode() {
+        return (31 * x) + (17 * y);
     }
 }
