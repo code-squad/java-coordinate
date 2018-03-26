@@ -38,7 +38,7 @@ public class Point {
         return this.y - y;
     }
 
-    List<Point> getPointsOnSameRow(List<Point> points) {
+    List<Point> getPointsPerRow(List<Point> points) {
         List<Point> pointsOnSameRow = new ArrayList<>();
         for (Point point : points) {
             if (point.yEquals(y)) {
@@ -48,7 +48,7 @@ public class Point {
         return pointsOnSameRow;
     }
 
-    public List<Point> getPointsOnSameColumn(List<Point> points) {
+    List<Point> getPointsPerColumn(List<Point> points) {
         List<Point> pointsOnSameColumn = new ArrayList<>();
         for (Point point : points) {
             if (point.xEquals(x)) {

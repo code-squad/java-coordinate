@@ -3,13 +3,14 @@ package coordinate.domain;
 import java.util.List;
 
 public class Line extends Shape {
-    private static final int FIRST_POINT = 0;
-    private static final int SECOND_POINT = 1;
-    private static final int NUMBER_OF_POINTS = 2;
-    private final List<Point> points;
+    private static final int FIRST = 0;
+    private static final int SECOND = 1;
+    private final Point a;
+    private final Point b;
 
     private Line(List<Point> points) {
-        this.points = points;
+        this.a = points.get(FIRST);
+        this.b = points.get(SECOND);
     }
 
     public static Line ofLine(List<Point> points) {
@@ -17,14 +18,10 @@ public class Line extends Shape {
     }
 
     public double calculate() {
-        return points.get(FIRST_POINT).calculateDistanceFrom(points.get(SECOND_POINT));
+        return a.calculateDistanceFrom(b);
     }
 
     public boolean isMatch(int x, int y) {
-        return points.stream().anyMatch(p -> p.xEquals(x) && p.yEquals(y));
-    }
-
-    public boolean isLine() {
-        return points.size() == NUMBER_OF_POINTS;
+        return a.xEquals(x) && a.yEquals(y) || b.xEquals(x) && b.yEquals(y);
     }
 }

@@ -32,25 +32,4 @@ public class LineTest {
         line = Line.ofLine(points);
         assertEquals(false, line.isMatch(5, 5));
     }
-
-    @Test
-    public void isLineTrue() {
-        points = Arrays.asList(new Point(0, 0), new Point(10, 10));
-        line = Line.ofLine(points);
-        assertEquals(true, line.isLine());
-    }
-
-    @Test
-    public void isLineFalseLessThanTwoPoints() {
-        points = Arrays.asList(new Point(0, 0));
-        line = Line.ofLine(points);
-        assertEquals(false, line.isLine());
-    }
-
-    @Test
-    public void isLineFalseMoreThanTwoPoints() {
-        points = Arrays.asList(new Point(0, 0), new Point(10, 10), new Point(10, 0));
-        line = Line.ofLine(points);
-        assertEquals(false, line.isLine());
-    }
 }

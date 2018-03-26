@@ -21,7 +21,7 @@ public class Builder {
         return builder.toString();
     }
 
-    static String addYLabel(List<Coordinate> coordinates, Coordinate coordinate) {
+    private static String addYLabel(List<Coordinate> coordinates, Coordinate coordinate) {
         if (coordinate.isFirst() && coordinate.yIsEven()) { //if coordinate x == 0 and x is even, add the number before the coordinate
             return String.valueOf((coordinates.indexOf(coordinate) / ROW_SIZE));
         }
@@ -48,12 +48,12 @@ public class Builder {
         if (coordinate.isOnXAxis() && coordinate.isOnYAxis()) { //(0,0)
             element = " +";
         }
-        if (coordinate.isPoint() && coordinate.yIsOneDigit()) {
+        if (coordinate.isPoint()){// && coordinate.yIsOneDigit()) {
             element = " *";
         }
-        if (coordinate.isPoint() && !coordinate.yIsOneDigit()) {
-            element = "*";
-        }
+//        if (coordinate.isPoint() && !coordinate.yIsOneDigit()) {
+//            element = "*";
+//        }
         return element;
     }
 
