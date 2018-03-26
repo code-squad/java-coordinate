@@ -2,14 +2,17 @@ package domain;
 
 import java.util.Objects;
 
+import static java.lang.Math.pow;
+import static java.lang.StrictMath.abs;
+
 public class Point {
 
-    private int x;
-    private int y;
+    private Positive x;
+    private Positive y;
 
     private Point(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.x = new Positive(x);
+        this.y = new Positive(y);
     }
 
     public static Point of(String coordinate) {
@@ -22,11 +25,23 @@ public class Point {
     }
 
     public int getY() {
-        return y;
+        return y.getNumber();
     }
 
     public int getX() {
-        return x;
+        return x.getNumber();
+    }
+
+    public double getLengthBwTwoPoints(Point otherPoint){
+        return abs(pow(getXDiff(otherPoint), 2) + pow(getYDiff(otherPoint), 2));
+    }
+
+    int getXDiff(Point otherPoint){
+        return this.x.getWidth(otherPoint.x);
+    }
+
+    int getYDiff(Point otherPoint){
+        return this.y.getWidth(otherPoint.y);
     }
 
     @Override
