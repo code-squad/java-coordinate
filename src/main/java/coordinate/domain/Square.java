@@ -3,7 +3,7 @@ package coordinate.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Square {
+public class Square extends Figure {
 	private Point standard;
 	private Point oppositionPoint;
 
