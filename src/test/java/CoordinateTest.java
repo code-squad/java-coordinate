@@ -3,6 +3,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.hamcrest.Matcher;
@@ -47,12 +48,7 @@ public class CoordinateTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void checkSamePointTest() {
-		Point test = new Point(5, 12);
-		Point test2 = new Point(5, 12);
-
-		List<Point> points = new ArrayList<>();
-		points.add(test);
-		points.add(test2);
+		List<Point> points = Arrays.asList(new Point(5, 12), new Point(5, 12));
 		CoordinatePoint.checkSamePoint(points);
 	}
 
@@ -76,34 +72,16 @@ public class CoordinateTest {
 
 	@Test
 	public void findOppositionPointTest() {
-		Point test = new Point(2, 15);
-		Point test2 = new Point(2, 8);
-		Point test3 = new Point(20, 15);
-		Point test4 = new Point(20, 8);
-
-		List<Point> points = new ArrayList<>();
-		points.add(test);
-		points.add(test2);
-		points.add(test3);
-		points.add(test4);
+		Point test = new Point(20, 8);
+		List<Point> points = Arrays.asList(new Point(2, 15), new Point(2, 8), new Point(20, 15), new Point(20, 8));
 
 		Point testSquare = Square.findOppositionPoint(points);
-		assertThat(testSquare, is(test4));
+		assertThat(testSquare, is(test));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void checkSquareExceptionTest() {
-		Point test = new Point(6, 7);
-		Point test2 = new Point(2, 8);
-		Point test3 = new Point(5, 15);
-		Point test4 = new Point(20, 8);
-
-		List<Point> points = new ArrayList<>();
-		points.add(test);
-		points.add(test2);
-		points.add(test3);
-		points.add(test4);
-
+		List<Point> points = Arrays.asList(new Point(6, 7), new Point(2, 8), new Point(5, 15), new Point(20, 8));
 		Square.check(points);
 	}
 
@@ -114,12 +92,7 @@ public class CoordinateTest {
 		Point test3 = new Point(20, 15);
 		Point test4 = new Point(20, 8);
 
-		List<Point> points = new ArrayList<>();
-		points.add(test);
-		points.add(test2);
-		points.add(test3);
-		points.add(test4);
-
+		List<Point> points = Arrays.asList(new Point(2, 15), new Point(2, 8), new Point(20, 15), new Point(20, 8));
 		Square.check(points);
 	}
 
