@@ -13,7 +13,7 @@ public class Square extends Shape {
         this.points = points;
     }
 
-    public static Square ofSquare(List<Point> points) {
+    public static Square ofSquare(List<Point> points) throws IllegalArgumentException {
         if (!isSquare(points)) {
             throw new IllegalArgumentException();
         }

@@ -30,16 +30,7 @@ public class CoordinateCalculator {
     }
 
     private static Coordinate createCoordinate(Shape shape, int x, int y) {
-        boolean match = false;
-        if (shape instanceof Line) {
-            Line line = (Line) shape;
-            match = line.isMatch(x, y);
-        }
-        if (shape instanceof Square) {
-            Square square = (Square) shape;
-            match = square.isMatch(x, y);
-        }
-        if (match) {
+        if (shape.isMatch(x, y)) {
             return Coordinate.ofPoint(x, y);
         }
         return Coordinate.ofNoPoint(x, y);
