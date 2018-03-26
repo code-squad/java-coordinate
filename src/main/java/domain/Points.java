@@ -1,7 +1,11 @@
 package domain;
 
 import java.util.*;
-import static domain.Utils.calculateLineBwPoints;
+
+import static domain.InputUtil.calculateLineBwPoints;
+import static java.lang.Math.abs;
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
 
 public class Points {
 
@@ -30,29 +34,14 @@ public class Points {
         return Points.of(points);
     }
 
+    double calculateLineBwPoints(int a, int b) {
+        double xDiff = abs(points.get(a).getX() - points.get(b).getX());
+        double yDiff = abs(points.get(a).getY() - points.get(b).getY());
+        return sqrt(pow(xDiff, 2) + pow(yDiff, 2));
+    }
+
     public boolean contains(int x, int y) {
         return points.contains(Point.of(x, y));
-    }
-
-    public static boolean isRectangle(List<String> coordinates) {
-        return coordinates.size() == 4;
-    }
-
-    public static boolean isLine(List<String> coordinates) {
-        return coordinates.size() == 2;
-    }
-
-    public double calculateLine() {
-        return calculateLineBwPoints(points.get(0), points.get(1));
-    }
-
-    public double calculateRectangle() {
-        ArrayList<Double> eachLengths = new ArrayList<>();
-        for (int i = 1; i < points.size(); i++) {
-            eachLengths.add(calculateLineBwPoints(points.get(0), points.get(i)));
-        }
-        Collections.sort(eachLengths);
-        return eachLengths.get(0) * eachLengths.get(1);
     }
 
     @Override

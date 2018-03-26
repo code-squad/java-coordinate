@@ -7,7 +7,7 @@ import static com.google.common.math.IntMath.pow;
 import static java.lang.Math.abs;
 import static java.lang.Math.sqrt;
 
-public class Utils {
+public class InputUtil {
 
     private static final int MAX_NUMBER = 24;
     private static final int MIN_NUMBER = 0;
@@ -59,29 +59,9 @@ public class Utils {
         return true;
     }
 
-    public static List<String> figureCheckReturn(List<String> coordinates) {
-        Set<String> xCoords = new HashSet<>();
-        Set<String> yCoords = new HashSet<>();
-        for (String coordinate : coordinates) {
-            String[] coordPair = coordinate.split(",");
-            xCoords.add(coordPair[0]);
-            yCoords.add(coordPair[1]);
-        }
-        if (coordinates.size() == 4 && xCoords.size() == yCoords.size()) {
-            return coordinates;
-        }
-        if (coordinates.size() == 2) return coordinates;
-        System.out.println("직사각형 또는 직선만 혀용합니다.");
-        throw new RuntimeException();
-    }
-
-    static double calculateLineBwPoints(Point point1, Point point2){
+    static double calculateLineBwPoints(Point point1, Point point2) {
         int xLine = abs(point1.getX() - point2.getX());
         int yLine = abs(point1.getY() - point2.getY());
-        return sqrt((double)(pow(xLine, 2) + pow(yLine, 2)));
+        return sqrt((double) (pow(xLine, 2) + pow(yLine, 2)));
     }
-
-
-
-
 }
