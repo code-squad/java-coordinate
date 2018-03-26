@@ -2,6 +2,8 @@ package view;
 
 import domain.Line;
 import domain.Point;
+import domain.Rectangle;
+import domain.Shape;
 
 import java.util.ArrayList;
 
@@ -61,10 +63,14 @@ public class ResultView {
         }
     }
 
-    public static void printCalculation(ArrayList<Point> points) {
-        if (points.size() == 2) {
-            Line line = new Line(points.get(0), points.get(1));
+    public static void printCalculation(Shape shape) {
+        if (shape.hasLineCount(1)) {
+            Line line = (Line) shape;
             System.out.println("\n두 점 사이 거리는 " + line.getDistance());
+        }
+        if (shape.hasLineCount(4)) {
+            Rectangle rectangle = (Rectangle) shape;
+            System.out.println("\n사각형의 넓이는 " + rectangle.getArea());
         }
     }
 }

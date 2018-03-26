@@ -17,14 +17,6 @@ public class PointList {
         return pointList;
     }
 
-    public static Boolean addPoint(Point point) {
-        if (point != null) {
-            points.add(point);
-            return true;
-        }
-        return false;
-    }
-
     public static ArrayList<Point> getPoints() {
         return points;
     }
@@ -34,7 +26,6 @@ public class PointList {
         for (int i = 0; i < numbers.size(); i = i + 2) {
                 x = Integer.parseInt(numbers.get(i));
                 y = Integer.parseInt(numbers.get(i + 1));
-//            System.out.println("x : " + x + " y : " + y);
                 points.add(Point.getPoint(x, y));
         }
         sortDesc();
@@ -66,7 +57,17 @@ public class PointList {
             Integer o1X = o1.getX();
             Integer o2X = o2.getX();
             compareResult = o1X.compareTo(o2X);
-            return compareResult * -1;
+            return compareResult;
         }
     };
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Point point : points) {
+            sb.append(point.toString());
+            sb.append('\n');
+        }
+        return sb.toString();
+    }
 }
