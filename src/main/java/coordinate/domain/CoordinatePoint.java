@@ -20,15 +20,19 @@ public class CoordinatePoint {
 
 		for (int i = 0; i < str.length; i++) {
 			str[i] = str[i].substring(1, str[i].length() - 1);
-			Point coordinate = new Point(str[i]);
+			Point coordinate = Point.of(str[i]);
 			points.add(coordinate);
 		}
 		return points;
 	}
 
 	public double decideFigure() { // 도형의 타입을 결정해주고 결과 값을 반환
-		Line line = new Line(points);
-		return line.lineResult();
+		if (Line.isLine(points)) {
+			Line line = new Line(points);
+			return line.lineResult();
+		}
+		Square square = Square.init(points);
+		return square.area();
 	}
 
 	public List<Point> getPoints() {

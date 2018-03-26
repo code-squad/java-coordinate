@@ -18,12 +18,10 @@ public class Line {
 	}
 
 	public double lineResult() {
-		double width = first.getWidth(second);
-		double height = first.getHigh(second);
-		return lineLength(width, height);
+		return first.lineLength(second);
 	}
 
-	public static double lineLength(double width, double height) {
-		return Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
+	public static boolean isLine(List<Point> points) {
+		return points.size() == 2;
 	}
 }

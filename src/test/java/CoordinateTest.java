@@ -3,6 +3,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.hamcrest.Matcher;
@@ -11,6 +12,7 @@ import org.junit.Test;
 import coordinate.domain.CoordinatePoint;
 import coordinate.domain.Line;
 import coordinate.domain.Point;
+import coordinate.domain.Square;
 
 public class CoordinateTest {
 
@@ -18,41 +20,35 @@ public class CoordinateTest {
 	public void isHighTest() {
 		String testNum1 = "10,12";
 		String testNum2 = "7,20";
-		Point test = new Point(testNum1);
-		Point test2 = new Point(testNum2);
+		Point test = Point.of(testNum1);
+		Point test2 = Point.of(testNum2);
 
-		assertThat(test.getHigh(test2), is(8));
+		assertThat(test.getHeight(test2), is(8));
 		assertThat(test.getWidth(test2), is(3));
 	}
 
 	@Test
 	public void lineLengthTest() {
-		assertEquals(1.414, Line.lineLength(1, 1), 0.001);
-		assertEquals(3.606, Line.lineLength(2, 3), 0.001);
+		Point test = new Point(1, 1);
+		Point test2 = new Point(2, 2);
+		Point test3 = new Point(3, 4);
+		assertEquals(1.414, test.lineLength(test2), 0.001);
+		assertEquals(3.606, test.lineLength(test3), 0.001);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void pointExceptionTest() {
-		String testNum = "25,20";
-		Point test = new Point(testNum);
+		Point test = new Point(25, 20);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void pointExceptionTest2() {
-		String testNum = "-2,2";
-		Point test = new Point(testNum);
+		Point test = new Point(-2, 2);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void checkSamePointTest() {
-		String testNum1 = "5,12";
-		String testNum2 = "5,12";
-		Point test = new Point(testNum1);
-		Point test2 = new Point(testNum2);
-
-		List<Point> points = new ArrayList<>();
-		points.add(test);
-		points.add(test2);
+		List<Point> points = Arrays.asList(new Point(5, 12), new Point(5, 12));
 		CoordinatePoint.checkSamePoint(points);
 	}
 
@@ -60,19 +56,44 @@ public class CoordinateTest {
 	public void overInputExceptionTest() {
 		String testNum = "22,2,5";
 		String testNum2 = "10";
-		Point test = new Point(testNum);
-		Point test2 = new Point(testNum2);
+		Point test = Point.of(testNum);
+		Point test2 = Point.of(testNum2);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void isNotLineTest() {
-		String testNum1 = "24,15";
-		Point test = new Point(testNum1);
+		Point test = new Point(24, 15);
 
 		List<Point> points = new ArrayList<>();
 		points.add(test);
 
 		Line line = new Line(points);
+	}
+
+	@Test
+	public void findOppositionPointTest() {
+		Point test = new Point(20, 8);
+		List<Point> points = Arrays.asList(new Point(2, 15), new Point(2, 8), new Point(20, 15), new Point(20, 8));
+
+		Point testSquare = Square.findOppositionPoint(points);
+		assertThat(testSquare, is(test));
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void checkSquareExceptionTest() {
+		List<Point> points = Arrays.asList(new Point(6, 7), new Point(2, 8), new Point(5, 15), new Point(20, 8));
+		Square.check(points);
+	}
+
+	@Test
+	public void checkSquareNotExceptionTest() {
+		Point test = new Point(2, 15);
+		Point test2 = new Point(2, 8);
+		Point test3 = new Point(20, 15);
+		Point test4 = new Point(20, 8);
+
+		List<Point> points = Arrays.asList(new Point(2, 15), new Point(2, 8), new Point(20, 15), new Point(20, 8));
+		Square.check(points);
 	}
 
 }
