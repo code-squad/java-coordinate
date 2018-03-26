@@ -13,6 +13,14 @@ public abstract class Figure {
 	public ArrayList<Point> getPoints() {
 		return points;
 	}
+	
+	public Point getPoint(int i){
+		return points.get(i);
+	}
+	
+	public int size(){
+		return points.size();
+	}
 
 
 	public abstract double getArea();
