@@ -1,6 +1,6 @@
 package coordinate.domain;
 
-public abstract class Figure {
+public interface Figure {
 
-	public abstract double area();
+	public double area();		
 }

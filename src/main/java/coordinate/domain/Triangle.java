@@ -2,13 +2,13 @@ package coordinate.domain;
 
 import java.util.List;
 
-public class Triangle extends Figure {
+public class Triangle implements Figure {
 
 	private double line1;
 	private double line2;
 	private double line3;
 
-	public Triangle(double line1, double line2, double line3) {
+	private Triangle(double line1, double line2, double line3) {
 		this.line1 = line1;
 		this.line2 = line2;
 		this.line3 = line3;

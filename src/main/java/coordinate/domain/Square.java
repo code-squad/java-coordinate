@@ -1,13 +1,16 @@
 package coordinate.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
-public class Square extends Figure {
+public class Square implements Figure {
+	
+	private static final int SQUARE = 2;
 	private Point standard;
 	private Point oppositionPoint;
 
-	public Square(Point standard, Point oppositionPoint) {
+	private Square(Point standard, Point oppositionPoint) {
 		this.standard = standard;
 		this.oppositionPoint = oppositionPoint;
 	}
@@ -41,24 +44,19 @@ public class Square extends Figure {
 	}
 
 	public static void check(List<Point> points) {
-		for (int i = 0; i < points.size(); i++) {
-			int num = checkRectangle(points, i);
-			checkException(num);
+		HashSet<Integer> setX = new HashSet<>();
+		HashSet<Integer> setY = new HashSet<>();
+		for (Point point : points) {
+			int valueX = point.getPointX();
+			int valueY = point.getPointY();
+			setX.add(valueX);
+			setY.add(valueY);
 		}
+		checkException(setX, setY);
 	}
 
-	public static int checkRectangle(List<Point> points, int i) {
-		int num = 0;
-		for (int j = 0; j < points.size(); j++) {
-			if (i != j && points.get(i).isSameXOrY(points.get(j))) {
-				num++;
-			}
-		}
-		return num;
-	}
-
-	public static void checkException(int num) {
-		if (num != 2) {
+	public static void checkException(HashSet<Integer> setX, HashSet<Integer> setY) {
+		if (setX.size() != SQUARE || setY.size() != SQUARE) {
 			throw new IllegalArgumentException("직사각형이 아닙니다.");
 		}
 	}

@@ -3,7 +3,7 @@ package coordinate.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Line extends Figure {
+public class Line implements Figure {
 
 	private Point first;
 	private Point second;
