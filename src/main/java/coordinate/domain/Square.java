@@ -3,7 +3,6 @@ package coordinate.domain;
 import java.util.ArrayList;
 
 public class Square extends Figure {
-	private ArrayList<Point> points;
 
 	public Square(ArrayList<Point> points) {
 		this.points = points;
@@ -16,15 +15,20 @@ public class Square extends Figure {
 	public boolean isSquare() {
 		for (int i = 0; i < points.size() - 1; i++) {
 			boolean checkAxis = false;
-			for (int j = i + 1; j < points.size(); j++) {
-				Line line = new Line(points.get(i), points.get(j));
-				checkAxis |= line.isSameXaxis() || line.isSameYaxis();
-			}
+			checkAxis = isSquare(checkAxis, i);
 			if (!checkAxis) {
 				return false;
 			}
 		}
 		return true;
+	}
+
+	public boolean isSquare(boolean checkAxis, int i) {
+		for (int j = i + 1; j < points.size(); j++) {
+			Line line = new Line(points.get(i), points.get(j));
+			checkAxis |= line.isSameXaxis() || line.isSameYaxis();
+		}
+		return checkAxis;
 	}
 
 	@Override

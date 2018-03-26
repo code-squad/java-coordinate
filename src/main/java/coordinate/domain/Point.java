@@ -17,11 +17,15 @@ public class Point {
 		String[] points = coordinate.split(",");
 
 		for (int i = 0; i < points.length; i++) {
-			if (points[i].length() > 2) {
-				throw new IllegalArgumentException("잘못된 좌표 형태입니다.");
-			}
+			pointLengthException(i, points);
 		}
 		return new Point(points);
+	}
+
+	public static void pointLengthException(int i, String[] points) {
+		if (points[i].length() > 2) {
+			throw new IllegalArgumentException("잘못된 좌표 형태입니다.");
+		}
 	}
 
 	public int getxAxis() {
@@ -68,12 +72,22 @@ public class Point {
 
 	public static ArrayList<Point> isSamePoint(ArrayList<Point> inputPoints) {
 		for (int i = 0; i < inputPoints.size() - 1; i++) {
-			for (int j = i + 1; j < inputPoints.size(); j++) {
-				if (inputPoints.get(i).equals(inputPoints.get(j))) {
-					System.out.println("위치가 같은 점(point)이 존재합니다. 세 점의 위치는 달라야 합니다.");
-					return Input.inputPoints();
-				}
-			}
+			inputPoints = isSamePoint(i, inputPoints);
+		}
+		return inputPoints;
+	}
+
+	public static ArrayList<Point> isSamePoint(int i, ArrayList<Point> inputPoints) {
+		for (int j = i + 1; j < inputPoints.size(); j++) {
+			inputPoints = isSamePoint(inputPoints, i, j);
+		}
+		return inputPoints;
+	}
+
+	public static ArrayList<Point> isSamePoint(ArrayList<Point> inputPoints, int i, int j) {
+		if (inputPoints.get(i).equals(inputPoints.get(j))) {
+			System.out.println("위치가 같은 점(point)이 존재합니다. 세 점의 위치는 달라야 합니다.");
+			return Input.inputPoints();
 		}
 		return inputPoints;
 	}
@@ -82,9 +96,14 @@ public class Point {
 	public boolean equals(Object obj) {
 		if (obj instanceof Point) {
 			Point temp = (Point) obj;
-			if (this.xAxis == temp.xAxis && this.yAxis == temp.yAxis) {
-				return true;
-			}
+			return check(temp);
+		}
+		return false;
+	}
+
+	public boolean check(Point temp) {
+		if (this.xAxis == temp.xAxis && this.yAxis == temp.yAxis) {
+			return true;
 		}
 		return false;
 	}

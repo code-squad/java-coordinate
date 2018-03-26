@@ -2,8 +2,7 @@ package coordinate.domain;
 
 import java.util.ArrayList;
 
-public class Triangle extends Figure{
-	private ArrayList<Point> points;
+public class Triangle extends Figure {
 
 	public Triangle(ArrayList<Point> points) {
 		this.points = points;
@@ -31,7 +30,5 @@ public class Triangle extends Figure{
 		}
 		return false;
 	}
-
-
 
 }
