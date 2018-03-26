@@ -9,7 +9,7 @@ public class Line {
 	private Point second;
 
 	public Line(List<Point> points) {
-		if (points.size() != 2) {
+		if (!isLine(points)) {
 			throw new IllegalArgumentException("선이 아닙니다.");
 		}
 

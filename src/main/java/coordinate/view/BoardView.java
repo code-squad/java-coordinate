@@ -63,7 +63,13 @@ public class BoardView {
 		return flag;
 	}
 
-	public static void solveLine(double length) {
-		System.out.println("두 점 사이 거리는 " + length);
+	public static void solveLine(double length, List<Point> points) {
+		if (points.size() == 2) {
+			System.out.println("두 점 사이 거리는 : " + length);
+		}
+		if (points.size() == 3) {
+			System.out.println("삼각형의 넓이는 : " + length);
+		}
+		System.out.println("사각형의 넓이는 : " + length);
 	}
 }

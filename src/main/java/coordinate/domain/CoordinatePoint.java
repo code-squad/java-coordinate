@@ -31,6 +31,10 @@ public class CoordinatePoint {
 			Line line = new Line(points);
 			return line.lineResult();
 		}
+		if (Triangle.isTriangle(points)) {
+			Triangle triangle = Triangle.of(points);
+			return triangle.area();
+		}
 		Square square = Square.init(points);
 		return square.area();
 	}
