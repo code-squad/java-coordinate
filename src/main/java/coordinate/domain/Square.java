@@ -2,7 +2,7 @@ package coordinate.domain;
 
 import java.util.ArrayList;
 
-public class Square {
+public class Square extends Figure {
 	private ArrayList<Point> points;
 
 	public Square(ArrayList<Point> points) {
@@ -27,6 +27,7 @@ public class Square {
 		return true;
 	}
 
+	@Override
 	public double getArea() {
 		double width = 0;
 		double height = 0;

@@ -23,7 +23,7 @@ public class TriangleTest {
 
 	@Test
 	public void testGetArea() {
-		assertThat(String.format("%.1f", Triangle.getArea(points)), is("3.0"));
+		assertThat(String.format("%.1f", Triangle.of(points).getArea()), is("3.0"));
 	}
 
 	@Test
