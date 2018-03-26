@@ -53,8 +53,8 @@ public class CoordinateCalcTest {
         points.add(point2);
 
         CoordinateCalc coordinateCalc = new CoordinateCalc(points);
-
-        assertEquals(1.414, coordinateCalc.calcProc(), 0.001);
+        Result result = coordinateCalc.calcProc();
+        assertEquals(1.414, result.getResultValue(), 0.001);
     }
 
     @Test

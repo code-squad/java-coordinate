@@ -9,7 +9,6 @@ import java.util.*;
 public class Output {
     private static final int MAX_VALUE = 25;
     private static final int EVEN = 2;
-    private static final String LENGTH_TWO_POINT = "두 점 사이 거리는 ";
 
     private static List<RowLine> rowLines;
 
@@ -23,16 +22,17 @@ public class Output {
         printVerticalAxis();
         printHorizontalAxis();
 
-        printLineLength(coordinateCalc);
+        printCalcResult(coordinateCalc);
     }
 
-    private static void printLineLength(CoordinateCalc coordinateCalc) {
-        System.out.print(LENGTH_TWO_POINT);
-
+    private static void printCalcResult(CoordinateCalc coordinateCalc) {
+        // TODO 출력할때 객체 리턴?
         try {
-            System.out.print(coordinateCalc.calcProc());
+            Result result = coordinateCalc.calcProc();
+            System.out.print(result.getPointNum() + " : " +
+                    result.getResultValue());
         } catch (IllegalArgumentException e) {
-            System.out.println("계산 에러");
+            System.out.println("입력값이 잘못 되었습니다.");
         }
     }
 

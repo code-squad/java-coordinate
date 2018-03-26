@@ -11,7 +11,6 @@ public class Input {
     private static final String INPUT_RANGE_ERROR = "범위가 잘못 되었습니다. 다시 입력하세요";
     private static final int FIRST_INDEX = 1;
     private static final int SECOND_INDEX = 2;
-    private static final int LINE_POINT_COUNT = 2;
     private static final String REGEX = "[\\(,\\)]";
 
     private static Scanner scanner = new Scanner(System.in);
@@ -47,7 +46,7 @@ public class Input {
     }
 
     private static void loopAssignmentProc(String[] lineSplitArr, Set<Point> points) {
-        for (int i = 0; i < LINE_POINT_COUNT; i++) {
+        for (int i = 0; i < lineSplitArr.length; i++) {
             String[] pointSplitArr = lineSplitArr[i].split(REGEX);
             assignmentSplitString(points, pointSplitArr);
         }
