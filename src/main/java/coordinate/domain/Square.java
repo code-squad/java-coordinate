@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Square extends Figure {
 
 	public Square(ArrayList<Point> points) {
-		this.points = points;
+		super(points);
 	}
 
 	public static Square of(ArrayList<Point> points) {
@@ -13,7 +13,7 @@ public class Square extends Figure {
 	}
 
 	public boolean isSquare() {
-		for (int i = 0; i < points.size() - 1; i++) {
+		for (int i = 0; i < super.getPoints().size() - 1; i++) {
 			boolean checkAxis = false;
 			checkAxis = isSquare(checkAxis, i);
 			if (!checkAxis) {
@@ -24,8 +24,8 @@ public class Square extends Figure {
 	}
 
 	public boolean isSquare(boolean checkAxis, int i) {
-		for (int j = i + 1; j < points.size(); j++) {
-			Line line = new Line(points.get(i), points.get(j));
+		for (int j = i + 1; j < super.getPoints().size(); j++) {
+			Line line = new Line(super.getPoints().get(i), super.getPoints().get(j));
 			checkAxis |= line.isSameXaxis() || line.isSameYaxis();
 		}
 		return checkAxis;
@@ -35,7 +35,7 @@ public class Square extends Figure {
 	public double getArea() {
 		double width = 0;
 		double height = 0;
-		for (int i = 0; i < points.size() - 1; i++) {
+		for (int i = 0; i < super.getPoints().size() - 1; i++) {
 			width = calcWidth(i, width);
 			height = calcHeight(i, height);
 		}
@@ -43,16 +43,16 @@ public class Square extends Figure {
 	}
 
 	public double calcHeight(int i, double height) {
-		for (int j = i + 1; j < points.size(); j++) {
-			Line line = new Line(points.get(i), points.get(j));
+		for (int j = i + 1; j < super.getPoints().size(); j++) {
+			Line line = new Line(super.getPoints().get(i), super.getPoints().get(j));
 			height = calcHeight(line, height);
 		}
 		return height;
 	}
 
 	public double calcWidth(int i, double width) {
-		for (int j = i + 1; j < points.size(); j++) {
-			Line line = new Line(points.get(i), points.get(j));
+		for (int j = i + 1; j < super.getPoints().size(); j++) {
+			Line line = new Line(super.getPoints().get(i), super.getPoints().get(j));
 			width = calcWidth(line, width);
 		}
 		return width;

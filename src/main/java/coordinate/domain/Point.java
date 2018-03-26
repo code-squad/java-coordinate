@@ -16,17 +16,10 @@ public class Point {
 
 	public static Point of(String coordinate) {
 		String[] points = coordinate.split(",");
-
-		for (int i = 0; i < points.length; i++) {
-			pointLengthException(i, points);
-		}
-		return new Point(points);
-	}
-
-	public static void pointLengthException(int i, String[] points) {
-		if (points[i].length() > 2) {
+		if (points.length > 2) {
 			throw new IllegalArgumentException("잘못된 좌표 형태입니다.");
 		}
+		return new Point(points);
 	}
 
 	public int getxAxis() {

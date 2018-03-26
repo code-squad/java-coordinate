@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 public class Triangle extends Figure {
 
+
 	public Triangle(ArrayList<Point> points) {
-		this.points = points;
+		super(points);
 	}
 
 	public static Triangle of(ArrayList<Point> points) {
@@ -17,15 +18,15 @@ public class Triangle extends Figure {
 
 	@Override
 	public double getArea() {
-		double a = points.get(0).getDistance(points.get(1));
-		double b = points.get(1).getDistance(points.get(2));
-		double c = points.get(2).getDistance(points.get(0));
+		double a = super.getPoints().get(0).getDistance(super.getPoints().get(1));
+		double b = super.getPoints().get(1).getDistance(super.getPoints().get(2));
+		double c = super.getPoints().get(2).getDistance(super.getPoints().get(0));
 		double s = (a + b + c) / 2;
 		return Math.sqrt(s * ((s - a) * (s - b) * (s - c)));
 	}
 
 	public boolean isTriangle() {
-		if (!(Point.isOneLine(points.get(0), points.get(1), points.get(2)))) {
+		if (!(Point.isOneLine(super.getPoints().get(0), super.getPoints().get(1), super.getPoints().get(2)))) {
 			return true;
 		}
 		return false;

@@ -3,7 +3,17 @@ package coordinate.domain;
 import java.util.ArrayList;
 
 public abstract class Figure {
-	public ArrayList<Point> points;
+	private ArrayList<Point> points;
+	
+	public Figure(ArrayList<Point> points) {
+		this.points = points;
+	}
+	
+
+	public ArrayList<Point> getPoints() {
+		return points;
+	}
+
 
 	public abstract double getArea();
 
