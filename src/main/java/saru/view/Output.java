@@ -28,9 +28,7 @@ public class Output {
     private static void printCalcResult(CoordinateCalc coordinateCalc) {
         // TODO 출력할때 객체 리턴?
         try {
-            Result result = coordinateCalc.calcProc();
-            System.out.print(result.getPointNum() + " : " +
-                    result.getResultValue());
+            System.out.print(coordinateCalc.calcProc());
         } catch (IllegalArgumentException e) {
             System.out.println("입력값이 잘못 되었습니다.");
         }

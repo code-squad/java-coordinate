@@ -12,52 +12,43 @@ public class Square {
     private Set<Point> userInput;
 
     public Square(Set<Point> userInput) {
-        if (userInput.size() != SQUARE_POINT_NUM) {
+        this.userInput = userInput;
+
+        if (this.userInput.size() != SQUARE_POINT_NUM ||
+                !checkValidSquare()) {
             throw new IllegalArgumentException("스퀘어 포인트 수가 잘못됨");
         }
-
-        this.userInput = userInput;
     }
 
     public double area() {
-        if (!checkValidSquare()) {
-            throw new IllegalArgumentException();
-        }
-
-        double maxX = SquareUtil.getMaxXValue(userInput);
-        double minX = SquareUtil.getMinXValue(userInput);
-        double maxY = SquareUtil.getMaxYValue(userInput);
-        double minY = SquareUtil.getMinYValue(userInput);
+        double maxX = Util.getMaxXValue(userInput);
+        double minX = Util.getMinXValue(userInput);
+        double maxY = Util.getMaxYValue(userInput);
+        double minY = Util.getMinYValue(userInput);
 
         return (maxX - minX) * (maxY - minY);
     }
 
     private boolean checkValidSquare() {
-        Iterator iter = userInput.iterator();
-        Point[] pointArr = new Point[4];
-        for (int i = 0; i < pointArr.length; i++) {
-            pointArr[i] = (Point) iter.next();
-        }
-
-        return checkValidSquarePoint(pointArr);
+        return checkValidSquarePoint(new ArrayList<>(userInput));
     }
 
-    private boolean checkValidSquarePoint(Point[] pointArr) {
-        double oneToTwo = Math.abs(pointArr[INDEX_ONE].calcLengthWith(pointArr[INDEX_TWO]));
-        double threeToFour = Math.abs(pointArr[INDEX_THREE].calcLengthWith(pointArr[INDEX_FOUR]));
-        double twoToThree = Math.abs(pointArr[INDEX_TWO].calcLengthWith(pointArr[INDEX_THREE]));
-        double fourToOne = Math.abs(pointArr[INDEX_FOUR].calcLengthWith(pointArr[INDEX_ONE]));
+    private boolean checkValidSquarePoint(List<Point> pointList) {
+        double oneToTwo = Math.abs(pointList.get(INDEX_ONE).calcLengthWith(pointList.get(INDEX_TWO)));
+        double threeToFour = Math.abs(pointList.get(INDEX_THREE).calcLengthWith(pointList.get(INDEX_FOUR)));
+        double twoToThree = Math.abs(pointList.get(INDEX_TWO).calcLengthWith(pointList.get(INDEX_THREE)));
+        double fourToOne = Math.abs(pointList.get(INDEX_FOUR).calcLengthWith(pointList.get(INDEX_ONE)));
 
         if (oneToTwo != threeToFour || twoToThree != fourToOne) {
             return false;
         }
 
-        return !checkPointAllEqual(pointArr);
+        return !checkPointAllEqual(pointList);
     }
 
-    private boolean checkPointAllEqual(Point[] pointArr) {
-        return pointArr[INDEX_ONE].equals(pointArr[INDEX_TWO]) &&
-                pointArr[INDEX_TWO].equals(pointArr[INDEX_THREE]) &&
-                pointArr[INDEX_THREE].equals(pointArr[INDEX_FOUR]);
+    private boolean checkPointAllEqual(List<Point> pointList) {
+        return pointList.get(INDEX_ONE).equals(pointList.get(INDEX_TWO)) &&
+                pointList.get(INDEX_TWO).equals(pointList.get(INDEX_THREE)) &&
+                pointList.get(INDEX_THREE).equals(pointList.get(INDEX_FOUR));
     }
 }

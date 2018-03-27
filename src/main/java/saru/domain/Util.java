@@ -4,8 +4,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Set;
 
-public class SquareUtil {
-    private SquareUtil() {
+public class Util {
+    private Util() {
         // empty
     }
 

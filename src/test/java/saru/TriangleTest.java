@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class SquareTest {
+public class TriangleTest {
     private Set<Point> points;
 
     @Before
@@ -18,43 +18,39 @@ public class SquareTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void invalidSquarePosition() {
+    public void invalidTrianglePosition() {
         addSetIllegalValue();
 
-        Square square = new Square(points);
-        square.area();
+        Triangle triangle = new Triangle(points);
+        triangle.area();
     }
 
     private void addSetIllegalValue() {
         Point point1 = new Point(4, 3, true);
         Point point2 = new Point(5, 3, true);
-        Point point3 = new Point(5, 7, true);
-        Point point4 = new Point(3, 7, true);
+        Point point3 = new Point(6, 3, true);
 
         points.add(point1);
         points.add(point2);
         points.add(point3);
-        points.add(point4);
     }
 
-
     @Test
-    public void squareCalc() {
+    public void TriangleCalc() {
         addSetNormalValue();
 
-        Square square = new Square(points);
-        assertEquals(8, square.area(), 0.001);
+        Triangle triangle = new Triangle(points);
+        double result = triangle.area();
+        assertEquals(2, result, 0.001);
     }
 
     private void addSetNormalValue() {
-        Point point1 = new Point(3, 7, true);
-        Point point2 = new Point(5, 7, true);
-        Point point3 = new Point(5, 3, true);
-        Point point4 = new Point(3, 3, true);
+        Point point1 = new Point(2, 2, true);
+        Point point2 = new Point(2, 4, true);
+        Point point3 = new Point(4, 4, true);
 
         points.add(point1);
         points.add(point2);
         points.add(point3);
-        points.add(point4);
     }
 }
