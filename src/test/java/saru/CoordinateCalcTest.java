@@ -1,5 +1,6 @@
 package saru;
 
+import org.junit.Before;
 import saru.domain.*;
 import saru.view.*;
 
@@ -14,6 +15,12 @@ import static org.junit.Assert.assertThat;
 
 public class CoordinateCalcTest {
     private static final int MAX_VALUE = 24;
+    private Set<Point> points;
+
+    @Before
+    public void init() {
+        points = new HashSet<>();
+    }
 
     @Test
     public void makePoint() {
@@ -32,7 +39,6 @@ public class CoordinateCalcTest {
     public void drawPoint() {
         Point point1 = new Point(4, 4);
 
-        Set<Point> points = new HashSet<>();
         points.add(point1);
 
         CoordinateCalc coordinateCalc = new CoordinateCalc(points);
@@ -45,16 +51,11 @@ public class CoordinateCalcTest {
 
     @Test
     public void calcLine() {
-        Point point1 = new Point(3, 3, true);
-        Point point2 = new Point(4, 4, true);
-
-        Set<Point> points = new HashSet<>();
-        points.add(point1);
-        points.add(point2);
+        addSetNormalValues();
 
         CoordinateCalc coordinateCalc = new CoordinateCalc(points);
-        Result result = coordinateCalc.calcProc();
-        assertEquals(1.414, result.getResultValue(), 0.001);
+        double result = coordinateCalc.calcProc();
+        assertEquals(1.414, result, 0.001);
     }
 
     @Test
@@ -72,30 +73,28 @@ public class CoordinateCalcTest {
     @Test
     public void checkPointsNum() {
         // 해쉬셋에 저장한다. 중복과 관련.
-        Point point1 = new Point(3, 3, true);
-        Point point2 = new Point(4, 4, true);
-
-        Set<Point> points = new HashSet<>();
-        points.add(point1);
-        points.add(point2);
+        addSetNormalValues();
 
         // 갯수를 확인한다
         assertEquals(2, points.size());
     }
 
-    @Test
-    public void checkShapeType() {
+    private void addSetNormalValues() {
         Point point1 = new Point(3, 3, true);
         Point point2 = new Point(4, 4, true);
 
-        Set<Point> points = new HashSet<>();
         points.add(point1);
         points.add(point2);
+    }
+
+    @Test
+    public void checkShapeType() {
+        addSetNormalValues();
 
         CoordinateCalc coordinateCalc = new CoordinateCalc(points);
         Set<Point> userInput = coordinateCalc.getUserInput();
-        CoordinateCalc.SHAPE_TYPE shapeType = coordinateCalc.checkShapeType(userInput);
+        ShapeType shapeType = coordinateCalc.checkShapeType(userInput);
 
-        assertEquals(CoordinateCalc.SHAPE_TYPE.LINE, shapeType);
+        assertEquals(ShapeType.LINE, shapeType);
     }
 }

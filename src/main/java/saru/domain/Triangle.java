@@ -11,66 +11,59 @@ public class Triangle {
     private Set<Point> userInput;
 
     public Triangle(Set<Point> userInput) {
-        if (userInput.size() != TRIANGLE_POINT_NUM) {
+        this.userInput = userInput;
+
+        if (this.userInput.size() != TRIANGLE_POINT_NUM ||
+                !checkValidTriangle()) {
             throw new IllegalArgumentException("트라이앵글 포인트 수가 잘못됨");
         }
-
-        this.userInput = userInput;
     }
 
     public double area() {
-        if (!checkValidTriangle()) {
-            throw new IllegalArgumentException();
-        }
-
-        Iterator iter = userInput.iterator();
-        Point[] pointArr = new Point[TRIANGLE_POINT_NUM];
-        for (int i = 0; i < pointArr.length; i++) {
-            pointArr[i] = (Point) iter.next();
-        }
+        List<Point>pointList = new ArrayList<>(userInput);
 
         // 헤론의 공식
-        double a = pointArr[INDEX_ONE].calcLengthWith(pointArr[INDEX_TWO]);
-        double b = pointArr[INDEX_TWO].calcLengthWith(pointArr[INDEX_THREE]);
-        double c = pointArr[INDEX_THREE].calcLengthWith(pointArr[INDEX_ONE]);
+        double a = pointList.get(INDEX_ONE).calcLengthWith(pointList.get(INDEX_TWO));
+        double b = pointList.get(INDEX_TWO).calcLengthWith(pointList.get(INDEX_THREE));
+        double c = pointList.get(INDEX_THREE).calcLengthWith(pointList.get(INDEX_ONE));
 
+        return heronMethod(a, b, c);
+    }
+
+    private double heronMethod(double a, double b, double c) {
         double s = (a + b + c) / 2;
 
         return Math.sqrt(s * (s - a) * (s - b) * (s - c));
     }
 
     private boolean checkValidTriangle() {
-        Iterator iter = userInput.iterator();
-        Point[] pointArr = new Point[TRIANGLE_POINT_NUM];
-        for (int i = 0; i < pointArr.length; i++) {
-            pointArr[i] = (Point) iter.next();
-        }
+        List<Point>pointList = new ArrayList<>(userInput);
 
-        if (checkAllSameX(pointArr) || checkAllSameY(pointArr))
+        if (checkAllSameX(pointList) || checkAllSameY(pointList))
             return false;
 
-        return checkValidTrianglePoint(pointArr);
+        return checkValidTrianglePoint(pointList);
     }
 
-    private boolean checkAllSameY(Point[] pointArr) {
-        if (pointArr[INDEX_ONE].checkSameY(pointArr[INDEX_TWO]) &&
-                pointArr[INDEX_TWO].checkSameY(pointArr[INDEX_THREE])) {
+    private boolean checkAllSameY(List<Point> pointList) {
+        if (pointList.get(INDEX_ONE).checkSameY(pointList.get(INDEX_TWO)) &&
+                pointList.get(INDEX_TWO).checkSameY(pointList.get(INDEX_THREE))) {
             return true;
         }
         return false;
     }
 
-    private boolean checkAllSameX(Point[] pointArr) {
-        if (pointArr[INDEX_ONE].checkSameX(pointArr[INDEX_TWO]) &&
-                pointArr[INDEX_TWO].checkSameX(pointArr[INDEX_THREE])) {
+    private boolean checkAllSameX(List<Point> pointList) {
+        if (pointList.get(INDEX_ONE).checkSameX(pointList.get(INDEX_TWO)) &&
+                pointList.get(INDEX_TWO).checkSameX(pointList.get(INDEX_THREE))) {
             return true;
         }
         return false;
     }
 
-    private boolean checkValidTrianglePoint(Point[] pointArr) {
-        if (pointArr[INDEX_ONE].equals(pointArr[INDEX_TWO]) &&
-                pointArr[INDEX_TWO].equals(pointArr[INDEX_THREE])) {
+    private boolean checkValidTrianglePoint(List<Point> pointList) {
+        if (pointList.get(INDEX_ONE).equals(pointList.get(INDEX_TWO)) &&
+                pointList.get(INDEX_TWO).equals(pointList.get(INDEX_THREE))) {
             return false;
         }
 

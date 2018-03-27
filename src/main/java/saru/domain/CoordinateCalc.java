@@ -1,7 +1,5 @@
 package saru.domain;
 
-import saru.view.Result;
-
 import java.util.*;
 
 // Calc?
@@ -12,31 +10,21 @@ public class CoordinateCalc {
     private static final int POINT_THREE = 3;
     private static final int POINT_FOUR = 4;
 
-    public enum SHAPE_TYPE {
-        POINT,
-        LINE,
-        TRIANGLE,
-        SQUARE,
-        NONE
-    }
 
     private List<RowLine> rowLines = new ArrayList<>();
 
     private Set<Point> userInput;
 
-    public SHAPE_TYPE checkShapeType(Set<Point> userInput) {
-        switch (userInput.size()) {
-            case POINT_ONE:
-                return SHAPE_TYPE.POINT;
-            case POINT_TWO:
-                return SHAPE_TYPE.LINE;
-            case POINT_THREE:
-                return SHAPE_TYPE.TRIANGLE;
-            case POINT_FOUR:
-                return SHAPE_TYPE.SQUARE;
-            default:
-                throw new IllegalArgumentException();
+    // TODO values()를 통해 각 enum을 순회하면서 points.size()에 해당하는 enum을 가져올 수 있다는 의미임..
+    // indent 2
+    public ShapeType checkShapeType(Set<Point> userInput) {
+        for (ShapeType shapeType : ShapeType.values()) {
+            if (shapeType.getPointNum() == userInput.size()) {
+                return shapeType;
+            }
         }
+
+        throw new IllegalArgumentException();
     }
 
     public CoordinateCalc(Set<Point> userInput) {
@@ -51,14 +39,14 @@ public class CoordinateCalc {
         }
     }
 
-    public Result calcProc() {
+    public double calcProc() {
         switch (checkShapeType(userInput)) {
             case LINE:
-                return new Result(SHAPE_TYPE.LINE, new Line(userInput).calcLineLength());
+                return new Line(userInput).calcLineLength();
             case SQUARE:
-                return new Result(SHAPE_TYPE.SQUARE, new Square(userInput).area());
+                return new Square(userInput).area();
             case TRIANGLE:
-                return new Result(SHAPE_TYPE.TRIANGLE, new Triangle(userInput).area());
+                return new Triangle(userInput).area();
         }
         throw new IllegalArgumentException();
     }
