@@ -19,7 +19,6 @@ public class Line extends Figure {
     }
 
     public double calculate() {
-        Output.printMessage("두 좌표 사이의 거리는: ");
         return calculateLength(FIRST, SECOND);
     }
 
@@ -29,7 +28,10 @@ public class Line extends Figure {
         return a.xEquals(x) && a.yEquals(y) || b.xEquals(x) && b.yEquals(y);
     }
 
-    public static boolean isLine(Figure figure) {
-        return figure.points.size() == LINE;
+    public static boolean isLine(Figure figure) throws IllegalArgumentException {
+        if (figure.points.size() != LINE) {
+            throw new IllegalArgumentException();
+        }
+        return true;
     }
 }

@@ -37,7 +37,7 @@ public class Main {
             return promptUser();
         }
         if (figure.isDuplicate()) {
-            Output.printErrorMessage(figure);
+            Output.printMessage("중복되는 좌표가 있습니다.");
             return promptUser();
         }
         return figure;

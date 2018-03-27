@@ -33,7 +33,6 @@ public class Square extends Figure {
     }
 
     public double calculate() {
-        Output.printMessage("사각형의 면적은: ");
         return calculateBase() * calculateHeight();
     }
 
@@ -41,8 +40,15 @@ public class Square extends Figure {
         return points.stream().anyMatch(p -> p.xEquals(x) && p.yEquals(y));
     }
 
-    public static boolean isSquare(Figure figure) {
-        return figure.points.size() == SQUARE && isValid(figure.points);
+    public static boolean isSquare(Figure figure) throws IllegalArgumentException {
+        if (figure.points.size() != SQUARE) {
+            throw new IllegalArgumentException();
+        }
+        if (!isValid(figure.points)) {
+            Output.printMessage("네 점의 위치가 사각형을 형성하지 않습니다.");
+            throw new IllegalArgumentException();
+        }
+        return true;
     }
 
     private static boolean isValid(List<Point> points) {
