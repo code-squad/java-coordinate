@@ -4,25 +4,23 @@ import java.util.ArrayList;
 
 public abstract class Figure {
 	private ArrayList<Point> points;
-	
+
 	public Figure(ArrayList<Point> points) {
 		this.points = points;
 	}
-	
 
-	public ArrayList<Point> getPoints() {
-		return points;
-	}
-	
-	public Point getPoint(int i){
+	protected Point getPoint(int i) {
 		return points.get(i);
 	}
-	
-	public int size(){
+
+	protected int size() {
 		return points.size();
 	}
 
-
 	public abstract double getArea();
+
+	protected double getDistance(int i, int y) {
+		return points.get(i).getDistance(points.get(y));
+	}
 
 }

@@ -50,6 +50,9 @@ public class Point {
 	public Boolean isSameYaxis(int yAxis) {
 		return this.yAxis == yAxis;
 	}
+	public Boolean isSameYaxis(Point anotherPoint) {
+		return this.yAxis == anotherPoint.getyAxis();
+	}
 
 	public Boolean isSameXaxis(int xAxis) {
 		return this.xAxis == xAxis;

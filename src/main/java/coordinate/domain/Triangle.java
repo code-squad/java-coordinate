@@ -17,15 +17,15 @@ public class Triangle extends Figure {
 
 	@Override
 	public double getArea() {
-		double a = super.getPoint(0).getDistance(super.getPoint(1));
-		double b = super.getPoint(1).getDistance(super.getPoint(2));
-		double c = super.getPoint(2).getDistance(super.getPoint(0));
+		double a = getDistance(0, 1);
+		double b = getDistance(1, 2);
+		double c = getDistance(2, 0);
 		double s = (a + b + c) / 2;
 		return Math.sqrt(s * ((s - a) * (s - b) * (s - c)));
 	}
 
 	public boolean isTriangle() {
-		if (!(Point.isOneLine(super.getPoint(0), super.getPoint(1), super.getPoint(2)))) {
+		if (!(Point.isOneLine(getPoint(0), getPoint(1), getPoint(2)))) {
 			return true;
 		}
 		return false;

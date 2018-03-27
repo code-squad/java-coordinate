@@ -51,9 +51,8 @@ public class Square extends Figure {
 	}
 
 	public double calcWidth(int i, double width) {
-		for (int j = i + 1; j < super.getPoints().size(); j++) {
-			Line line = new Line(super.getPoint(i), super.getPoint(j));
-			width = calcWidth(line, width);
+		for (int j = i + 1; j < super.size(); j++) {
+			width = calcWidth(i, j, width);
 		}
 		return width;
 	}
@@ -65,9 +64,9 @@ public class Square extends Figure {
 		return height;
 	}
 
-	public double calcWidth(Line line, double width) {
-		if (line.isSameXaxis()) {
-			width = line.getDistance();
+	public double calcWidth(int i, int j, double width) {
+		if (getPoint(i).isSameYaxis(getPoint(j))) {
+			width = getDistance(i, j);
 		}
 		return width;
 	}
