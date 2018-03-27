@@ -4,9 +4,6 @@ import java.util.ArrayList;
 
 public class ShapeFactory {
     public static ShapeType shapeType;
-//    private static final int LINE = 2;
-//    private static final int TRIANGLE = 3;
-//    private static final int RECTANGLE = 4;
 
     public static Shape getInstance(ArrayList<Point> points) {
         Shape shape = null;

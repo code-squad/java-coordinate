@@ -9,7 +9,9 @@ public class Rectangle extends Shape {
 
     public Rectangle(ArrayList<Point> points) {
         super(shapeType.RECTANGLE.getLineCount());
-        makeWidthHeight(LineList.getLines(points));
+        LineList lineList = LineList.getInstance();
+        lineList.makeLines(points);
+        makeWidthHeight(lineList.getLines());
     }
 
     private void makeWidthHeight(ArrayList<Line> lines) {

@@ -8,14 +8,15 @@ public class Triangle extends Shape {
 
     public Triangle(ArrayList<Point> points) {
         super(shapeType.TRIANGLE.getLineCount());
-        calcArea(points);
+        LineList lineList = LineList.getInstance();
+        lineList.makeLines(points);
+        calcArea(lineList);
     }
 
-    private void calcArea(ArrayList<Point> points) {
-        ArrayList<Line> lines = LineList.getLines(points);
-        double a = lines.get(0).getDistance();
-        double b = lines.get(1).getDistance();
-        double c = lines.get(2).getDistance();
+    private void calcArea(LineList lineList) {
+        double a = lineList.getLineDistance(0);
+        double b = lineList.getLineDistance(1);
+        double c = lineList.getLineDistance(2);
         double s = (a+b+c)/2;
         this.area =  Math.sqrt(s*(s-a)*(s-b)*(s-c));
     }

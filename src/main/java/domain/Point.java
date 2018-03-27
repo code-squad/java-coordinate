@@ -1,9 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-
 public class Point {
     private int x;
     private int y;
