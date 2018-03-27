@@ -2,11 +2,10 @@ package coordinate.domain;
 
 import java.util.ArrayList;
 
-public class Square {
-	private ArrayList<Point> points;
+public class Square extends Figure {
 
 	public Square(ArrayList<Point> points) {
-		this.points = points;
+		super(points);
 	}
 
 	public static Square of(ArrayList<Point> points) {
@@ -14,12 +13,9 @@ public class Square {
 	}
 
 	public boolean isSquare() {
-		for (int i = 0; i < points.size() - 1; i++) {
+		for (int i = 0; i < super.size() - 1; i++) {
 			boolean checkAxis = false;
-			for (int j = i + 1; j < points.size(); j++) {
-				Line line = new Line(points.get(i), points.get(j));
-				checkAxis |= line.isSameXaxis() || line.isSameYaxis();
-			}
+			checkAxis = isSquare(checkAxis, i);
 			if (!checkAxis) {
 				return false;
 			}
@@ -27,10 +23,19 @@ public class Square {
 		return true;
 	}
 
+	public boolean isSquare(boolean checkAxis, int i) {
+		for (int j = i + 1; j < super.size(); j++) {
+			Line line = new Line(super.getPoint(i), super.getPoint(j));
+			checkAxis |= line.isSameXaxis() || line.isSameYaxis();
+		}
+		return checkAxis;
+	}
+
+	@Override
 	public double getArea() {
 		double width = 0;
 		double height = 0;
-		for (int i = 0; i < points.size() - 1; i++) {
+		for (int i = 0; i < super.size() - 1; i++) {
 			width = calcWidth(i, width);
 			height = calcHeight(i, height);
 		}
@@ -38,17 +43,16 @@ public class Square {
 	}
 
 	public double calcHeight(int i, double height) {
-		for (int j = i + 1; j < points.size(); j++) {
-			Line line = new Line(points.get(i), points.get(j));
+		for (int j = i + 1; j < super.size(); j++) {
+			Line line = new Line(super.getPoint(i), super.getPoint(j));
 			height = calcHeight(line, height);
 		}
 		return height;
 	}
 
 	public double calcWidth(int i, double width) {
-		for (int j = i + 1; j < points.size(); j++) {
-			Line line = new Line(points.get(i), points.get(j));
-			width = calcWidth(line, width);
+		for (int j = i + 1; j < super.size(); j++) {
+			width = calcWidth(i, j, width);
 		}
 		return width;
 	}
@@ -60,9 +64,9 @@ public class Square {
 		return height;
 	}
 
-	public double calcWidth(Line line, double width) {
-		if (line.isSameXaxis()) {
-			width = line.getDistance();
+	public double calcWidth(int i, int j, double width) {
+		if (getPoint(i).isSameYaxis(getPoint(j))) {
+			width = getDistance(i, j);
 		}
 		return width;
 	}

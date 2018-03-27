@@ -19,6 +19,6 @@ public class Input {
 			inputPoints.add(Point.of(coordinates.get(i)));
 		}
 
-		return inputPoints;
+		return Point.isSamePoint(inputPoints);
 	}
 }

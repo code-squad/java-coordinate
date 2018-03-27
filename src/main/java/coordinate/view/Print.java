@@ -74,8 +74,7 @@ public class Print {
 	}
 
 	public static void isTriangle(ArrayList<Point> points) {
-		Triangle triangle = Triangle.of(points);
-		if (triangle.isTriangle()) {
+		if (Triangle.of(points).isTriangle()) {
 			triangleResult(points);
 			return;
 		}
@@ -83,8 +82,7 @@ public class Print {
 	}
 
 	public static void isSquare(ArrayList<Point> points) {
-		Square square = Square.of(points);
-		if (square.isSquare()) {
+		if (Square.of(points).isSquare()) {
 			squareResult(points);
 			return;
 		}
@@ -93,19 +91,17 @@ public class Print {
 
 	public static void lineResult(ArrayList<Point> points) {
 		System.out.println("\n두점 사이의 거리는");
-		Line line = Line.of(points);
-		System.out.println(line.getDistance());
+		System.out.println(Line.of(points).getDistance());
 	}
 
 	public static void triangleResult(ArrayList<Point> points) {
 		System.out.println("\n삼각형의 넓이는");
-		System.out.printf("%.1f", Triangle.getArea(points));
+		System.out.printf("%.1f", Triangle.of(points).getArea());
 	}
 
 	public static void squareResult(ArrayList<Point> points) {
 		System.out.println("\n사각형의 넓이는");
-		Square square = Square.of(points);
-		System.out.printf("%.1f", square.getArea());
+		System.out.printf("%.1f", Square.of(points).getArea());
 	}
 
 }
