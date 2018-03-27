@@ -24,8 +24,8 @@ public class K5 extends Car {
         return tripDistance;
     }
 
-    String getName() {
-        return name;
+    @Override
+    public String toString() {
+        return "K5";
     }
-
 }

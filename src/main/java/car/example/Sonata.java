@@ -24,7 +24,8 @@ public class Sonata extends Car {
         return tripDistance;
     }
 
-    String getName() {
-        return name;
+    @Override
+    public String toString() {
+        return "Sonata";
     }
 }

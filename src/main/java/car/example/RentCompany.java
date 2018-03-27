@@ -23,7 +23,7 @@ public class RentCompany {
     }
 
     public String generateReport() {
-        return cars.stream().map(i -> i.getName() + " : " + (int) i.getChargeQuantity() + "리터").collect(Collectors.joining(NEWLINE));
+        return cars.stream().map(i -> i.toString() + " : " + (int) i.getChargeQuantity() + "리터").collect(Collectors.joining(NEWLINE));
     }
 
 }
