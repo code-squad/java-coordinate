@@ -21,12 +21,16 @@ public class Triangle extends Figure {
         return new Triangle(coordinates);
     }
 
-    public double getArea(){
+    public double getArea() {
         return area;
     }
 
     public void calculate() {
-        area = calculateTriangle();
+        double a = calculateLine(0, 1);
+        double b = calculateLine(0, 2);
+        double c = calculateLine(1, 2);
+        double s = (a + b + c) / 2;
+        area = sqrt(s * (s - a) * (s - b) * (s - c));
     }
 
     @Override

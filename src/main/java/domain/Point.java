@@ -24,15 +24,15 @@ public class Point {
         return new Point(x, y);
     }
 
-    public double getLengthBwTwoPoints(Point otherPoint){
-        return sqrt(pow((double)getXDiff(otherPoint), 2) + pow((double)getYDiff(otherPoint), 2));
+    public double getLengthBwTwoPoints(Point otherPoint) {
+        return sqrt(pow((double) getXDiff(otherPoint), 2) + pow((double) getYDiff(otherPoint), 2));
     }
 
-    int getXDiff(Point otherPoint){
+    int getXDiff(Point otherPoint) {
         return this.x.getDiff(otherPoint.x);
     }
 
-    int getYDiff(Point otherPoint){
+    int getYDiff(Point otherPoint) {
         return this.y.getDiff(otherPoint.y);
     }
 

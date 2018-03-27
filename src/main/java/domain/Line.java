@@ -19,12 +19,12 @@ public class Line extends Figure {
         return new Line(coordinates);
     }
 
-    public double getArea(){
+    public double getArea() {
         return area;
     }
 
     public void calculate() {
-        area = calculateLine();
+        area = calculateLine(0, 1);
     }
 
     @Override
