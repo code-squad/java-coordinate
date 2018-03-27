@@ -5,8 +5,6 @@ import java.util.List;
 public class Square extends Shape {
     private static final int FIRST = 0;
     private static final int SECOND = 1;
-    private static final int THIRD = 1;
-    private static final int FOURTH = 3;
     private final List<Point> points;
 
     private Square(List<Point> points) {
@@ -27,22 +25,22 @@ public class Square extends Shape {
         return true;
     }
 
-    static boolean twoPoints(List<Point> points, Point point) {
-        return point.getPointsPerRow(points).size() != 2 || point.getPointsPerColumn(points).size() != 2;
+    private static boolean twoPoints(List<Point> points, Point point) {
+        return point.arwTwoPointsPerRow(points) || point.areTwoPointsPerColumn(points);
     }
 
 
     double calculateHeight() {
-        List<Point> pointsOnSameColumn = points.get(FIRST).getPointsPerColumn(points);
-        Point firstPoint = pointsOnSameColumn.get(FIRST);
-        Point secondPoint = pointsOnSameColumn.get(SECOND);
+        List<Point> twoPoints = points.get(FIRST).getPointsOnSameColumn(points);
+        Point firstPoint = twoPoints.get(FIRST);
+        Point secondPoint = twoPoints.get(SECOND);
         return firstPoint.calculateDistanceFrom(secondPoint);
     }
 
     double calculateBase() {
-        List<Point> pointsOnSameRow = points.get(FIRST).getPointsPerRow(points);
-        Point firstPoint = pointsOnSameRow.get(FIRST);
-        Point secondPoint = pointsOnSameRow.get(SECOND);
+        List<Point> twoPoints = points.get(FIRST).getPointsOnSameRow(points);
+        Point firstPoint = twoPoints.get(FIRST);
+        Point secondPoint = twoPoints.get(SECOND);
         return firstPoint.calculateDistanceFrom(secondPoint);
     }
 
