@@ -1,6 +1,6 @@
 package coordinate.domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Line {
 	private Point first;
@@ -11,7 +11,7 @@ public class Line {
 		this.second = second;
 	}
 
-	public static Line of(ArrayList<Point> points) {
+	public static Line of(List<Point> points) {
 		if (points.size() != 2) {
 			throw new IllegalArgumentException("점이 2개가 아닙니다.");
 		}

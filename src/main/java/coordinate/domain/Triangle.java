@@ -1,14 +1,14 @@
 package coordinate.domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class Triangle extends Figure {
+public class Triangle extends Figure implements Calculator {
 
-	public Triangle(ArrayList<Point> points) {
+	public Triangle(List<Point> points) {
 		super(points);
 	}
 
-	public static Triangle of(ArrayList<Point> points) {
+	public static Triangle of(List<Point> points) {
 		if (points.size() != 3) {
 			throw new IllegalArgumentException("점이 3개가 아닙니다.");
 		}

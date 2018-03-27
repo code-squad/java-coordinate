@@ -1,13 +1,14 @@
 package coordinate.view;
 
-import java.util.ArrayList;
+import java.util.List;
+
 import coordinate.domain.Line;
 import coordinate.domain.Point;
 import coordinate.domain.Square;
 import coordinate.domain.Triangle;
 
 public class Print {
-	public static String drawFrame(int yAxis, ArrayList<Point> points) {
+	public static String drawFrame(int yAxis, List<Point> points) {
 		String label = drawLabel(yAxis);
 		int beforeXaxis = 0;
 		String pointLine = "";
@@ -34,7 +35,7 @@ public class Print {
 		return yAxis + "|";
 	}
 
-	public static void printFrame(ArrayList<Point> points) {
+	public static void printFrame(List<Point> points) {
 		for (int yAxis = 24; yAxis > 0; yAxis--) {
 			System.out.println(drawFrame(yAxis, points));
 		}
@@ -59,7 +60,7 @@ public class Print {
 		return " ";
 	}
 
-	public static void printResult(ArrayList<Point> points) {
+	public static void printResult(List<Point> points) {
 		if (points.size() == 2) {
 			lineResult(points);
 		}
@@ -73,7 +74,7 @@ public class Print {
 		}
 	}
 
-	public static void isTriangle(ArrayList<Point> points) {
+	public static void isTriangle(List<Point> points) {
 		if (Triangle.of(points).isTriangle()) {
 			triangleResult(points);
 			return;
@@ -81,7 +82,7 @@ public class Print {
 		System.out.println("\n삼각형이 아닙니다.");
 	}
 
-	public static void isSquare(ArrayList<Point> points) {
+	public static void isSquare(List<Point> points) {
 		if (Square.of(points).isSquare()) {
 			squareResult(points);
 			return;
@@ -89,17 +90,17 @@ public class Print {
 		System.out.println("\n직사각형 또는 정사각형이 아닙니다.");
 	}
 
-	public static void lineResult(ArrayList<Point> points) {
+	public static void lineResult(List<Point> points) {
 		System.out.println("\n두점 사이의 거리는");
 		System.out.println(Line.of(points).getDistance());
 	}
 
-	public static void triangleResult(ArrayList<Point> points) {
+	public static void triangleResult(List<Point> points) {
 		System.out.println("\n삼각형의 넓이는");
 		System.out.printf("%.1f", Triangle.of(points).getArea());
 	}
 
-	public static void squareResult(ArrayList<Point> points) {
+	public static void squareResult(List<Point> points) {
 		System.out.println("\n사각형의 넓이는");
 		System.out.printf("%.1f", Square.of(points).getArea());
 	}

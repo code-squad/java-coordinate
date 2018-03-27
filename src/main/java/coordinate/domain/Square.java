@@ -1,14 +1,14 @@
 package coordinate.domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class Square extends Figure {
+public class Square extends Figure implements Calculator {
 
-	public Square(ArrayList<Point> points) {
+	public Square(List<Point> points) {
 		super(points);
 	}
 
-	public static Square of(ArrayList<Point> points) {
+	public static Square of(List<Point> points) {
 		return new Square(points);
 	}
 

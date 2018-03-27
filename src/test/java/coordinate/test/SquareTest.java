@@ -33,7 +33,6 @@ public class SquareTest {
 
 	@Test
 	public void testCalcWidth() {
-		Line line = new Line(points.get(0), points.get(1));
 		assertThat(square.calcWidth(0, 0), is(3.0));
 		assertThat(square.calcWidth(0, 1,  0), is(3.0));
 	}
