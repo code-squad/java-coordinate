@@ -1,7 +1,5 @@
 package coordinate.domain;
 
-import coordinate.view.Output;
-
 import java.util.List;
 
 import static coordinate.domain.Utils.FIRST;
