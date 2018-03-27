@@ -14,8 +14,8 @@ public class Triangle extends Shape {
         double a = lineList.getLineDistance(0);
         double b = lineList.getLineDistance(1);
         double c = lineList.getLineDistance(2);
-        double s = (a+b+c)/2;
-        this.area =  Math.sqrt(s*(s-a)*(s-b)*(s-c));
+        double s = (a + b + c) / 2;
+        this.area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
     }
 
     public Double getArea() {

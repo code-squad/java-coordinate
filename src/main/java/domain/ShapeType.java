@@ -32,16 +32,6 @@ public enum ShapeType {
         return false;
     }
 
-//    public static ShapeType of(int pointsSize) {
-//        ShapeType[] shapeTypes = ShapeType.values();
-//        for (ShapeType shapeType : shapeTypes) {
-//            if (shapeType.getPointCount() == pointsSize) {
-//                return shapeType;
-//            }
-//        }
-//        throw new IllegalArgumentException();
-//    }
-
     public int getLineCount() {
         return this.lineCount;
     }
