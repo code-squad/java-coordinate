@@ -13,20 +13,14 @@ public class PointList {
     }
 
     public static void makePoints(List<String> numbers) {
-        int x, y;
         for (int i = 0; i < numbers.size(); i = i + 2) {
-            x = Integer.parseInt(numbers.get(i));
-            y = Integer.parseInt(numbers.get(i + 1));
-            points.add(Point.getPoint(x, y));
+            points.add(Point.getPoint(numbers.get(i), numbers.get(i + 1)));
         }
         sortDesc();
     }
 
     public static Boolean hasNull() {
-        if (points.contains(null)) {
-            return true;
-        }
-        return false;
+        return points.contains(null);
     }
 
     private static void sortDesc() {

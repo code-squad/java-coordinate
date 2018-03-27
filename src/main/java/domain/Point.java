@@ -16,6 +16,10 @@ public class Point {
         return null;
     }
 
+    public static Point getPoint(String x, String y) {
+        return getPoint(Integer.parseInt(x), Integer.parseInt(y));
+    }
+
     public Double getDistance(Point otherPoint) {
         int aX = this.getX();
         int aY = this.getY();

@@ -11,32 +11,24 @@ public enum ShapeType {
         this.pointCount = pointCount;
     }
 
+    // matchCount pobi's advice
+    public Boolean matchCount(int pointCount) {
+        return this.pointCount == pointCount;
+    }
+
     public Boolean isLine(int pointCount) {
-        if (LINE.getPointCount() == pointCount) {
-            return true;
-        }
-        return false;
+        return LINE.matchCount(pointCount);
     }
 
     public Boolean isTriangle(int pointCount) {
-        if (TRIANGLE.getPointCount() == pointCount) {
-            return true;
-        }
-        return false;
+        return TRIANGLE.matchCount(pointCount);
     }
 
     public Boolean isRectangle(int pointCount) {
-        if (RECTANGLE.getPointCount() == pointCount) {
-            return true;
-        }
-        return false;
+        return RECTANGLE.matchCount(pointCount);
     }
 
     public int getLineCount() {
         return this.lineCount;
-    }
-
-    public int getPointCount() {
-        return pointCount;
     }
 }
