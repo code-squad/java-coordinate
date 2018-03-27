@@ -4,6 +4,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static coordinate.domain.Line.LINE;
+import static coordinate.domain.Square.SQUARE;
+import static coordinate.domain.Triangle.TRIANGLE;
+
 public abstract class Figure {
     static final int FIRST = 0;
     static final int SECOND = 1;
@@ -25,13 +29,13 @@ public abstract class Figure {
     }
 
     public static Figure ofFigure(List<Point> points) {
-        if (Line.isLine(points)) {
+        if (points.size() == LINE) {
             return Line.ofLine(points);
         }
-        if (Square.isSquare(points)) {
+        if (points.size() == SQUARE) {
             return Square.ofSquare(points);
         }
-        if (Triangle.isTriangle(points)) {
+        if (points.size() == TRIANGLE) {
             return Triangle.ofTriangle(points);
         }
         return null;

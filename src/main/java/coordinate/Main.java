@@ -18,7 +18,7 @@ public class Main {
     private static Figure promptUser() {
         Figure figure;
         try {
-            Output.printMessage("선이나 직사각형 좌표를 다음과 같은 포맷으로 입력해주세요.\n" +
+            Output.printMessage("선, 삼각형이나 직사각형 좌표를 다음과 같은 포맷으로 입력해주세요.\n" +
                     "선일 경우: (1,2)-(3,4)\n" +
                     "직사각형일 경우: (0,0)-(1,0)-(0,1)-(1,1)\n" +
                     "삼각형일 경우: (1,1)-(5,5)-(10,8)");
@@ -37,7 +37,7 @@ public class Main {
             return promptUser();
         }
         if (figure.isDuplicate()) {
-            Output.printErrorMessage(points);
+            Output.printErrorMessage(figure);
             return promptUser();
         }
         return figure;

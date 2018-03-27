@@ -16,17 +16,6 @@ public class Square extends Figure {
         return new Square(points);
     }
 
-    public static boolean isSquare(List<Point> points) {
-        return points.size() == SQUARE && isValid(points);
-    }
-
-    private static boolean isValid(List<Point> points) {
-        for (Point point : points) {
-            if (areTwoPointsPerRowOrColumn(points, point)) return true;
-        }
-        return false;
-    }
-
     private static boolean areTwoPointsPerRowOrColumn(List<Point> points, Point point) {
         return point.arwTwoPointsPerRow(points) || point.areTwoPointsPerColumn(points);
     }
@@ -47,5 +36,16 @@ public class Square extends Figure {
 
     public boolean isMatch(int x, int y) {
         return points.stream().anyMatch(p -> p.xEquals(x) && p.yEquals(y));
+    }
+
+    public static boolean isSquare(Figure figure) {
+        return figure.points.size() == SQUARE && isValid(figure.points);
+    }
+
+    private static boolean isValid(List<Point> points) {
+        for (Point point : points) {
+            if (areTwoPointsPerRowOrColumn(points, point)) return true;
+        }
+        return false;
     }
 }

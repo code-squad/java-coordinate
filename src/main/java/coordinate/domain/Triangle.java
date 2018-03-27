@@ -32,7 +32,7 @@ public class Triangle extends Figure {
         return points.stream().anyMatch(point -> point.xEquals(x) && point.yEquals(y));
     }
 
-    public static boolean isTriangle(List<Point> points) {
-        return points.size() == TRIANGLE;
+    public static boolean isTriangle(Figure figure) {
+        return figure.points.size() == TRIANGLE;
     }
 }

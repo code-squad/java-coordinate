@@ -26,7 +26,7 @@ public class Line extends Figure {
         return a.xEquals(x) && a.yEquals(y) || b.xEquals(x) && b.yEquals(y);
     }
 
-    public static boolean isLine(List<Point> points) {
-        return points.size() == LINE;
+    public static boolean isLine(Figure figure) {
+        return figure.points.size() == LINE;
     }
 }
