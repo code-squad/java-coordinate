@@ -1,7 +1,7 @@
 package coordinate;
 
-import coordinate.domain.Line;
-import coordinate.view.Output;
+import coordinate.domain.PointNumCheck;
+import coordinate.view.OutputCoordinate;
 import coordinate.view.UserInput;
 
 import java.util.ArrayList;
@@ -12,9 +12,10 @@ public class Coordinate {
         Scanner scanner = new Scanner(System.in);
 
         ArrayList<String> points = UserInput.getPoints(scanner);
-        Line line = new Line(points);
+        int numOfPoints = points.size();
 
-        Output.draw(line);
-        Output.printResult(line);
+        PointNumCheck pointNumCheck = new PointNumCheck();
+        pointNumCheck.resultByPointNum(numOfPoints, points);
+
     }
 }
