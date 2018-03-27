@@ -4,16 +4,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public abstract class Figure {
+public abstract class Figure implements Calculable {
     final List<Point> points;
 
     Figure(List<Point> points) {
         this.points = points;
     }
-
-    public abstract double calculate();
-
-    public abstract boolean isMatch(int x, int y);
 
     double calculateLength(int first, int second) {
         Point firstPoint = points.get(first);

@@ -9,14 +9,13 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        Figure figure = promptUser();
-        CoordinateCalculator calculator = initCalculator(figure);
-
+        Calculable figure = promptUser();
+        CoordinateCalculator calculator = new CoordinateCalculator(figure);
         printResult(calculator, figure);
     }
 
-    private static Figure promptUser() {
-        Figure figure;
+    private static Calculable promptUser() {
+        Calculable figure;
         try {
             Output.printMessage("선, 삼각형이나 직사각형 좌표를 다음과 같은 포맷으로 입력해주세요.\n" +
                     "선일 경우: (1,2)-(3,4)\n" +
@@ -30,24 +29,24 @@ public class Main {
         return figure;
     }
 
-    private static Figure initFigure(List<Point> points) {
-        Figure figure = Factory.ofFigure(points);
-        if (figure == null) {
-            Output.printMessage("선, 삼각형이나 사각형의 좌표가 아닙니다.");
-            return promptUser();
+    private static Calculable initFigure(List<Point> points) throws IllegalArgumentException {
+        Calculable figure = Factory.ofFigure(points);
+        if (figure.isDuplicate() && figure.getType().equals("Line")) {
+            Output.printMessage("중복되는 좌표가 있습니다. 두 점의 위치는 달라야 합니다.");
+            throw new IllegalArgumentException();
         }
-        if (figure.isDuplicate()) {
-            Output.printMessage("중복되는 좌표가 있습니다.");
-            return promptUser();
+        if (figure.isDuplicate() && figure.getType().equals("Square")) {
+            Output.printMessage("중복되는 좌표가 있습니다. 네 점의 위치는 달라야 합니다.");
+            throw new IllegalArgumentException();
+        }
+        if (figure.isDuplicate() && figure.getType().equals("Triangle")) {
+            Output.printMessage("중복되는 좌표가 있습니다. 세 점의 위치는 달라야 합니다.");
+            throw new IllegalArgumentException();
         }
         return figure;
     }
 
-    private static CoordinateCalculator initCalculator(Figure figure) {
-        return new CoordinateCalculator(figure);
-    }
-
-    private static void printResult(CoordinateCalculator cc, Figure figure) {
+    private static void printResult(CoordinateCalculator cc, Calculable figure) {
         Output.printFigure(cc);
         Output.printCalculationResult(figure);
     }

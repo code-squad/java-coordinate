@@ -1,7 +1,5 @@
 package coordinate.domain;
 
-import coordinate.view.Output;
-
 import java.util.List;
 
 import static coordinate.domain.Utils.FIRST;
@@ -14,7 +12,7 @@ public class Line extends Figure {
         super(points);
     }
 
-    public static Line ofLine(List<Point> points) throws IllegalArgumentException {
+    public static Line ofLine(List<Point> points) {
         return new Line(points);
     }
 
@@ -28,10 +26,7 @@ public class Line extends Figure {
         return a.xEquals(x) && a.yEquals(y) || b.xEquals(x) && b.yEquals(y);
     }
 
-    public static boolean isLine(Figure figure) throws IllegalArgumentException {
-        if (figure.points.size() != LINE) {
-            throw new IllegalArgumentException();
-        }
-        return true;
+    public String getType() {
+        return "Line";
     }
 }
