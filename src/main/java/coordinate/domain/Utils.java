@@ -6,9 +6,9 @@ import java.util.*;
 
 public class Utils {
     private static final int COORDINATE_LENGTH = 2;
-    private static final int LINE = 2;
-    private static final int SQUARE = 4;
-    private static final int TRIANGLE = 3;
+    static final int LINE = 2;
+    static final int SQUARE = 4;
+    static final int TRIANGLE = 3;
     private static final int X_INDEX = 0;
     private static final int Y_INDEX = 1;
 

@@ -23,7 +23,7 @@ public class Main {
                     "직사각형일 경우: (0,0)-(1,0)-(0,1)-(1,1)\n" +
                     "삼각형일 경우: (1,1)-(5,5)-(10,8)");
             List<Point> points = Utils.processCoordinates(Input.takeCoordinates());
-            figure = Factory.ofShape(points);
+            figure = Factory.ofFigure(points);
         } catch (IllegalArgumentException e) {
             return initShape();
         }
@@ -36,15 +36,6 @@ public class Main {
 
     private static void printResult(CoordinateCalculator cc, Figure figure) {
         Output.printFigure(cc);
-
-        if (figure instanceof Line) {
-            Output.printLength(figure);
-        }
-        if (figure instanceof Square) {
-            Output.printSquareArea(figure);
-        }
-        if (figure instanceof Triangle) {
-            Output.printTriangleArea(figure);
-        }
+        Output.printCalculationResult(figure);
     }
 }

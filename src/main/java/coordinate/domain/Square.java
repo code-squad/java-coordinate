@@ -5,9 +5,6 @@ import coordinate.view.Output;
 import java.util.List;
 
 public class Square extends Figure {
-    private static final int FIRST = 0;
-    private static final int SECOND = 1;
-    private static final int SQUARE = 4;
     private final List<Point> points;
 
     private Square(List<Point> points) {
@@ -15,7 +12,7 @@ public class Square extends Figure {
     }
 
     public static Square ofSquare(List<Point> points) throws IllegalArgumentException {
-        if (!isSquare(points)) {
+        if (isInvalid(points)) {
             throw new IllegalArgumentException();
         }
         if (Utils.isDuplicate(points)) {
@@ -25,14 +22,11 @@ public class Square extends Figure {
         return new Square(points);
     }
 
-    public static boolean isSquare(List<Point> points) {
-        if (points.size() != SQUARE) {
-            return false;
-        }
+    private static boolean isInvalid(List<Point> points) {
         for (Point point : points) {
-            if (areTwoPointsPerRowOrColumn(points, point)) return false;
+            if (!areTwoPointsPerRowOrColumn(points, point)) return true;
         }
-        return true;
+        return false;
     }
 
     private static boolean areTwoPointsPerRowOrColumn(List<Point> points, Point point) {
@@ -42,19 +36,16 @@ public class Square extends Figure {
 
     double calculateHeight() {
         List<Point> twoPoints = points.get(FIRST).getPointsOnSameColumn(points);
-        Point firstPoint = twoPoints.get(FIRST);
-        Point secondPoint = twoPoints.get(SECOND);
-        return firstPoint.calculateDistanceFrom(secondPoint);
+        return Figure.calculateLength(twoPoints);
     }
 
     double calculateBase() {
         List<Point> twoPoints = points.get(FIRST).getPointsOnSameRow(points);
-        Point firstPoint = twoPoints.get(FIRST);
-        Point secondPoint = twoPoints.get(SECOND);
-        return firstPoint.calculateDistanceFrom(secondPoint);
+        return Figure.calculateLength(twoPoints);
     }
 
     public double calculate() {
+        Output.printMessage("사각형의 면적은: ");
         return calculateBase() * calculateHeight();
     }
 
