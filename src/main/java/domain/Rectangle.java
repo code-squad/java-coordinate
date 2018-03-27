@@ -3,14 +3,11 @@ package domain;
 import java.util.ArrayList;
 
 public class Rectangle extends Shape {
-    private static ShapeType shapeType;
     private Line width;
     private Line height;
 
-    public Rectangle(ArrayList<Point> points) {
-        super(shapeType.RECTANGLE.getLineCount());
-        LineList lineList = LineList.getInstance();
-        lineList.makeLines(points);
+    public Rectangle(LineList lineList) {
+        super(ShapeType.RECTANGLE);
         makeWidthHeight(lineList.getLines());
     }
 

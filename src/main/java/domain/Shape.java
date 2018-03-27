@@ -3,8 +3,8 @@ package domain;
 public class Shape {
     private int lineCount;
 
-    protected Shape(int lineCount) {
-        this.lineCount = lineCount;
+    protected Shape(ShapeType shapeType) {
+        this.lineCount = shapeType.getLineCount();
     }
 
     public Boolean hasLineCount(int lineCount) {

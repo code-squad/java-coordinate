@@ -7,15 +7,6 @@ import java.util.List;
 
 public class PointList {
     private static ArrayList<Point> points = new ArrayList<>();
-    private static PointList pointList = new PointList();
-
-    private PointList() {
-
-    }
-
-    public static PointList getInstance() {
-        return pointList;
-    }
 
     public static ArrayList<Point> getPoints() {
         return points;

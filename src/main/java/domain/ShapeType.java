@@ -11,6 +11,37 @@ public enum ShapeType {
         this.pointCount = pointCount;
     }
 
+    public Boolean isLine(int pointCount) {
+        if (LINE.getPointCount() == pointCount) {
+            return true;
+        }
+        return false;
+    }
+
+    public Boolean isTriangle(int pointCount) {
+        if (TRIANGLE.getPointCount() == pointCount) {
+            return true;
+        }
+        return false;
+    }
+
+    public Boolean isRectangle(int pointCount) {
+        if (RECTANGLE.getPointCount() == pointCount) {
+            return true;
+        }
+        return false;
+    }
+
+//    public static ShapeType of(int pointsSize) {
+//        ShapeType[] shapeTypes = ShapeType.values();
+//        for (ShapeType shapeType : shapeTypes) {
+//            if (shapeType.getPointCount() == pointsSize) {
+//                return shapeType;
+//            }
+//        }
+//        throw new IllegalArgumentException();
+//    }
+
     public int getLineCount() {
         return this.lineCount;
     }

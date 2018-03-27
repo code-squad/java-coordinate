@@ -3,13 +3,10 @@ package domain;
 import java.util.ArrayList;
 
 public class Triangle extends Shape {
-    private static ShapeType shapeType;
-    Double area;
+    private Double area;
 
-    public Triangle(ArrayList<Point> points) {
-        super(shapeType.TRIANGLE.getLineCount());
-        LineList lineList = LineList.getInstance();
-        lineList.makeLines(points);
+    public Triangle(LineList lineList) {
+        super(ShapeType.TRIANGLE);
         calcArea(lineList);
     }
 
@@ -23,5 +20,13 @@ public class Triangle extends Shape {
 
     public Double getArea() {
         return this.area;
+    }
+
+    public static Boolean isTriangle(ArrayList<Line> lines) {
+        int pointsSize = lines.size(); //삼각형은 점의 개수와 라인의 개수가 동일하다.
+        if (ShapeType.TRIANGLE.isTriangle(pointsSize)) {
+            return true;
+        }
+        return false;
     }
 }
