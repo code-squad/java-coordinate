@@ -6,14 +6,15 @@ import static domain.FigureUtil.isLine;
 
 public class Line extends Figure {
 
-    final int LINE_CONST;
+    private Points points;
+
+    private double area;
 
     private Line(List<String> coordinates) {
         if (!isLine(coordinates)) {
             throw new RuntimeException();
         }
-        super.points = Points.initCoordinates(coordinates);
-        this.LINE_CONST = coordinates.size();
+        points = Points.initCoordinates(coordinates);
     }
 
     public static Line of(List<String> coordinates) {
@@ -24,9 +25,16 @@ public class Line extends Figure {
         return points.calculateLineBwPoints(0, 1);
     }
 
-    @Override
+    public boolean hasCoordinateAt(int x, int y) {
+        return points.contains(x, y);
+    }
+
+    public double getArea(){
+        return area;
+    }
+
     public void calculate() {
-        super.area = calculateLine();
+        area = calculateLine();
     }
 
     @Override

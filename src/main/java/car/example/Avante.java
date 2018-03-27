@@ -1,22 +1,30 @@
 package car.example;
 
-public class Avante extends Car{
+public class Avante extends Car {
 
-    public Avante(int tripDistance){
-        super.name = "Avante";
-        super.tripDistance = tripDistance;
-        super.distancePerLiter = 15;
+    private int distancePerLiter;
+    private int tripDistance;
+    private String name;
+
+    private Avante(int tripDistance) {
+        this.tripDistance = tripDistance;
+        distancePerLiter = 15;
+        name = "Avante";
     }
 
-    double getDistancePerLiter(){
+    public static Car of(int tripDistance) {
+        return new Avante(tripDistance);
+    }
+
+    double getDistancePerLiter() {
         return distancePerLiter;
     }
 
-    double getTripDistance(){
+    double getTripDistance() {
         return tripDistance;
     }
 
-    String getName(){
+    String getName() {
         return name;
     }
 

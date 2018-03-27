@@ -8,14 +8,15 @@ import static java.lang.Math.sqrt;
 
 public class Triangle extends Figure {
 
-    final int TRIANGLE_CONST;
+    private Points points;
+
+    private double area;
 
     private Triangle(List<String> coordinates) {
         if (!isTriangle(coordinates)) {
             throw new RuntimeException();
         }
-        super.points = Points.initCoordinates(coordinates);
-        this.TRIANGLE_CONST = coordinates.size();
+        points = Points.initCoordinates(coordinates);
     }
 
     public static Triangle of(List<String> coordinates) {
@@ -30,9 +31,16 @@ public class Triangle extends Figure {
         return sqrt(s * (s - a) * (s - b) * (s - c));
     }
 
-    @Override
+    public boolean hasCoordinateAt(int x, int y) {
+        return points.contains(x, y);
+    }
+
+    public double getArea(){
+        return area;
+    }
+
     public void calculate() {
-        super.area = calculateTriangle();
+        area = calculateTriangle();
     }
 
     @Override

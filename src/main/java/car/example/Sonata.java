@@ -1,22 +1,30 @@
 package car.example;
 
-public class Sonata extends Car{
+public class Sonata extends Car {
 
-    public Sonata (int tripDistance){
-        super.name = "Sonata";
-        super.tripDistance = tripDistance;
-        super.distancePerLiter = 10;
+    private String name;
+    private int tripDistance;
+    private int distancePerLiter;
+
+    private Sonata(int tripDistance) {
+        name = "Sonata";
+        this.tripDistance = tripDistance;
+        distancePerLiter = 10;
     }
 
-    double getDistancePerLiter(){
+    public static Car of(int tripDistance) {
+        return new Sonata(tripDistance);
+    }
+
+    double getDistancePerLiter() {
         return distancePerLiter;
     }
 
-    double getTripDistance(){
+    double getTripDistance() {
         return tripDistance;
     }
 
-    String getName(){
+    String getName() {
         return name;
     }
 }

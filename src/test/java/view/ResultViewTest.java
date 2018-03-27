@@ -22,7 +22,7 @@ public class ResultViewTest {
     @Test
     public void drawPoint(){
         List<String> coordinates = Arrays.asList("1,1", "1,4");
-        FigureMaker figureMaker = new concreteFigureMaker();
+        FigureMaker figureMaker = new ConcreteFigureMaker();
         Figure figure = figureMaker.initFigure(coordinates);
         assertThat(ResultView.drawPoint(1, 1, figure), is(".  "));
         assertThat(ResultView.drawPoint(1, 0, figure), is("  "));

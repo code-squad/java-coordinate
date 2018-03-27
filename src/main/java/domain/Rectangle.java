@@ -8,13 +8,17 @@ import static domain.FigureUtil.isRectangle;
 
 public class Rectangle extends Figure {
 
-    final int RECTANGLE_CONST = 4;
+    private Points points;
+
+    private double area;
+
+    private static final int RECTANGLE_CONST = 4;
 
     private Rectangle(List<String> coordinates) {
         if (!isRectangle(coordinates)) {
             throw new RuntimeException();
         }
-        super.points = Points.initCoordinates(coordinates);
+        points = Points.initCoordinates(coordinates);
     }
 
     public static Rectangle of(List<String> coordinates) {
@@ -30,9 +34,16 @@ public class Rectangle extends Figure {
         return eachLengths.get(0) * eachLengths.get(1);
     }
 
-    @Override
+    public boolean hasCoordinateAt(int x, int y) {
+        return points.contains(x, y);
+    }
+
+    public double getArea(){
+        return area;
+    }
+
     public void calculate() {
-        super.area = calculateRectangle();
+        area = calculateRectangle();
     }
 
     @Override
