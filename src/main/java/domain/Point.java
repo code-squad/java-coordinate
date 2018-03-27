@@ -5,8 +5,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Point {
-    int x;
-    int y;
+    private int x;
+    private int y;
 
     public Point(int x, int y) {
         this.x = x;

@@ -43,7 +43,7 @@ public class PointList {
     }
 
     // 이 comparator의 위치는 point와 pointList중 어디가 적절한가
-    public static Comparator<Point> descSort = new Comparator<Point>() {
+    private static Comparator<Point> descSort = new Comparator<Point>() {
         @Override
         public int compare(Point o1, Point o2) {
             Integer o1Y = o1.getY();
