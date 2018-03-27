@@ -13,22 +13,14 @@ public class Triangle extends Figure {
     private double area;
 
     private Triangle(List<String> coordinates) {
-        if (!isTriangle(coordinates)) {
-            throw new RuntimeException();
-        }
-        points = Points.initCoordinates(coordinates);
+        super(Points.initCoordinates(coordinates));
     }
 
     public static Triangle of(List<String> coordinates) {
+        if (!isTriangle(coordinates)) {
+            throw new RuntimeException();
+        }
         return new Triangle(coordinates);
-    }
-
-    double calculateTriangle() {
-        double a = points.calculateLineBwPoints(0, 1);
-        double b = points.calculateLineBwPoints(0, 2);
-        double c = points.calculateLineBwPoints(1, 2);
-        double s = (a + b + c) / 2;
-        return sqrt(s * (s - a) * (s - b) * (s - c));
     }
 
     public boolean hasCoordinateAt(int x, int y) {
