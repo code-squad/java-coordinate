@@ -13,7 +13,6 @@ public class CoordinateMain {
     }
 
     private static boolean run() {
-        boolean isSuccess;
         try {
             // 사용자 문자열 입력 (10,10)-(14,15)
             CoordinateCalc coordinateCalc = new CoordinateCalc(Input.getUserInputProc());
@@ -21,10 +20,9 @@ public class CoordinateMain {
 
             // 결과 출력
             Output.initOutput(coordinateCalc);
-            isSuccess = true;
+            return true;
         } catch (IllegalArgumentException e) {
-            isSuccess = false;
+            return false;
         }
-        return isSuccess;
     }
 }

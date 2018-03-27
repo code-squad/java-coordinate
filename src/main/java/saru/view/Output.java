@@ -9,7 +9,13 @@ import java.util.*;
 public class Output {
     private static final int MAX_VALUE = 25;
     private static final int EVEN = 2;
+    private static final int LINE_NUM = 2;
+    private static final int TRIANGLE_NUM = 3;
+    private static final int RECTANGLE_NUM = 4;
     private static final String OUTPUT_ERROR = "계산 결과 도형이 성립되지 않습니다. 다시입력하세요.";
+    private static final String RESULT_LINE = "직선의 길이는 ";
+    private static final String RESULT_TRIANGLE = "삼각형의 넓이는 ";
+    private static final String RESULT_RECTANGLE = "사각형의 넓이는 ";
 
     private static List<RowLine> rowLines;
 
@@ -27,12 +33,26 @@ public class Output {
     }
 
     private static void printCalcResult(CoordinateCalc coordinateCalc) {
-        // TODO 출력할때 객체 리턴?
         try {
+            printResultHeader(coordinateCalc);
             System.out.print(coordinateCalc.calcProc());
         } catch (IllegalArgumentException e) {
             System.out.println(OUTPUT_ERROR);
             throw new IllegalArgumentException();
+        }
+    }
+
+    private static void printResultHeader(CoordinateCalc coordinateCalc) {
+        switch (coordinateCalc.getUserInput().size()) {
+            case LINE_NUM:
+                System.out.println(RESULT_LINE);
+                break;
+            case TRIANGLE_NUM:
+                System.out.println(RESULT_TRIANGLE);
+                break;
+            case RECTANGLE_NUM:
+                System.out.println(RESULT_RECTANGLE);
+                break;
         }
     }
 
