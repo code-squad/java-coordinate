@@ -2,8 +2,6 @@ package coordinate.view;
 
 import coordinate.domain.*;
 
-import java.util.List;
-
 public class Output {
 
     public static void printMessage(String message) {
