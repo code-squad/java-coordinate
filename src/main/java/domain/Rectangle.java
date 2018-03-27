@@ -19,7 +19,6 @@ public class Rectangle extends Figure {
         return new Rectangle(coordinates);
     }
 
-
     public double getArea(){
         return area;
     }

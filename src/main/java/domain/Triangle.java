@@ -8,8 +8,6 @@ import static java.lang.Math.sqrt;
 
 public class Triangle extends Figure {
 
-    private Points points;
-
     private double area;
 
     private Triangle(List<String> coordinates) {
@@ -21,10 +19,6 @@ public class Triangle extends Figure {
             throw new RuntimeException();
         }
         return new Triangle(coordinates);
-    }
-
-    public boolean hasCoordinateAt(int x, int y) {
-        return points.contains(x, y);
     }
 
     public double getArea(){
