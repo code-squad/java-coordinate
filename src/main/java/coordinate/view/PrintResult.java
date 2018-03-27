@@ -11,6 +11,6 @@ public class PrintResult {
 
     public static void printSquareResult(Square sqaure) {
         System.out.println();
-        System.out.println("사각형 넓이는: " + sqaure.width());
+        System.out.println("사각형 넓이는: " + sqaure.getSquareArea());
     }
 }

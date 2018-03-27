@@ -17,15 +17,16 @@ public class Square {
         point4 = new Point(points.get(3));
     }
 
-    public int width() {
+    private int width() {
         return Math.abs(point1.getPointX() - point2.getPointX());
     }
 
-    public int height() {
+    private int height() {
         return Math.abs(point3.getPointY() - point2.getPointY());
     }
 
     public int getSquareArea() {
         return width() * height();
     }
+
 }

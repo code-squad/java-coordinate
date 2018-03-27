@@ -17,6 +17,7 @@ public class Line {
         point1 = new Point(points.get(0));
         point2 = new Point(points.get(1));
     }
+    //사각형 객체와 다른점. 어느것이 더 좋은건가
 
     public double calculateLineDistance() {
         return point1.calculateLineDistance(point2);
