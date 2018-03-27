@@ -2,25 +2,21 @@ package saru.domain;
 
 import java.util.*;
 
-public class Triangle {
-    private static final int INDEX_ONE = 0;
-    private static final int INDEX_TWO = 1;
-    private static final int INDEX_THREE = 2;
+public class Triangle extends Figure {
     private static final int TRIANGLE_POINT_NUM = 3;
 
-    private Set<Point> userInput;
+//    private Set<Point> userInput;
 
     public Triangle(Set<Point> userInput) {
         this.userInput = userInput;
 
-        if (this.userInput.size() != TRIANGLE_POINT_NUM ||
-                !checkValidTriangle()) {
-            throw new IllegalArgumentException("트라이앵글 포인트 수가 잘못됨");
+        if (!checkValid()) {
+            throw new IllegalArgumentException("트라이앵글이 잘못됨");
         }
     }
 
     public double area() {
-        List<Point>pointList = new ArrayList<>(userInput);
+        List<Point> pointList = new ArrayList<>(userInput);
 
         // 헤론의 공식
         double a = pointList.get(INDEX_ONE).calcLengthWith(pointList.get(INDEX_TWO));
@@ -36,13 +32,14 @@ public class Triangle {
         return Math.sqrt(s * (s - a) * (s - b) * (s - c));
     }
 
-    private boolean checkValidTriangle() {
-        List<Point>pointList = new ArrayList<>(userInput);
+    boolean checkValid() {
+        List<Point> pointList = new ArrayList<>(userInput);
 
         if (checkAllSameX(pointList) || checkAllSameY(pointList))
             return false;
 
-        return checkValidTrianglePoint(pointList);
+//        return checkValidTrianglePoint(pointList);
+        return true;
     }
 
     private boolean checkAllSameY(List<Point> pointList) {

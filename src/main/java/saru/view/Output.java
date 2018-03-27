@@ -9,6 +9,7 @@ import java.util.*;
 public class Output {
     private static final int MAX_VALUE = 25;
     private static final int EVEN = 2;
+    private static final String OUTPUT_ERROR = "계산 결과 도형이 성립되지 않습니다. 다시입력하세요.";
 
     private static List<RowLine> rowLines;
 
@@ -30,7 +31,8 @@ public class Output {
         try {
             System.out.print(coordinateCalc.calcProc());
         } catch (IllegalArgumentException e) {
-            System.out.println("입력값이 잘못 되었습니다.");
+            System.out.println(OUTPUT_ERROR);
+            throw new IllegalArgumentException();
         }
     }
 

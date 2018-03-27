@@ -59,35 +59,6 @@ public class CoordinateCalcTest {
     }
 
     @Test
-    public void checkUserInputSuccess() {
-        String userInputString = "(0,0)-(4,5)";
-        Input.getSplitedUserInputString(userInputString);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void checkUserInputFail() {
-        String userInputString = "(200,10)-(114,15)";
-        Input.getSplitedUserInputString(userInputString);
-    }
-
-    @Test
-    public void checkPointsNum() {
-        // 해쉬셋에 저장한다. 중복과 관련.
-        addSetNormalValues();
-
-        // 갯수를 확인한다
-        assertEquals(2, points.size());
-    }
-
-    private void addSetNormalValues() {
-        Point point1 = new Point(3, 3, true);
-        Point point2 = new Point(4, 4, true);
-
-        points.add(point1);
-        points.add(point2);
-    }
-
-    @Test
     public void checkShapeType() {
         addSetNormalValues();
 
@@ -96,5 +67,13 @@ public class CoordinateCalcTest {
         ShapeType shapeType = coordinateCalc.checkShapeType(userInput);
 
         assertEquals(ShapeType.LINE, shapeType);
+    }
+
+    private void addSetNormalValues() {
+        Point point1 = new Point(3, 3, true);
+        Point point2 = new Point(4, 4, true);
+
+        points.add(point1);
+        points.add(point2);
     }
 }

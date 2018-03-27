@@ -9,6 +9,8 @@ import java.util.*;
 public class Input {
     private static final String INPUT_USER_INPUT = "좌표를 입력하세요.";
     private static final String INPUT_RANGE_ERROR = "범위가 잘못 되었습니다. 다시 입력하세요";
+    private static final String INPUT_SAME_VALUE_ERROR = "같은 포인트를 두번이상 입력했습니다. 다시 입력하세요.";
+    private static final String INPUT_NUM_ERROR = "포인트 갯수가 잘못 되었습니다.";
     private static final int FIRST_INDEX = 1;
     private static final int SECOND_INDEX = 2;
     private static final String REGEX = "[\\(,\\)]";
@@ -39,7 +41,7 @@ public class Input {
         return points;
     }
 
-    private static String getUserInput() {
+    public static String getUserInput() {
         System.out.println();
         System.out.println(INPUT_USER_INPUT);
         return scanner.nextLine();
@@ -49,6 +51,19 @@ public class Input {
         for (int i = 0; i < lineSplitArr.length; i++) {
             String[] pointSplitArr = lineSplitArr[i].split(REGEX);
             assignmentSplitString(points, pointSplitArr);
+        }
+        checkPoint(lineSplitArr.length, points.size());
+    }
+
+    private static void checkPoint(int length, int size) {
+        if (length != size) {
+            System.out.println(INPUT_SAME_VALUE_ERROR);
+            throw new IllegalArgumentException("같은 포인트를 중복 입력");
+        }
+
+        if (length <= 1 || length > 4) {
+            System.out.println(INPUT_NUM_ERROR);
+            throw new IllegalArgumentException("포인트 입력 갯수가 잘못됨");
         }
     }
 

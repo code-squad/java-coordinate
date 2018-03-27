@@ -2,21 +2,16 @@ package saru.domain;
 
 import java.util.*;
 
-public class Square {
-    private static final int INDEX_ONE = 0;
-    private static final int INDEX_TWO = 1;
-    private static final int INDEX_THREE = 2;
-    private static final int INDEX_FOUR = 3;
+public class Square extends Figure {
     private static final int SQUARE_POINT_NUM = 4;
 
-    private Set<Point> userInput;
+//    private Set<Point> userInput;
 
     public Square(Set<Point> userInput) {
         this.userInput = userInput;
 
-        if (this.userInput.size() != SQUARE_POINT_NUM ||
-                !checkValidSquare()) {
-            throw new IllegalArgumentException("스퀘어 포인트 수가 잘못됨");
+        if (!checkValid()) {
+            throw new IllegalArgumentException("스퀘어가 잘못됨");
         }
     }
 
@@ -29,7 +24,7 @@ public class Square {
         return (maxX - minX) * (maxY - minY);
     }
 
-    private boolean checkValidSquare() {
+    boolean checkValid() {
         return checkValidSquarePoint(new ArrayList<>(userInput));
     }
 
@@ -43,7 +38,8 @@ public class Square {
             return false;
         }
 
-        return !checkPointAllEqual(pointList);
+//        return !checkPointAllEqual(pointList);
+        return true;
     }
 
     private boolean checkPointAllEqual(List<Point> pointList) {
