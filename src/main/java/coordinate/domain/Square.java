@@ -1,10 +1,13 @@
 package coordinate.domain;
 
+import coordinate.view.Output;
+
 import java.util.List;
 
-public class Square extends Shape {
+public class Square extends Figure {
     private static final int FIRST = 0;
     private static final int SECOND = 1;
+    private static final int SQUARE = 4;
     private final List<Point> points;
 
     private Square(List<Point> points) {
@@ -15,17 +18,24 @@ public class Square extends Shape {
         if (!isSquare(points)) {
             throw new IllegalArgumentException();
         }
+        if (Utils.isDuplicate(points)) {
+            Output.printMessage("중복되는 좌표가 있습니다. 네 점의 위치는 달라야 합니다.");
+            throw new IllegalArgumentException();
+        }
         return new Square(points);
     }
 
     public static boolean isSquare(List<Point> points) {
+        if (points.size() != SQUARE) {
+            return false;
+        }
         for (Point point : points) {
-            if (twoPoints(points, point)) return false;
+            if (areTwoPointsPerRowOrColumn(points, point)) return false;
         }
         return true;
     }
 
-    private static boolean twoPoints(List<Point> points, Point point) {
+    private static boolean areTwoPointsPerRowOrColumn(List<Point> points, Point point) {
         return point.arwTwoPointsPerRow(points) || point.areTwoPointsPerColumn(points);
     }
 

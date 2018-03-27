@@ -1,8 +1,10 @@
 package coordinate.domain;
 
+import coordinate.view.Output;
+
 import java.util.List;
 
-public class Line extends Shape {
+public class Line extends Figure {
     private static final int LINE = 2;
     private static final int FIRST = 0;
     private static final int SECOND = 1;
@@ -13,17 +15,14 @@ public class Line extends Shape {
     }
 
     public static Line ofLine(List<Point> points) throws IllegalArgumentException {
-        if (!areTwoPoints(points)) {
+        if (Utils.isDuplicate(points)) {
+            Output.printMessage("중복되는 좌표가 있습니다. 세 점의 위치는 달라야 합니다.");
             throw new IllegalArgumentException();
         }
         return new Line(points);
     }
 
     public static boolean isLine(List<Point> points) {
-        return points.size() == LINE;
-    }
-
-    private static boolean areTwoPoints(List<Point> points) {
         return points.size() == LINE;
     }
 

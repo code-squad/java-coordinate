@@ -17,20 +17,16 @@ public class Utils {
         if (splitInput.length == LINE || splitInput.length == SQUARE || splitInput.length == TRIANGLE) {
             return splitInput;
         }
-        Output.printMessage("좌표를 2개나 4개를 입력해주세요.");
+        Output.printMessage("좌표를 2개, 3개나 4개를 입력해주세요.");
         throw new IllegalArgumentException();
     }
 
-    public static List<Point> processCoordinates(String input) throws IllegalArgumentException {
+    public static List<Point> processCoordinates(String input) {
         List<Point> points = new ArrayList<>();
-        String[] splitInput = Utils.checkInputFormat(input);
+        String[] splitInput = checkInputFormat(input);
         for (String set : splitInput) {
-            int[] xySet = Utils.convertToIntegerArray(set);
+            int[] xySet = convertToIntegerArray(set);
             points = addPoint(points, xySet);
-        }
-        if (isDuplicate(points)) {
-            Output.printMessage("중복되는 좌표가 있습니다.");
-            throw new IllegalArgumentException();
         }
         return points;
     }
@@ -39,14 +35,6 @@ public class Utils {
         Point newPoint = new Point(xySet[X_INDEX], xySet[Y_INDEX]);
         points.add(newPoint);
         return points;
-    }
-
-    static boolean isDuplicate(List<Point> points) {
-        Set<Point> unique = new HashSet<>();
-        for (Point point : points) {
-            if (!unique.add(point)) return true;
-        }
-        return false;
     }
 
     static int[] convertToIntegerArray(String set) {
@@ -71,5 +59,13 @@ public class Utils {
             throw new IllegalArgumentException();
         }
         return xySet;
+    }
+
+    static boolean isDuplicate(List<Point> points) {
+        Set<Point> unique = new HashSet<>();
+        for (Point point : points) {
+            if (!unique.add(point)) return true;
+        }
+        return false;
     }
 }

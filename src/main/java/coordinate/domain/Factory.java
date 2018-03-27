@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Factory {
 
-    public static Shape ofShape(List<Point> points) throws IllegalArgumentException {
+    public static Figure ofShape(List<Point> points) throws IllegalArgumentException {
         if (Line.isLine(points)) {
             return Line.ofLine(points);
         }
