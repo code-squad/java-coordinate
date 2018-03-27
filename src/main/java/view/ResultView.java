@@ -1,14 +1,12 @@
 package view;
 
-import domain.Line;
-import domain.Point;
-import domain.Rectangle;
-import domain.Shape;
+import domain.*;
 
 import java.util.ArrayList;
 
 public class ResultView {
     static final int MAX = 24;
+    static ShapeType shapeType;
 
     public static void printPoints(ArrayList<Point> points) {
         int pointIndex = 0;
@@ -64,11 +62,15 @@ public class ResultView {
     }
 
     public static void printCalculation(Shape shape) {
-        if (shape.hasLineCount(1)) {
+        if (shape.hasLineCount(shapeType.LINE.getLineCount())) {
             Line line = (Line) shape;
             System.out.println("\n두 점 사이 거리는 " + line.getDistance());
         }
-        if (shape.hasLineCount(4)) {
+        if (shape.hasLineCount(shapeType.TRIANGLE.getLineCount())) {
+            Triangle triangle = (Triangle) shape;
+            System.out.println("\n삼각형 넓이는 " + triangle.getArea());
+        }
+        if (shape.hasLineCount(shapeType.RECTANGLE.getLineCount())) {
             Rectangle rectangle = (Rectangle) shape;
             System.out.println("\n사각형의 넓이는 " + rectangle.getArea());
         }

@@ -1,9 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-
 public class Point {
     private int x;
     private int y;
@@ -18,6 +14,10 @@ public class Point {
             return new Point(x, y);
         }
         return null;
+    }
+
+    public static Point getPoint(String x, String y) {
+        return getPoint(Integer.parseInt(x), Integer.parseInt(y));
     }
 
     public Double getDistance(Point otherPoint) {

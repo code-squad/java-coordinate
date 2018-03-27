@@ -3,12 +3,11 @@ package domain;
 import java.util.ArrayList;
 
 public class Line extends Shape {
-    private static final int LINE = 1;
     private Point a;
     private Point b;
 
     public Line(Point a, Point b) {
-        super(LINE);
+        super(ShapeType.LINE);
         this.a = a;
         this.b = b;
     }

@@ -2,17 +2,17 @@ package domain;
 
 import java.util.ArrayList;
 
-public class ShapeFactory {
-    private static final int LINE = 2;
-    private static final int RECTANGLE = 4;
-
-    public static Shape getInstance(ArrayList<Point> points) {
+public class ShapeFactory extends Exception {
+    public static Shape getInstance(ArrayList<Point> points, LineList lineList) {
         Shape shape = null;
-        if (points.size() == LINE) {
+        if (ShapeType.LINE.isLine(points.size())) {
             shape = new Line(points);
         }
-        if (points.size() == RECTANGLE) {
-            shape = new Rectangle(points);
+        if (ShapeType.TRIANGLE.isTriangle(points.size())) {
+            shape = new Triangle(lineList);
+        }
+        if (ShapeType.RECTANGLE.isRectangle(points.size())) {
+            shape = new Rectangle(lineList);
         }
         return shape;
     }

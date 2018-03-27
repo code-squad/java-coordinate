@@ -3,17 +3,16 @@ package domain;
 import java.util.ArrayList;
 
 public class Rectangle extends Shape {
-    private static final int RECTANGLE = 4;
     private Line width;
     private Line height;
 
-    public Rectangle(ArrayList<Point> points) {
-        super(RECTANGLE);
-        makeWidthHeight(LineList.getLines(points));
+    public Rectangle(LineList lineList) {
+        super(ShapeType.RECTANGLE);
+        makeWidthHeight(lineList.getLines());
     }
 
     private void makeWidthHeight(ArrayList<Line> lines) {
-        for (Line line: lines) {
+        for (Line line : lines) {
             if (width != null && height != null) {
                 break;
             }
@@ -29,10 +28,10 @@ public class Rectangle extends Shape {
     }
 
     public Double getArea() {
-        if(width == null) {
+        if (width == null) {
             System.out.println("width null");
         }
-        if(height == null) {
+        if (height == null) {
             System.out.println("height null");
         }
         return width.getDistance() * height.getDistance();
@@ -42,14 +41,14 @@ public class Rectangle extends Shape {
         int width = 0;
         int height = 0;
         for (Line line : lines) {
-            if(line.isWidth()) {
+            if (line.isWidth()) {
                 width++;
             }
-            if(line.isHeight()) {
+            if (line.isHeight()) {
                 height++;
             }
         }
-        if(width == 2 && height == 2) {
+        if (width == 2 && height == 2) {
             return true;
         }
         return false;
