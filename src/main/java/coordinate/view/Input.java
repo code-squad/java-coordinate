@@ -8,8 +8,8 @@ import java.util.Scanner;
 import coordinate.domain.Point;
 
 public class Input {
-	public static ArrayList<Point> inputPoints() {
-		ArrayList<Point> inputPoints = new ArrayList<>();
+	public static List<Point> inputPoints() {
+		List<Point> inputPoints = new ArrayList<>();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("좌표를 입력하세요.");
 		List<String> coordinates = Arrays.asList(sc.nextLine().split("-"));

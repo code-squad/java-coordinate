@@ -1,7 +1,7 @@
 package coordinate.domain;
 
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import coordinate.view.Input;
 
@@ -67,21 +67,21 @@ public class Point {
 		return Math.sqrt(Math.pow(xAxis - otherPoint.getxAxis(), 2) + Math.pow(yAxis - otherPoint.getyAxis(), 2));
 	}
 
-	public static ArrayList<Point> isSamePoint(ArrayList<Point> inputPoints) {
+	public static List<Point> isSamePoint(List<Point> inputPoints) {
 		for (int i = 0; i < inputPoints.size() - 1; i++) {
 			inputPoints = isSamePoint(i, inputPoints);
 		}
 		return inputPoints;
 	}
 
-	public static ArrayList<Point> isSamePoint(int i, ArrayList<Point> inputPoints) {
+	public static List<Point> isSamePoint(int i, List<Point> inputPoints) {
 		for (int j = i + 1; j < inputPoints.size(); j++) {
 			inputPoints = isSamePoint(inputPoints, i, j);
 		}
 		return inputPoints;
 	}
 
-	public static ArrayList<Point> isSamePoint(ArrayList<Point> inputPoints, int i, int j) {
+	public static List<Point> isSamePoint(List<Point> inputPoints, int i, int j) {
 
 		HashSet<Point> checker = new HashSet<>();
 		checker.addAll(inputPoints);
