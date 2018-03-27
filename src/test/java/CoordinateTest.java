@@ -76,14 +76,17 @@ public class CoordinateTest {
 		Point test = new Point(20, 8);
 		List<Point> points = Arrays.asList(new Point(2, 15), new Point(2, 8), new Point(20, 15), new Point(20, 8));
 
-		Point testSquare = Square.findOppositionPoint(points);
+		Square square = new Square(points);
+		Point testSquare = square.findOppositionPoint(points);
 		assertThat(testSquare, is(test));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void checkSquareExceptionTest() {
 		List<Point> points = Arrays.asList(new Point(6, 7), new Point(2, 8), new Point(5, 15), new Point(20, 8));
-		Square.check(points);
+
+		Square test = new Square(points);
+		test.check(points);
 	}
 
 	@Test
@@ -94,19 +97,21 @@ public class CoordinateTest {
 		Point test4 = new Point(20, 8);
 
 		List<Point> points = Arrays.asList(new Point(2, 15), new Point(2, 8), new Point(20, 15), new Point(20, 8));
-		Square.check(points);
+		Square square = new Square(points);
+		square.check(points);
 	}
 
 	@Test
 	public void triangleAreaTest() {
 		List<Point> points = Arrays.asList(new Point(6, 20), new Point(17, 20), new Point(15, 4));
-		Triangle test = Triangle.of(points);
+		Triangle test = new Triangle(points);
+
 		assertEquals(88, test.area(), 0.001);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void notTriangleExceptionTest() {
 		List<Point> points = Arrays.asList(new Point(17, 20), new Point(15, 4));
-		Triangle test = Triangle.of(points);
+		Triangle test = new Triangle(points);
 	}
 }

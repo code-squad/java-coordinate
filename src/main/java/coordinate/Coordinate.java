@@ -13,11 +13,11 @@ public class Coordinate {
 	public static void main(String[] args) {
 		String[] inputNumber = InputCoordinate.Input();
 
-		CoordinatePoint point = new CoordinatePoint(inputNumber);
-		Figure figure = point.decideFigure();
+		CoordinatePoint points = new CoordinatePoint(inputNumber);
+		Figure figure = points.decideFigure();
 		double area = figure.area();
 
-		BoardView.makeBoard(point.getPoints());
-		BoardView.printArea(area, point.getPoints());
+		BoardView.makeBoard(points.getPoints());
+		BoardView.printArea(area, points.getPoints());
 	}
 }

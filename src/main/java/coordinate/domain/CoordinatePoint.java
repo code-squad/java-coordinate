@@ -25,15 +25,15 @@ public class CoordinatePoint {
 		}
 		return points;
 	}
-
+	
 	public Figure decideFigure() { // 도형의 타입을 결정해주고 결과 값을 반환
 		if (Line.isLine(points)) {
 			return new Line(points);
 		}
 		if (Triangle.isTriangle(points)) {
-			return Triangle.of(points);
+			return new Triangle(points);
 		}
-		return Square.init(points);
+		return new Square(points);
 	}
 
 	public List<Point> getPoints() {
