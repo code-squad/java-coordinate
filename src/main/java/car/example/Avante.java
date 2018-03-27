@@ -2,14 +2,10 @@ package car.example;
 
 public class Avante extends Car {
 
-    private int distancePerLiter;
-    private int tripDistance;
-    private String name;
+    static final int distancePerLiter = 15;
 
     private Avante(int tripDistance) {
-        this.tripDistance = tripDistance;
-        distancePerLiter = 15;
-        name = "Avante";
+        super(tripDistance);
     }
 
     public static Car of(int tripDistance) {
@@ -19,11 +15,7 @@ public class Avante extends Car {
     double getDistancePerLiter() {
         return distancePerLiter;
     }
-
-    double getTripDistance() {
-        return tripDistance;
-    }
-
+    
     @Override
     public String toString() {
         return "Avante";
