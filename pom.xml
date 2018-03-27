@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>kr.codesquad</groupId>
-	<artifactId>java-ladder</artifactId>
+	<artifactId>java-coordinate</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>java-ladder</name>
-	<description>사다리 게임</description>
+	<name>java-coordinate</name>
+	<description>좌표 계산기</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
