@@ -1,5 +1,5 @@
 package coordinate.domain;
 
 public interface Calculator {
-	public abstract double getArea();
+	abstract double getArea();
 }

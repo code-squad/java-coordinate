@@ -2,9 +2,9 @@ package coordinate.domain;
 
 import java.util.List;
 
-public abstract class Figure {
+public abstract class Figure implements Calculator {
 	private List<Point> points;
-
+	
 	public Figure(List<Point> points) {
 		this.points = points;
 	}
@@ -18,7 +18,7 @@ public abstract class Figure {
 	}
 
 	protected double getDistance(int i, int y) {
-		return points.get(i).getDistance(points.get(y));
+		return getPoint(i).getDistance(getPoint(y));
 	}
 
 }
