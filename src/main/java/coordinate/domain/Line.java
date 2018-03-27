@@ -4,6 +4,9 @@ import coordinate.view.Output;
 
 import java.util.List;
 
+import static coordinate.domain.Utils.FIRST;
+import static coordinate.domain.Utils.SECOND;
+
 public class Line extends Figure {
     static final int LINE = 2;
 

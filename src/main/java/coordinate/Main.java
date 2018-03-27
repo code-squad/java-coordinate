@@ -31,7 +31,7 @@ public class Main {
     }
 
     private static Figure initFigure(List<Point> points) {
-        Figure figure = Figure.ofFigure(points);
+        Figure figure = Factory.ofFigure(points);
         if (figure == null) {
             Output.printMessage("선, 삼각형이나 사각형의 좌표가 아닙니다.");
             return promptUser();

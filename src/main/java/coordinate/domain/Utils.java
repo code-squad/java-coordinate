@@ -12,6 +12,9 @@ public class Utils {
     private static final int COORDINATE_LENGTH = 2;
     private static final int X_INDEX = 0;
     private static final int Y_INDEX = 1;
+    static final int FIRST = 0;
+    static final int SECOND = 1;
+    static final int THIRD = 2;
 
     static String[] checkInputFormat(String input) throws IllegalArgumentException {
         String[] splitInput = input.split("\\s*-\\s*");

@@ -4,6 +4,10 @@ import coordinate.view.Output;
 
 import java.util.List;
 
+import static coordinate.domain.Utils.FIRST;
+import static coordinate.domain.Utils.SECOND;
+import static coordinate.domain.Utils.THIRD;
+
 public class Square extends Figure {
     static final int SQUARE = 4;
 

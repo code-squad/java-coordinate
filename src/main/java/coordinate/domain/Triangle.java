@@ -4,6 +4,10 @@ import coordinate.view.Output;
 
 import java.util.List;
 
+import static coordinate.domain.Utils.FIRST;
+import static coordinate.domain.Utils.SECOND;
+import static coordinate.domain.Utils.THIRD;
+
 public class Triangle extends Figure {
     static final int TRIANGLE = 3;
 
@@ -20,7 +24,6 @@ public class Triangle extends Figure {
         double b = calculateLength(FIRST, THIRD);
         double c = calculateLength(SECOND, THIRD);
         double p = calculateParameter(a, b, c);
-        Output.printMessage("삼각형의 면적은: ");
         return Math.sqrt(p * (p - a) * (p - b) * (p - c));
     }
 
