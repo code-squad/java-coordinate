@@ -18,15 +18,6 @@ public class Line {
         point2 = new Point(points.get(1));
     }
 
-    public int xDistance() {
-        return Math.abs(point2.getPointX() - point1.getPointX());
-    }
-
-    public int yDistance() {
-        return Math.abs(point2.getPointY() - point1.getPointY());
-
-    }
-
     public double calculateLineDistance() {
         return point1.calculateLineDistance(point2);
     }
