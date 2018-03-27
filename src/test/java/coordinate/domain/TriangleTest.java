@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -13,7 +12,7 @@ public class TriangleTest {
 
     @Before
     public void setUp() {
-        triangle = Triangle.ofTrianle(
+        triangle = Triangle.ofTriangle(
                 Arrays.asList(new Point(0, 0), new Point(0, 10), new Point(10, 0)));
     }
 

@@ -4,33 +4,33 @@ import coordinate.view.Output;
 
 import java.util.*;
 
+import static coordinate.domain.Line.LINE;
+import static coordinate.domain.Square.SQUARE;
+import static coordinate.domain.Triangle.TRIANGLE;
+
 public class Utils {
     private static final int COORDINATE_LENGTH = 2;
-    private static final int LINE = 2;
-    private static final int SQUARE = 4;
-    private static final int TRIANGLE = 3;
     private static final int X_INDEX = 0;
     private static final int Y_INDEX = 1;
+    static final int FIRST = 0;
+    static final int SECOND = 1;
+    static final int THIRD = 2;
 
     static String[] checkInputFormat(String input) throws IllegalArgumentException {
         String[] splitInput = input.split("\\s*-\\s*");
         if (splitInput.length == LINE || splitInput.length == SQUARE || splitInput.length == TRIANGLE) {
             return splitInput;
         }
-        Output.printMessage("좌표를 2개나 4개를 입력해주세요.");
+        Output.printMessage("좌표를 2개, 3개나 4개를 입력해주세요.");
         throw new IllegalArgumentException();
     }
 
-    public static List<Point> processCoordinates(String input) throws IllegalArgumentException {
+    public static List<Point> processCoordinates(String input) {
         List<Point> points = new ArrayList<>();
-        String[] splitInput = Utils.checkInputFormat(input);
+        String[] splitInput = checkInputFormat(input);
         for (String set : splitInput) {
-            int[] xySet = Utils.convertToIntegerArray(set);
+            int[] xySet = convertToIntegerArray(set);
             points = addPoint(points, xySet);
-        }
-        if (isDuplicate(points)) {
-            Output.printMessage("중복되는 좌표가 있습니다.");
-            throw new IllegalArgumentException();
         }
         return points;
     }
@@ -39,14 +39,6 @@ public class Utils {
         Point newPoint = new Point(xySet[X_INDEX], xySet[Y_INDEX]);
         points.add(newPoint);
         return points;
-    }
-
-    static boolean isDuplicate(List<Point> points) {
-        Set<Point> unique = new HashSet<>();
-        for (Point point : points) {
-            if (!unique.add(point)) return true;
-        }
-        return false;
     }
 
     static int[] convertToIntegerArray(String set) {

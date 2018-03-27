@@ -2,33 +2,25 @@ package coordinate.domain;
 
 import java.util.List;
 
-public class Triangle extends Shape {
-    private static final int TRIANGLE = 3;
-    private static final int FIRST = 0;
-    private static final int SECOND = 1;
-    private static final int THIRD = 2;
-    private final List<Point> points;
+import static coordinate.domain.Utils.FIRST;
+import static coordinate.domain.Utils.SECOND;
+import static coordinate.domain.Utils.THIRD;
+
+public class Triangle extends Figure {
+    static final int TRIANGLE = 3;
 
     private Triangle(List<Point> points) {
-        this.points = points;
+        super(points);
     }
 
-    public static Triangle ofTrianle(List<Point> points) throws IllegalArgumentException {
-        if (!isTriangle(points)) {
-            throw new IllegalArgumentException();
-        }
+    public static Triangle ofTriangle(List<Point> points) {
         return new Triangle(points);
     }
 
-    public static boolean isTriangle(List<Point> points) {
-        return points.size() == TRIANGLE;
-    }
-
     public double calculate() {
-        double a = points.get(FIRST).calculateDistanceFrom(points.get(SECOND));
-        double b = points.get(FIRST).calculateDistanceFrom(points.get(THIRD));
-        double c = points.get(SECOND).calculateDistanceFrom(points.get(THIRD));
-
+        double a = calculateLength(FIRST, SECOND);
+        double b = calculateLength(FIRST, THIRD);
+        double c = calculateLength(SECOND, THIRD);
         double p = calculateParameter(a, b, c);
         return Math.sqrt(p * (p - a) * (p - b) * (p - c));
     }
@@ -39,5 +31,9 @@ public class Triangle extends Shape {
 
     public boolean isMatch(int x, int y) {
         return points.stream().anyMatch(point -> point.xEquals(x) && point.yEquals(y));
+    }
+
+    public static boolean isTriangle(Figure figure) {
+        return figure.points.size() == TRIANGLE;
     }
 }

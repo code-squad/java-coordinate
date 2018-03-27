@@ -1,47 +1,35 @@
 package coordinate.domain;
 
+import coordinate.view.Output;
+
 import java.util.List;
 
-public class Square extends Shape {
-    private static final int FIRST = 0;
-    private static final int SECOND = 1;
-    private final List<Point> points;
+import static coordinate.domain.Utils.FIRST;
+import static coordinate.domain.Utils.SECOND;
+import static coordinate.domain.Utils.THIRD;
+
+public class Square extends Figure {
+    static final int SQUARE = 4;
 
     private Square(List<Point> points) {
-        this.points = points;
+        super(points);
     }
 
-    public static Square ofSquare(List<Point> points) throws IllegalArgumentException {
-        if (!isSquare(points)) {
-            throw new IllegalArgumentException();
-        }
+    public static Square ofSquare(List<Point> points) {
         return new Square(points);
     }
 
-    public static boolean isSquare(List<Point> points) {
-        for (Point point : points) {
-            if (twoPoints(points, point)) return false;
-        }
-        return true;
-    }
-
-    private static boolean twoPoints(List<Point> points, Point point) {
+    private static boolean areTwoPointsPerRowOrColumn(List<Point> points, Point point) {
         return point.arwTwoPointsPerRow(points) || point.areTwoPointsPerColumn(points);
     }
 
 
     double calculateHeight() {
-        List<Point> twoPoints = points.get(FIRST).getPointsOnSameColumn(points);
-        Point firstPoint = twoPoints.get(FIRST);
-        Point secondPoint = twoPoints.get(SECOND);
-        return firstPoint.calculateDistanceFrom(secondPoint);
+        return calculateLength(FIRST, SECOND);
     }
 
     double calculateBase() {
-        List<Point> twoPoints = points.get(FIRST).getPointsOnSameRow(points);
-        Point firstPoint = twoPoints.get(FIRST);
-        Point secondPoint = twoPoints.get(SECOND);
-        return firstPoint.calculateDistanceFrom(secondPoint);
+        return calculateLength(FIRST, THIRD);
     }
 
     public double calculate() {
@@ -50,5 +38,23 @@ public class Square extends Shape {
 
     public boolean isMatch(int x, int y) {
         return points.stream().anyMatch(p -> p.xEquals(x) && p.yEquals(y));
+    }
+
+    public static boolean isSquare(Figure figure) throws IllegalArgumentException {
+        if (figure.points.size() != SQUARE) {
+            throw new IllegalArgumentException();
+        }
+        if (!isValid(figure.points)) {
+            Output.printMessage("네 점의 위치가 사각형을 형성하지 않습니다.");
+            throw new IllegalArgumentException();
+        }
+        return true;
+    }
+
+    private static boolean isValid(List<Point> points) {
+        for (Point point : points) {
+            if (areTwoPointsPerRowOrColumn(points, point)) return true;
+        }
+        return false;
     }
 }

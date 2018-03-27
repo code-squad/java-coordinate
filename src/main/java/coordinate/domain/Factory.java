@@ -1,22 +1,23 @@
 package coordinate.domain;
 
-import coordinate.view.Output;
-
 import java.util.List;
+
+import static coordinate.domain.Line.LINE;
+import static coordinate.domain.Square.SQUARE;
+import static coordinate.domain.Triangle.TRIANGLE;
 
 public class Factory {
 
-    public static Shape ofShape(List<Point> points) throws IllegalArgumentException {
-        if (Line.isLine(points)) {
+    public static Figure ofFigure(List<Point> points) {
+        if (points.size() == LINE) {
             return Line.ofLine(points);
         }
-        if (Square.isSquare(points)) {
+        if (points.size() == SQUARE) {
             return Square.ofSquare(points);
         }
-        if (Triangle.isTriangle(points)) {
-            return Triangle.ofTrianle(points);
+        if (points.size() == TRIANGLE) {
+            return Triangle.ofTriangle(points);
         }
-        Output.printMessage("직선, 직사각형이나 삼각형이 아닙니다.");
-        throw new IllegalArgumentException();
+        return null;
     }
 }

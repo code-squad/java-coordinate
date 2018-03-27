@@ -10,27 +10,27 @@ public class CoordinateCalculator {
     public static final int DOMAIN = 24;
     private final List<Coordinate> coordinates;
 
-    public CoordinateCalculator(Shape shape) {
-        this.coordinates = initCoordinates(shape);
+    public CoordinateCalculator(Figure figure) {
+        this.coordinates = initCoordinates(figure);
     }
 
-    private static List<Coordinate> initCoordinates(Shape shape) {
+    private static List<Coordinate> initCoordinates(Figure figure) {
         List<Coordinate> coordinates = new ArrayList<>();
         for (int y = 0; y <= RANGE; y++) {
-            initXY(coordinates, shape, y);
+            initXY(coordinates, figure, y);
         }
         return coordinates;
     }
 
-    private static List<Coordinate> initXY(List<Coordinate> coordinates, Shape shape, int y) {
+    private static List<Coordinate> initXY(List<Coordinate> coordinates, Figure figure, int y) {
         for (int x = DOMAIN; x >= 0; x--) {
-            coordinates.add(createCoordinate(shape, x, y));
+            coordinates.add(createCoordinate(figure, x, y));
         }
         return coordinates;
     }
 
-    private static Coordinate createCoordinate(Shape shape, int x, int y) {
-        if (shape.isMatch(x, y)) {
+    private static Coordinate createCoordinate(Figure figure, int x, int y) {
+        if (figure.isMatch(x, y)) {
             return Coordinate.ofPoint(x, y);
         }
         return Coordinate.ofNoPoint(x, y);
