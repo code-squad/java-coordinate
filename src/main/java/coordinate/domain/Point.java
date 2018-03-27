@@ -15,7 +15,6 @@ public class Point {
 		if (pointX < MIN || pointX > MAX || pointY < MIN || pointY > MAX) {
 			throw new IllegalArgumentException("24초과의 값은 좌표가 될 수 없습니다.");
 		}
-
 		this.pointX = pointX;
 		this.pointY = pointY;
 	}
@@ -35,15 +34,11 @@ public class Point {
 	public int getWidth(Point otherPoint) {
 		return Math.abs(this.pointX - otherPoint.getPointX());
 	}
-
+	
 	public double lineLength(Point otherPoint) {
 		double height = getWidth(otherPoint);
 		double width = getHeight(otherPoint);
 		return Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
-	}
-
-	public boolean isSameXOrY(Point otherPoint) {
-		return (this.pointX == otherPoint.getPointX() || this.pointY == otherPoint.getPointY());
 	}
 
 	public int getPointX() {
