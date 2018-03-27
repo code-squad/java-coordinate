@@ -2,14 +2,17 @@ package domain;
 
 import java.util.Objects;
 
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
+
 public class Point {
 
-    private int x;
-    private int y;
+    private Positive x;
+    private Positive y;
 
     private Point(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.x = new Positive(x);
+        this.y = new Positive(y);
     }
 
     public static Point of(String coordinate) {
@@ -21,25 +24,30 @@ public class Point {
         return new Point(x, y);
     }
 
-    public int getY() {
-        return y;
+    public double getLengthBwTwoPoints(Point otherPoint) {
+        return sqrt(pow((double) getXDiff(otherPoint), 2) + pow((double) getYDiff(otherPoint), 2));
     }
 
-    public int getX() {
-        return x;
+    int getXDiff(Point otherPoint) {
+        return this.x.getDiff(otherPoint.x);
+    }
+
+    int getYDiff(Point otherPoint) {
+        return this.y.getDiff(otherPoint.y);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Point) {
-            Point point = (Point) obj;
-            if (this.x == point.x && this.y == point.y) return true;
-        }
-        return false;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return Objects.equals(x, point.x) &&
+                Objects.equals(y, point.y);
     }
 
     @Override
     public int hashCode() {
+
         return Objects.hash(x, y);
     }
 

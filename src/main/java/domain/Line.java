@@ -6,27 +6,25 @@ import static domain.FigureUtil.isLine;
 
 public class Line extends Figure {
 
-    final int LINE_CONST;
+    private double area;
 
     private Line(List<String> coordinates) {
-        if (!isLine(coordinates)) {
-            throw new RuntimeException();
-        }
-        super.points = Points.initCoordinates(coordinates);
-        this.LINE_CONST = coordinates.size();
+        super(Points.initCoordinates(coordinates));
     }
 
     public static Line of(List<String> coordinates) {
+        if (!isLine(coordinates)) {
+            throw new RuntimeException();
+        }
         return new Line(coordinates);
     }
 
-    double calculateLine() {
-        return points.calculateLineBwPoints(0, 1);
+    public double getArea() {
+        return area;
     }
 
-    @Override
     public void calculate() {
-        super.area = calculateLine();
+        area = calculateLine(0, 1);
     }
 
     @Override

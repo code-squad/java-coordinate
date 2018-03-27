@@ -2,18 +2,21 @@ package domain;
 
 public abstract class Figure {
 
-    Points points;
+    private Points points;
 
-    double area;
+    Figure(Points points) {
+        this.points = points;
+    }
+
+    public abstract void calculate();
+
+    public abstract double getArea();
 
     public boolean hasCoordinateAt(int x, int y) {
         return points.contains(x, y);
     }
 
-    public abstract void calculate();
-
-    public double getArea() {
-        return area;
+    double calculateLine(int a, int b) {
+        return points.calculateLineBwPoints(a, b);
     }
-
 }

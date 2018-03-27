@@ -6,7 +6,7 @@ import static domain.FigureUtil.isLine;
 import static domain.FigureUtil.isRectangle;
 import static domain.FigureUtil.isTriangle;
 
-public class concreteFigureMaker extends FigureMaker {
+public class ConcreteFigureMaker extends FigureMaker {
 
     public Figure createFigure(List<String> coordinates) {
         if (isLine(coordinates)) return Line.of(coordinates);

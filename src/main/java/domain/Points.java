@@ -2,11 +2,6 @@ package domain;
 
 import java.util.*;
 
-import static domain.InputUtil.calculateLineBwPoints;
-import static java.lang.Math.abs;
-import static java.lang.Math.pow;
-import static java.lang.Math.sqrt;
-
 public class Points {
 
     private List<Point> points;
@@ -35,9 +30,7 @@ public class Points {
     }
 
     double calculateLineBwPoints(int a, int b) {
-        double xDiff = abs(points.get(a).getX() - points.get(b).getX());
-        double yDiff = abs(points.get(a).getY() - points.get(b).getY());
-        return sqrt(pow(xDiff, 2) + pow(yDiff, 2));
+        return points.get(a).getLengthBwTwoPoints(points.get(b));
     }
 
     public boolean contains(int x, int y) {

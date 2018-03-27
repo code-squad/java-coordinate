@@ -1,37 +1,36 @@
 package domain;
 
 import java.util.List;
+import java.util.Objects;
 
 import static domain.FigureUtil.isTriangle;
 import static java.lang.Math.sqrt;
 
 public class Triangle extends Figure {
 
-    final int TRIANGLE_CONST;
+    private double area;
 
     private Triangle(List<String> coordinates) {
-        if (!isTriangle(coordinates)) {
-            throw new RuntimeException();
-        }
-        super.points = Points.initCoordinates(coordinates);
-        this.TRIANGLE_CONST = coordinates.size();
+        super(Points.initCoordinates(coordinates));
     }
 
     public static Triangle of(List<String> coordinates) {
+        if (!isTriangle(coordinates)) {
+            throw new RuntimeException();
+        }
         return new Triangle(coordinates);
     }
 
-    double calculateTriangle() {
-        double a = points.calculateLineBwPoints(0, 1);
-        double b = points.calculateLineBwPoints(0, 2);
-        double c = points.calculateLineBwPoints(1, 2);
-        double s = (a + b + c) / 2;
-        return sqrt(s * (s - a) * (s - b) * (s - c));
+    public double getArea() {
+        return area;
     }
 
-    @Override
     public void calculate() {
-        super.area = calculateTriangle();
+        double a = calculateLine(0, 1);
+        double b = calculateLine(0, 2);
+        double c = calculateLine(1, 2);
+        double s = (a + b + c) / 2;
+        area = sqrt(s * (s - a) * (s - b) * (s - c));
     }
 
     @Override

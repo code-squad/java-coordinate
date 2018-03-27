@@ -5,35 +5,34 @@ import java.util.Collections;
 import java.util.List;
 
 import static domain.FigureUtil.isRectangle;
-import static domain.InputUtil.calculateLineBwPoints;
 
 public class Rectangle extends Figure {
 
-    final int RECTANGLE_CONST = 4;
+    private double area;
 
     private Rectangle(List<String> coordinates) {
-        if (!isRectangle(coordinates)) {
-            throw new RuntimeException();
-        }
-        super.points = Points.initCoordinates(coordinates);
+        super(Points.initCoordinates(coordinates));
     }
 
     public static Rectangle of(List<String> coordinates) {
+        if (!isRectangle(coordinates)) {
+            throw new RuntimeException();
+        }
         return new Rectangle(coordinates);
     }
 
-    double calculateRectangle() {
-        ArrayList<Double> eachLengths = new ArrayList<>();
-        for (int i = 1; i < RECTANGLE_CONST; i++) {
-            eachLengths.add(points.calculateLineBwPoints(0, i));
-        }
-        Collections.sort(eachLengths);
-        return eachLengths.get(0) * eachLengths.get(1);
+    public double getArea(){
+        return area;
     }
 
-    @Override
     public void calculate() {
-        super.area = calculateRectangle();
+        final int RECTANGLE_CONST = 4;
+        ArrayList<Double> eachLengths = new ArrayList<>();
+        for (int i = 1; i < RECTANGLE_CONST; i++) {
+            eachLengths.add(calculateLine(0, i));
+        }
+        Collections.sort(eachLengths);
+        area = eachLengths.get(0) * eachLengths.get(1);
     }
 
     @Override
