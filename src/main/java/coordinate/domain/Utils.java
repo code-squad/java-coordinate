@@ -4,11 +4,12 @@ import coordinate.view.Output;
 
 import java.util.*;
 
+import static coordinate.domain.Line.LINE;
+import static coordinate.domain.Square.SQUARE;
+import static coordinate.domain.Triangle.TRIANGLE;
+
 public class Utils {
     private static final int COORDINATE_LENGTH = 2;
-    static final int LINE = 2;
-    static final int SQUARE = 4;
-    static final int TRIANGLE = 3;
     private static final int X_INDEX = 0;
     private static final int Y_INDEX = 1;
 
@@ -59,13 +60,5 @@ public class Utils {
             throw new IllegalArgumentException();
         }
         return xySet;
-    }
-
-    static boolean isDuplicate(List<Point> points) {
-        Set<Point> unique = new HashSet<>();
-        for (Point point : points) {
-            if (!unique.add(point)) return true;
-        }
-        return false;
     }
 }

@@ -4,27 +4,25 @@ import coordinate.view.Output;
 
 import java.util.List;
 
+
 public class Square extends Figure {
-    private final List<Point> points;
+    static final int SQUARE = 4;
 
     private Square(List<Point> points) {
-        this.points = points;
+        super(points);
     }
 
-    public static Square ofSquare(List<Point> points) throws IllegalArgumentException {
-        if (isInvalid(points)) {
-            throw new IllegalArgumentException();
-        }
-        if (Utils.isDuplicate(points)) {
-            Output.printMessage("중복되는 좌표가 있습니다. 네 점의 위치는 달라야 합니다.");
-            throw new IllegalArgumentException();
-        }
+    public static Square ofSquare(List<Point> points) {
         return new Square(points);
     }
 
-    private static boolean isInvalid(List<Point> points) {
+    public static boolean isSquare(List<Point> points) {
+        return points.size() == SQUARE && isValid(points);
+    }
+
+    private static boolean isValid(List<Point> points) {
         for (Point point : points) {
-            if (!areTwoPointsPerRowOrColumn(points, point)) return true;
+            if (areTwoPointsPerRowOrColumn(points, point)) return true;
         }
         return false;
     }
@@ -35,13 +33,11 @@ public class Square extends Figure {
 
 
     double calculateHeight() {
-        List<Point> twoPoints = points.get(FIRST).getPointsOnSameColumn(points);
-        return Figure.calculateLength(twoPoints);
+        return calculateLength(FIRST, SECOND);
     }
 
     double calculateBase() {
-        List<Point> twoPoints = points.get(FIRST).getPointsOnSameRow(points);
-        return Figure.calculateLength(twoPoints);
+        return calculateLength(FIRST, THIRD);
     }
 
     public double calculate() {

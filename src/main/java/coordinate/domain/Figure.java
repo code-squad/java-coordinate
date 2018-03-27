@@ -1,38 +1,47 @@
 package coordinate.domain;
 
-import coordinate.view.Output;
-
+import java.util.HashSet;
 import java.util.List;
-
-import static coordinate.domain.Utils.LINE;
-import static coordinate.domain.Utils.SQUARE;
-import static coordinate.domain.Utils.TRIANGLE;
+import java.util.Set;
 
 public abstract class Figure {
     static final int FIRST = 0;
     static final int SECOND = 1;
+    static final int THIRD = 2;
+    final List<Point> points;
+
+    Figure(List<Point> points) {
+        this.points = points;
+    }
 
     public abstract double calculate();
 
     public abstract boolean isMatch(int x, int y);
 
-    static double calculateLength(List<Point> twoPoints) {
-        Point firstPoint = twoPoints.get(FIRST);
-        Point secondPoint = twoPoints.get(SECOND);
+    double calculateLength(int first, int second) {
+        Point firstPoint = points.get(first);
+        Point secondPoint = points.get(second);
         return firstPoint.calculateDistanceFrom(secondPoint);
     }
 
-    static int isWhichFigure(List<Point> points) throws IllegalArgumentException {
-        if (points.size() == LINE) {
-            return LINE;
+    public static Figure ofFigure(List<Point> points) {
+        if (Line.isLine(points)) {
+            return Line.ofLine(points);
         }
-        if (points.size() == SQUARE) {
-            return SQUARE;
+        if (Square.isSquare(points)) {
+            return Square.ofSquare(points);
         }
-        if (points.size() == TRIANGLE) {
-            return TRIANGLE;
+        if (Triangle.isTriangle(points)) {
+            return Triangle.ofTriangle(points);
         }
-        Output.printMessage("직선, 직사각형이나 삼각형이 아닙니다.");
-        throw new IllegalArgumentException();
+        return null;
+    }
+
+    public boolean isDuplicate() {
+        Set<Point> unique = new HashSet<>();
+        for (Point point : points) {
+            if (!unique.add(point)) return true;
+        }
+        return false;
     }
 }

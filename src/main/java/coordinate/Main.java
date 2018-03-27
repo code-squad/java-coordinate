@@ -9,13 +9,13 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        Figure figure = initShape();
+        Figure figure = promptUser();
         CoordinateCalculator calculator = initCalculator(figure);
 
         printResult(calculator, figure);
     }
 
-    private static Figure initShape() {
+    private static Figure promptUser() {
         Figure figure;
         try {
             Output.printMessage("선이나 직사각형 좌표를 다음과 같은 포맷으로 입력해주세요.\n" +
@@ -23,9 +23,22 @@ public class Main {
                     "직사각형일 경우: (0,0)-(1,0)-(0,1)-(1,1)\n" +
                     "삼각형일 경우: (1,1)-(5,5)-(10,8)");
             List<Point> points = Utils.processCoordinates(Input.takeCoordinates());
-            figure = Factory.ofFigure(points);
+            figure = initFigure(points);
         } catch (IllegalArgumentException e) {
-            return initShape();
+            return promptUser();
+        }
+        return figure;
+    }
+
+    private static Figure initFigure(List<Point> points) {
+        Figure figure = Figure.ofFigure(points);
+        if (figure == null) {
+            Output.printMessage("선, 삼각형이나 사각형의 좌표가 아닙니다.");
+            return promptUser();
+        }
+        if (figure.isDuplicate()) {
+            Output.printErrorMessage(points);
+            return promptUser();
         }
         return figure;
     }
