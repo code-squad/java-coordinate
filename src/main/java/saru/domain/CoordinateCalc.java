@@ -5,11 +5,6 @@ import java.util.*;
 // Calc?
 public class CoordinateCalc {
     private static final int MAX_VALUE = 25;
-    private static final int POINT_ONE = 1;
-    private static final int POINT_TWO = 2;
-    private static final int POINT_THREE = 3;
-    private static final int POINT_FOUR = 4;
-
 
     private List<RowLine> rowLines = new ArrayList<>();
 

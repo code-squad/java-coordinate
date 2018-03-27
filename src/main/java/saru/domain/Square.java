@@ -3,10 +3,6 @@ package saru.domain;
 import java.util.*;
 
 public class Square extends Figure {
-    private static final int SQUARE_POINT_NUM = 4;
-
-//    private Set<Point> userInput;
-
     public Square(Set<Point> userInput) {
         this.userInput = userInput;
 
@@ -38,13 +34,6 @@ public class Square extends Figure {
             return false;
         }
 
-//        return !checkPointAllEqual(pointList);
         return true;
-    }
-
-    private boolean checkPointAllEqual(List<Point> pointList) {
-        return pointList.get(INDEX_ONE).equals(pointList.get(INDEX_TWO)) &&
-                pointList.get(INDEX_TWO).equals(pointList.get(INDEX_THREE)) &&
-                pointList.get(INDEX_THREE).equals(pointList.get(INDEX_FOUR));
     }
 }

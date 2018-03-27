@@ -3,10 +3,6 @@ package saru.domain;
 import java.util.*;
 
 public class Triangle extends Figure {
-    private static final int TRIANGLE_POINT_NUM = 3;
-
-//    private Set<Point> userInput;
-
     public Triangle(Set<Point> userInput) {
         this.userInput = userInput;
 
@@ -38,7 +34,6 @@ public class Triangle extends Figure {
         if (checkAllSameX(pointList) || checkAllSameY(pointList))
             return false;
 
-//        return checkValidTrianglePoint(pointList);
         return true;
     }
 
@@ -56,14 +51,5 @@ public class Triangle extends Figure {
             return true;
         }
         return false;
-    }
-
-    private boolean checkValidTrianglePoint(List<Point> pointList) {
-        if (pointList.get(INDEX_ONE).equals(pointList.get(INDEX_TWO)) &&
-                pointList.get(INDEX_TWO).equals(pointList.get(INDEX_THREE))) {
-            return false;
-        }
-
-        return true;
     }
 }
