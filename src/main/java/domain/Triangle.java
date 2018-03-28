@@ -18,6 +18,7 @@ public class Triangle extends Shape {
         this.area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
     }
 
+    @Override
     public Double getArea() {
         return this.area;
     }

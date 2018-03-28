@@ -3,16 +3,23 @@ package domain;
 import java.util.ArrayList;
 
 public class Validation {
-    public static Boolean checkValidation(ArrayList<Line> lines) {
-        if (!PointList.hasNull()) {
-            return true;
+    public static Errors checkValidation(ArrayList<Line> lines) {
+        if (lines.size() == 1) {
+            return Errors.NOT_ERR;
         }
         if (lines.size() == 3) {
-            return Triangle.isTriangle(lines);
+            return convertBoolToEnum(Triangle.isTriangle(lines));
         }
         if (lines.size() == 6) {
-            return Rectangle.isRectangle(lines);
+            return convertBoolToEnum(Rectangle.isRectangle(lines));
         }
-        return false;
+        return Errors.ERR_SHAPE;
+    }
+
+    private static Errors convertBoolToEnum(Boolean value) {
+        if (!value) {
+            return Errors.ERR_SHAPE;
+        }
+        return Errors.NOT_ERR;
     }
 }

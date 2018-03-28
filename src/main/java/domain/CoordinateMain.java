@@ -7,15 +7,20 @@ import java.util.ArrayList;
 
 public class CoordinateMain {
     public static void main(String[] args) {
-        Boolean validation = false;
+        Errors errors = null;
         LineList lineList = null;
         ArrayList<Point> points = PointList.getPoints();
-        while(!validation) {
-            PointList.makePoints(InputView.getCoordinates());
-            lineList = new LineList(points);
-            validation = Validation.checkValidation(lineList.getLines());
-            if (!validation) {
-                System.out.println("입력 범위를 초과하였습니다. 0~24");
+        while (errors != Errors.NOT_ERR) {
+            try {
+                PointList.makePoints(InputView.getCoordinates());
+                lineList = new LineList(points);
+                errors = Validation.checkValidation(lineList.getLines());
+            } catch (SamePointException e) {
+                errors = Errors.ERR_DUPLICATE;
+            } catch (NullPointerException e) {
+                errors = Errors.ERR_RANGE;
+            } finally {
+                ResultView.printError(errors);
             }
         }
         printResult(points, lineList);
