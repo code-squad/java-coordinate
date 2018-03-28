@@ -41,4 +41,9 @@ public class Line extends Shape {
         return "(" + this.a.getX() + ", " + this.a.getY() + ")" +
                 "(" + this.b.getX() + ", " + this.b.getY() + ")";
     }
+
+    @Override
+    Double getArea() throws NullPointerException {
+        throw new NullPointerException();
+    }
 }

@@ -1,11 +1,13 @@
 package domain;
 
-public class Shape {
+abstract public class Shape {
     private int lineCount;
 
     protected Shape(ShapeType shapeType) {
         this.lineCount = shapeType.getLineCount();
     }
+
+    abstract Double getArea();
 
     public Boolean hasLineCount(int lineCount) {
         if (this.lineCount == lineCount) {
