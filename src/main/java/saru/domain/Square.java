@@ -2,7 +2,7 @@ package saru.domain;
 
 import java.util.*;
 
-public class Square extends Figure {
+public class Square extends Figure implements FigureCalc {
     public Square(Set<Point> userInput) {
         super(userInput);
 
@@ -20,12 +20,12 @@ public class Square extends Figure {
         return (maxX - minX) * (maxY - minY);
     }
 
-    boolean checkValid() {
+    public boolean checkValid() {
         double oneToTwo = calcValueWith(INDEX_ONE, INDEX_TWO);
         double threeToFour = calcValueWith(INDEX_THREE, INDEX_FOUR);
         double twoToThree = calcValueWith(INDEX_TWO, INDEX_THREE);
         double fourToOne = calcValueWith(INDEX_FOUR, INDEX_ONE);
 
-        return !(oneToTwo != threeToFour) && !(twoToThree != fourToOne);
+        return (oneToTwo == threeToFour) && (twoToThree == fourToOne);
     }
 }

@@ -21,7 +21,7 @@ public class SquareTest {
     public void invalidSquarePosition() {
         addSetIllegalValue();
 
-        Square square = new Square(points);
+        FigureCalc square = new Square(points);
         square.area();
     }
 

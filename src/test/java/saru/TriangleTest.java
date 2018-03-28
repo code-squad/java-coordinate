@@ -39,7 +39,7 @@ public class TriangleTest {
     public void TriangleCalc() {
         addSetNormalValue();
 
-        Triangle triangle = new Triangle(points);
+        FigureCalc triangle = new Triangle(points);
         double result = triangle.area();
         assertEquals(2, result, 0.001);
     }

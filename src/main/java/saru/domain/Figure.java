@@ -2,7 +2,7 @@ package saru.domain;
 
 import java.util.*;
 
-abstract class Figure {
+class Figure {
     static final int INDEX_ONE = 0;
     static final int INDEX_TWO = 1;
     static final int INDEX_THREE = 2;
@@ -48,8 +48,4 @@ abstract class Figure {
     double getMinYValue() {
         return Util.getMinYValue(userInput);
     }
-
-    abstract double area();
-
-    abstract boolean checkValid();
 }

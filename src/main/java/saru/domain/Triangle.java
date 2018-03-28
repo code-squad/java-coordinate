@@ -2,7 +2,7 @@ package saru.domain;
 
 import java.util.*;
 
-public class Triangle extends Figure {
+public class Triangle extends Figure implements FigureCalc {
     public Triangle(Set<Point> userInput) {
         super(userInput);
 
@@ -26,7 +26,7 @@ public class Triangle extends Figure {
         return Math.sqrt(s * (s - a) * (s - b) * (s - c));
     }
 
-    boolean checkValid() {
+    public boolean checkValid() {
         return !checkAllSameX() && !checkAllSameY();
     }
 
