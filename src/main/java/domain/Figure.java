@@ -1,16 +1,12 @@
 package domain;
 
-public abstract class Figure {
+public abstract class Figure implements FigureAPI {
 
     private Points points;
 
     Figure(Points points) {
         this.points = points;
     }
-
-    public abstract void calculate();
-
-    public abstract double getArea();
 
     public boolean hasCoordinateAt(int x, int y) {
         return points.contains(x, y);
