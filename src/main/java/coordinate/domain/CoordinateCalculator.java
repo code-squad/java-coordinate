@@ -10,11 +10,11 @@ public class CoordinateCalculator {
     public static final int DOMAIN = 24;
     private final List<Coordinate> coordinates;
 
-    public CoordinateCalculator(Figure figure) {
+    public CoordinateCalculator(Calculable figure) {
         this.coordinates = initCoordinates(figure);
     }
 
-    private static List<Coordinate> initCoordinates(Figure figure) {
+    private static List<Coordinate> initCoordinates(Calculable figure) {
         List<Coordinate> coordinates = new ArrayList<>();
         for (int y = 0; y <= RANGE; y++) {
             initXY(coordinates, figure, y);
@@ -22,14 +22,14 @@ public class CoordinateCalculator {
         return coordinates;
     }
 
-    private static List<Coordinate> initXY(List<Coordinate> coordinates, Figure figure, int y) {
+    private static List<Coordinate> initXY(List<Coordinate> coordinates, Calculable figure, int y) {
         for (int x = DOMAIN; x >= 0; x--) {
             coordinates.add(createCoordinate(figure, x, y));
         }
         return coordinates;
     }
 
-    private static Coordinate createCoordinate(Figure figure, int x, int y) {
+    private static Coordinate createCoordinate(Calculable figure, int x, int y) {
         if (figure.isMatch(x, y)) {
             return Coordinate.ofPoint(x, y);
         }

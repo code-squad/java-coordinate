@@ -1,7 +1,5 @@
 package coordinate.domain;
 
-import coordinate.view.Output;
-
 import java.util.List;
 
 import static coordinate.domain.Utils.FIRST;
@@ -23,7 +21,6 @@ public class Square extends Figure {
         return point.arwTwoPointsPerRow(points) || point.areTwoPointsPerColumn(points);
     }
 
-
     double calculateHeight() {
         return calculateLength(FIRST, SECOND);
     }
@@ -40,21 +37,14 @@ public class Square extends Figure {
         return points.stream().anyMatch(p -> p.xEquals(x) && p.yEquals(y));
     }
 
-    public static boolean isSquare(Figure figure) throws IllegalArgumentException {
-        if (figure.points.size() != SQUARE) {
-            throw new IllegalArgumentException();
-        }
-        if (!isValid(figure.points)) {
-            Output.printMessage("네 점의 위치가 사각형을 형성하지 않습니다.");
-            throw new IllegalArgumentException();
-        }
-        return true;
-    }
-
-    private static boolean isValid(List<Point> points) {
+    static boolean isValid(List<Point> points) {
         for (Point point : points) {
             if (areTwoPointsPerRowOrColumn(points, point)) return true;
         }
         return false;
+    }
+
+    public String getType() {
+        return "Square";
     }
 }
