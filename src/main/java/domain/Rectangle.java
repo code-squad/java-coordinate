@@ -37,7 +37,7 @@ public class Rectangle extends Shape {
         return width.getDistance() * height.getDistance();
     }
 
-    public static Boolean isRectangle(ArrayList<Line> lines) {
+    public static Boolean isRectangle(ArrayList<Line> lines) throws Exception {
         int width = 0;
         int height = 0;
         for (Line line : lines) {
@@ -51,6 +51,6 @@ public class Rectangle extends Shape {
         if (width == 2 && height == 2) {
             return true;
         }
-        return false;
+        throw new Exception("(선, 삼각형, 직사각형)을 만들 수 없는 좌표입니다.");
     }
 }

@@ -7,20 +7,16 @@ import java.util.ArrayList;
 
 public class CoordinateMain {
     public static void main(String[] args) {
-        Errors errors = null;
+        Boolean validation = false;
         LineList lineList = null;
         ArrayList<Point> points = PointList.getPoints();
-        while (errors != Errors.NOT_ERR) {
+        while (!validation) {
             try {
                 PointList.makePoints(InputView.getCoordinates());
                 lineList = new LineList(points);
-                errors = Validation.checkValidation(lineList.getLines());
-            } catch (SamePointException e) {
-                errors = Errors.ERR_DUPLICATE;
-            } catch (NullPointerException e) {
-                errors = Errors.ERR_RANGE;
-            } finally {
-                ResultView.printError(errors);
+                validation = Validation.checkValidation(lineList.getLines());
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         }
         printResult(points, lineList);

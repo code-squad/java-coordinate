@@ -12,15 +12,15 @@ public class PointList {
         return points;
     }
 
-    public static void makePoints(List<String> numbers) throws SamePointException {
+    public static void makePoints(List<String> numbers) throws Exception {
         points.clear();
         for (int i = 0; i < numbers.size(); i = i + 2) {
             Point point = Point.getPoint(numbers.get(i), numbers.get(i + 1));
             if (points.contains(null)) {
-                throw new NullPointerException();
+                throw new Exception("입력 범위를 초과하였습니다. 0~24");
             }
             if (points.contains(point)) {
-                throw new SamePointException();
+                throw new Exception("위치가 같은 점(point)이 존재합니다. 점들의 위치는 서로 달라야 합니다.");
             }
             points.add(point);
         }
