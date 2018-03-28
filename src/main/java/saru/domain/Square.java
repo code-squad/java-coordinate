@@ -21,19 +21,11 @@ public class Square extends Figure {
     }
 
     boolean checkValid() {
-        return checkValidSquarePoint(getUserInputAsArrayList());
-    }
+        double oneToTwo = calcValueWith(INDEX_ONE, INDEX_TWO);
+        double threeToFour = calcValueWith(INDEX_THREE, INDEX_FOUR);
+        double twoToThree = calcValueWith(INDEX_TWO, INDEX_THREE);
+        double fourToOne = calcValueWith(INDEX_FOUR, INDEX_ONE);
 
-    private boolean checkValidSquarePoint(List<Point> pointList) {
-        double oneToTwo = Math.abs(pointList.get(INDEX_ONE).calcLengthWith(pointList.get(INDEX_TWO)));
-        double threeToFour = Math.abs(pointList.get(INDEX_THREE).calcLengthWith(pointList.get(INDEX_FOUR)));
-        double twoToThree = Math.abs(pointList.get(INDEX_TWO).calcLengthWith(pointList.get(INDEX_THREE)));
-        double fourToOne = Math.abs(pointList.get(INDEX_FOUR).calcLengthWith(pointList.get(INDEX_ONE)));
-
-        if (oneToTwo != threeToFour || twoToThree != fourToOne) {
-            return false;
-        }
-
-        return true;
+        return !(oneToTwo != threeToFour) && !(twoToThree != fourToOne);
     }
 }

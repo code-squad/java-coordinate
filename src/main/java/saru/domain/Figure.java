@@ -14,12 +14,23 @@ abstract class Figure {
         this.userInput = userInput;
     }
 
-    Set<Point> getUserInput() {
-        return userInput;
+    private List<Point> getUserInputAsArrayList() {
+        return new ArrayList<>(userInput);
     }
 
-    List<Point> getUserInputAsArrayList() {
-        return new ArrayList<>(userInput);
+    boolean checkSameX(int first, int second) {
+        List<Point> userInputList = getUserInputAsArrayList();
+        return userInputList.get(first).checkSameX(userInputList.get(second));
+    }
+
+    boolean checkSameY(int first, int second) {
+        List<Point> userInputList = getUserInputAsArrayList();
+        return userInputList.get(first).checkSameY(userInputList.get(second));
+    }
+
+    double calcValueWith(int first, int second) {
+        List<Point> userInputList = getUserInputAsArrayList();
+        return Math.abs(userInputList.get(first).calcLengthWith(userInputList.get(second)));
     }
 
     double getMaxXValue() {

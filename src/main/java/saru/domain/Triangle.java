@@ -12,12 +12,10 @@ public class Triangle extends Figure {
     }
 
     public double area() {
-        List<Point> pointList = getUserInputAsArrayList();
-
         // 헤론의 공식
-        double a = pointList.get(INDEX_ONE).calcLengthWith(pointList.get(INDEX_TWO));
-        double b = pointList.get(INDEX_TWO).calcLengthWith(pointList.get(INDEX_THREE));
-        double c = pointList.get(INDEX_THREE).calcLengthWith(pointList.get(INDEX_ONE));
+        double a = calcValueWith(INDEX_ONE, INDEX_TWO);
+        double b = calcValueWith(INDEX_TWO, INDEX_THREE);
+        double c = calcValueWith(INDEX_THREE, INDEX_ONE);
 
         return heronMethod(a, b, c);
     }
@@ -29,27 +27,14 @@ public class Triangle extends Figure {
     }
 
     boolean checkValid() {
-        List<Point> pointList = getUserInputAsArrayList();
-
-        if (checkAllSameX(pointList) || checkAllSameY(pointList))
-            return false;
-
-        return true;
+        return !checkAllSameX() && !checkAllSameY();
     }
 
-    private boolean checkAllSameY(List<Point> pointList) {
-        if (pointList.get(INDEX_ONE).checkSameY(pointList.get(INDEX_TWO)) &&
-                pointList.get(INDEX_TWO).checkSameY(pointList.get(INDEX_THREE))) {
-            return true;
-        }
-        return false;
+    private boolean checkAllSameY() {
+        return checkSameY(INDEX_ONE, INDEX_TWO) && checkSameY(INDEX_TWO, INDEX_THREE);
     }
 
-    private boolean checkAllSameX(List<Point> pointList) {
-        if (pointList.get(INDEX_ONE).checkSameX(pointList.get(INDEX_TWO)) &&
-                pointList.get(INDEX_TWO).checkSameX(pointList.get(INDEX_THREE))) {
-            return true;
-        }
-        return false;
+    private boolean checkAllSameX() {
+        return checkSameX(INDEX_ONE, INDEX_TWO) && checkSameX(INDEX_TWO, INDEX_THREE);
     }
 }

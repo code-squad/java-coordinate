@@ -2,7 +2,7 @@ package saru.domain;
 
 import java.util.*;
 
-public class Line {
+class Line {
     private Set<Point> userInput;
 
     Line(Set<Point> userInput) {

@@ -10,7 +10,6 @@ public class CoordinateCalc {
 
     private Set<Point> userInput;
 
-    // TODO values()를 통해 각 enum을 순회하면서 points.size()에 해당하는 enum을 가져올 수 있다는 의미임..
     // indent 2
     public ShapeType checkShapeType(Set<Point> userInput) {
         for (ShapeType shapeType : ShapeType.values()) {
@@ -30,7 +29,7 @@ public class CoordinateCalc {
     private void initRowLines() {
         // lines 초기화
         for (int i = 0; i < MAX_VALUE; i++) {
-            this.rowLines.add(RowLine.init(MAX_VALUE, i));
+            this.rowLines.add(RowLine.init());
         }
     }
 
@@ -42,8 +41,9 @@ public class CoordinateCalc {
                 return new Square(userInput).area();
             case TRIANGLE:
                 return new Triangle(userInput).area();
+            default:
+                throw new IllegalArgumentException();
         }
-        throw new IllegalArgumentException();
     }
 
     public List<RowLine> getRowLines() {
