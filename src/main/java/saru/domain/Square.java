@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Square extends Figure {
     public Square(Set<Point> userInput) {
-        this.userInput = userInput;
+        super(userInput);
 
         if (!checkValid()) {
             throw new IllegalArgumentException("스퀘어가 잘못됨");
@@ -12,16 +12,16 @@ public class Square extends Figure {
     }
 
     public double area() {
-        double maxX = Util.getMaxXValue(userInput);
-        double minX = Util.getMinXValue(userInput);
-        double maxY = Util.getMaxYValue(userInput);
-        double minY = Util.getMinYValue(userInput);
+        double maxX = getMaxXValue();
+        double minX = getMinXValue();
+        double maxY = getMaxYValue();
+        double minY = getMinYValue();
 
         return (maxX - minX) * (maxY - minY);
     }
 
     boolean checkValid() {
-        return checkValidSquarePoint(new ArrayList<>(userInput));
+        return checkValidSquarePoint(getUserInputAsArrayList());
     }
 
     private boolean checkValidSquarePoint(List<Point> pointList) {

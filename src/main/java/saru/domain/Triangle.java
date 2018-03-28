@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Triangle extends Figure {
     public Triangle(Set<Point> userInput) {
-        this.userInput = userInput;
+        super(userInput);
 
         if (!checkValid()) {
             throw new IllegalArgumentException("트라이앵글이 잘못됨");
@@ -12,7 +12,7 @@ public class Triangle extends Figure {
     }
 
     public double area() {
-        List<Point> pointList = new ArrayList<>(userInput);
+        List<Point> pointList = getUserInputAsArrayList();
 
         // 헤론의 공식
         double a = pointList.get(INDEX_ONE).calcLengthWith(pointList.get(INDEX_TWO));
@@ -29,7 +29,7 @@ public class Triangle extends Figure {
     }
 
     boolean checkValid() {
-        List<Point> pointList = new ArrayList<>(userInput);
+        List<Point> pointList = getUserInputAsArrayList();
 
         if (checkAllSameX(pointList) || checkAllSameY(pointList))
             return false;
