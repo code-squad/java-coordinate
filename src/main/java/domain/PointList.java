@@ -12,15 +12,23 @@ public class PointList {
         return points;
     }
 
-    public static void makePoints(List<String> numbers) {
+    public static void makePoints(List<String> numbers) throws SamePointException {
+        points.clear();
         for (int i = 0; i < numbers.size(); i = i + 2) {
-            points.add(Point.getPoint(numbers.get(i), numbers.get(i + 1)));
+            Point point = Point.getPoint(numbers.get(i), numbers.get(i + 1));
+            if (points.contains(null)) {
+                throw new NullPointerException();
+            }
+            if (points.contains(point)) {
+                throw new SamePointException();
+            }
+            points.add(point);
         }
         sortDesc();
     }
 
-    public static Boolean hasNull() {
-        return points.contains(null);
+    public static Boolean hasSamePoint(Point point) {
+        return points.contains(point);
     }
 
     private static void sortDesc() {

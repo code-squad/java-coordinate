@@ -2,6 +2,7 @@ package view;
 
 import domain.*;
 
+import java.lang.Error;
 import java.util.ArrayList;
 
 public class ResultView {
@@ -73,6 +74,12 @@ public class ResultView {
         if (shape.hasLineCount(shapeType.RECTANGLE.getLineCount())) {
             Rectangle rectangle = (Rectangle) shape;
             System.out.println("\n사각형의 넓이는 " + rectangle.getArea());
+        }
+    }
+
+    public static void printError(Errors err) {
+        if (err != Errors.NOT_ERR) {
+            System.out.println(err.toString());
         }
     }
 }
