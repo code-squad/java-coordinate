@@ -2,7 +2,7 @@ package saru.domain;
 
 import java.util.*;
 
-class Figure {
+abstract class Figure implements FigureCalc {
     static final int INDEX_ONE = 0;
     static final int INDEX_TWO = 1;
     static final int INDEX_THREE = 2;

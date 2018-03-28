@@ -2,7 +2,7 @@ package saru.domain;
 
 import java.util.*;
 
-public class Triangle extends Figure implements FigureCalc {
+public class Triangle extends Figure{
     public Triangle(Set<Point> userInput) {
         super(userInput);
 

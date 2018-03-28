@@ -2,7 +2,7 @@ package saru.domain;
 
 import java.util.*;
 
-public class Square extends Figure implements FigureCalc {
+public class Square extends Figure {
     public Square(Set<Point> userInput) {
         super(userInput);
 
