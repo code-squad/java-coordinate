@@ -1,8 +1,9 @@
 package domain;
 
-public class Shape implements Area, Distance {
+public class Shape {
     private int lineCount;
     private int pointCount;
+    private Double area;
 
     protected Shape(ShapeType shapeType) {
         this.lineCount = shapeType.getLineCount();
@@ -10,19 +11,6 @@ public class Shape implements Area, Distance {
     }
 
     public Boolean hasLineCount(int lineCount) {
-        if (this.lineCount == lineCount) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public Double getArea() {
-        return null;
-    }
-
-    @Override
-    public Double getDistance() {
-        return null;
+        return this.lineCount == lineCount;
     }
 }

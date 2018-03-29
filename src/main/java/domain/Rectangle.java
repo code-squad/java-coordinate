@@ -2,7 +2,7 @@ package domain;
 
 import java.util.List;
 
-public class Rectangle extends Shape {
+public class Rectangle extends Shape implements Area {
     private Line width;
     private Line height;
 

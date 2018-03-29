@@ -1,6 +1,7 @@
 package view;
 
 import domain.*;
+import org.w3c.dom.css.Rect;
 
 import java.util.List;
 
@@ -63,13 +64,16 @@ public class ResultView {
 
     public static void printCalculation(Shape shape) {
         if (shape.hasLineCount(shapeType.LINE.getLineCount())) {
-            System.out.println("\n두 점 사이 거리는 " + shape.getDistance());
+            Line line = (Line) shape;
+            System.out.println("\n두 점 사이 거리는 " + line.getDistance());
         }
         if (shape.hasLineCount(shapeType.TRIANGLE.getLineCount())) {
-            System.out.println("\n삼각형 넓이는 " + shape.getArea());
+            Triangle triangle = (Triangle) shape;
+            System.out.println("\n삼각형 넓이는 " + triangle.getArea());
         }
         if (shape.hasLineCount(shapeType.RECTANGLE.getLineCount())) {
-            System.out.println("\n사각형의 넓이는 " + shape.getArea());
+            Rectangle rectangle = (Rectangle) shape;
+            System.out.println("\n사각형의 넓이는 " + rectangle.getArea());
         }
     }
 }

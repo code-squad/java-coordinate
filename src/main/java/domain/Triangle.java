@@ -2,7 +2,7 @@ package domain;
 
 import java.util.List;
 
-public class Triangle extends Shape {
+public class Triangle extends Shape implements Area {
     private Double area;
 
     public Triangle(LineList lineList) {
