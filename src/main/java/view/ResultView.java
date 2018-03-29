@@ -2,14 +2,13 @@ package view;
 
 import domain.*;
 
-import java.lang.Error;
-import java.util.ArrayList;
+import java.util.List;
 
 public class ResultView {
     static final int MAX = 24;
     static ShapeType shapeType;
 
-    public static void printPoints(ArrayList<Point> points) {
+    public static void printPoints(List<Point> points) {
         int pointIndex = 0;
         for (int yIndex = MAX; yIndex >= 1; yIndex--) {
             printYAxis(yIndex);
@@ -19,7 +18,7 @@ public class ResultView {
         printXAxis();
     }
 
-    private static int printPoint(ArrayList<Point> points, int pointIndex, int yIndex) {
+    private static int printPoint(List<Point> points, int pointIndex, int yIndex) {
         for (int xIndex = 1; xIndex < MAX; xIndex++) {
             if (points.size() <= pointIndex) {
                 continue;
@@ -64,22 +63,13 @@ public class ResultView {
 
     public static void printCalculation(Shape shape) {
         if (shape.hasLineCount(shapeType.LINE.getLineCount())) {
-            Line line = (Line) shape;
-            System.out.println("\n두 점 사이 거리는 " + line.getDistance());
+            System.out.println("\n두 점 사이 거리는 " + shape.getDistance());
         }
         if (shape.hasLineCount(shapeType.TRIANGLE.getLineCount())) {
-            Triangle triangle = (Triangle) shape;
-            System.out.println("\n삼각형 넓이는 " + triangle.getArea());
+            System.out.println("\n삼각형 넓이는 " + shape.getArea());
         }
         if (shape.hasLineCount(shapeType.RECTANGLE.getLineCount())) {
-            Rectangle rectangle = (Rectangle) shape;
-            System.out.println("\n사각형의 넓이는 " + rectangle.getArea());
-        }
-    }
-
-    public static void printError(Errors err) {
-        if (err != Errors.NOT_ERR) {
-            System.out.println(err.toString());
+            System.out.println("\n사각형의 넓이는 " + shape.getArea());
         }
     }
 }

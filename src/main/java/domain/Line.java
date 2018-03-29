@@ -1,8 +1,8 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class Line extends Shape {
+public class Line extends Shape implements Distance {
     private Point a;
     private Point b;
 
@@ -12,10 +12,11 @@ public class Line extends Shape {
         this.b = b;
     }
 
-    public Line(ArrayList<Point> points) {
+    public Line(List<Point> points) {
         this(points.get(0), points.get(1));
     }
 
+    @Override
     public Double getDistance() {
         return a.getDistance(b);
     }
@@ -40,10 +41,5 @@ public class Line extends Shape {
     public String toString() {
         return "(" + this.a.getX() + ", " + this.a.getY() + ")" +
                 "(" + this.b.getX() + ", " + this.b.getY() + ")";
-    }
-
-    @Override
-    Double getArea() throws NullPointerException {
-        throw new NullPointerException();
     }
 }

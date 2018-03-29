@@ -1,6 +1,6 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Triangle extends Shape {
     private Double area;
@@ -23,7 +23,7 @@ public class Triangle extends Shape {
         return this.area;
     }
 
-    public static Boolean isTriangle(ArrayList<Line> lines) throws Exception {
+    public static Boolean isTriangle(List<Line> lines) throws Exception {
         int pointsSize = lines.size(); //삼각형은 점의 개수와 라인의 개수가 동일하다.
         if (ShapeType.TRIANGLE.isTriangle(pointsSize)) {
             return true;

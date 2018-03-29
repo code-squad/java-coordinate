@@ -11,7 +11,7 @@ public class InputView {
         System.out.println("좌표를 입력하세요.");
         String userInput = scanner.next();
         userInput = userInput.replaceAll("[()]", ""); // 11,12-13,14
-
+        // todo 다른형식이 들어왔을 때 체크하는 것
         return Arrays.asList(userInput.split("[-,]")); // [11, 12, 13, 14]
     }
 }

@@ -1,6 +1,6 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Rectangle extends Shape {
     private Line width;
@@ -11,7 +11,7 @@ public class Rectangle extends Shape {
         makeWidthHeight(lineList.getLines());
     }
 
-    private void makeWidthHeight(ArrayList<Line> lines) {
+    private void makeWidthHeight(List<Line> lines) {
         for (Line line : lines) {
             if (width != null && height != null) {
                 break;
@@ -27,6 +27,7 @@ public class Rectangle extends Shape {
         }
     }
 
+    @Override
     public Double getArea() {
         if (width == null) {
             System.out.println("width null");
@@ -37,7 +38,7 @@ public class Rectangle extends Shape {
         return width.getDistance() * height.getDistance();
     }
 
-    public static Boolean isRectangle(ArrayList<Line> lines) throws Exception {
+    public static Boolean isRectangle(List<Line> lines) throws Exception {
         int width = 0;
         int height = 0;
         for (Line line : lines) {
