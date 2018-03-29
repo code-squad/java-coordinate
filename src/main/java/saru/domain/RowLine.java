@@ -3,18 +3,19 @@ package saru.domain;
 import java.util.*;
 
 public class RowLine {
+    private static final int MAX_VALUE = 25;
     private List<Point> points;
 
     private RowLine(List<Point> points) {
         this.points = points;
     }
 
-    public static RowLine init(int columnNum, int nowRow) {
+    static RowLine init() {
         List<Point> points = new ArrayList<>();
 
         // line 초기화
-        for (int i = 0; i < columnNum; i++) {
-            points.add(new Point(i, nowRow));
+        for (int i = 0; i < MAX_VALUE; i++) {
+            points.add(new Point(i, MAX_VALUE - 1));
         }
 
         return new RowLine(points);

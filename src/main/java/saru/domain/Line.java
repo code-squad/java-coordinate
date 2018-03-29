@@ -2,14 +2,10 @@ package saru.domain;
 
 import java.util.*;
 
-public class Line {
+class Line {
     private Set<Point> userInput;
 
     Line(Set<Point> userInput) {
-        if (userInput.size() != 2) {
-            throw new IllegalArgumentException("라인의 포인트 수가 잘못됨");
-        }
-
         this.userInput = userInput;
     }
 
