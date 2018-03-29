@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -11,29 +12,17 @@ import static org.junit.Assert.assertThat;
 
 public class RectangleTest {
     Rectangle rectangle;
-    List<Line> lines;
-    Line lineWidth;
-    Line lineHeight;
-    Line lineCross;
+    Double area;
 
     @Before
     public void setup() throws Exception {
         // (10,10)-(22,10)-(22,18)-(10,18)
-        // width: a(10, 10)-c(22, 10) height: a(10,10)-b(10,18)
-        Point a = new Point(10, 10);
-        Point b = new Point(10, 18);
-        Point c = new Point(22, 10);
-        Point d = new Point(22, 18);
+        // width: (10, 10)-(22, 10) height: (10,10)-(10,18)
+        List<Point> points = Arrays.asList(new Point(10, 10), new Point(10, 18), new Point(22, 10), new Point(22, 18));
 
-        List<Point> points = new ArrayList<>();
-        points.add(a);
-        points.add(b);
-        points.add(c);
-        points.add(d);
-
-        lineWidth = new Line(a,c);
-        lineHeight = new Line(a,b);
-        lineCross = new Line(a, d);
+        Line lineWidth = new Line(points.get(0), points.get(2));
+        Line lineHeight = new Line(points.get(0), points.get(1));
+        area = lineHeight.getDistance() * lineWidth.getDistance();
 
         LineList lineList = new LineList(points);
         rectangle = new Rectangle(lineList);
@@ -41,7 +30,6 @@ public class RectangleTest {
 
     @Test
     public void getArea() {
-        Double area = lineHeight.getDistance() * lineWidth.getDistance();
-        assertThat(rectangle.getArea(),is(area));
+        assertThat(rectangle.getArea(), is(area));
     }
 }
