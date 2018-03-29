@@ -37,7 +37,6 @@ public class SquareTest {
         points.add(point4);
     }
 
-
     @Test
     public void squareCalc() {
         addSetNormalValue();
