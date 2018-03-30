@@ -1,8 +1,8 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class Triangle extends Shape {
+public class Triangle extends Shape implements Area {
     private Double area;
 
     public Triangle(LineList lineList) {
@@ -23,11 +23,11 @@ public class Triangle extends Shape {
         return this.area;
     }
 
-    public static Boolean isTriangle(ArrayList<Line> lines) {
+    public static Boolean isTriangle(List<Line> lines) throws Exception {
         int pointsSize = lines.size(); //삼각형은 점의 개수와 라인의 개수가 동일하다.
         if (ShapeType.TRIANGLE.isTriangle(pointsSize)) {
             return true;
         }
-        return false;
+        throw new Exception("(선, 삼각형, 직사각형)을 만들 수 없는 좌표입니다.");
     }
 }

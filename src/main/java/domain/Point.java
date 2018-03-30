@@ -4,19 +4,22 @@ public class Point {
     private int x;
     private int y;
 
-    public Point(int x, int y) {
+    public Point(int x, int y) throws Exception {
+        if (!((x >= 0 && x < 25) && (y >= 0 && y < 25))) {
+            throw new IllegalArgumentException("입력 범위를 초과하였습니다. 0~24");
+        }
         this.x = x;
         this.y = y;
     }
 
-    public static Point getPoint(int x, int y) {
-        if ((x >= 0 && x < 25) && (y >= 0 && y < 25)) {
-            return new Point(x, y);
-        }
-        return null;
+    public static Point getPoint(int x, int y) throws Exception {
+        return new Point(x, y);
     }
 
-    public static Point getPoint(String x, String y) {
+    public static Point getPoint(String x, String y) throws Exception {
+        if (x == null || x == null) {
+            throw new Exception("(선, 삼각형, 직사각형)을 만들 수 없는 좌표입니다.");
+        }
         return getPoint(Integer.parseInt(x), Integer.parseInt(y));
     }
 

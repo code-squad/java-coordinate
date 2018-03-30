@@ -1,25 +1,18 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Validation {
-    public static Errors checkValidation(ArrayList<Line> lines) {
+    public static Boolean checkValidation(List<Line> lines) throws Exception {
         if (lines.size() == 1) {
-            return Errors.NOT_ERR;
+            return true;
         }
         if (lines.size() == 3) {
-            return convertBoolToEnum(Triangle.isTriangle(lines));
+            return Triangle.isTriangle(lines);
         }
         if (lines.size() == 6) {
-            return convertBoolToEnum(Rectangle.isRectangle(lines));
+            return Rectangle.isRectangle(lines);
         }
-        return Errors.ERR_SHAPE;
-    }
-
-    private static Errors convertBoolToEnum(Boolean value) {
-        if (!value) {
-            return Errors.ERR_SHAPE;
-        }
-        return Errors.NOT_ERR;
+        return false;
     }
 }

@@ -31,4 +31,8 @@ public enum ShapeType {
     public int getLineCount() {
         return this.lineCount;
     }
+
+    public int getPointCount() {
+        return pointCount;
+    }
 }

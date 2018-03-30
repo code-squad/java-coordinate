@@ -1,8 +1,8 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class Rectangle extends Shape {
+public class Rectangle extends Shape implements Area {
     private Line width;
     private Line height;
 
@@ -11,7 +11,7 @@ public class Rectangle extends Shape {
         makeWidthHeight(lineList.getLines());
     }
 
-    private void makeWidthHeight(ArrayList<Line> lines) {
+    private void makeWidthHeight(List<Line> lines) {
         for (Line line : lines) {
             if (width != null && height != null) {
                 break;
@@ -27,6 +27,7 @@ public class Rectangle extends Shape {
         }
     }
 
+    @Override
     public Double getArea() {
         if (width == null) {
             System.out.println("width null");
@@ -37,7 +38,7 @@ public class Rectangle extends Shape {
         return width.getDistance() * height.getDistance();
     }
 
-    public static Boolean isRectangle(ArrayList<Line> lines) {
+    public static Boolean isRectangle(List<Line> lines) throws Exception {
         int width = 0;
         int height = 0;
         for (Line line : lines) {
@@ -51,6 +52,6 @@ public class Rectangle extends Shape {
         if (width == 2 && height == 2) {
             return true;
         }
-        return false;
+        throw new Exception("(선, 삼각형, 직사각형)을 만들 수 없는 좌표입니다.");
     }
 }

@@ -1,25 +1,26 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LineList {
-    private ArrayList<Line> lines;
+    private List<Line> lines;
 
-    public LineList(ArrayList<Point> points) {
+    public LineList(List<Point> points) {
         makeLines(points);
     }
 
-    private void makeLines(ArrayList<Point> points) {
+    private void makeLines(List<Point> points) {
         lines = new ArrayList<>();
         for (int i = 0; i < points.size() - 1; i++) {
             for (int j = i; j < points.size() - 1; j++) {
-                this.lines.add(new Line(points.get(i), points.get(j + 1)));
+                lines.add(new Line(points.get(i), points.get(j + 1)));
             }
         }
     }
 
-    public ArrayList<Line> getLines() {
-        return this.lines;
+    public List<Line> getLines() {
+        return lines;
     }
 
     public double getLineDistance(int index) {

@@ -1,9 +1,9 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ShapeFactory extends Exception {
-    public static Shape getInstance(ArrayList<Point> points, LineList lineList) {
+    public static Shape getInstance(List<Point> points, LineList lineList) {
         Shape shape = null;
         if (ShapeType.LINE.isLine(points.size())) {
             shape = new Line(points);
