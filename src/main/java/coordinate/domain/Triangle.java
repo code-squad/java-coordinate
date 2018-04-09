@@ -8,11 +8,13 @@ public class Triangle extends Figure {
         super(points);
     }
 
-    private double a = super.getPoint(0).length(super.getPoint(1));
+    //굳이 super를 쓰지 않아도 된다.
+    //super 사용하지 않고 구현한다.
+    private double a = getDistance(0,1);
 
-    private double b = super.getPoint(1).length(super.getPoint(2));
+    private double b = getDistance(1,2);
 
-    private double c = super.getPoint(0).length(super.getPoint(2));
+    private double c = getDistance(0,2);
 
     public double area() {
         double s = (a + b + c) / 2;

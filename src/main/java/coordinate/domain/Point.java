@@ -16,7 +16,7 @@ public class Point {
         y = Integer.parseInt(xyDivide[1]);
     }
 
-    public double length(Point point) {
+    public double sideLength(Point point) {
         return Math.sqrt((Math.pow(getPointX() - point.getPointX(), 2) + Math.pow(getPointY() - point.getPointY(), 2)));
     }
 
@@ -27,5 +27,7 @@ public class Point {
     public int getPointY() {
         return y;
     }
+
+
 
 }

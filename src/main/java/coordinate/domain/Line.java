@@ -1,12 +1,17 @@
 package coordinate.domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Line extends Figure{
 
-    public Line(ArrayList<String> points) {
+    public Line(List<String> points) {
         super(points);
     }
 
-    public double distance = super.getPoint(1).length(super.getPoint(0));
+    //굳이 super를 쓰지 않아도 된다.
+    //super 사용하지 않고 구현한다.
+
+    public double area() {
+        return getDistance(1,0);
+    }
 }

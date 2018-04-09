@@ -3,10 +3,11 @@ package coordinate.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Figure {
+public abstract class Figure {
+
+    public abstract double area();
 
     // 각각의 포인트 값을 가진다.
-
     private List<Point> values = new ArrayList<>();
 
     Figure(List<String> points) {
@@ -18,4 +19,10 @@ public class Figure {
     public Point getPoint(int i) {
         return values.get(i);
     }
+
+    public double getDistance(int i, int j){
+        return getPoint(i).sideLength(getPoint(j));
+    }
+
+
 }
