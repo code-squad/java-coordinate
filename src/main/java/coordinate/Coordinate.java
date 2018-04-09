@@ -16,6 +16,5 @@ public class Coordinate {
 
         PointNumCheck pointNumCheck = new PointNumCheck();
         pointNumCheck.resultByPointNum(numOfPoints, points);
-
     }
 }

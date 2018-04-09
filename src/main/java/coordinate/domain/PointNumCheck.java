@@ -14,6 +14,12 @@ public class PointNumCheck {
             PrintResult.printLineResult(line);
         }
 
+        if (numOfPoints == 3) {
+            Triangle triangle = new Triangle(points);
+            OutputCoordinate.printCoordinate(points, numOfPoints);
+            PrintResult.printTriangleResult(triangle);
+        }
+
         if (points.size() == 4) {
             Square square = new Square(points);
             OutputCoordinate.printCoordinate(points, numOfPoints);

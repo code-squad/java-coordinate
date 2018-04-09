@@ -16,8 +16,8 @@ public class Point {
         y = Integer.parseInt(xyDivide[1]);
     }
 
-    public double calculateLineDistance(Point other) {
-        return Math.sqrt(Math.pow(this.x - other.x, 2) + Math.pow(this.y - other.y, 2));
+    public double length(Point point) {
+        return Math.sqrt((Math.pow(getPointX() - point.getPointX(), 2) + Math.pow(getPointY() - point.getPointY(), 2)));
     }
 
     public int getPointX() {
@@ -27,4 +27,5 @@ public class Point {
     public int getPointY() {
         return y;
     }
+
 }
