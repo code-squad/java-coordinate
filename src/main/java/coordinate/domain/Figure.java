@@ -5,8 +5,6 @@ import java.util.List;
 
 public abstract class Figure {
 
-    public abstract double area();
-
     // 각각의 포인트 값을 가진다.
     private List<Point> values = new ArrayList<>();
 
@@ -20,9 +18,11 @@ public abstract class Figure {
         return values.get(i);
     }
 
-    public double getDistance(int i, int j){
+    public double getDistance(int i, int j) {
         return getPoint(i).sideLength(getPoint(j));
     }
 
-
+    interface Area {
+        double area();
+    }
 }
