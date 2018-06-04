@@ -1,7 +1,6 @@
 package coordinate;
 
 import coordinate.domain.PointNumCheck;
-import coordinate.view.OutputCoordinate;
 import coordinate.view.UserInput;
 
 import java.util.ArrayList;
@@ -16,6 +15,5 @@ public class Coordinate {
 
         PointNumCheck pointNumCheck = new PointNumCheck();
         pointNumCheck.resultByPointNum(numOfPoints, points);
-
     }
 }

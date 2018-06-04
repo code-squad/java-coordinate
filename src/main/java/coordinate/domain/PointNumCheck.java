@@ -4,6 +4,8 @@ import coordinate.view.OutputCoordinate;
 import coordinate.view.PrintResult;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Objects;
 
 public class PointNumCheck {
 
@@ -12,6 +14,12 @@ public class PointNumCheck {
             Line line = new Line(points);
             OutputCoordinate.printCoordinate(points, numOfPoints);
             PrintResult.printLineResult(line);
+        }
+
+        if (numOfPoints == 3) {
+            Triangle triangle = new Triangle(points);
+            OutputCoordinate.printCoordinate(points, numOfPoints);
+            PrintResult.printTriangleResult(triangle);
         }
 
         if (points.size() == 4) {

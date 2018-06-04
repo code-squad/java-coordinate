@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class UserInput {
-    private static Scanner scanner = new Scanner(System.in);
     private static ArrayList<String> points;
 
     public static ArrayList<String> getPoints(Scanner scanner) {
