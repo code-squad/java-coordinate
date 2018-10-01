@@ -18,18 +18,18 @@ public class GridPaper {
     }
 
     public void draw(){
-        drawLines();
+        drawAxisOfY();
         drawAxisOfX(size);
         drawNumberOfXAxis();
     }
 
-    private void drawLines() {
+    private void drawAxisOfY() {
         for (int i = size; i >= 1; i--) {
-            drawLine(i);
+            drawNumberOfYAxis(i);
         }
     }
 
-    private void drawLine(int y) {
+    private void drawNumberOfYAxis(int y) {
         stringBuilder.append(String.format("%" + offset + "d|", y));
         stringBuilder.append(System.lineSeparator());
     }
