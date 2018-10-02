@@ -15,7 +15,7 @@ public class Yaxis implements Axis {
     }
 
     public List<String> getVerticalAxisBar() {
-        return verticalAxisBar;
+        return Collections.unmodifiableList(verticalAxisBar);
     }
 
     public void setVerticalAxisBar(List<String> verticalAxisBar) {
@@ -23,17 +23,11 @@ public class Yaxis implements Axis {
     }
 
     public List<String> getVerticalAxisNum() {
-        return verticalAxisNum;
+        return Collections.unmodifiableList(verticalAxisNum);
     }
 
     public void setVerticalAxisNum(List<String> verticalAxisNum) {
         this.verticalAxisNum = verticalAxisNum;
-    }
-
-    @Override
-    public String stringFormat(int num) {
-        /* 상속을 써야하는지...? 인터페이스를 사용해야하는지 ...? 기준을 모르겠음!! Help Me!! */
-        return String.format("%2d", num);
     }
 
     @Override

@@ -16,7 +16,7 @@ public class Xaxis implements Axis {
     }
 
     public List<String> getHorizontalAxisBar() {
-        return horizontalAxisBar;
+        return Collections.unmodifiableList(horizontalAxisBar);
     }
 
     public void setHorizontalAxisBar(List<String> horizontalAxisBar) {
@@ -24,16 +24,11 @@ public class Xaxis implements Axis {
     }
 
     public List<String> getHorizontalAxisNum() {
-        return horizontalAxisNum;
+        return Collections.unmodifiableList(horizontalAxisNum);
     }
 
     public void setHorizontalAxisNum(List<String> horizontalAxisNum) {
         this.horizontalAxisNum = horizontalAxisNum;
-    }
-
-    @Override
-    public String stringFormat(int num) {
-        return String.format("%2d", num);
     }
 
     @Override
