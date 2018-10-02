@@ -4,6 +4,8 @@ import com.zingoworks.coordinate.view.ResultView;
 
 public class CoordinateMain {
     public static void main(String[] args) {
-        ResultView.print(24,24);
+        int lengthOfX = 24;
+        int lenghtOfY = 24;
+        ResultView.print(lengthOfX,lenghtOfY);
     }
 }

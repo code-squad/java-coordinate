@@ -10,11 +10,24 @@ public class ResultView {
     private static final StringBuilder BLANK = new StringBuilder (" ");
     private static final int MAX_NUMBER_OF_DIGITS = 2;
 
-
-
     public static void print(int lengthOfX, int lengthOfY) {
         printY(lengthOfY);
         printX(lengthOfX);
+    }
+
+    private static void printY(int lengthOfY) {
+        for (int i = lengthOfY; i > 0 ; i--) {
+            printEvenNumberOfY(i);
+        }
+    }
+
+    private static void printEvenNumberOfY(int i) {
+        if (isEven(i)) {
+            StringBuilder yCoordinate = new StringBuilder(String.valueOf(i));
+            System.out.println(convertLengthToForm(yCoordinate, MAX_NUMBER_OF_DIGITS) + VERTICAL);
+            return;
+        }
+        System.out.println(convertLengthToForm(BLANK, MAX_NUMBER_OF_DIGITS) + VERTICAL);
     }
 
     private static void printX(int lengthOfX) {
@@ -33,23 +46,17 @@ public class ResultView {
 
     private static void printNumberOfX(int lengthOfX) {
         for (int i = 0; i <= lengthOfX; i++) {
-            if (isEven(i)) {
-                StringBuilder xCoordinate = new StringBuilder(String.valueOf(i));
-                System.out.print(convertLengthToForm(xCoordinate, MAX_NUMBER_OF_DIGITS));
-                continue;
-            }
-            System.out.print("  ");
+            printEvenNumberOfX(i);
         }
     }
-    private static void printY(int lengthOfY) {
-        for (int i = lengthOfY; i > 0 ; i--) {
-            if (isEven(i)) {
-                StringBuilder yCoordinate = new StringBuilder(String.valueOf(i));
-                System.out.println(convertLengthToForm(yCoordinate, MAX_NUMBER_OF_DIGITS) + VERTICAL);
-                continue;
-            }
-            System.out.println(convertLengthToForm(BLANK, MAX_NUMBER_OF_DIGITS) + VERTICAL);
+
+    private static void printEvenNumberOfX(int i) {
+        if (isEven(i)) {
+            StringBuilder xCoordinate = new StringBuilder(String.valueOf(i));
+            System.out.print(convertLengthToForm(xCoordinate, MAX_NUMBER_OF_DIGITS));
+            return;
         }
+        System.out.print("  ");
     }
 
     private static boolean isEven (int number) {
