@@ -1,27 +1,18 @@
 package coordinate.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Line {
-    private List<String> points;
+    private static final int SQUARE = 2;
+    private Point point;
+    private Point anotherPoint;
 
-    public Line() {
-        this.points = new ArrayList<>();
+    public Line(Point point, Point anotherPoint) {
+        this.point = point;
+        this.anotherPoint = anotherPoint;
     }
 
-    public Line(List<String> points) {
-        this.points = points;
-    }
-
-    public List<String> getPoints() {
-        return this.points;
-    }
-
-    @Override
-    public String toString() {
-        return "Line{" +
-                "points=" + points +
-                '}';
+    public double length(){
+        return Math.sqrt(
+                Math.pow(this.point.subX(this.anotherPoint), SQUARE)
+                + Math.pow(this.point.subY(this.anotherPoint), SQUARE));
     }
 }
