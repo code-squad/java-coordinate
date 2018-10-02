@@ -1,8 +1,8 @@
 package coordinate.domain;
 
 public class Point {
-    int positionX;
-    int positionY;
+    private int positionX;
+    private int positionY;
 
     public Point(int positionX, int positionY) {
         this.positionX = positionX;
@@ -17,11 +17,11 @@ public class Point {
         return this.positionY - point.positionY;
     }
 
-    @Override
-    public String toString() {
-        return "Point{" +
-                "positionX=" + positionX +
-                ", positionY=" + positionY +
-                '}';
+    public int getPositionX() {
+        return positionX;
+    }
+
+    public int getPositionY() {
+        return positionY;
     }
 }

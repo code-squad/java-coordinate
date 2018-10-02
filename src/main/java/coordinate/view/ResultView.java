@@ -1,93 +1,70 @@
 package coordinate.view;
 
-import com.google.common.collect.Lists;
 import coordinate.domain.Line;
 import coordinate.domain.Point;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ResultView {
+    private static final String LINE_LENGTH_MESSAGE = "두 점 사이 거리는 ";
+    private static final String RE_ENTER_MESSAGE = "0~24 까지의 유효한 값으로 다시 입력해주세요.";
+
+    private static final String POINT_SYMBOL = "*";
+    private static final int SIZE_OF_LINE = 52;
+    private static final int MAX_POSITION = 24;
     private static final int ZERO = 0;
     private static final int ONE = 1;
     private static final int TWO = 2;
-    private static final int MAX_POSITION = 24;
-    private static StringBuilder sb = new StringBuilder();
 
-    private static final String VERTICAL = "|";
-    private static final String SPACE = " ";
-    private static final String PLUS = "+";
-    private static final String HYPHEN = "-";
-    private static final String FORMATTER = "%2s";
-    private static final String LINE_LENGTH_MESSAGE = "두 점 사이 거리는 ";
+    public static void draw(List<Point> points){
+        StringBuilder sb = CoordinateGenerator.initCoordinate();
+        showPoint(sb, points);
+    }
 
-    public static void showCoordinate(List<Point> points){
+    public static void showLineLength(Line generateLine) {
+        System.out.println(LINE_LENGTH_MESSAGE + generateLine.length());
+    }
+
+    public static void printReEnterMessage(){
+        System.out.println(RE_ENTER_MESSAGE);
+    }
+
+    private static void showPoint(StringBuilder sb, List<Point> points){
         for (Point point : points) {
-            showPoint(point);
+            insertPoint(sb, point);
         }
+        System.out.println(sb.toString());
     }
 
-    public static void showLineLength(Line line){
-        System.out.println(LINE_LENGTH_MESSAGE + line.length());
+    private static void insertPoint(StringBuilder sb, Point point){
+        int location = calculatePointLocation(point);
+        deletePlaceHolder(sb, location);
+        sb.insert(location, POINT_SYMBOL);
     }
 
-    public static void showPoint(Point point){
-
+    private static void deletePlaceHolder(StringBuilder sb, int location){
+        sb.delete(location, location + ONE);
     }
 
-//    public static void showCoordinate(List<Line> lines) {
-//        makePrintLines(lines);
-//        for (Line line : Lists.reverse(lines)) {
-//            System.out.println(lineToString(line));
-//        }
-//    }
-//
-//    public static String lineToString(Line line){
-//        sb.setLength(0);
-//        List<String> points = l
-// ine.getPoints();
-//        for (String point : points) {
-//            sb.append(point);
-//        }
-//        return sb.toString();
-//    }
-//
-//
-//    public static void makePrintLines(List<Line> lines) {
-//        makeZeroPoints(lines.get(ZERO).getPoints());
-//        for (int i = ONE; i <= Coordinate.MAX_POSITION; i++) {
-//            makePrintPoints(i, lines.get(i).getPoints());
-//        }
-//        Line horizonLine = new Line(makeHorizon());
-//        lines.add(ZERO, horizonLine);
-//    }
-//
-//    public static void makePrintPoints(int index, List<String> points){
-//        points.add(ZERO, decidePrintNumber(index) + VERTICAL);
-//    }
-//
-//    public static void makeZeroPoints(List<String> points){
-//        points.add(String.format(FORMATTER, SPACE));
-//        points.add(PLUS);
-//        for (int i = ONE; i <= Coordinate.MAX_POSITION; i++) {
-//            points.add(String.format(FORMATTER, HYPHEN));
-//        }
-//    }
-//
-    private static List<String> makeHorizon(){
-        List<String> horizon = new ArrayList<>();
-        for(int i = ZERO; i <= MAX_POSITION; i++){
-            horizon.add(decidePrintNumber(i));
+    private static int calculatePointLocation(Point point){
+        int x = calculateLocationX(point.getPositionX());
+        int y = calculateLocationY(point.getPositionY());
+        return x + y;
+    }
+
+    private static int calculateLocationX(int positionX) {
+        if(isZero(positionX)){
+            return TWO;
         }
-        return horizon;
+        return positionX * TWO + ONE;
     }
 
-    private static boolean isEven(int number){
-        return number % TWO == ZERO;
+    private static int calculateLocationY(int positionY) {
+        return (MAX_POSITION - positionY) * SIZE_OF_LINE;
     }
 
-    private static String decidePrintNumber(int number){
-        return isEven(number) ? String.format(FORMATTER, number) : String.format(FORMATTER, SPACE);
+    private static boolean isZero(int number){
+        return number == ZERO;
     }
 
 }
