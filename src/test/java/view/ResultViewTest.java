@@ -1,5 +1,6 @@
 package view;
 
+import dto.PointDto;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -18,9 +19,10 @@ public class ResultViewTest {
         assertThat(ResultView.numSizeIndent(10), is("10"));
     }
 
-    @Test()
-    public void drawXLine() {
-        ResultView.drawXLine(10);
+    @Test
+    public void checkFirst() {
+        PointDto dto = new PointDto(0,1);
+        assertThat(ResultView.checkFirst(dto), is("* "));
     }
 
 }
