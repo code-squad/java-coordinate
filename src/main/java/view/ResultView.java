@@ -1,41 +1,43 @@
 package view;
 
 import domain.Axis;
-import domain.Xaxis;
-import domain.Yaxis;
 
 public class ResultView {
-    public static void drawYaxis(Yaxis yaxis) {
+    public static void drawAxis(Axis axis) {
+        drawYaxis(axis);
+        drawXaxis(axis);
+    }
+    private static void drawYaxis(Axis axis) {
         for (int i = Axis.MAX_SIZE - 1; i >= 0; i--) {
-            printYaxisNum(yaxis, i);
-            printYaxisBar(yaxis, i);
+            printYaxisNum(axis, i);
+            printYaxisBar(axis, i);
         }
     }
 
-    private static void printYaxisNum(Yaxis yaxis, int index) {
-        System.out.print(yaxis.getVerticalAxisNum().get(index));
+    private static void printYaxisNum(Axis axis, int index) {
+        System.out.print(axis.getVerticalAxisNum().get(index));
     }
 
-    private static void printYaxisBar(Yaxis yaxis, int index) {
-        System.out.println(yaxis.getVerticalAxisBar().get(index));
+    private static void printYaxisBar(Axis axis, int index) {
+        System.out.println(axis.getVerticalAxisBar().get(index));
     }
 
-    public static void drawXaxis(Xaxis xaxis) {
-        printXaxisBar(xaxis);
-        printXaxisNum(xaxis);
+    private static void drawXaxis(Axis axis) {
+        printXaxisBar(axis);
+        printXaxisNum(axis);
     }
 
-    private static void printXaxisNum(Xaxis xaxis) {
+    private static void printXaxisNum(Axis axis) {
         StringBuilder sb = new StringBuilder();
-        for (String horizontalEven : xaxis.getHorizontalAxisNum()) {
+        for (String horizontalEven : axis.getHorizontalAxisNum()) {
             sb.append(horizontalEven);
         }
         System.out.println(sb.toString());
     }
 
-    private static void printXaxisBar(Xaxis xaxis) {
+    private static void printXaxisBar(Axis axis) {
         StringBuilder sb = new StringBuilder();
-        for (String bar : xaxis.getHorizontalAxisBar()) {
+        for (String bar : axis.getHorizontalAxisBar()) {
             sb.append(bar);
         }
         System.out.println(sb.toString());

@@ -1,10 +1,8 @@
-import domain.Xaxis;
-import domain.Yaxis;
+import domain.Axis;
 import view.ResultView;
 
 public class Main {
     public static void main(String[] args) {
-        ResultView.drawYaxis(new Yaxis());
-        ResultView.drawXaxis(new Xaxis());
+        ResultView.drawAxis(new Axis());
     }
 }
