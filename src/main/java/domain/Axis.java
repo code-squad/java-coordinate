@@ -8,73 +8,74 @@ public class Axis {
     private static final String ZERO_BAR = "+";
     private static final String BLANK = "  ";
     private static final String VERTICAL_BAR = "|";
-    private List<String> horizontalAxisBar = new ArrayList<>();;
-    private List<String> horizontalAxisNum = new ArrayList<>();;
-    private List<String> verticalAxisBar = new ArrayList<>();;
-    private List<String> verticalAxisNum = new ArrayList<>();;
 
-    public Axis() {
-        initHorizontalAxisBar();
-        initHorizontalAxisNum();
-        initVerticalAxisBar();
-        initVerticalAxisNum();
+    private Axis() {
+
     }
 
-    public List<String> getHorizontalAxisBar() {
-        return Collections.unmodifiableList(horizontalAxisBar);
+    public static List<String> getHorizontalAxisBar() {
+        return Collections.unmodifiableList(initHorizontalAxisBar());
     }
 
-    public List<String> getHorizontalAxisNum() {
-        return Collections.unmodifiableList(horizontalAxisNum);
+    public static List<String> getHorizontalAxisNum() {
+        return Collections.unmodifiableList(initHorizontalAxisNum());
     }
 
-    public void initHorizontalAxisNum() {
+    private static List<String> initHorizontalAxisBar() {
+        List<String> horizontalAxisBar = new ArrayList<>();
+        horizontalAxisBar.add(BLANK);
+        horizontalAxisBar.add(ZERO_BAR);
+        for(int i = 0; i < MAX_SIZE; i++) {
+            horizontalAxisBar.add(HORIZONTAL_BAR);
+        }
+        return horizontalAxisBar;
+    }
+
+    private static String stringFormat(int num) {
+        return String.format("%2d", num);
+    }
+
+    private static List<String> initHorizontalAxisNum() {
+        List<String> horizontalAxisNum = new ArrayList<>();
+        horizontalAxisNum.add(" ");
         for (int i = 0; i <= MAX_SIZE; i++) {
             horizontalAxisNum.add(addHorizontalAxis(i)) ;
         }
+        return horizontalAxisNum;
     }
 
-    private String addHorizontalAxis(int index) {
+    private static String addHorizontalAxis(int index) {
         if(index % 2 == 0) {
             return stringFormat(index);
         }
         return BLANK;
     }
 
-    public void initHorizontalAxisBar() {
-        horizontalAxisBar.add(BLANK);
-        horizontalAxisBar.add(ZERO_BAR);
-        for(int i = 0; i < MAX_SIZE; i++) {
-            horizontalAxisBar.add(HORIZONTAL_BAR);
-        }
-
+    public static List<String> getVerticalAxisBar() {
+        return Collections.unmodifiableList(initVerticalAxisBar());
     }
 
-    public String stringFormat(int num) {
-        return String.format("%2d", num);
+    public static List<String> getVerticalAxisNum() {
+        return Collections.unmodifiableList(initVerticalAxisNum());
     }
 
-    public List<String> getVerticalAxisBar() {
-        return Collections.unmodifiableList(verticalAxisBar);
-    }
-
-    public List<String> getVerticalAxisNum() {
-        return Collections.unmodifiableList(verticalAxisNum);
-    }
-
-    public void initVerticalAxisNum() {
+    private static List<String> initVerticalAxisNum() {
+        List<String> verticalAxisNum = new ArrayList<>();
         for (int i = 1; i <= MAX_SIZE; i++) {
             verticalAxisNum.add(getVerticalAxis(i));
         }
+        return verticalAxisNum;
     }
 
-    public void initVerticalAxisBar() {
+    private static List<String> initVerticalAxisBar() {
+        List<String> verticalAxisBar = new ArrayList<>();
         for (int i = 0; i < MAX_SIZE; i++) {
             verticalAxisBar.add(VERTICAL_BAR);
         }
+        return verticalAxisBar;
     }
 
-    private String getVerticalAxis(int index) {
+    private static String getVerticalAxis(int index) {
         if(index % 2 == 0) {
             return stringFormat(index);
         }

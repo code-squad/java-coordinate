@@ -1,45 +1,64 @@
 package view;
 
-import domain.Axis;
+import domain.*;
+
+import java.util.List;
 
 public class ResultView {
-    public static void drawAxis(Axis axis) {
-        drawYaxis(axis);
-        drawXaxis(axis);
+    private ResultView() {
+
     }
-    private static void drawYaxis(Axis axis) {
+
+    public static void drawAxis(Space space) {
+        drawYaxis(space);
+        drawXaxis();
+    }
+    private static void drawYaxis(Space space) {
         for (int i = Axis.MAX_SIZE - 1; i >= 0; i--) {
-            printYaxisNum(axis, i);
-            printYaxisBar(axis, i);
+            printYaxisNum(i);
+            printYaxisBar(i);
+            printPoints(i, space);
         }
     }
 
-    private static void printYaxisNum(Axis axis, int index) {
-        System.out.print(axis.getVerticalAxisNum().get(index));
+    private static void printYaxisNum(int index) {
+        System.out.print(Axis.getVerticalAxisNum().get(index));
     }
 
-    private static void printYaxisBar(Axis axis, int index) {
-        System.out.println(axis.getVerticalAxisBar().get(index));
+    private static void printYaxisBar(int index) {
+        System.out.print(Axis.getVerticalAxisBar().get(index));
     }
 
-    private static void drawXaxis(Axis axis) {
-        printXaxisBar(axis);
-        printXaxisNum(axis);
+    private static void printPoints(int index, Space space) {
+        for(String str : space.getLines().get(index).getLine()) {
+            System.out.print(str);
+        }
+        System.out.println();
+
     }
 
-    private static void printXaxisNum(Axis axis) {
+    private static void drawXaxis() {
+        printXaxisBar();
+        printXaxisNum();
+    }
+
+    private static void printXaxisNum() {
         StringBuilder sb = new StringBuilder();
-        for (String horizontalEven : axis.getHorizontalAxisNum()) {
+        for (String horizontalEven : Axis.getHorizontalAxisNum()) {
             sb.append(horizontalEven);
         }
         System.out.println(sb.toString());
     }
 
-    private static void printXaxisBar(Axis axis) {
+    private static void printXaxisBar() {
         StringBuilder sb = new StringBuilder();
-        for (String bar : axis.getHorizontalAxisBar()) {
+        for (String bar : Axis.getHorizontalAxisBar()) {
             sb.append(bar);
         }
         System.out.println(sb.toString());
+    }
+
+    public static void printDistance(List<Point> points) {
+        System.out.println("두 점 사이의 거리는 : " + Distance.getDistance(points));
     }
 }
