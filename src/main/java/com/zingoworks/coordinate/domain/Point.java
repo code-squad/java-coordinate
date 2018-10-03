@@ -21,6 +21,10 @@ public class Point {
         return y;
     }
 
+    public static double calculateDistance(Point a, Point b) {
+        return Math.sqrt(Math.pow(a.getX() - b.getX(),2) + Math.pow(a.getY() - b.getY(),2));
+    }
+
     public boolean alertMaxLimit(Point point) {
         if (point.x > 24 || point.y > 24) {
             System.out.println("<경고> 좌표값은 최대 24까지만 입력할 수 있습니다.");

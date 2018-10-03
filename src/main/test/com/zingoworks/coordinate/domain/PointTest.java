@@ -15,6 +15,14 @@ public class PointTest {
     }
 
     @Test
+    public void calculateDistanceTest() {
+        Point a = new Point (new StringBuilder ("1,1"));
+        Point b = new Point (new StringBuilder ("2,2"));
+        double result = Point.calculateDistance(a,b);
+        System.out.println(result);
+    }
+
+    @Test
     public void verify () {
         Point point = new Point(new StringBuilder ("3,25"));
         assertThat(point.alertMaxLimit(point)).isEqualTo(true);
