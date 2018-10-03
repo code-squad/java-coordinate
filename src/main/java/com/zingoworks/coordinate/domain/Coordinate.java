@@ -11,20 +11,21 @@ public class Coordinate {
     public Coordinate(String[] str) {
         setDefaultSize(str);
         deleteUnnecessaryChar(str);
+        this.coordinate = verifyCoordinatesLimit();
     }
 
-    public ArrayList<StringBuilder> getVerifiedCoordinates(Coordinate cg) {
-        return verifyCoordinatesLimit(cg).coordinate;
+    public ArrayList<StringBuilder> getVerifiedCoordinates() {
+        return this.coordinate;
     }
 
-    private Coordinate verifyCoordinatesLimit(Coordinate cg) {
+    private ArrayList<StringBuilder> verifyCoordinatesLimit() {
         for (int i = 0; i < coordinate.size(); i++) {
             Point eachCoord = new Point(coordinate.get(i));
             if (eachCoord.alertMaxLimit(eachCoord)) {
-                return new Coordinate(InputView.inputCoordinate());
+                return new Coordinate(InputView.inputCoordinate()).coordinate;
             }
         }
-        return cg;
+        return coordinate;
     }
 
     private void setDefaultSize(String[] str) {

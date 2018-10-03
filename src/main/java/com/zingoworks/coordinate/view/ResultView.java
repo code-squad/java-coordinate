@@ -1,5 +1,7 @@
 package com.zingoworks.coordinate.view;
 
+import java.util.ArrayList;
+
 import static com.zingoworks.coordinate.utils.StringBuilderUtils.convertLengthToForm;
 
 public class ResultView {

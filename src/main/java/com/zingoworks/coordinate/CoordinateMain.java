@@ -10,7 +10,7 @@ public class CoordinateMain {
     public static void main(String[] args) {
         String[] cods = InputView.inputCoordinate();
         Coordinate cg = new Coordinate(cods);
-        ArrayList<StringBuilder> cgs = cg.getVerifiedCoordinates(cg);
+        System.out.println(cg.getVerifiedCoordinates().get(1));
 
 
         int lengthOfX = 24;
