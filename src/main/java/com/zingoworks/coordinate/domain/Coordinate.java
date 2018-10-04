@@ -6,41 +6,58 @@ import static com.zingoworks.coordinate.CoordinateMain.LENGTH_X;
 import static com.zingoworks.coordinate.CoordinateMain.LENGTH_Y;
 
 public class Coordinate {
-    private Point x;
-    private Point y;
-    public ArrayList<StringBuilder> line = new ArrayList<>();
+    private static final char MARKER = '·';
+
+    private ArrayList<StringBuilder> markingPoint = new ArrayList<>();
+    private ArrayList<Point> point = new ArrayList<>();
 
     public Coordinate(String[] input) {
-        this.x = Point.ofCommaSeparator(extractRequiredString(input[0]));
-        this.y = Point.ofCommaSeparator(extractRequiredString(input[1]));
-        setLine();
-        updateLine();
+        refinePoint(input);
+        generateMarkedCoordinatePlane();
     }
 
-    public double getDistanceOfPoints() {
-        return x.getDistance(y);
+    public ArrayList<StringBuilder> getMarkingPoint() {
+        return markingPoint;
     }
 
-    private void setLine() {
-        for (int i = 0; i < LENGTH_Y; i++) {
-            line.add(new StringBuilder());
-            setLineDefaultForm(i);
+    public ArrayList<Point> getPoint() {
+        return point;
+    }
+
+    private void refinePoint(String[] input) {
+        String[] refinedInput = new String[input.length];
+        for (int i = 0; i < input.length; i++) {
+            refinedInput[i] = removeParentheses(input[i]);
+            point.add(new Point(refinedInput[i]));
         }
     }
 
-    private void setLineDefaultForm(int i) {
-        for (int j = 0; j < LENGTH_X * 2; j++) {
-            line.get(i).append(" ");
-        }
-    }
-
-    private void updateLine() {
-        line.get(x.getY() - 1).setCharAt(x.getX() * 2 - 1,'·');
-        line.get(y.getY() - 1).setCharAt(y.getX() * 2 - 1,'·');
-    }
-
-    private String extractRequiredString(String str) {
+    private String removeParentheses(String str) {
         StringBuilder sb = new StringBuilder(str);
         return sb.substring(1, sb.length() -1);
+    }
+
+    private void generateMarkedCoordinatePlane() {
+        generateBlankCoordinatePlane();
+        pointMark();
+    }
+
+    private void generateBlankCoordinatePlane() {
+        for (int i = 0; i < LENGTH_Y; i++) {
+            markingPoint.add(new StringBuilder());
+            generateBlankCoordinatePlaneByX(i);
+        }
+    }
+
+    private void generateBlankCoordinatePlaneByX(int i) {
+        for (int j = 0; j < LENGTH_X * 2; j++) {
+            markingPoint.get(i).append(" ");
+        }
+    }
+
+    private void pointMark() {
+        for (int i = 0; i < point.size(); i++) {
+            markingPoint.get(point.get(i).getY() - 1).setCharAt(point.get(i).getX() * 2 - 1, MARKER);
+        }
     }
 }

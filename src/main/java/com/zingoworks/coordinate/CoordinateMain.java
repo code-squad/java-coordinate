@@ -10,8 +10,9 @@ public class CoordinateMain {
 
     public static void main(String[] args) {
         String[] input = InputView.inputCoordinate();
-        Coordinate coord = new Coordinate(input);
-        ResultView.print(coord);
-        ResultView.printDistance(coord.getDistanceOfPoints());
+
+        Coordinate coordinate = new Coordinate(input);
+
+        ResultView.print(coordinate);
     }
 }

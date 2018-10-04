@@ -1,6 +1,8 @@
 package com.zingoworks.coordinate.view;
 
 import com.zingoworks.coordinate.domain.Coordinate;
+import com.zingoworks.coordinate.domain.Line;
+import com.zingoworks.coordinate.domain.Square;
 
 import static com.zingoworks.coordinate.CoordinateMain.LENGTH_X;
 import static com.zingoworks.coordinate.CoordinateMain.LENGTH_Y;
@@ -16,17 +18,27 @@ public class ResultView {
     public static void print(Coordinate coord) {
         printYandCoordinate(coord);
         printX();
+        if (coord.getPoint().size() == 2) {
+            printDistance(new Line(coord).getDistanceOfLine());
+        }
+        if (coord.getPoint().size() == 4) {
+            printArea(new Square(coord).getAreaOfSquare());
+        }
     }
 
     public static void printDistance(double distance) {
         System.out.println("두 점 사이의 거리는 " + distance + "입니다.");
     }
 
+    private static void printArea(int area) {
+        System.out.println("사각형의 넓이는 " + area + "입니다.");
+    }
+
     private static void printYandCoordinate(Coordinate coord) {
         for (int i = LENGTH_Y; i > 0 ; i--) {
             printEvenNumberOfY(i);
             System.out.print(VERTICAL);
-            System.out.print(coord.line.get(i - 1).toString());
+            System.out.print(coord.getMarkingPoint().get(i - 1).toString());
             System.out.println("");
         }
     }

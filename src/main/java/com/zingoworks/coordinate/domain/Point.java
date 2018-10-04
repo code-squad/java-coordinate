@@ -13,8 +13,8 @@ public class Point {
     }
 
     public Point(String str) {
-        this.x = ofCommaSeparator(str).x;
-        this.y = ofCommaSeparator(str).y;
+        this.x = new No(ofCommaSeparator(str).x).number;
+        this.y = new No(ofCommaSeparator(str).y).number;
     }
 
     public int getX() {
