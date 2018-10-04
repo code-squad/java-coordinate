@@ -9,7 +9,8 @@ public class InputView {
     private static Scanner sc = new Scanner(System.in);
 
     public static String[] getCoordinate(){
-        return StringHandler.splitHyphen(inputText());
+        String text = StringHandler.trimString(inputText());
+        return StringHandler.splitHyphen(text);
     }
 
     public static String inputText(){

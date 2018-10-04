@@ -23,17 +23,17 @@ public class CoordinateGenerator {
         return sb;
     }
 
-    public static void addNewLine(){
+    private static void addNewLine(){
         sb.append(System.lineSeparator());
     }
 
-    public static void addHyphen(int numberOfTimes){
+    private static void addHyphen(int numberOfTimes){
         for(int i = ZERO; i < numberOfTimes; i++){
             sb.append(HYPHEN);
         }
     }
 
-    public static void initVertical(){
+    private static void initVertical(){
         for(int i = MAX_POSITION; i > ZERO; i--){
             sb.append(String.format(THREE_LETTER_FORMAT, decideToShowNumber(i) + VERTICAL));
             sb.append(String.format(FORTY_SEVEN_LETTER_FORMAT, NULL_VALUE));
@@ -41,12 +41,12 @@ public class CoordinateGenerator {
         }
     }
 
-    public static void initHorizon(){
+    private static void initHorizon(){
         initSecondHorizon();
         initFirstHorizon();
     }
 
-    public static void initSecondHorizon(){
+    private static void initSecondHorizon(){
         sb.append(String.format(THREE_LETTER_FORMAT, PLUS));
         for(int i = ONE; i < MAX_POSITION; i++){
             addHyphen(TWO);
@@ -55,7 +55,7 @@ public class CoordinateGenerator {
         addNewLine();
     }
 
-    public static void initFirstHorizon(){
+    private static void initFirstHorizon(){
         sb.append(String.format(TWO_LETTER_FORMAT, ZERO));
         for(int i = ONE; i <= MAX_POSITION; i++){
             sb.append(String.format(TWO_LETTER_FORMAT, decideToShowNumber(i)));
@@ -66,7 +66,7 @@ public class CoordinateGenerator {
         return number % TWO == ZERO;
     }
 
-    public static String decideToShowNumber(int number){
+    private static String decideToShowNumber(int number){
         if(isEven(number)){
             return String.valueOf(number);
         }

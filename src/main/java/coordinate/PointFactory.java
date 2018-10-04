@@ -16,15 +16,15 @@ public class PointFactory {
         return points;
     }
 
-    public static List<Integer> makeRefinedXY(String position){
+    private static List<Integer> makeRefinedXY(String position){
         return StringHandler.parseIntegers(makeRawXY(position));
     }
 
-    public static String[] makeRawXY(String position){
+    private static String[] makeRawXY(String position){
         return StringHandler.splitComma(StringHandler.cutBracket(position));
     }
 
-    public static Point makePoint(String position){
+    private static Point makePoint(String position){
         List<Integer> positionXY = makeRefinedXY(position);
         return new Point(positionXY.get(CoordinateFactory.ZERO), positionXY.get(CoordinateFactory.ONE));
     }

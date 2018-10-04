@@ -1,7 +1,6 @@
 package coordinate.domain;
 
 public class Line {
-    private static final int SQUARE = 2;
     private Point point;
     private Point anotherPoint;
 
@@ -11,8 +10,6 @@ public class Line {
     }
 
     public double length(){
-        return Math.sqrt(
-                Math.pow(this.point.subX(this.anotherPoint), SQUARE)
-                + Math.pow(this.point.subY(this.anotherPoint), SQUARE));
+        return point.calculateLineLength(anotherPoint);
     }
 }

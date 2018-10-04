@@ -8,6 +8,10 @@ public class StringHandler {
     private static final String COMMA = ",";
     private static final int FIRST = 1;
 
+    public static String trimString(String s){
+        return s.replaceAll("\\s","");
+    }
+
     public static String[] splitHyphen(String original){
         return original.split(HYPHEN);
     }

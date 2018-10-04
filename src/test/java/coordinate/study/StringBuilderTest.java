@@ -1,11 +1,17 @@
 package coordinate.study;
 
-import static org.assertj.core.api.Assertions.*;
-
-import com.sun.javafx.binding.StringFormatter;
+import org.assertj.core.util.Arrays;
 import org.junit.Test;
 
 public class StringBuilderTest {
+    @Test
+    public void splitTest(){
+        String s = "(-10,10)-(14,15)";
+//        System.out.println(Arrays.asList(s.split("\\D+")));
+//        System.out.println(Arrays.asList(s.split("[^-?0-9]+")));
+        System.out.println(Arrays.asList(s.split("-")));
+    }
+
     @Test
     public void newline(){
         StringBuilder sb = new StringBuilder();
