@@ -3,7 +3,6 @@ package com.zingoworks.coordinate.domain;
 import java.util.Objects;
 
 public class Point {
-
     private final int x;
     private final int y;
 
