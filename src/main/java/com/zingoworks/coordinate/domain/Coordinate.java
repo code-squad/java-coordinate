@@ -1,43 +1,42 @@
 package com.zingoworks.coordinate.domain;
 
-import com.zingoworks.coordinate.view.InputView;
-
 import java.util.ArrayList;
 
+import static com.zingoworks.coordinate.CoordinateMain.LENGTH_X;
+import static com.zingoworks.coordinate.CoordinateMain.LENGTH_Y;
+
 public class Coordinate {
+    private Point x;
+    private Point y;
+    public ArrayList<StringBuilder> line = new ArrayList<>();
 
-    private ArrayList<StringBuilder> coordinate = new ArrayList<>();
-
-    public Coordinate(String[] str) {
-        setDefaultSize(str);
-        deleteUnnecessaryChar(str);
-        this.coordinate = verifyCoordinatesLimit();
+    public Coordinate(String[] input) {
+        this.x = Point.ofCommaSeparator(extractRequiredString(input[0]));
+        this.y = Point.ofCommaSeparator(extractRequiredString(input[1]));
+        setLine();
+        updateLine();
     }
 
-    public ArrayList<StringBuilder> getVerifiedCoordinates() {
-        return this.coordinate;
+    public double getDistanceOfPoints() {
+        return x.getDistance(y);
     }
 
-    private ArrayList<StringBuilder> verifyCoordinatesLimit() {
-        for (int i = 0; i < coordinate.size(); i++) {
-            Point eachCoord = new Point(coordinate.get(i));
-            if (eachCoord.alertMaxLimit(eachCoord)) {
-                return new Coordinate(InputView.inputCoordinate()).coordinate;
+    private void setLine() {
+        for (int i = 0; i < 24; i++) {
+            line.add(new StringBuilder());
+            for (int j = 0; j < 48; j++) {
+                line.get(i).append(" ");
             }
         }
-        return coordinate;
     }
 
-    private void setDefaultSize(String[] str) {
-        for (int i = 0; i < str.length; i++) {
-            coordinate.add(new StringBuilder().append(str[i]));
-        }
+    private void updateLine() {
+        line.get(x.getY() - 1).setCharAt(x.getX() * 2 - 1,'·');
+        line.get(y.getY() - 1).setCharAt(y.getX() * 2 - 1,'·');
     }
 
-    private void deleteUnnecessaryChar(String[] str) {
-        for (int i = 0; i < str.length; i++) {
-            coordinate.get(i).deleteCharAt(0);
-            coordinate.get(i).deleteCharAt(coordinate.get(i).length() - 1);
-        }
+    private String extractRequiredString(String str) {
+        StringBuilder sb = new StringBuilder(str);
+        return sb.substring(1, sb.length() -1);
     }
 }

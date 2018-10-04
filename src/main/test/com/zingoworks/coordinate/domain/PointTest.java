@@ -1,31 +1,26 @@
 package com.zingoworks.coordinate.domain;
 
-import com.zingoworks.coordinate.domain.Point;
 import org.junit.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class PointTest {
-
     @Test
-    public void getPoint () {
-        Point point = new Point(new StringBuilder ("3,12"));
-        assertThat(point.getX()).isEqualTo(3);
-        assertThat(point.getY()).isEqualTo(12);
+    public void create_of() {
+        assertThat(new Point(1,1)).isEqualTo(Point.of(1,1));
     }
 
     @Test
-    public void calculateDistanceTest() {
-        Point a = new Point (new StringBuilder ("1,1"));
-        Point b = new Point (new StringBuilder ("2,2"));
-        double result = Point.calculateDistance(a,b);
-        System.out.println(result);
+    public void create_ofCommaSeparator() {
+        assertThat(new Point(1,1)).isEqualTo(Point.ofCommaSeparator("1,1"));
     }
 
     @Test
-    public void verify () {
-        Point point = new Point(new StringBuilder ("3,25"));
-        assertThat(point.alertMaxLimit(point)).isEqualTo(true);
-    }
+    public void get_distanceOfLine() {
+        Point a = new Point(1,1);
+        System.out.println(a.getDistance(new Point(2,2)));
 
+        Point b = new Point("2,2");
+        System.out.println(b.getDistance(a));
+    }
 }

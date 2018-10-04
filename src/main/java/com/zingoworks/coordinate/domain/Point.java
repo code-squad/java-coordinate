@@ -7,10 +7,14 @@ public class Point {
     private final int x;
     private final int y;
 
-    public Point(StringBuilder coord) {
-        String[] cod = String.valueOf(coord).split(",");
-        this.x = Integer.parseInt(cod[0]);
-        this.y = Integer.parseInt(cod[1]);
+    public Point(int x, int y) {
+        this.x = new No(x).number;
+        this.y = new No(y).number;
+    }
+
+    public Point(String str) {
+        this.x = ofCommaSeparator(str).x;
+        this.y = ofCommaSeparator(str).y;
     }
 
     public int getX() {
@@ -21,25 +25,26 @@ public class Point {
         return y;
     }
 
-    public static double calculateDistance(Point a, Point b) {
-        return Math.sqrt(Math.pow(a.getX() - b.getX(),2) + Math.pow(a.getY() - b.getY(),2));
+    public double getDistance(Point other) {
+        return Math.sqrt(Math.pow(x - other.x, 2) + Math.pow(y - other.y, 2));
     }
 
-    public boolean alertMaxLimit(Point point) {
-        if (point.x > 24 || point.y > 24) {
-            System.out.println("<경고> 좌표값은 최대 24까지만 입력할 수 있습니다.");
-            return true;
-        }
-        return false;
+    public static Point of(int x, int y) {
+        return new Point(x,y);
+    }
+
+    public static Point ofCommaSeparator(String str) {
+        String[] values = str.split(",");
+        return new Point(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Point that = (Point) o;
-        return x == that.x &&
-                y == that.y;
+        Point point = (Point) o;
+        return x == point.x &&
+                y == point.y;
     }
 
     @Override

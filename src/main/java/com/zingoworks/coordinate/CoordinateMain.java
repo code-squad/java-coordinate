@@ -4,17 +4,15 @@ import com.zingoworks.coordinate.domain.Coordinate;
 import com.zingoworks.coordinate.view.InputView;
 import com.zingoworks.coordinate.view.ResultView;
 
-import java.util.ArrayList;
-
 public class CoordinateMain {
+    public static final int LENGTH_X = 24;
+    public static final int LENGTH_Y = 24;
+
     public static void main(String[] args) {
-        String[] cods = InputView.inputCoordinate();
-        Coordinate cg = new Coordinate(cods);
-        System.out.println(cg.getVerifiedCoordinates().get(1));
+        String[] input = InputView.inputCoordinate();
+        Coordinate coord = new Coordinate(input);
 
-
-        int lengthOfX = 24;
-        int lenghtOfY = 24;
-        ResultView.print(lengthOfX,lenghtOfY);
+        ResultView.print(coord);
+        ResultView.printDistance(coord.getDistanceOfPoints());
     }
 }
