@@ -14,7 +14,7 @@ public class ResultView {
     private static final StringBuilder BLANK = new StringBuilder (" ");
 
     public static void print(Coordinate coord) {
-        printY(coord);
+        printYandCoordinate(coord);
         printX();
     }
 
@@ -22,11 +22,7 @@ public class ResultView {
         System.out.println("두 점 사이의 거리는 " + distance + "입니다.");
     }
 
-    private static void printCoordinateLine() {
-
-    }
-
-    private static void printY(Coordinate coord) {
+    private static void printYandCoordinate(Coordinate coord) {
         for (int i = LENGTH_Y; i > 0 ; i--) {
             printEvenNumberOfY(i);
             System.out.print(VERTICAL);
@@ -48,7 +44,7 @@ public class ResultView {
         printLineOfX();
         System.out.println("");
         System.out.print(" ");
-        printNumberOfX();
+        printNumberLineOfX();
         System.out.println("");
     }
 
@@ -59,7 +55,7 @@ public class ResultView {
         }
     }
 
-    private static void printNumberOfX() {
+    private static void printNumberLineOfX() {
         for (int i = 0; i <= LENGTH_X; i++) {
             printEvenNumberOfX(i);
         }

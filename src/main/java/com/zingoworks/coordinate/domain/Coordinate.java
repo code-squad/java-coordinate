@@ -22,11 +22,15 @@ public class Coordinate {
     }
 
     private void setLine() {
-        for (int i = 0; i < 24; i++) {
+        for (int i = 0; i < LENGTH_Y; i++) {
             line.add(new StringBuilder());
-            for (int j = 0; j < 48; j++) {
-                line.get(i).append(" ");
-            }
+            setLineDefaultForm(i);
+        }
+    }
+
+    private void setLineDefaultForm(int i) {
+        for (int j = 0; j < LENGTH_X * 2; j++) {
+            line.get(i).append(" ");
         }
     }
 
