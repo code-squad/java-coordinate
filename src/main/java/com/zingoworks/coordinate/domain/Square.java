@@ -9,8 +9,8 @@ public class Square {
     private ArrayList<Integer> yValues;
 
     public Square(ArrayList<Point> point) {
-        this.xValues = xValues(point);
-        this.yValues = yValues(point);
+        this.xValues = makeXvalues(point);
+        this.yValues = makeYvalues(point);
 
         if(point.size() != 4){
             throw new IllegalArgumentException("사각형의 성립 조건이 아닙니다.");
@@ -36,7 +36,7 @@ public class Square {
         return n;
     }
 
-    private ArrayList<Integer> xValues(ArrayList<Point> point) {
+    private ArrayList<Integer> makeXvalues(ArrayList<Point> point) {
         ArrayList<Integer> x = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             x.add(point.get(i).getX());
@@ -44,7 +44,7 @@ public class Square {
         return x;
     }
 
-    private ArrayList<Integer> yValues(ArrayList<Point> point) {
+    private ArrayList<Integer> makeYvalues(ArrayList<Point> point) {
         ArrayList<Integer> y = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             y.add(point.get(i).getY());
