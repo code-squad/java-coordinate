@@ -1,5 +1,7 @@
 package view;
 
+
+import domain.Points;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -18,9 +20,15 @@ public class ResultViewTest {
         assertThat(ResultView.numSizeIndent(10), is("10"));
     }
 
-    @Test()
-    public void drawXLine() {
-        ResultView.drawXLine(10);
+    @Test
+    public void checkFirst() {
+        int point = Points.EXIST;
+        assertThat(ResultView.checkFirst(point), is(ResultView.BODYEXIST));
+    }
+
+    @Test
+    public void drawPoint() {
+        assertThat(ResultView.drawPoint(0, Points.NONE), is(ResultView.FIRSTNONE));
     }
 
 }
