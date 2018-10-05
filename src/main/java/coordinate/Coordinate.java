@@ -3,26 +3,39 @@ package coordinate;
 import java.util.ArrayList;
 
 public class Coordinate {
-    private ArrayList<MyString> coordinate;
-
+    private static final int MAXNUMS = 25;
+    private ArrayList<MyString> coordinatePanel;
+    private ArrayList<CoordinateLine> coordinateField;
     public Coordinate() {
+        this.coordinatePanel = makeCoordinatePanel();
+        this.coordinateField = makeCoordinateField();
+    }
+
+    private ArrayList<CoordinateLine> makeCoordinateField() {
+        ArrayList<CoordinateLine> field = new ArrayList<>();
+        for (int i = 0; i < MAXNUMS; i++) {
+            field.add(new CoordinateLine());
+        }
+        return field;
+    }
+
+    private ArrayList<MyString> makeCoordinatePanel() {
         ArrayList<MyString> numCoordinate = new ArrayList<>();
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < MAXNUMS; i++) {
             numCoordinate.add(new MyString(i));
         }
-        this.coordinate = numCoordinate;
+        return numCoordinate;
     }
 
-    public void displayYCoordinate() {
-        for (int i = 24; i > 0; i--) {
-            System.out.println(this.coordinate.get(i) + "l");
-        }
+    public void makeStar(int a) {
+
     }
 
-    public void displayXCoordinate() {
-        System.out.println("   +-----------------------------------------------------------------------");
-        for (MyString myString : this.coordinate) {
-            System.out.print(myString);
-        }
+    public ArrayList<MyString> getCoordinatePanel() {
+        return coordinatePanel;
+    }
+
+    public ArrayList<CoordinateLine> getCoordinateField() {
+        return coordinateField;
     }
 }
