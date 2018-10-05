@@ -7,11 +7,11 @@ import java.util.HashSet;
 public class Square {
     private ArrayList<Integer> xValues = new ArrayList<>();
     private ArrayList<Integer> yValues = new ArrayList<>();
-//coordinate에서 point를 꺼내서
-    public Square(ArrayList<Point> point) {
-        setValues(coordinate);
 
-        if(coordinate.getPoint().size() != 4) {
+    public Square(ArrayList<Point> point) {
+        setValues(point);
+
+        if(point.size() != 4) {
             throw new IllegalArgumentException("사각형의 성립 조건이 아닙니다.");
         }
         if(getExceptionOfRectangular()){
@@ -33,10 +33,10 @@ public class Square {
         return false;
     }
 
-    private void setValues(Coordinate coordinate) {
+    private void setValues(ArrayList<Point> point) {
         for (int i = 0; i < 4; i++) {
-            this.xValues.add(coordinate.getPoint().get(i).getX());
-            this.yValues.add(coordinate.getPoint().get(i).getY());
+            this.xValues.add(point.get(i).getX());
+            this.yValues.add(point.get(i).getY());
         }
     }
 

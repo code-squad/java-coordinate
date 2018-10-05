@@ -15,23 +15,23 @@ public class ResultView {
     private static final int MAX_NUMBER_OF_DIGITS = 2;
     private static final StringBuilder BLANK = new StringBuilder (" ");
 
-    public static void print(Coordinate coord) {
-        printYandCoordinate(coord);
+    public static void print(Coordinate coordinate) {
+        printYandCoordinate(coordinate);
         printX();
-        if (coord.getPoint().size() == 2) {
-            printDistance(new Line(coord).getDistanceOfLine());
+        if (coordinate.getPoint().size() == 2) {
+            printDistance(new Line(coordinate.getPoint()));
         }
-        if (coord.getPoint().size() == 4) {
-            printArea(new Square(coord).getAreaOfSquare());
+        if (coordinate.getPoint().size() == 4) {
+            printArea(new Square(coordinate.getPoint()));
         }
     }
 
-    private static void printDistance(double distance) {
-        System.out.println("두 점 사이의 거리는 " + distance + "입니다.");
+    private static void printDistance(Line line) {
+        System.out.println("두 점 사이의 거리는 " + line.getDistanceOfLine() + "입니다.");
     }
 
-    private static void printArea(int area) {
-        System.out.println("사각형의 넓이는 " + area + "입니다.");
+    private static void printArea(Square square) {
+        System.out.println("사각형의 넓이는 " + square.getAreaOfSquare() + "입니다.");
     }
 
     private static void printYandCoordinate(Coordinate coord) {
