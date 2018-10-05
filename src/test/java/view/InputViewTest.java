@@ -1,7 +1,9 @@
 package view;
 
-import dto.PointDto;
+import domain.Point;
+
 import static org.hamcrest.CoreMatchers.is;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,12 +11,11 @@ import static org.junit.Assert.*;
 public class InputViewTest {
 
     @Test
-    public void makePointDto() {
+    public void makePoint() {
         String point = "(23,3)";
-        PointDto dto = new PointDto(23,3);
-        assertThat(InputView.makePointDto(point), is(dto));
+        Point p = Point.init(23, 3);
+        assertThat(InputView.makePoint(point), is(p));
     }
-
 
 
 }

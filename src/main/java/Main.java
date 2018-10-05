@@ -1,20 +1,15 @@
-import domain.Calculator;
-import domain.Graph;
+import domain.Points;
 
-import dto.PointDto;
 import view.InputView;
 import view.ResultView;
-
-import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-        List<PointDto> points = InputView.inputCoordinate();
+        Points userPoints = Points.init(InputView.inputPoints());
 
-        Graph graph = Graph.init(points);
-        ResultView.drawGraph(graph.toDto());
-        ResultView.printDistance(Calculator.twoPointsDistance(points));
+        ResultView.drawGraph(userPoints);
+        ResultView.printDistance(userPoints.calc());
     }
 
 }

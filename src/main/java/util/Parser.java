@@ -11,7 +11,7 @@ public class Parser {
         String[] values = value.split(",");
 
         result[0] = Integer.parseInt(values[0].substring(1));
-        result[1] = Integer.parseInt(values[1].substring(0,values[1].length()-1));
+        result[1] = Integer.parseInt(values[1].substring(0,values[1].length() - 1));
 
         return result;
     }

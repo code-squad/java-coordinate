@@ -1,82 +1,92 @@
 package view;
 
-import dto.GraphDto;
-import dto.LineDto;
-import dto.PointDto;
+import domain.Point;
+import domain.Points;
 
 import java.util.List;
 
 public class ResultView {
 
-    public static void drawGraph(GraphDto graphDto) {
-        List<LineDto> dtos = graphDto.getGraphDto();
-        for (int i = dtos.size() - 1; i > 0; i--) {
-            System.out.println(drawLine(i, dtos.get(i)));
+    public static final String FIRSTNONE = "| ";
+    public static final String BODYEXIST = "* ";
+    public static final String BODYNONE = "  ";
+    public static final String LASTEXIST = "-*";
+    public static final String LASTNONE = "--";
+    public static final String LASTFIRSTNONE = "+";
+    public static final String LASTFIRSTEXIST = "*";
+
+    public static void drawGraph(Points points) {
+        for (int i = Point.MAXSIZE; i >= Point.MINSIZE; i--) {
+            System.out.println(drawLine(i, points.makeLine(i)));
         }
-        System.out.println(drawLastLine(dtos.get(0)));
-        System.out.println(onlyNumLine(dtos.size()));
+        System.out.println(onlyNumLine(Point.MAXSIZE));
     }
 
-    public static String drawLine(int i, LineDto lineDto) {
-        StringBuilder sb = new StringBuilder();
-        List<PointDto> dtos = lineDto.getLineDto();
+    public static String drawLine(int y, List<Integer> points) {
+        if (y == Point.MINSIZE) {
+            return drawLastLine(points);
+        }
+        return drawBodyLine(y, points);
+    }
 
-        sb.append(makeNumIndent(i));
-        for (int j = 0; j < dtos.size(); j++) {
-            sb.append(drawPoint(j, dtos.get(j)));
+    public static String drawBodyLine(int y, List<Integer> points) {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(makeNumIndent(y));
+        for (int i = 0; i < Point.MAXSIZE; i++) {
+            sb.append(drawPoint(i, points.get(i)));
         }
         return sb.toString();
     }
 
-    public static String checkFirst(PointDto dto) {
-        if (dto.getX() == 0) {
-            return "* ";
+    public static String checkFirst(int point) {
+        if (point == Points.EXIST) {
+            return BODYEXIST;
         }
-        return "| ";
+        return FIRSTNONE;
     }
 
-    public static String checkNone(PointDto dto) {
-        if (dto.getX() == -1) {
-            return "  ";
+    public static String checkNone(int point) {
+        if (point == Points.NONE) {
+            return BODYNONE;
         }
-        return "* ";
+        return BODYEXIST;
     }
 
-    public static String drawPoint(int j, PointDto dto) {
-        if (j == 0) {
-            return checkFirst(dto);
+    public static String drawPoint(int x, int point) {
+        if (x == Point.MINSIZE) {
+            return checkFirst(point);
         }
-        return checkNone(dto);
+        return checkNone(point);
     }
 
-    public static String checkLastFirst(PointDto dto) {
-        if (dto.getX() == 0) {
-            return "*";
+    public static String checkLastFirst(int point) {
+        if (point == Points.EXIST) {
+            return LASTFIRSTEXIST;
         }
-        return "+";
+        return LASTFIRSTNONE;
     }
 
-    public static String checkLastNone(PointDto dto) {
-        if (dto.getX() == -1) {
-            return "--";
+    public static String checkLastNone(int point) {
+        if (point == Points.NONE) {
+            return LASTNONE;
         }
-        return "-*";
+        return LASTEXIST;
     }
 
-    public static String drawLastPoint(int j, PointDto dto) {
-        if (j == 0) {
-            return checkLastFirst(dto);
+    public static String drawLastPoint(int idx, int point) {
+        if (idx == 0) {
+            return checkLastFirst(point);
         }
-        return checkLastNone(dto);
+        return checkLastNone(point);
     }
 
-    public static String drawLastLine(LineDto lineDto) {
+    public static String drawLastLine(List<Integer> points) {
         StringBuilder sb = new StringBuilder();
-        List<PointDto> dtos = lineDto.getLineDto();
 
         sb.append("  ");
-        for (int j = 0; j < dtos.size(); j++) {
-            sb.append(drawLastPoint(j, dtos.get(j)));
+        for (int i = 0; i < points.size(); i++) {
+            sb.append(drawLastPoint(i, points.get(i)));
         }
         return sb.toString();
     }
