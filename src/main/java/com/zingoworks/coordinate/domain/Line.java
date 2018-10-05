@@ -10,7 +10,6 @@ public class Line {
         if (point.size() != 2) {
             throw new IllegalArgumentException("직선의 성립조건이 아닙니다.");
         }
-
         this.x = point.get(0);
         this.y = point.get(1);
     }
