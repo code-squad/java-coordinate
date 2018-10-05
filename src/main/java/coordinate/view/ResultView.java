@@ -2,6 +2,7 @@ package coordinate.view;
 
 import coordinate.domain.Line;
 import coordinate.domain.Point;
+import coordinate.domain.Rectangle;
 
 import java.util.List;
 
@@ -67,4 +68,6 @@ public class ResultView {
         return number == ZERO;
     }
 
+    public static void showRectangleArea(Rectangle generateRectangle) {
+    }
 }
