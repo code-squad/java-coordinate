@@ -7,8 +7,8 @@ import java.util.HashSet;
 public class Square {
     private ArrayList<Integer> xValues = new ArrayList<>();
     private ArrayList<Integer> yValues = new ArrayList<>();
-
-    public Square(Coordinate coordinate) {
+//coordinate에서 point를 꺼내서
+    public Square(ArrayList<Point> point) {
         setValues(coordinate);
 
         if(coordinate.getPoint().size() != 4) {

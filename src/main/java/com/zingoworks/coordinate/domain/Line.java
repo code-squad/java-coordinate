@@ -1,10 +1,13 @@
 package com.zingoworks.coordinate.domain;
 
+import java.util.ArrayList;
+
 public class Line {
     private Point x;
     private Point y;
 
-    public Line(Coordinate coordinate) {
+//coordinate에서 point를 꺼내서
+    public Line(ArrayList<Point> point) {
         if(coordinate.getPoint().size() != 2) {
             throw new IllegalArgumentException("직선의 성립조건이 아닙니다.");
         }

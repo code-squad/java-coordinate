@@ -7,7 +7,7 @@ import static com.zingoworks.coordinate.CoordinateMain.LENGTH_Y;
 
 public class Coordinate {
     private static final char MARKER = '·';
-
+//markingPoint는 View 단에서
     private ArrayList<StringBuilder> markingPoint = new ArrayList<>();
     private ArrayList<Point> point = new ArrayList<>();
 
