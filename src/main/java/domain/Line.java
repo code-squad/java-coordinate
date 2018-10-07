@@ -1,25 +1,29 @@
 package domain;
 
+import util.PointException;
 import java.util.*;
 
 public class Line {
-    List<String> line = new ArrayList<>();
+    private List<Point> points;
 
-    public Line() {
-        initLine();
+    public Line(String[] inputPoint) throws PointException {
+        points = new ArrayList<>();
+        initLine(inputPoint);
+
+
     }
 
-    private void initLine() {
-        for (int i = 0; i < Axis.MAX_SIZE; i++) {
-            line.add("  ");
+    private void initLine(String[] inputPoint) throws PointException {
+        for(String point : inputPoint) {
+            points.add(PointFactory.create(point));
         }
     }
 
-    public void setPoint(Point point) {
-        line.set(point.getX() - 1, "()");
+    public double getDistance() {
+        return points.get(0).getDistance(points.get(1));
     }
 
-    public List<String> getLine() {
-        return line;
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 }

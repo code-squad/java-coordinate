@@ -3,11 +3,11 @@ package domain;
 import java.util.*;
 
 public class Axis {
-    public static final int MAX_SIZE = 24;
     private static final String HORIZONTAL_BAR = "--";
     private static final String ZERO_BAR = "+";
-    private static final String BLANK = "  ";
     private static final String VERTICAL_BAR = "|";
+    public static final String BLANK = "  ";
+    public static final int MAX_SIZE = 24;
 
     private Axis() {
 
