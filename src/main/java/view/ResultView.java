@@ -7,19 +7,19 @@ public class ResultView {
 
     }
 
-    public static void printDistance(Line line) {
-        System.out.println("두점 사이의 거리는 : " + line.getDistance());
+    public static void printDistance(Figure figure) {
+        System.out.println(figure.evaluate());
     }
 
-    public static void drawAxis(Line line) {
-        drawYaxis(line);
+    public static void drawAxis(Figure figure) {
+        drawYaxis(figure);
         drawXaxis();
     }
-    private static void drawYaxis(Line line) {
+    private static void drawYaxis(Figure figure) {
         for (int i = Axis.MAX_SIZE -1; i >= 0; i--) {
             printYaxisNum(i);
             printYaxisBar(i);
-            printPoints(i, line);
+            printPoints(i, figure);
         }
     }
 
@@ -31,10 +31,10 @@ public class ResultView {
         System.out.print(Axis.getVerticalAxisBar().get(index));
     }
 
-    private static void printPoints(int index, Line line) {
+    private static void printPoints(int index, Figure figure) {
         StringBuilder sb = new StringBuilder();
         int prevPointIndex = 0;
-        for(Point point : line.getPoints()) {
+        for(Point point : figure.getPoints()) {
             if(point.getY() == index + 1) {
                 sb.append(printDot(prevPointIndex, point.getX()));
                 prevPointIndex = point.getX();

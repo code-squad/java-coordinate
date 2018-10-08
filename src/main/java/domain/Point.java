@@ -1,6 +1,8 @@
 package domain;
 
-public class Point {
+import java.util.Comparator;
+
+public class Point implements Comparable<Point> {
     public static final String DOT_IMAGE = "()";
     private int x;
     private int y;
@@ -27,5 +29,12 @@ public class Point {
 
     public int getY() {
         return y;
+    }
+
+    @Override
+    public int compareTo(Point otherPoint) {
+        if(this.x > otherPoint.getX()) return 1;
+        else if (this.x < otherPoint.getX()) return -1;
+        else return 0;
     }
 }
