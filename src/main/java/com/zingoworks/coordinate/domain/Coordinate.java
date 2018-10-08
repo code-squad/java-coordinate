@@ -3,10 +3,10 @@ package com.zingoworks.coordinate.domain;
 import java.util.ArrayList;
 
 public class Coordinate {
-    private ArrayList<Point> point;
+    private static ArrayList<Point> point;
 
     public Coordinate(String[] input) {
-        this.point = savePoint(input);
+        point = savePoint(input);
     }
 
     private ArrayList<Point> savePoint(String[] input) {
