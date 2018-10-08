@@ -1,7 +1,6 @@
 package view;
 
-import domain.Point;
-import domain.Points;
+import domain.*;
 
 import java.util.List;
 
@@ -15,11 +14,14 @@ public class ResultView {
     public static final String LASTFIRSTNONE = "+";
     public static final String LASTFIRSTEXIST = "*";
 
-    public static void drawGraph(Points points) {
+    public static String drawGraph(Figure points) {
+        StringBuilder sb = new StringBuilder();
+
         for (int i = Point.MAXSIZE; i >= Point.MINSIZE; i--) {
-            System.out.println(drawLine(i, points.makeLine(i)));
+            sb.append(drawLine(i, points.makeLine(i)) + "\n");
         }
-        System.out.println(onlyNumLine(Point.MAXSIZE));
+        sb.append(onlyNumLine(Point.MAXSIZE));
+        return sb.toString();
     }
 
     public static String drawLine(int y, List<Integer> points) {
@@ -40,14 +42,14 @@ public class ResultView {
     }
 
     public static String checkFirst(int point) {
-        if (point == Points.EXIST) {
+        if (point == Figure.EXIST) {
             return BODYEXIST;
         }
         return FIRSTNONE;
     }
 
     public static String checkNone(int point) {
-        if (point == Points.NONE) {
+        if (point == Figure.NONE) {
             return BODYNONE;
         }
         return BODYEXIST;
@@ -61,14 +63,14 @@ public class ResultView {
     }
 
     public static String checkLastFirst(int point) {
-        if (point == Points.EXIST) {
+        if (point == Figure.EXIST) {
             return LASTFIRSTEXIST;
         }
         return LASTFIRSTNONE;
     }
 
     public static String checkLastNone(int point) {
-        if (point == Points.NONE) {
+        if (point == Figure.NONE) {
             return LASTNONE;
         }
         return LASTEXIST;
@@ -115,8 +117,37 @@ public class ResultView {
         return sb.toString();
     }
 
-    public static void printDistance(double distance) {
-        System.out.println("두 점 사이의 거리는 " + distance);
+    public static String getFigureArea(Figure figure) {
+        double calcResult = figure.calc();
+
+        if (figure instanceof Rectangle)
+            return getRectangularArea(calcResult);
+        if (figure instanceof Triangle)
+            return getTriangleArea(calcResult);
+        if (figure instanceof Line)
+            return getLineLength(calcResult);
+        return "직선, 삼각형, 직사각형이 아닙니다.";
+    }
+
+    private static String getRectangularArea(double calcResult) {
+        if (calcResult == 0) {
+            return "직사각형이 아닙니다.";
+        }
+        return "사각형의 넓이는 " + (int) calcResult;
+    }
+
+    private static String getTriangleArea(double calcResult) {
+        if (calcResult == 0) {
+            return "삼각형이 아닙니다.";
+        }
+        return "삼각형의 넓이는 " + calcResult;
+    }
+
+    private static String getLineLength(double calcResult) {
+        if (calcResult == 0) {
+            return "선이 아닙니다.";
+        }
+        return "직선의 길이는 " + calcResult;
     }
 
 }
