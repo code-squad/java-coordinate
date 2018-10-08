@@ -1,44 +1,115 @@
 package coordinate.view;
 
-public class ResultView {
-    public static void createLocationAxis(){
-        final int AXIS_MAX = 24;
-        final String X_BAR = "━━";
-        final char Y_BAR = '│';
-        final char ZERO_BAR = '+';
-        final String BLANK = "  ";
+import coordinate.domain.Point;
 
-        createYAxis(AXIS_MAX, Y_BAR, BLANK);
-        createXAxis(AXIS_MAX, X_BAR, ZERO_BAR, BLANK);
+import java.util.Arrays;
+
+public class ResultView {
+    static final int AXIS_MAX = 24;
+    static final String X_BAR = "━━";
+    static final char Y_BAR = '│';
+    static final char ZERO_BAR = '+';
+    static final String BLANK = "  ";
+    static final String DOT = "●";
+
+    public static void createLocationAxis(Point first, Point second){
+        createYAxis(first, second);
+        createXAxis();
     }
 
-    private static void createYAxis(int AXIS_MAX, char y_BAR, String BLANK) {
-        for (int i = 0; i < AXIS_MAX; i++) {
+    private static void createYAxis(Point first, Point second) {
+        for (int i = AXIS_MAX; i > 0; i--) {
             if(i % 2 == 0){
-                System.out.printf("%2d", AXIS_MAX - i);
-                System.out.println(y_BAR);
+                System.out.printf("%2d", i);
+                System.out.print(Y_BAR);
+                createDot(first, second, i);
+                System.out.println();
                 continue;
             }
-            System.out.println(BLANK + y_BAR);
+            System.out.print(BLANK + Y_BAR);
+            createDot(first, second, i);
+            System.out.println();
         }
     }
 
-    private static void createXAxis(int AXIS_MAX, String x_BAR, char ZERO_BAR, String BLANK) {
-        drawXLine(AXIS_MAX, x_BAR, ZERO_BAR, BLANK);
+    private static void createDot(Point first, Point second, int i) {
+        if(i == first.getY() && i == second.getY()){
+            int[] sameX = new int[]{first.getX(),second.getX()};
+            Arrays.sort(sameX);
+            oneLineXY(sameX);
+        }
 
-        for (int i = 0; i <= AXIS_MAX; i++) {
-            if(i % 2 == 0){
-                System.out.print(BLANK + i);
+        oneLineF(first, second, i);
+        oneLineS(first, second, i);
+    }
+
+    private static void oneLineS(Point first, Point second, int i) {
+        if (i == second.getY() && i != first.getY()) {
+            isExistSecond(second);
+        }
+    }
+
+    private static void isExistSecond(Point second) {
+        for (int j = 1; j < AXIS_MAX; j++) {
+            System.out.print(BLANK);
+            if (second.getX() == j) {
+                System.out.print(DOT);
+                break;
             }
         }
     }
 
-    private static void drawXLine(int AXIS_MAX, String x_BAR, char ZERO_BAR, String BLANK) {
+    private static void oneLineF(Point first, Point second, int i) {
+        if (i == first.getY() && i != second.getY()) {
+            isExistFirst(first);
+        }
+    }
+
+    private static void isExistFirst(Point first) {
+        for (int j = 1; j < AXIS_MAX; j++) {
+            System.out.print(BLANK);
+            if (first.getX() == j) {
+                System.out.print(DOT);
+                break;
+            }
+        }
+    }
+
+    private static void oneLineXY(int[] sameX) {
+        for (int j = 1; j < AXIS_MAX; j++) {
+            System.out.print(BLANK);
+            if(sameX[0] == j){
+                System.out.print(DOT);
+            }
+            if(sameX[1] == j){
+                System.out.print(DOT);
+            }
+        }
+    }
+
+    private static void drawXLine() {
         System.out.print(BLANK + ZERO_BAR);
-        for (int i = 0; i < AXIS_MAX -2; i++) {
-            System.out.print(x_BAR);
+        for (int i = 0; i < AXIS_MAX; i++) {
+            System.out.print(X_BAR);
         }
         System.out.println();
     }
 
+    private static void createXAxis() {
+        drawXLine();
+        System.out.print(" ");
+        for (int i = 0; i <= AXIS_MAX; i++) {
+            if(i % 2 == 0){
+                System.out.printf("%2d", i);
+                continue;
+            }
+            System.out.print(BLANK);
+        }
+        System.out.println();
+        System.out.println();
+    }
+
+    public static void distView(double dist){
+        System.out.printf("두 점 사이의 거리는 %6f", dist);
+    }
 }
