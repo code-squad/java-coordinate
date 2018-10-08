@@ -8,11 +8,12 @@ import static com.zingoworks.coordinate.CoordinateMain.LENGTH_Y;
 
 public class ResultView {
     private static final String VERTICAL = "│";
+    private static final String NEW_LINE = System.getProperty("line.separator");
 
     public static void print(Coordinate coordinate) {
         printAxisY(coordinate.getPoint());
         printAxisX();
-        System.out.println("");
+        System.out.print(NEW_LINE);
 
         if (coordinate.getPoint().size() == 2) {
             printDistance(new Line(coordinate.getPoint()));
@@ -31,8 +32,7 @@ public class ResultView {
         CoordinatePlane cp = new CoordinatePlane(point);
         for (int i = LENGTH_Y; i > 0; i--) {
             System.out.print(Axis.numberOfAxis(i) + VERTICAL);
-            System.out.print(cp.getPlane().get(i - 1));
-            System.out.println("");
+            System.out.print(cp.getPlane().get(i - 1) + NEW_LINE);
         }
     }
 
