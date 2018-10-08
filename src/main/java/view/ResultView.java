@@ -10,6 +10,8 @@ public class ResultView {
     public static final String X_AXIS = "---";
     public static final String Y_SPACE = "2";
     public static final String X_SPACE = "3";
+    public static final String POINT_MARK = "●";
+    public static final String BLANCK = "";
 
 
     private ResultView() {
@@ -35,10 +37,10 @@ public class ResultView {
     private static String checkPoint(int x, int y, List<PointDto> points) {
         for (PointDto point : points) {
             if(point.getX() == x && point.getY() == y) {
-                 return "●";
+                 return POINT_MARK;
             }
         }
-        return "";
+        return BLANCK;
     }
 
     private static void printAxisY(int i) {
@@ -61,7 +63,7 @@ public class ResultView {
         if (i % 2 == 0) {
             return String.valueOf(i);
         }
-        return "";
+        return BLANCK;
     }
 
     public static void printResult(double lineDistance) {
