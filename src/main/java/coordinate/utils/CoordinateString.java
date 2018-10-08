@@ -1,14 +1,14 @@
-package coordinate;
+package coordinate.utils;
 
-public class MyString {
-    private String displayString;
+public class CoordinateString {
+    private String coordinateString;
 
-    public MyString(int num) {
-        this.displayString = makeString(num);
+    public CoordinateString(int num) {
+        this.coordinateString = makeString(num);
     }
 
-    public MyString() {
-        this.displayString = makeString();
+    public CoordinateString() {
+        this.coordinateString = makeString();
     }
 
     public static String makeString(int i) {
@@ -18,7 +18,6 @@ public class MyString {
         if (i % 2 == 0) {
             return String.format("%3d", i);
         }
-
         return "   ";
     }
 
@@ -27,11 +26,11 @@ public class MyString {
     }
 
     public void toStar() {
-        this.displayString = String.format("%3s", "*");
+        this.coordinateString = String.format("%3s", "*");
     }
 
     @Override
     public String toString() {
-        return displayString;
+        return coordinateString;
     }
 }
