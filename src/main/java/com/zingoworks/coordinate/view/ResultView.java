@@ -49,10 +49,10 @@ public class ResultView {
     }
 
     private static void printAreaOfTriangle(Triangle triangle) {
-        System.out.println("삼각형의 넓이는 " + triangle.getAreaOfTriangle() + "입니다.");
+        System.out.println("삼각형의 넓이는 " + triangle.getArea() + "입니다.");
     }
 
     private static void printAreaOfRectangle(Rectangle rectangle) {
-        System.out.println("사각형의 넓이는 " + rectangle.getAreaOfRectangle() + "입니다.");
+        System.out.println("사각형의 넓이는 " + rectangle.getArea() + "입니다.");
     }
 }
