@@ -18,8 +18,12 @@ public class ResultView {
             printDistance(new Line(coordinate.getPoint()));
         }
 
+        if (coordinate.getPoint().size() == 3) {
+            printAreaOfTriangle(new Triangle(coordinate.getPoint()));
+        }
+
         if (coordinate.getPoint().size() == 4) {
-            printArea(new Square(coordinate.getPoint()));
+            printAreaOfRectangle(new Rectangle(coordinate.getPoint()));
         }
     }
 
@@ -44,7 +48,11 @@ public class ResultView {
         System.out.println("두 점 사이의 거리는 " + line.getDistanceOfLine() + "입니다.");
     }
 
-    private static void printArea(Square square) {
-        System.out.println("사각형의 넓이는 " + square.getAreaOfSquare() + "입니다.");
+    private static void printAreaOfTriangle(Triangle triangle) {
+        System.out.println("삼각형의 넓이는 " + triangle.getAreaOfTriangle() + "입니다.");
+    }
+
+    private static void printAreaOfRectangle(Rectangle rectangle) {
+        System.out.println("사각형의 넓이는 " + rectangle.getAreaOfRectangle() + "입니다.");
     }
 }
