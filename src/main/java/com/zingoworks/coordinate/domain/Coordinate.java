@@ -11,12 +11,12 @@ public class Coordinate {
     public Coordinate(String[] input) {
         refinePoint(input);
 
-        if(findSamePoints()) {
+        if(findOverlappedPoints()) {
             throw new IllegalArgumentException("위치가 같은 점(point)이 존재합니다. 세 점의 위치는 달라야 합니다.");
         }
     }
 
-    private boolean findSamePoints() {
+    private boolean findOverlappedPoints() {
         HashSet<Point> pointSets = new HashSet<>();
         for (Point point : points) {
             pointSets.add(point);
