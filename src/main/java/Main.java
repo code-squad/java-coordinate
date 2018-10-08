@@ -1,16 +1,14 @@
-import domain.Points;
-
-import util.Calculator;
+import domain.Figure;
 import view.InputView;
 import view.ResultView;
 
 public class Main {
 
     public static void main(String[] args) {
-        Points userPoints = Points.init(InputView.inputPoints());
+        Figure userPoints = Figure.init(InputView.inputPoints());
 
-        ResultView.drawGraph(userPoints);
-        System.out.println(Calculator.calc(userPoints));
+        System.out.println(ResultView.drawGraph(userPoints));
+        System.out.println(ResultView.getFigureArea(userPoints));
     }
 
 }

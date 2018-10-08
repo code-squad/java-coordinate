@@ -1,7 +1,7 @@
 package view;
 
 
-import domain.Points;
+import domain.Figure;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -22,13 +22,13 @@ public class ResultViewTest {
 
     @Test
     public void checkFirst() {
-        int point = Points.EXIST;
+        int point = Figure.EXIST;
         assertThat(ResultView.checkFirst(point), is(ResultView.BODYEXIST));
     }
 
     @Test
     public void drawPoint() {
-        assertThat(ResultView.drawPoint(0, Points.NONE), is(ResultView.FIRSTNONE));
+        assertThat(ResultView.drawPoint(0, Figure.NONE), is(ResultView.FIRSTNONE));
     }
 
 }
