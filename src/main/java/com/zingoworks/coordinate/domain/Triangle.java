@@ -8,8 +8,12 @@ public class Triangle {
     public Triangle(ArrayList<Point> point){
         this.point = point;
 
+        if (point.size() != 3) {
+            throw new IllegalArgumentException("삼각형의 성립조건이 아닙니다.");
+        }
+
         if(getAreaOfTriangle() == 0) {
-            throw new IllegalArgumentException("삼각형이 성립하지 않습니다.");
+            throw new IllegalArgumentException("삼각형의 성립조건이 아닙니다.");
         }
     }
 
