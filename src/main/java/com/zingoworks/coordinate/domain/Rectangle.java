@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 
-public class Square {
+public class Rectangle {
     private ArrayList<Integer> xValues;
     private ArrayList<Integer> yValues;
 
-    public Square(ArrayList<Point> point) {
+    public Rectangle(ArrayList<Point> point) {
         this.xValues = makeXvalues(point);
         this.yValues = makeYvalues(point);
 
@@ -16,12 +16,12 @@ public class Square {
             throw new IllegalArgumentException("사각형의 성립 조건이 아닙니다.");
         }
 
-        if(getExceptionOfRectangular(xValues, yValues)){
-            throw new IllegalStateException("직사각형의 성립 조건이 아닙니다.");
+        if(getExceptionOfRectangle(xValues, yValues)){
+            throw new IllegalArgumentException("직사각형의 성립 조건이 아닙니다.");
         }
     }
 
-    private boolean getExceptionOfRectangular(ArrayList<Integer> xValues, ArrayList<Integer> yValues) {
+    private boolean getExceptionOfRectangle(ArrayList<Integer> xValues, ArrayList<Integer> yValues) {
         if (setHashSet(xValues).size() != 2 || setHashSet(yValues).size() != 2) {
             return true;
         }
@@ -58,7 +58,7 @@ public class Square {
         return max - min;
     }
 
-    public int getAreaOfSquare() {
+    public int getAreaOfRectangle() {
         return findDistance(xValues) * findDistance(yValues);
     }
 }
