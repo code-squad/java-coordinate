@@ -10,21 +10,21 @@ public class ResultView {
     private static final String VERTICAL = "│";
     private static final String NEW_LINE = System.getProperty("line.separator");
 
-    public static void print(Coordinate coordinate) {
-        printAxisY(coordinate.getPoint());
+    public static void print(ArrayList<Point> points) {
+        printAxisY(points);
         printAxisX();
         System.out.print(NEW_LINE);
 
-        if (coordinate.getPoint().size() == 2) {
-            printDistance(new Line(coordinate.getPoint()));
+        if (points.size() == 2) {
+            printDistance(new Line(points));
         }
 
-        if (coordinate.getPoint().size() == 3) {
-            printAreaOfTriangle(new Triangle(coordinate.getPoint()));
+        if (points.size() == 3) {
+            printAreaOfTriangle(new Triangle(points));
         }
 
-        if (coordinate.getPoint().size() == 4) {
-            printAreaOfRectangle(new Rectangle(coordinate.getPoint()));
+        if (points.size() == 4) {
+            printAreaOfRectangle(new Rectangle(points));
         }
     }
 
