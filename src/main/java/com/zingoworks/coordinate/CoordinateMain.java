@@ -10,9 +10,7 @@ public class CoordinateMain {
 
     public static void main(String[] args) {
         String[] input = InputView.inputCoordinate();
-
         Coordinate coordinate = new Coordinate(input);
-
         ResultView.print(coordinate);
     }
 }

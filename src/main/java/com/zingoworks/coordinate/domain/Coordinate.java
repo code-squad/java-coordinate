@@ -1,6 +1,7 @@
 package com.zingoworks.coordinate.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Coordinate {
     //인스턴스 변수 -> 클래스 변수로
@@ -9,10 +10,26 @@ public class Coordinate {
 
     public Coordinate(String[] input) {
         refinePoint(input);
+
+        if(findSamePoints()) {
+            throw new IllegalArgumentException("위치가 같은 점(point)이 존재합니다. 세 점의 위치는 달라야 합니다.");
+        }
+    }
+
+    private boolean findSamePoints() {
+        HashSet<Point> pointSets = new HashSet<>();
+        for (Point point : points) {
+            pointSets.add(point);
+        }
+        if (pointSets.size() != points.size()) {
+            return true;
+        }
+        return false;
     }
 
     private void refinePoint(String[] input) {
 //      포인트의 초기화 위치는 어디가 적절(?) 현재 케이스는 무방한가  points = new ArrayList<>();
+//      points를 클래스 변수로가 아닌 이 메소드를 클래스 메소드로...?
         String[] refinedInput = new String[input.length];
         for (int i = 0; i < input.length; i++) {
             refinedInput[i] = removeParentheses(input[i]);

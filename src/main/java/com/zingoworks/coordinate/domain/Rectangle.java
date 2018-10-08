@@ -9,10 +9,10 @@ public class Rectangle extends Figure {
     private ArrayList<Integer> yValues;
 
     public Rectangle(ArrayList<Point> points) {
+        throwExceptionByNumberOfPoints(points);
+
         this.xValues = makeXvalues(points);
         this.yValues = makeYvalues(points);
-
-        throwExceptionByNumberOfPoints(points);
 
         if(getExceptionOfRectangle(xValues, yValues)){
             throw new IllegalArgumentException("직사각형의 성립 조건이 아닙니다.");
