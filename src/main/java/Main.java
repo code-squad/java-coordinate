@@ -1,5 +1,6 @@
 import domain.Points;
 
+import util.Calculator;
 import view.InputView;
 import view.ResultView;
 
@@ -9,7 +10,7 @@ public class Main {
         Points userPoints = Points.init(InputView.inputPoints());
 
         ResultView.drawGraph(userPoints);
-        ResultView.printDistance(userPoints.calc());
+        System.out.println(Calculator.calc(userPoints));
     }
 
 }

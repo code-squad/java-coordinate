@@ -32,12 +32,12 @@ public class Point {
         );
     }
 
-    public Boolean isSameX(int x) {
-        return this.x == x;
+    public Boolean isSameX(Point point) {
+        return this.x == point.x;
     }
 
-    public Boolean isSameY(int y) {
-        return this.y == y;
+    public Boolean isSameY(Point point) {
+        return this.y == point.y;
     }
 
     @Override
