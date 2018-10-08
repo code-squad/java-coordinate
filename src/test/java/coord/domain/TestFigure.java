@@ -2,7 +2,11 @@ package coord.domain;
 
 import org.junit.Test;
 
+<<<<<<< HEAD
 import java.util.Arrays;
+=======
+import java.util.ArrayList;
+>>>>>>> step3
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
