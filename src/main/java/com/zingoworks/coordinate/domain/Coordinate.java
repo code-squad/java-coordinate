@@ -3,20 +3,21 @@ package com.zingoworks.coordinate.domain;
 import java.util.ArrayList;
 
 public class Coordinate {
-    private static ArrayList<Point> point;
+    //인스턴스 변수 -> 클래스 변수로
+    //불필요한 인스턴스 변수 지양
+    private static ArrayList<Point> point = new ArrayList<>();
 
     public Coordinate(String[] input) {
-        point = savePoint(input);
+        refinePoint(input);
     }
 
-    private ArrayList<Point> savePoint(String[] input) {
-        ArrayList<Point> initPoint = new ArrayList<>();
+    private void refinePoint(String[] input) {
+//      포인트의 초기화 위치는 어디가 적절(?) 현재 케이스는 무방한가  point = new ArrayList<>();
         String[] refinedInput = new String[input.length];
         for (int i = 0; i < input.length; i++) {
             refinedInput[i] = removeParentheses(input[i]);
-            initPoint.add(new Point(refinedInput[i]));
+            point.add(new Point(refinedInput[i]));
         }
-        return initPoint;
     }
 
     public ArrayList<Point> getPoint() {
