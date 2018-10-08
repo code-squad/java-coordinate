@@ -1,6 +1,6 @@
 package coord;
 
-import coord.domain.Line;
+import coord.domain.Factory;
 import coord.domain.Point;
 import coord.util.GridPaper;
 import coord.util.Parser;
@@ -18,6 +18,6 @@ public class CoordinateCalculatorLoader {
         gridPaper.draw(points);
 
         OutputView.printGridPaper(gridPaper.toString());
-        OutputView.printLength(Line.of(points).length());
+        OutputView.printSize(Factory.of(points));
     }
 }

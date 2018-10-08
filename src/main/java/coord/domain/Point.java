@@ -4,7 +4,7 @@ import coord.util.Setting;
 
 import java.util.Objects;
 
-public class Point {
+public class Point extends Figure{
     public final int x;
     public final int y;
 
@@ -29,12 +29,27 @@ public class Point {
         return new Point(Integer.parseInt(parsed[0]), Integer.parseInt(parsed[1]));
     }
 
-    public double distanceTo(Point point) {
+    double distanceTo(Point point) {
         return Math.sqrt(square(x - point.x) + square(y - point.y));
     }
 
     private double square(int value) {
         return Math.pow(value, 2);
+    }
+
+    @Override
+    public double size() {
+        return 0;
+    }
+
+    @Override
+    public Figure addPoint(Point point) {
+        return new Line(new Point(x, y), point);
+    }
+
+    @Override
+    public String figureKind() {
+        return "점";
     }
 
     @Override

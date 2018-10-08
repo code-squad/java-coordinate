@@ -1,22 +1,25 @@
 package coord.domain;
 
-import java.util.List;
+import java.util.Arrays;
 
-public class Line {
-    private List<Point> points;
+public class Line extends Figure{
 
-    private Line(List<Point> points) {
-        if (points.size() != 2) {
-            throw new IllegalArgumentException();
-        }
-        this.points = points;
+    Line(Point pointA, Point pointB) {
+        this.points = Arrays.asList(pointA, pointB);
     }
 
-    public static Line of(List<Point> points) {
-        return new Line(points);
-    }
-
-    public double length() {
+    @Override
+    public double size() {
         return points.get(0).distanceTo(points.get(1));
+    }
+
+    @Override
+    public Figure addPoint(Point point) {
+        return new Triangle(this.points, point);
+    }
+
+    @Override
+    public String figureKind() {
+        return "직선";
     }
 }

@@ -1,4 +1,4 @@
-package coord.util;
+package coord.domain;
 
 import coord.domain.Point;
 import org.assertj.core.data.Offset;
@@ -16,7 +16,7 @@ public class TestPoint {
 
     @Test(expected = IllegalArgumentException.class)
     public void MaximumTest() {
-        Point.of(3,3);
+        Point.of(33,3);
     }
 
     @Test(expected = IllegalArgumentException.class)
