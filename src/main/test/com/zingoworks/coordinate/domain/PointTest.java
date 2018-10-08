@@ -5,22 +5,19 @@ import org.junit.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class PointTest {
-    @Test
-    public void create_of() {
-        assertThat(new Point(1,1)).isEqualTo(Point.of(1,1));
-    }
+
 
     @Test
-    public void create_ofCommaSeparator() {
+    public void 콤마기준_포인트객체생성() {
         assertThat(new Point(1,1)).isEqualTo(Point.ofCommaSeparator("1,1"));
     }
 
     @Test
-    public void get_distanceOfLine() {
+    public void 두점사이의거리() {
         Point a = new Point(1,1);
-        System.out.println(a.getDistance(new Point(2,2)));
+        assertThat(a.getDistance(new Point(2,2))).isEqualTo(1.4142135623730951);
 
         Point b = new Point("2,2");
-        System.out.println(b.getDistance(a));
+        assertThat(b.getDistance(a)).isEqualTo(1.4142135623730951);
     }
 }

@@ -3,18 +3,17 @@ package com.zingoworks.coordinate.domain;
 import java.util.Objects;
 
 public class Point {
-
     private final int x;
     private final int y;
 
     public Point(int x, int y) {
-        this.x = new No(x).number;
-        this.y = new No(y).number;
+        this.x = getVerifiedNumber(x);
+        this.y = getVerifiedNumber(y);
     }
 
     public Point(String str) {
-        this.x = ofCommaSeparator(str).x;
-        this.y = ofCommaSeparator(str).y;
+        this.x = getVerifiedNumber(ofCommaSeparator(str).x);
+        this.y = getVerifiedNumber(ofCommaSeparator(str).y);
     }
 
     public int getX() {
@@ -29,13 +28,16 @@ public class Point {
         return Math.sqrt(Math.pow(x - other.x, 2) + Math.pow(y - other.y, 2));
     }
 
-    public static Point of(int x, int y) {
-        return new Point(x,y);
-    }
-
     public static Point ofCommaSeparator(String str) {
         String[] values = str.split(",");
         return new Point(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
+    }
+
+    public static int getVerifiedNumber(int number) {
+        if (number < 1 || number > 24) {
+            throw new IllegalArgumentException("유효한 범위를 초과합니다.");
+        }
+        return number;
     }
 
     @Override

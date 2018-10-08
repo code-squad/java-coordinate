@@ -2,44 +2,28 @@ package com.zingoworks.coordinate.domain;
 
 import java.util.ArrayList;
 
-import static com.zingoworks.coordinate.CoordinateMain.LENGTH_X;
-import static com.zingoworks.coordinate.CoordinateMain.LENGTH_Y;
-
 public class Coordinate {
-    private Point x;
-    private Point y;
-    public ArrayList<StringBuilder> line = new ArrayList<>();
+    private ArrayList<Point> point;
 
     public Coordinate(String[] input) {
-        this.x = Point.ofCommaSeparator(extractRequiredString(input[0]));
-        this.y = Point.ofCommaSeparator(extractRequiredString(input[1]));
-        setLine();
-        updateLine();
+        this.point = savePoint(input);
     }
 
-    public double getDistanceOfPoints() {
-        return x.getDistance(y);
-    }
-
-    private void setLine() {
-        for (int i = 0; i < LENGTH_Y; i++) {
-            line.add(new StringBuilder());
-            setLineDefaultForm(i);
+    private ArrayList<Point> savePoint(String[] input) {
+        ArrayList<Point> initPoint = new ArrayList<>();
+        String[] refinedInput = new String[input.length];
+        for (int i = 0; i < input.length; i++) {
+            refinedInput[i] = removeParentheses(input[i]);
+            initPoint.add(new Point(refinedInput[i]));
         }
+        return initPoint;
     }
 
-    private void setLineDefaultForm(int i) {
-        for (int j = 0; j < LENGTH_X * 2; j++) {
-            line.get(i).append(" ");
-        }
+    public ArrayList<Point> getPoint() {
+        return point;
     }
 
-    private void updateLine() {
-        line.get(x.getY() - 1).setCharAt(x.getX() * 2 - 1,'·');
-        line.get(y.getY() - 1).setCharAt(y.getX() * 2 - 1,'·');
-    }
-
-    private String extractRequiredString(String str) {
+    private String removeParentheses(String str) {
         StringBuilder sb = new StringBuilder(str);
         return sb.substring(1, sb.length() -1);
     }
