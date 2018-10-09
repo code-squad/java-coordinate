@@ -5,7 +5,7 @@ import util.PointException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class FactoryTest {
+public class PointFactoryTest {
     private static final String text = "(1,2)";
     /*  포인터 생성 테스트 */
     @Test

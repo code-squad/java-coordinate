@@ -17,7 +17,7 @@ public class InputView {
 
     private static String isRegex(String input) throws PointException {
         // (10,10)-(10,10)형식인지 확인
-        String regex = ".[0-9]{1,2},[0-9]{1,2}.-.[0-9]{1,2},[0-9]{1,2}.";
+        String regex = "(.[0-9]{1,2},[0-9]{1,2}.){1,2}";
         if(!Pattern.compile(regex).matcher(input).find()) {
             throw new PointException("잘못된 형식으로 입력하셨습니다. 예) (10,10)-(20,20)");
         }
