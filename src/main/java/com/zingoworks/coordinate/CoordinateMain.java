@@ -9,10 +9,12 @@ public class CoordinateMain {
     public static final int LENGTH_Y = 24;
 
     public static void main(String[] args) {
-        String[] input = InputView.inputCoordinate();
-
-        Coordinate coordinate = new Coordinate(input);
-
-        ResultView.print(coordinate);
+        try {
+            String[] input = InputView.inputCoordinate();
+            ResultView.print(Coordinate.getRefinedPoint(input));
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            main(args);
+        }
     }
 }

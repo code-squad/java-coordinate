@@ -8,22 +8,23 @@ import static com.zingoworks.coordinate.CoordinateMain.LENGTH_Y;
 
 public class ResultView {
     private static final String VERTICAL = "│";
+    private static final String NEW_LINE = System.getProperty("line.separator");
 
-    public static void print(Coordinate coordinate) {
-        printAxisY(coordinate.getPoint());
+    public static void print(ArrayList<Point> points) {
+        printAxisY(points);
         printAxisX();
-        System.out.println("");
+        System.out.print(NEW_LINE);
 
-        if (coordinate.getPoint().size() == 2) {
-            printDistance(new Line(coordinate.getPoint()));
+        if (points.size() == 2) {
+            printDistance(new Line(points));
         }
 
-        if (coordinate.getPoint().size() == 3) {
-            printAreaOfTriangle(new Triangle(coordinate.getPoint()));
+        if (points.size() == 3) {
+            printAreaOfTriangle(new Triangle(points));
         }
 
-        if (coordinate.getPoint().size() == 4) {
-            printAreaOfRectangle(new Rectangle(coordinate.getPoint()));
+        if (points.size() == 4) {
+            printAreaOfRectangle(new Rectangle(points));
         }
     }
 
@@ -31,8 +32,7 @@ public class ResultView {
         CoordinatePlane cp = new CoordinatePlane(point);
         for (int i = LENGTH_Y; i > 0; i--) {
             System.out.print(Axis.numberOfAxis(i) + VERTICAL);
-            System.out.print(cp.getPlane().get(i - 1));
-            System.out.println("");
+            System.out.print(cp.getPlane().get(i - 1) + NEW_LINE);
         }
     }
 
@@ -49,10 +49,10 @@ public class ResultView {
     }
 
     private static void printAreaOfTriangle(Triangle triangle) {
-        System.out.println("삼각형의 넓이는 " + triangle.getAreaOfTriangle() + "입니다.");
+        System.out.println("삼각형의 넓이는 " + triangle.getArea() + "입니다.");
     }
 
     private static void printAreaOfRectangle(Rectangle rectangle) {
-        System.out.println("사각형의 넓이는 " + rectangle.getAreaOfRectangle() + "입니다.");
+        System.out.println("사각형의 넓이는 " + rectangle.getArea() + "입니다.");
     }
 }

@@ -4,17 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 
-public class Rectangle {
+public class Rectangle extends Figure {
     private ArrayList<Integer> xValues;
     private ArrayList<Integer> yValues;
 
-    public Rectangle(ArrayList<Point> point) {
-        this.xValues = makeXvalues(point);
-        this.yValues = makeYvalues(point);
+    public Rectangle(ArrayList<Point> points) {
+        throwExceptionByNumberOfPoints(points);
 
-        if(point.size() != 4){
-            throw new IllegalArgumentException("사각형의 성립 조건이 아닙니다.");
-        }
+        this.xValues = makeXvalues(points);
+        this.yValues = makeYvalues(points);
 
         if(getExceptionOfRectangle(xValues, yValues)){
             throw new IllegalArgumentException("직사각형의 성립 조건이 아닙니다.");
@@ -58,7 +56,16 @@ public class Rectangle {
         return max - min;
     }
 
-    public int getAreaOfRectangle() {
+    @Override
+    void throwExceptionByNumberOfPoints(ArrayList<Point> point) {
+        if(point.size() != 4){
+            throw new IllegalArgumentException("사각형의 성립 조건이 아닙니다.");
+        }
+    }
+
+    @Override
+    //부모클래스의 추상메소드의 접근제어자와 다르게 설정 가능(?) weaker는 불가능(default -> private X, public O)
+    public double getArea() {
         return findDistance(xValues) * findDistance(yValues);
     }
 }
