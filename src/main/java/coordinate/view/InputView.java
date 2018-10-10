@@ -13,7 +13,7 @@ public class InputView {
         return StringHandler.splitHyphen(text);
     }
 
-    public static String inputText(){
+    private static String inputText(){
         return sc.next();
     }
 

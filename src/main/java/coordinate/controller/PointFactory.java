@@ -1,5 +1,6 @@
-package coordinate;
+package coordinate.controller;
 
+import coordinate.CoordinateFactory;
 import coordinate.domain.Point;
 import coordinate.util.StringHandler;
 

@@ -1,5 +1,6 @@
 package coordinate.view;
 
+// generate empty coordinate.
 public class CoordinateGenerator {
     private static final int ZERO = 0;
     private static final int ONE = 1;

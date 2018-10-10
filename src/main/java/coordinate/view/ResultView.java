@@ -1,70 +1,35 @@
 package coordinate.view;
 
-import coordinate.domain.Line;
-import coordinate.domain.Point;
-
-import java.util.List;
+import coordinate.dto.CoordinateResult;
 
 public class ResultView {
     private static final String LINE_LENGTH_MESSAGE = "두 점 사이 거리는 ";
+    private static final String RECTANGLE_AREA_MESSAGE = "사각형 넓이는  ";
     private static final String RE_ENTER_MESSAGE = "0~24 까지의 유효한 값으로 다시 입력해주세요.";
+    private static final String RE_ENTER_RECTANGLE_MESSAGE = "직사각형이 아닙니다. 유효한 값으로 다시 입력해주세요.";
 
-    private static final String POINT_SYMBOL = "*";
-    private static final int SIZE_OF_LINE = 52;
-    private static final int MAX_POSITION = 24;
-    private static final int ZERO = 0;
-    private static final int ONE = 1;
-    private static final int TWO = 2;
-
-    public static void draw(List<Point> points){
+    public static void draw(CoordinateResult result){
         StringBuilder sb = CoordinateGenerator.initCoordinate();
-        showPoint(sb, points);
+        CoordinateHandler.showPoint(sb, result);
     }
 
-    public static void showLineLength(Line generateLine) {
-        System.out.println(LINE_LENGTH_MESSAGE + generateLine.length());
-    }
 
-    public static void printReEnterMessage(){
-        System.out.println(RE_ENTER_MESSAGE);
-    }
-
-    private static void showPoint(StringBuilder sb, List<Point> points){
-        for (Point point : points) {
-            insertPoint(sb, point);
+    public static void printReEnterMessage(String message){
+        if(message == null) {
+            System.out.println(RE_ENTER_MESSAGE);
+            return;
         }
-        System.out.println(sb.toString());
-    }
-
-    private static void insertPoint(StringBuilder sb, Point point){
-        int location = calculatePointLocation(point);
-        deletePlaceHolder(sb, location);
-        sb.insert(location, POINT_SYMBOL);
-    }
-
-    private static void deletePlaceHolder(StringBuilder sb, int location){
-        sb.delete(location, location + ONE);
-    }
-
-    private static int calculatePointLocation(Point point){
-        int x = calculateLocationX(point.getPositionX());
-        int y = calculateLocationY(point.getPositionY());
-        return x + y;
-    }
-
-    private static int calculateLocationX(int positionX) {
-        if(isZero(positionX)){
-            return TWO;
+        if(message == "RectangleException"){
+            System.out.println(RE_ENTER_RECTANGLE_MESSAGE );
+            return;
         }
-        return positionX * TWO + ONE;
     }
 
-    private static int calculateLocationY(int positionY) {
-        return (MAX_POSITION - positionY) * SIZE_OF_LINE;
+    public static void showLineLength(double lineLength) {
+        System.out.println(LINE_LENGTH_MESSAGE + lineLength);
     }
 
-    private static boolean isZero(int number){
-        return number == ZERO;
+    public static void showRectangleArea(int area) {
+        System.out.println(RECTANGLE_AREA_MESSAGE + area);
     }
-
 }
