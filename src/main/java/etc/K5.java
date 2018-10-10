@@ -1,4 +1,4 @@
-package com.zingoworks.coordinate.상속예제;
+package etc;
 
 public class K5 extends Car {
     private final int THIRTEEN = 13;

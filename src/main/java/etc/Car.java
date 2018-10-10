@@ -1,4 +1,4 @@
-package com.zingoworks.coordinate.상속예제;
+package etc;
 
 
 public abstract class Car {
