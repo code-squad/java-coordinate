@@ -4,14 +4,14 @@ import java.util.*;
 
 public class CoordinateMain {
     public static void main(String[] args) {
-        try{
+        try {
             run();
-        }catch (Exception e){
+        } catch (Exception e) {
             run();
         }
     }
 
-    public static void run() throws IllegalArgumentException{
+    public static void run() throws IllegalArgumentException {
         List<Integer> numbers = InputView.extractNum(InputView.inputPoint());
 
         CoordinateLine line = new CoordinateLine(numbers);

@@ -11,19 +11,15 @@ public class Point {
         this.y = y;
     }
 
-    public double CalculatorLength(Point points) {
-        return Math.sqrt(Math.pow(this.x - points.x, 2) + Math.pow(this.y - points.y, 2));
+    public double calculatorLength(Point point) {
+        return Math.sqrt(Math.pow(this.x - point.x, 2) + Math.pow(this.y - point.y, 2));
     }
 
     public Boolean isX(int x) {
-        if (this.x * 3 == x)
-            return true;
-        return false;
+        return this.x * 3 == x;
     }
 
     public Boolean isY(int y) {
-        if (this.y == y)
-            return true;
-        return false;
+        return this.y == y;
     }
 }

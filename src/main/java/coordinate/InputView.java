@@ -3,7 +3,6 @@ package coordinate;
 import java.util.*;
 
 public class InputView {
-    private static StringTokenizer STZ;
 
     public static String inputPoint() {
         Scanner scan = new Scanner(System.in);
@@ -12,10 +11,10 @@ public class InputView {
     }
 
     public static List<Integer> extractNum(String beforeToken) {
+        StringTokenizer stz = new StringTokenizer(beforeToken, "\\(|\\)|,|-");
         List<Integer> numbers = new ArrayList<>();
-        STZ = new StringTokenizer(beforeToken, "\\(|\\)|,|-");
-        while (STZ.hasMoreElements()) {
-            numbers.add(stringToInt(STZ.nextToken()));
+        while (stz.hasMoreElements()) {
+            numbers.add(stringToInt(stz.nextToken()));
         }
         return numbers;
     }

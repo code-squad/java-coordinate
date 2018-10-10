@@ -13,7 +13,7 @@ public class CoordinateLine {
     }
 
     public double findLineLength() {
-        return points.get(0).CalculatorLength(points.get(1));
+        return points.get(0).calculatorLength(points.get(1));
     }
 
     public List<Point> getPoints() {

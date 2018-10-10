@@ -12,31 +12,33 @@ public class PrintView {
     private static final String BLANK = " ";
 
     public static void drawVertical(List<Point> points) {
-        for (int i = AXIS_MAX; i > 0; i--) {
-            if (i % 2 == 0)
-                System.out.printf(THREE_STRING, String.valueOf(i) + VERTICAL);
-            if (i % 2 == 1)
+        for (int y = AXIS_MAX; y > 0; y--) {
+            if (y % 2 == 0)
+                System.out.printf(THREE_STRING, String.valueOf(y) + VERTICAL);
+            if (y % 2 == 1)
                 System.out.printf(THREE_STRING, VERTICAL);
-            drawDotSpace(i, points);
+            drawDotSpace(y, points);
             System.out.println();
+
         }
     }
 
-    private static void drawDotSpace(int i, List<Point> points) {
-        for (int j = 0; j < AXIS_MAX * ROW.length(); j++) {
-            drawDot(i, points, j);
-            System.out.print(BLANK);
+    private static void drawDotSpace(int y, List<Point> points) {
+        for (int x = 1; x <= AXIS_MAX * ROW.length(); x++) {
+            if(drawDot(y, points, x))
+                System.out.print(BLANK);
         }
     }
 
-    private static void drawDot(int i, List<Point> points, int j) {
+    private static Boolean drawDot(int y, List<Point> points, int x) {
         String dot = "●";
         for (Point point : points) {
-            if (point.isY(i) && point.isX(j)) {
+            if(point.isY(y) && point.isX(x)) {
                 System.out.print(dot);
-                break;
+                return false;
             }
         }
+        return true;
     }
 
     public static void drawRow() {

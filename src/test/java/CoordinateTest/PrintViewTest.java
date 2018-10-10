@@ -1,5 +1,6 @@
 package coordinateTest;
 
+import coordinate.Point;
 import org.junit.Test;
 
 import java.util.*;
@@ -110,11 +111,11 @@ public class PrintViewTest {
     }
 
     @Test
-    public void tripleForBreakContinueTest(){
+    public void tripleForBreakContinueTest() {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 5; j++) {
                 for (int k = 0; k < 3; k++) {
-                    if(k==0)
+                    if (k == 0)
                         break;
                 }
                 System.out.print(j);
@@ -122,5 +123,7 @@ public class PrintViewTest {
             System.out.println();
         }
     }
+
+
 
 }
