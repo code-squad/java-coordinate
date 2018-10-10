@@ -1,48 +1,65 @@
 package coordinate;
 
+import java.util.*;
+
 public class PrintView {
+    private static final int AXIS_MAX = 24;
     private static final String VERTICAL = "│";
     private static final String ZERO_POINT = "┼";
     private static final String ROW = "───";
-    private static final String BLANK = " ";    //1칸
-    private static final String BLANK_TWO = "  ";
-    private static final String BLANK_FOUR = "    ";
-    private static final int AXIS_MAX = 24;
+    private static final String THREE_STRING = "%3s";
+    private static final String SIX_STRING = "%6s";
+    private static final String BLANK = " ";
 
+    public static void drawVertical(List<Point> points) {
+        for (int y = AXIS_MAX; y > 0; y--) {
+            if (y % 2 == 0)
+                System.out.printf(THREE_STRING, String.valueOf(y) + VERTICAL);
+            if (y % 2 == 1)
+                System.out.printf(THREE_STRING, VERTICAL);
+            drawDotSpace(y, points);
+            System.out.println();
 
-    public static void drawVertical() {
-        for (int i = AXIS_MAX; i > 0; i--) {
-            if (i % 2 == 1) {
-                System.out.print(BLANK_TWO);
-                System.out.println(VERTICAL);
-                continue;
-            }
-            if (i < 10)
-                System.out.print(BLANK);
-            System.out.print(i);
-            System.out.println(VERTICAL);
         }
     }
 
+    private static void drawDotSpace(int y, List<Point> points) {
+        for (int x = 1; x <= AXIS_MAX * ROW.length(); x++) {
+            if(drawDot(y, points, x))
+                System.out.print(BLANK);
+        }
+    }
+
+    private static Boolean drawDot(int y, List<Point> points, int x) {
+        String dot = "●";
+        for (Point point : points) {
+            if(point.isY(y) && point.isX(x)) {
+                System.out.print(dot);
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void drawRow() {
-        System.out.print(BLANK_TWO);
-        System.out.print(ZERO_POINT);
-        for (int i = 0; i < AXIS_MAX-1; i++) {
+        System.out.printf(THREE_STRING, ZERO_POINT);
+        for (int i = 0; i < AXIS_MAX; i++) {
             System.out.print(ROW);
         }
         System.out.println();
     }
 
     public static void rowNumber() {
-        System.out.print(BLANK_TWO);
-        System.out.print("0");
+        System.out.printf(THREE_STRING, String.valueOf(0));
         for (int i = 1; i <= AXIS_MAX; i++) {
-            if (i % 2 == 0) {
-                System.out.print(BLANK_FOUR);
-                System.out.print(i);
-            }
+            if (i % 2 == 0)
+                System.out.printf(SIX_STRING, String.valueOf(i));
         }
+        System.out.println();
     }
 
-
+    public static void printLength(double lineLength) {
+        System.out.print("두 점 사이 거리는 ");
+        System.out.println(lineLength);
+    }
 }
