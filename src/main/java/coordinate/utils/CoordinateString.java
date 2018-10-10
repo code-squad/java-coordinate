@@ -26,7 +26,9 @@ public class CoordinateString {
     }
 
     public void toStar() {
-        this.coordinateString = String.format("%3s", "*");
+        if (true) {
+            this.coordinateString = String.format("%3s", "*");
+        }
     }
 
     @Override

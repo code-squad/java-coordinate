@@ -1,8 +1,6 @@
 package coordinate.resultview;
 
 import coordinate.domain.CoordinateLine;
-import coordinate.domain.Point;
-import coordinate.utils.Calculator;
 import coordinate.utils.CoordinateString;
 
 import java.util.ArrayList;
@@ -13,17 +11,17 @@ public class ResultView {
     private static final String PLUS = "   +";
     private static final String BAR = "l";
 
-    private ArrayList<CoordinateString> coordinate;
-    private ArrayList<CoordinateLine> field;
+    private ArrayList<CoordinateString> coordinateAxis;
+    private ArrayList<CoordinateLine> coordinatePlane;
 
-    public ResultView(ArrayList<CoordinateString> coordinate, ArrayList<CoordinateLine> field) {
-        this.coordinate = coordinate;
-        this.field = field;
+    public ResultView(ArrayList<CoordinateString> coordinateAxis, ArrayList<CoordinateLine> coordinatePlane) {
+        this.coordinateAxis = coordinateAxis;
+        this.coordinatePlane = coordinatePlane;
     }
 
     private void displayYCoordinate() {
         for (int i = MAXiMUM_NUM; i > 0; i--) {
-            System.out.println(this.coordinate.get(i) + BAR + this.field.get(i));
+            System.out.println(this.coordinateAxis.get(i) + BAR + this.coordinatePlane.get(i));
         }
     }
 
@@ -34,20 +32,17 @@ public class ResultView {
         }
         System.out.println();
 
-        for (CoordinateString myString : this.coordinate) {
+        for (CoordinateString myString : this.coordinateAxis) {
             System.out.print(myString);
         }
 
         System.out.println();
     }
 
-    public void disPlay(ArrayList<Point> points) {
-        for (Point point : points) {
-            field.get(point.getYPoint()).getCoordinateLine().get(point.getXPoint()).toStar();
-        }
+    public void disPlay(double pointLine) {
         displayYCoordinate();
         displayXCoordinate();
-        System.out.println("두 점 사이 거리는 " + Calculator.line(points));
+        System.out.println("두 점 사이 거리는 " + pointLine);
     }
 
     public void displayTest() {

@@ -1,5 +1,6 @@
 package coordinate.domain;
 
+import coordinate.dto.PointDTO;
 import coordinate.utils.CoordinateString;
 
 import java.util.ArrayList;
@@ -8,17 +9,18 @@ public class Coordinate {
     private static final int MAXiMUM_NUM = 24;
     private ArrayList<CoordinateString> coordinatesAxis;
     private ArrayList<CoordinateLine> coordinatePlane;
+
     public Coordinate() {
         this.coordinatesAxis = makeCoordinateAxis();
         this.coordinatePlane = makeCoordinatePlane();
     }
 
     private ArrayList<CoordinateLine> makeCoordinatePlane() {
-        ArrayList<CoordinateLine> field = new ArrayList<>();
+        ArrayList<CoordinateLine> coordinatePlane = new ArrayList<>();
         for (int i = 0; i <= MAXiMUM_NUM; i++) {
-            field.add(new CoordinateLine());
+            coordinatePlane.add(new CoordinateLine());
         }
-        return field;
+        return coordinatePlane;
     }
 
     private ArrayList<CoordinateString> makeCoordinateAxis() {
@@ -28,6 +30,14 @@ public class Coordinate {
         }
         return numCoordinate;
     }
+
+    public void drawPoint(ArrayList<PointDTO> points) {
+        for (PointDTO point : points) {
+            this.coordinatePlane.get(point.getYPointDTO()).toStar(point.getXPointDTO());
+        }
+    }
+
+
 
     public ArrayList<CoordinateString> getCoordinatesAxis() {
         return coordinatesAxis;

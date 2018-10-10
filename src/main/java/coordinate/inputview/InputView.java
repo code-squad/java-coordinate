@@ -14,6 +14,7 @@ public class InputView {
         return points;
     }
 
+    // String utils 옮기는 작업을 해보자.
     private static ArrayList<Point> point(String input) {
         ArrayList<Point> points = new ArrayList<>();
         String[] divisionPoints = input.split("-");

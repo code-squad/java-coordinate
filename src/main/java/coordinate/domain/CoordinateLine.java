@@ -20,6 +20,10 @@ public class CoordinateLine {
         return line;
     }
 
+    public void toStar(int xPoint) {
+        this.coordinateLine.get(xPoint).toStar();
+    }
+
     public ArrayList<CoordinateString> getCoordinateLine() {
         return coordinateLine;
     }

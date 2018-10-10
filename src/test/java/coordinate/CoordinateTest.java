@@ -3,7 +3,6 @@ package coordinate;
 import coordinate.domain.*;
 import coordinate.inputview.InputView;
 import coordinate.resultview.ResultView;
-import coordinate.utils.Calculator;
 import coordinate.utils.CoordinateString;
 import org.junit.Test;
 
@@ -13,17 +12,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Java6Assertions.offset;
 
 public class CoordinateTest {
-
+    //
+    //
+    ///
     @Test
     public void pointCalculator() {
         String input = "(4,4) - (4,2)";
         ArrayList<Point> points = InputView.testInput(input);
-        assertThat(Calculator.line(points)).isEqualTo((Math.sqrt(Math.pow(4 - 4, 2)
+        assertThat(points.get(0).calculateLIne(points.get(1))).isEqualTo((Math.sqrt(Math.pow(4 - 4, 2)
                 + Math.pow(2 - 4, 2))), offset(0.00099));
 
         input = "(6,4) - (4,8)";
         points = InputView.testInput(input);
-        assertThat(Calculator.line(points)).isEqualTo((Math.sqrt(Math.pow(4 - 6, 2)
+        assertThat(points.get(0).calculateLIne(points.get(1))).isEqualTo((Math.sqrt(Math.pow(4 - 6, 2)
                 + Math.pow(8 - 4, 2))), offset(0.00099));
     }
 
