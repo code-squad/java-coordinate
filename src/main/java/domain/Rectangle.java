@@ -9,13 +9,14 @@ public class Rectangle implements Figure {
 
     public Rectangle(List<Point> points) throws PointException {
         this.points = points;
-        if(!isComputabble()) {
+        if(!isComputable()) {
             throw new PointException("네점이 뒤뜰어진 형태의 사각형입니다.");
         }
         Collections.sort(points);
     }
 
-    public boolean isComputabble() {
+    @Override
+    public boolean isComputable() {
         return isComputableCoordinate(setPointsX()) && isComputableCoordinate(setPointsY());
     }
 
@@ -45,8 +46,9 @@ public class Rectangle implements Figure {
     }
 
     @Override
-    public String evaluate() {
-        return stringFormat((getAbs(points.get(3).getX() - points.get(0).getX())) * (getAbs(points.get(3).getY() - points.get(0).getY())));
+    public double evaluate() {
+        return (getAbs(points.get(3).getX() - points.get(0).getX()))
+                * (getAbs(points.get(3).getY() - points.get(0).getY()));
     }
 
     private int getAbs(int num) {
@@ -59,8 +61,8 @@ public class Rectangle implements Figure {
     }
 
     @Override
-    public String stringFormat(Number value) {
-        return String.format("사각형의 넓이는 : %d", value);
+    public String stringFormat() {
+        return String.format("사각형의 넓이는 : %d", evaluate());
     }
 }
 

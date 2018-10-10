@@ -37,4 +37,10 @@ public class Point implements Comparable<Point> {
         else if (this.x < otherPoint.getX()) return -1;
         else return 0;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Point other = (Point) obj;
+        return this.x == other.getX() && this.y == other.getY();
+    }
 }

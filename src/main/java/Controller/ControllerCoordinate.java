@@ -2,7 +2,6 @@ package Controller;
 
 import domain.Figure;
 import domain.FigureFactory;
-import domain.Line;
 import util.PointException;
 import view.InputView;
 import view.ResultView;

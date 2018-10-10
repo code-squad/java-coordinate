@@ -1,14 +1,15 @@
 package view;
 
 import domain.*;
+import util.PointException;
 
 public class ResultView {
     private ResultView() {
 
     }
 
-    public static void printDistance(Figure figure) {
-        System.out.println(figure.evaluate());
+    public static void printDistance(Figure figure) throws PointException {
+        System.out.println(figure.stringFormat());
     }
 
     public static void drawAxis(Figure figure) {

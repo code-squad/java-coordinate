@@ -5,7 +5,8 @@ import util.PointException;
 import java.util.*;
 
 public interface Figure {
-    String evaluate();
+    double evaluate() throws PointException;
     List<Point> getPoints();
-    String stringFormat(Number value);
+    String stringFormat() throws PointException;
+    boolean isComputable();
 }
