@@ -4,25 +4,22 @@ import java.util.List;
 
 public class Line extends Figure {
 
-    public Line(List<Point> points) {
+    public Line(List<Point> points) throws IllegalArgumentException {
         super(points);
     }
 
     private double getDistance() {
-        if(checkSamePoint())
-            return findIdx(0).getDistance(findIdx(1));
-        return 0;
-    }
-
-    private Boolean checkSamePoint() {
-        if (findIdx(0).equals(findIdx(1)))
-            return Boolean.FALSE;
-        return Boolean.TRUE;
+        return findIdx(0).getDistance(findIdx(1));
     }
 
     @Override
-    public double calc() {
+    public double area() {
         return getDistance();
+    }
+
+    @Override
+    public String printArea() {
+        return "직선의 길이는 " + area();
     }
 
 }

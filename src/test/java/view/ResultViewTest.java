@@ -23,12 +23,12 @@ public class ResultViewTest {
     @Test
     public void checkFirst() {
         int point = Figure.EXIST;
-        assertThat(ResultView.checkFirst(point), is(ResultView.BODYEXIST));
+        assertThat(ResultView.checkFirst(point), is(ResultView.BODY_EXIST));
     }
 
     @Test
     public void drawPoint() {
-        assertThat(ResultView.drawPoint(0, Figure.NONE), is(ResultView.FIRSTNONE));
+        assertThat(ResultView.drawPoint(0, Figure.NONE), is(ResultView.FIRST_NONE));
     }
 
 }

@@ -13,11 +13,11 @@ public class LineTest {
     public void calc() {
         List<Point> points = new ArrayList<>();
 
-        points.add(Point.init(1,1));
-        points.add(Point.init(10,10));
+        points.add(Point.init(1, 1));
+        points.add(Point.init(10, 10));
 
         Figure l = Figure.init(points);
-        assertEquals(l.calc(), 12.7, 0.1);
+        assertEquals(l.area(), 12.7, 0.1);
     }
 
 }

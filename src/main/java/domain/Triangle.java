@@ -1,23 +1,25 @@
 package domain;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Triangle extends Figure {
 
-    public Triangle(List<Point> points) {
-        super(points);
+    public Triangle(List<Point> points) throws IllegalArgumentException {
+        super(checkTriangle(points));
     }
 
-    @Override
-    public double calc() {
-        if (checkOverlap(this.points) && checkLine(this.points))
-            return getTriangleArea(this.points);
-        return 0;
+    private static List<Point> checkTriangle(List<Point> points) {
+        Point tmp = points.get(0);
+
+        for (int i = 1; i < points.size(); i++) {
+            if (!tmp.isSameX(points.get(i)))
+                return points;
+        }
+
+        throw new IllegalArgumentException("삼각형은 직선이 될 수 없습니다.");
     }
 
-    private double getTriangleArea(List<Point> points) {
+    private double getTriangleArea() {
         double a = findIdx(0).getDistance(findIdx(1));
         double b = findIdx(1).getDistance(findIdx(2));
         double c = findIdx(0).getDistance(findIdx(2));
@@ -26,21 +28,14 @@ public class Triangle extends Figure {
         return Math.sqrt(s * (s - a) * (s - b) * (s - c));
     }
 
-    // 직선 검사
-    private Boolean checkLine(List<Point> points) {
-        Point tmp = findIdx(0);
-
-        for (int i = 1; i < points.size(); i++) {
-            if (!tmp.isSameX(findIdx(i)))
-                return Boolean.TRUE;
-        }
-        return Boolean.FALSE;
+    @Override
+    public double area() {
+        return getTriangleArea();
     }
 
-    // 중복 검사
-    private Boolean checkOverlap(List<Point> points) {
-        Set<Point> tmp = new HashSet<>(points);
-        return tmp.size() == points.size();
+    @Override
+    public String printArea() {
+        return "삼각형의 넓이는 " + area();
     }
 
 }

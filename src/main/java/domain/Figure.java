@@ -1,9 +1,11 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public class Figure {
+public abstract class Figure {
     public static final int RECTANGLE = 4;
     public static final int TRIANGLE = 3;
     public static final int LINE = 2;
@@ -11,20 +13,35 @@ public class Figure {
     public static final int EXIST = 1;
     public static final int NONE = 0;
 
-    List<Point> points;
+    protected List<Point> points;
 
-    public Figure(List<Point> points) {
-        this.points = points;
+    protected Figure(List<Point> points) throws IllegalArgumentException {
+        this.points = checkSamePoint(points);
     }
 
-    public static Figure init(List<Point> points) {
+    public static Figure init(List<Point> points) throws IllegalArgumentException {
         if (points.size() == RECTANGLE)
             return new Rectangle(points);
         if (points.size() == TRIANGLE)
             return new Triangle(points);
         if (points.size() == LINE)
             return new Line(points);
-        return new Figure(points);
+        return new Dot(points);
+    }
+
+    abstract public double area();
+
+    abstract public String printArea();
+
+    protected  Point findIdx(int idx) {
+        return this.points.get(idx);
+    }
+
+    private static List<Point> checkSamePoint(List<Point> points) {
+        Set<Point> set = new HashSet<>(points);
+        if (!(points.size() == set.size()))
+            throw new IllegalArgumentException("중복된 Point가 있습니다.");
+        return points;
     }
 
     public List<Integer> makeLine(int y) {
@@ -43,14 +60,6 @@ public class Figure {
                 return EXIST;
         }
         return NONE;
-    }
-
-    Point findIdx(int idx) {
-        return this.points.get(idx);
-    }
-
-    public double calc() {
-        return 0;
     }
 
 }

@@ -6,13 +6,13 @@ import java.util.List;
 
 public class ResultView {
 
-    public static final String FIRSTNONE = "| ";
-    public static final String BODYEXIST = "* ";
-    public static final String BODYNONE = "  ";
-    public static final String LASTEXIST = "-*";
-    public static final String LASTNONE = "--";
-    public static final String LASTFIRSTNONE = "+";
-    public static final String LASTFIRSTEXIST = "*";
+    public static final String FIRST_NONE = "| ";
+    public static final String BODY_EXIST = "* ";
+    public static final String BODY_NONE = "  ";
+    public static final String LAST_EXIST = "-*";
+    public static final String LAST_NONE = "--";
+    public static final String LAST_FIRST_NONE = "+";
+    public static final String LAST_FIRST_EXIST = "*";
 
     public static String drawGraph(Figure points) {
         StringBuilder sb = new StringBuilder();
@@ -43,16 +43,16 @@ public class ResultView {
 
     public static String checkFirst(int point) {
         if (point == Figure.EXIST) {
-            return BODYEXIST;
+            return BODY_EXIST;
         }
-        return FIRSTNONE;
+        return FIRST_NONE;
     }
 
     public static String checkNone(int point) {
         if (point == Figure.NONE) {
-            return BODYNONE;
+            return BODY_NONE;
         }
-        return BODYEXIST;
+        return BODY_EXIST;
     }
 
     public static String drawPoint(int x, int point) {
@@ -64,16 +64,16 @@ public class ResultView {
 
     public static String checkLastFirst(int point) {
         if (point == Figure.EXIST) {
-            return LASTFIRSTEXIST;
+            return LAST_FIRST_EXIST;
         }
-        return LASTFIRSTNONE;
+        return LAST_FIRST_NONE;
     }
 
     public static String checkLastNone(int point) {
         if (point == Figure.NONE) {
-            return LASTNONE;
+            return LAST_NONE;
         }
-        return LASTEXIST;
+        return LAST_EXIST;
     }
 
     public static String drawLastPoint(int idx, int point) {
@@ -115,39 +115,6 @@ public class ResultView {
             sb.append(makeNumIndent(i));
         }
         return sb.toString();
-    }
-
-    public static String getFigureArea(Figure figure) {
-        double calcResult = figure.calc();
-
-        if (figure instanceof Rectangle)
-            return getRectangularArea(calcResult);
-        if (figure instanceof Triangle)
-            return getTriangleArea(calcResult);
-        if (figure instanceof Line)
-            return getLineLength(calcResult);
-        return "직선, 삼각형, 직사각형이 아닙니다.";
-    }
-
-    private static String getRectangularArea(double calcResult) {
-        if (calcResult == 0) {
-            return "직사각형이 아닙니다.";
-        }
-        return "사각형의 넓이는 " + (int) calcResult;
-    }
-
-    private static String getTriangleArea(double calcResult) {
-        if (calcResult == 0) {
-            return "삼각형이 아닙니다.";
-        }
-        return "삼각형의 넓이는 " + calcResult;
-    }
-
-    private static String getLineLength(double calcResult) {
-        if (calcResult == 0) {
-            return "선이 아닙니다.";
-        }
-        return "직선의 길이는 " + calcResult;
     }
 
 }
