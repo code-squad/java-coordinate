@@ -4,10 +4,13 @@ import java.util.*;
 
 public class CoordinateMain {
     public static void main(String[] args) {
-        try {
-            run();
-        } catch (Exception e) {
-            run();
+        while (true) {
+            try {
+                run();
+                break;
+            } catch (Exception e) {
+                continue;
+            }
         }
     }
 
@@ -19,6 +22,10 @@ public class CoordinateMain {
         PrintView.drawVertical(line.getPoints());
         PrintView.drawRow();
         PrintView.rowNumber();
-        PrintView.printLength(line.findLineLength());
+        if (numbers.size() == 4)
+            PrintView.printLength();
+        if (numbers.size() == 8)
+            PrintView.printCube();
+        System.out.println((int) line.judgeDotCount());
     }
 }
