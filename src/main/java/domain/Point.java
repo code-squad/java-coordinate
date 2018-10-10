@@ -17,7 +17,7 @@ public class Point {
 
     public static int numSizeCheck(int num) {
         if (num < MINSIZE || num > MAXSIZE) {
-            throw new IllegalArgumentException(String.valueOf(num));
+            throw new IllegalArgumentException("잘못된 범위의 숫자를 입력하셨습니다. : " + num);
         }
         return num;
     }
@@ -54,4 +54,8 @@ public class Point {
         return Objects.hash(x, y);
     }
 
+    @Override
+    public String toString() {
+        return "(" + this.x + ", " + this.y + ")";
+    }
 }

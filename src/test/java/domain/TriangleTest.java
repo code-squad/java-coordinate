@@ -18,7 +18,7 @@ public class TriangleTest {
         points.add((Point.init(1,10)));
 
         Figure t = Figure.init(points);
-        assertEquals(t.calc(), 40.5, 0.1);
+        assertEquals(t.area(), 40.5, 0.1);
     }
 
 }

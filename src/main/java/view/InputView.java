@@ -1,11 +1,10 @@
 package view;
 
+import domain.Figure;
 import domain.Point;
 import util.Parser;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class InputView {
 
@@ -16,7 +15,7 @@ public class InputView {
         return sc.nextLine();
     }
 
-    public static Point makePoint(String value) throws IllegalArgumentException {
+    public static Point makePoint(String value) {
         int[] values = Parser.splitStrPoint(value);
 
         return Point.init(values[0], values[1]);
@@ -32,13 +31,13 @@ public class InputView {
     }
 
     // 입력을 받아서 Dto를 만들다가 잘못된 값을 찾으면 처음으로 다시 돌아간다.
-    public static List<Point> inputPoints() {
+    public static Figure makeFigure() {
         while (true) {
             try {
-                List<Point> result = makePoints(Parser.parsingPointString(input()));
-                return result;
+                Figure figure = Figure.init(makePoints(Parser.parsingPointString(input())));
+                return figure;
             } catch (IllegalArgumentException e) {
-                System.out.println("입력 범위를 초과하였습니다.");
+                System.out.println(e.getMessage());
             }
         }
     }

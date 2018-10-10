@@ -1,41 +1,56 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Rectangle extends Figure {
 
-    public Rectangle(List<Point> points) {
-        super(points);
+    public Rectangle(List<Point> points) throws IllegalArgumentException {
+        super(checkRectangle(points));
+    }
+
+    private static List<Point> checkRectangle(List<Point> points) throws IllegalArgumentException {
+        List<Point> tmp = new ArrayList<>(points);
+        Point p = points.get(0);
+
+        p = searchSameXPoint(tmp, p);
+        p = searchSameYPoint(tmp, p);
+        searchSameXPoint(tmp, p);
+
+        return points;
+    }
+
+    public static Point searchSameYPoint(List<Point> points, Point p) {
+        points.remove(p);
+        for (Point point : points) {
+            if (p.isSameY(point)) return point;
+        }
+        throw new IllegalArgumentException("직사각형이 아닙니다.");
+    }
+
+    public static Point searchSameXPoint(List<Point> points, Point p) {
+        points.remove(p);
+        for (Point point : points) {
+            if (p.isSameX(point)) return point;
+        }
+        throw new IllegalArgumentException("직사각형이 아닙니다.");
+    }
+
+    private int getRectangularArea() throws IllegalArgumentException {
+        Point p = findIdx(0);
+        int horizontal = (int) p.getDistance(searchSameYPoint(points, p));
+        int vertical = (int) p.getDistance(searchSameXPoint(points, p));
+
+        return horizontal * vertical;
     }
 
     @Override
-    public double calc() {
+    public double area() {
         return getRectangularArea();
     }
 
-    private Point searchSameYPoint(Point p) throws Exception {
-        for (int i = 1; i < this.points.size(); i++) {
-            if (p.isSameY(findIdx(i))) return findIdx(i);
-        }
-        throw new Exception();
-    }
-
-    private Point searchSameXPoint(Point p) throws Exception {
-        for (int i = 1; i < this.points.size(); i++) {
-            if (p.isSameX(findIdx(i))) return findIdx(i);
-        }
-        throw new Exception();
-    }
-
-    private int getRectangularArea() {
-        try {
-            Point p = findIdx(0);
-            int horizontal = (int) p.getDistance(searchSameYPoint(p));
-            int vertical = (int) p.getDistance(searchSameXPoint(p));
-
-            return horizontal * vertical;
-        } catch (Exception e) {
-            return 0;
-        }
+    @Override
+    public String printArea() {
+        return "직사각형의 넓이는 " + area();
     }
 }
