@@ -1,10 +1,14 @@
 package coordinate.domain;
 
+import coordinate.dto.PointDto;
 import coordinate.util.MathHandler;
+
+import java.util.Objects;
 
 public class Point {
     private static final int MAX = 24;
-    private static final int MIN = 0;
+    private static final int ZERO = 0;
+    private static final int MIN = ZERO;
 
     private int positionX;
     private int positionY;
@@ -16,27 +20,45 @@ public class Point {
         this.positionY = positionY;
     }
 
-    public double calculateLineLength(Point point){
+    double calculateLineLength(Point point){
         return Math.sqrt(MathHandler.squareNumber(point.subPositionX(this.positionX)) +
                 MathHandler.squareNumber(point.subPositionY(this.positionY)));
-
     }
 
-    public int subPositionX(int number){
-        return this.positionX - number;
+    // default modifier for test.
+    int subPositionX(int number){
+        return Math.abs(this.positionX - number);
     }
 
-    public int subPositionY(int number){
-        return this.positionY - number;
+    // default modifier for test.
+    int subPositionY(int number){
+        return Math.abs(this.positionY - number);
     }
 
-
-    public int getPositionX() {
-        return positionX;
+    int subPositionX(Point other){
+        return other.subPositionX(this.positionX);
     }
 
-    public int getPositionY() {
-        return positionY;
+    int subPositionY(Point other){
+        return other.subPositionY(this.positionY);
+    }
+
+    public PointDto pointToDto(){
+        return new PointDto(this.positionX, this.positionY);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return positionX == point.positionX &&
+                positionY == point.positionY;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(positionX, positionY);
     }
 
     @Override

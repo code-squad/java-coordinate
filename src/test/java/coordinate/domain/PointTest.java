@@ -3,6 +3,11 @@ package coordinate.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import static org.assertj.core.api.Java6Assertions.offset;
 
 public class PointTest {
@@ -12,6 +17,7 @@ public class PointTest {
         System.out.println(p1);
         Point p2 = new Point(25, 25);
         System.out.println(p2);
+
     }
 
     @Test
@@ -32,6 +38,66 @@ public class PointTest {
         Point p1 = new Point(2, 1);
         assertThat(Math.abs(p1.subPositionY(3))).isEqualTo(2);
     }
+
+    @Test
+    public void subPositionXByPoint(){
+        Point p1 = new Point(5, 5);
+        Point p2 = new Point(2, 3);
+
+        assertThat(p1.subPositionX(p2)).isEqualTo(3);
+    }
+
+    @Test
+    public void subPositionYByPoint(){
+        Point p1 = new Point(5, 5);
+        Point p2 = new Point(2, 3);
+
+        assertThat(p1.subPositionY(p2)).isEqualTo(2);
+    }
+
+
+    @Test
+    public void equals(){
+        Point p1 = new Point(2, 1);
+        Point p2 = new Point(2, 1);
+        Point p3 = new Point(3, 1);
+        Point p4 = new Point(3, 1);
+
+        System.out.println(p1.equals(p2));
+        System.out.println(p3.equals(p4));
+        System.out.println(p2.equals(p3));
+        System.out.println(p1.equals(p4));
+
+        assertThat(p1.equals(p2)).isTrue();
+        assertThat(p3.equals(p4)).isTrue();
+        assertThat(p2.equals(p3)).isFalse();
+        assertThat(p1.equals(p4)).isFalse();
+
+        List<Point> points = new ArrayList<>();
+        points.add(p1);
+        points.add(p2);
+        points.add(p3);
+        points.add(p4);
+        System.out.println(points);
+
+        Set<Point> pointSet = new HashSet<>();
+
+        pointSet.add(p1);
+        pointSet.add(p2);
+        pointSet.add(p3);
+        pointSet.add(p4);
+
+        System.out.println(pointSet);
+
+        System.out.println("point List Size : " + points.size());
+        System.out.println("point Set Size : " + pointSet.size());
+
+        System.out.println(points.size() == pointSet.size());
+
+        assertThat(points.size() == pointSet.size()).isFalse();
+    }
+
+
 
 
 }

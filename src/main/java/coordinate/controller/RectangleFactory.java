@@ -7,10 +7,13 @@ import coordinate.domain.Rectangle;
 import java.util.List;
 
 public class RectangleFactory {
-    public static boolean isRectangle(int size) {
-        return size == CoordinateFactory.FOUR;
+    public static Rectangle generateRectangle(List<Point> points) {
+        return new Rectangle(points);
     }
 
-    public static Rectangle generateRectangle(List<Point> points) {
+    public static boolean isPossibleRectangle(List<Point> points){
+        return points.size() == CoordinateFactory.FOUR;
     }
+
+
 }
