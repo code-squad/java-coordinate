@@ -1,41 +1,65 @@
 package coordinate.view;
 
 import coordinate.domain.Coordinate;
+import coordinate.domain.CoordinatePlane;
+import coordinate.domain.LineSegment;
 
 import java.util.ArrayList;
 
 public class ResultView {
-    public static final String ORIGIN = "  +";
+    public static final String ORIGIN_OF_COORDINATES = "  +";
     public static final String DASH = "---";
     public static final String NULL = "";
     public static final String VERTICAL = "|";
+    public static final int CRITERIA_FOR_LINE = 2;
 
-    public static void viewCoordinate(Coordinate c) {
-        ArrayList<String> yAxis = printYAxis(c.getSize());
-
+    public static void drawCoordinatePlane(CoordinatePlane c, ArrayList<Coordinate> p) {
         for (int i = c.getSize() - 1; i > 0; i--) {
-            System.out.print(yAxis.get(i));
-            printPoint(c);
+            System.out.print(initYAxisLable(i));
+            System.out.println(printCoordinate(p, i));
         }
         printXAxis(c.getSize());
     }
 
-    private static void printPoint(Coordinate c) {
-        for (int j = 1; j < c.getSize(); j++) {
-            //System.out.print(String.format("%3s", "·"));
+    private static String initYAxisLable(int i) {
+        String tmp = String.format("%2s", NULL);
+        if (i % 2 == 0) {
+            tmp = String.format("%2d", i);
         }
-        System.out.println();
+        return tmp + VERTICAL;
     }
 
-    public static void printXAxis(int size) {
-        System.out.print(ORIGIN);
-        for (int i = 0; i < size-1; i++) {
+    private static StringBuilder printCoordinate(ArrayList<Coordinate> points, int index) {
+        StringBuilder sb = new StringBuilder();
+        for (Coordinate point : points) {
+            isExistCoordinate(index, sb, point);
+        }
+        return sb;
+    }
+
+    private static void isExistCoordinate(int index, StringBuilder sb, Coordinate point) {
+        if (point.getY() == index) {
+            printAsterisk(sb, point);
+        }
+    }
+
+    private static void printAsterisk(StringBuilder sb, Coordinate point) {
+        for (int i = 0; i < point.getX() - 1; i++) {
+            sb.append(String.format("%3s", " "));
+        }
+        sb.append(String.format("%3s", "*"));
+    }
+
+    private static void printXAxis(int size) {
+        System.out.print(ORIGIN_OF_COORDINATES);
+        for (int i = 0; i < size - 1; i++) {
             System.out.print(String.format("%3s", DASH));
         }
         System.out.println();
         for (int i = 0; i <= size; i++) {
             initXAxisLable(i);
         }
+        System.out.println();
     }
 
     private static void initXAxisLable(int i) {
@@ -44,19 +68,10 @@ public class ResultView {
         }
     }
 
-    public static ArrayList printYAxis(int size) {
-        ArrayList<String> yAxis = new ArrayList<>();
-        for (int i = 0; i <=size; i++) {
-            initYAxisLable(yAxis, i);
+    public static void showDistanceCalculation(ArrayList<Coordinate> p) {
+        if(p.size() == CRITERIA_FOR_LINE) {
+            LineSegment line = new LineSegment(p.get(0), p.get(1));
+            System.out.println("\n두 점 사이 거리는 " + line.getDistance());
         }
-        return yAxis;
-    }
-
-    private static void initYAxisLable(ArrayList<String> yAxis, int i) {
-        String tmp = String.format("%2s", NULL);
-        if (i % 2 == 0) {
-            tmp = String.format("%2d", i);
-        }
-        yAxis.add(tmp + VERTICAL);
     }
 }
