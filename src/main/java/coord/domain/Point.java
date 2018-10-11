@@ -10,27 +10,39 @@ public class Point extends Figure {
     public final int x;
     public final int y;
 
-    private Point(int x, int y) {
+    public Point(List<Point> points) {
+        super(points);
+        Point p = points.get(0);
+        this.x = p.x;
+        this.y = p.y;
+        validCheck();
+    }
+
+    public Point(int x, int y) {
         super(new ArrayList<>());
+        this.x = x;
+        this.y = y;
+        getPoints().add(this);
+        validCheck();
+    }
+
+    private void validCheck() {
         if (x > Setting.MAXIMUM || x < Setting.MINIMUM ||
                 y > Setting.MAXIMUM || y < Setting.MINIMUM) {
             throw new IllegalArgumentException("잘못된 값 범위");
         }
-        this.x = x;
-        this.y = y;
-        this.points.add(this);
     }
 
     public static Point of(int x, int y) {
         return new Point(x, y);
     }
 
-    public static Point ofText(String text) {
-        String[] parsed = text.split(",");
-        if (parsed.length != 2) {
-            throw new IllegalArgumentException("잘못된 입력");
+    public static Point ofText(String replaced) {
+        String[] split = replaced.split(",");
+        if (split.length != 2) {
+            throw new IllegalArgumentException();
         }
-        return new Point(Integer.parseInt(parsed[0]), Integer.parseInt(parsed[1]));
+        return of(Integer.parseInt(split[0]), Integer.parseInt(split[1]));
     }
 
     double distanceTo(Point point) {
@@ -62,11 +74,6 @@ public class Point extends Figure {
     @Override
     public double area() {
         return 0;
-    }
-
-    @Override
-    public Figure addPoint(Point point) {
-        return new Line(this.points, point);
     }
 
     @Override

@@ -2,16 +2,16 @@ package coord.domain;
 
 import java.util.List;
 
-abstract public class Figure implements Area{
-    protected List<Point> points;
+public abstract class Figure implements Area {
+    private List<Point> points;
 
     Figure(List<Point> points) {
         this.points = points;
     }
 
-    abstract public double area();
-
-    abstract public Figure addPoint(Point point);
+    protected List<Point> getPoints() {
+        return points;
+    }
 
     abstract public String figureKind();
 }

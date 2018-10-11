@@ -4,19 +4,18 @@ import java.util.List;
 
 public class Rectangle extends Figure {
 
-    Rectangle(List<Point> points, Point point) {
+    Rectangle(List<Point> points) {
         super(points);
-        points.add(point);
         validCheck();
     }
 
     private void validCheck() {
-        Point benchmark = points.get(0);
-        isDiagonalPointValid(benchmark.grepVertical(points), benchmark.grepHorizontal(points));
+        Point benchmark = getPoints().get(0);
+        isDiagonalPointValid(benchmark.grepVertical(getPoints()), benchmark.grepHorizontal(getPoints()));
     }
 
     private void isDiagonalPointValid(Point vertical, Point horizontal) {
-        for (Point point : points) {
+        for (Point point : getPoints()) {
             if (vertical.y == point.y && horizontal.x == point.x) {
                 return;
             }
@@ -26,15 +25,10 @@ public class Rectangle extends Figure {
 
     @Override
     public double area() {
-        Point benchmark = points.get(0);
-        Point vertical = benchmark.grepVertical(points);
-        Point horizontal = benchmark.grepHorizontal(points);
+        Point benchmark = getPoints().get(0);
+        Point vertical = benchmark.grepVertical(getPoints());
+        Point horizontal = benchmark.grepHorizontal(getPoints());
         return Math.abs((benchmark.x - horizontal.x) * (benchmark.y - vertical.y));
-    }
-
-    @Override
-    public Figure addPoint(Point point) {
-        return null;
     }
 
     @Override

@@ -7,7 +7,14 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class TestFigure {
+public class TestFactory {
+    @Test
+    public void factoryPointTest() {
+        List<Point> points = Arrays.asList(Point.of(1, 2));
+        Figure f = Factory.of(points);
+        assertThat(f.getClass()).isEqualTo(Point.class);
+    }
+
     @Test
     public void factoryLineTest() {
         List<Point> points = Arrays.asList(Point.of(1, 1), Point.of(1, 2));
@@ -30,28 +37,9 @@ public class TestFigure {
     }
 
     @Test
-    public void pointToLine() {
-        Point point = Point.of(1, 2);
-        Figure f = point.addPoint(Point.of(2, 3));
-        assertThat(f.getClass()).isEqualTo(Line.class);
-        System.out.println("LINE : " + f.area());
-    }
-
-    @Test
-    public void LineToTriangle() {
+    public void lineFactory() {
         List<Point> points = Arrays.asList(Point.of(1, 1), Point.of(1, 2));
         Figure f = Factory.of(points);
         assertThat(f.getClass()).isEqualTo(Line.class);
-        f = f.addPoint(Point.of(2, 2));
-        assertThat(f.getClass()).isEqualTo(Triangle.class);
-    }
-
-    @Test
-    public void TriangleToRectangle() {
-        List<Point> points = Arrays.asList(Point.of(1, 1), Point.of(1, 2), Point.of(2, 1));
-        Figure f = Factory.of(points);
-        assertThat(f.getClass()).isEqualTo(Triangle.class);
-        f = f.addPoint(Point.of(2, 2));
-        assertThat(f.getClass()).isEqualTo(Rectangle.class);
     }
 }
