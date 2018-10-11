@@ -15,15 +15,7 @@ public class Point {
         return Math.sqrt(Math.pow(this.x - points.x, 2) + Math.pow(this.y - points.y, 2));
     }
 
-    public Boolean isX(int x) {
-        if (this.x * 3 == x)
-            return true;
-        return false;
-    }
-
-    public Boolean isY(int y) {
-        if (this.y == y)
-            return true;
-        return false;
+    public Boolean matchPoint(int x, int y) {
+        return this.x*3 == x && this.y == y;
     }
 }
