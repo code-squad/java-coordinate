@@ -1,3 +1,5 @@
+package domain;
+
 import domain.Point;
 import domain.PointFactory;
 import org.junit.Test;

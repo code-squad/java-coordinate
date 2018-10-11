@@ -3,17 +3,20 @@ package domain;
 import util.PointException;
 import java.util.*;
 
-public class Line implements Figure {
+public class Line extends Figure {
     private List<Point> points;
 
     public Line(List<Point> points) throws PointException {
         this.points = points;
+        if(!isComputable()) {
+            throw new PointException("동일한 위치에 존재하는 점입니다.");
+        }
         Collections.sort(points);
     }
 
     @Override
-    public String evaluate() {
-        return stringFormat(points.get(0).getDistance(points.get(1)));
+    public double evaluate() {
+        return points.get(0).getDistance(points.get(1));
     }
 
     @Override
@@ -22,7 +25,12 @@ public class Line implements Figure {
     }
 
     @Override
-    public String stringFormat(Number value) {
-        return String.format("두 점 사이의 거리는 : %5f", value);
+    public String stringFormat() {
+        return String.format("두 점 사이의 거리는 : %5f", evaluate());
+    }
+
+    @Override
+    public boolean isComputable() {
+        return points.get(0) != points.get(1);
     }
 }

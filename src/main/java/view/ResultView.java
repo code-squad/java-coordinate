@@ -1,14 +1,25 @@
 package view;
 
 import domain.*;
+import util.PointException;
 
 public class ResultView {
     private ResultView() {
 
     }
 
-    public static void printDistance(Figure figure) {
-        System.out.println(figure.evaluate());
+    public static void printDistance(Figure figure) throws PointException {
+        String msg = null;
+        if(figure instanceof Line) {
+            msg = "두 점 사이의 거리는 : ";
+        }
+        if(figure instanceof Triangle) {
+            msg = "삼각형의 넓이는 : ";
+        }
+        if(figure instanceof Rectangle) {
+            msg = "사각형의 넓이는 : ";
+        }
+        System.out.println(String.format("%s : %5f",msg , figure.evaluate()));
     }
 
     public static void drawAxis(Figure figure) {
