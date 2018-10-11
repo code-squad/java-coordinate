@@ -1,5 +1,6 @@
 package coord.domain;
 
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,7 +26,6 @@ public class Triangle extends Figure {
                         * (-sidesOfTriangle.get(0) + sidesOfTriangle.get(1) + sidesOfTriangle.get(2))
                         * (sidesOfTriangle.get(0) - sidesOfTriangle.get(1) + sidesOfTriangle.get(2))
                         * (sidesOfTriangle.get(0) + sidesOfTriangle.get(1) - sidesOfTriangle.get(2)));
-
     }
 
     @Override
