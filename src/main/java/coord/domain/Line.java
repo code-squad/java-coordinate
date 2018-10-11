@@ -4,7 +4,6 @@ import java.util.List;
 
 
 public class Line extends Figure {
-
     Line(List<Point> points, Point point) {
         super(points);
         this.points.add(point);

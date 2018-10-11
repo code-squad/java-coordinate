@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
-public class Point extends Figure{
+public class Point extends Figure {
     public final int x;
     public final int y;
 
@@ -58,21 +57,6 @@ public class Point extends Figure{
             }
         }
         throw new IllegalArgumentException();
-    }
-
-    @Override
-    public double size() {
-        return 0;
-    }
-
-    @Override
-    public Figure addPoint(Point point) {
-        return new Line(this.points, point);
-    }
-
-    @Override
-    public String figureKind() {
-        return "점";
     }
 
     @Override

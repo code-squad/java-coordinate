@@ -27,7 +27,6 @@ public class Rectangle extends Figure {
     @Override
     public double size() {
         Point benchmark = points.get(0);
-
         Point vertical = benchmark.grepVertical(points);
         Point horizontal = benchmark.grepHorizontal(points);
         return Math.abs((benchmark.x - horizontal.x) * (benchmark.y - vertical.y));
