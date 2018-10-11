@@ -3,6 +3,7 @@ package coordinatetest;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CoordinateLineTest {
@@ -18,18 +19,17 @@ public class CoordinateLineTest {
 
     @Test
     public void twoArrayListCompare() {
-        List<Double> list1 = new ArrayList<>();
-        List<Double> list2 = new ArrayList<>();
+        Double[] doubleValue = new Double[]{1.0,2.0,3.0,4.0};
 
-        list1.add(1.0);
-        list1.add(2.0);
-        list1.add(3.0);
-        list1.add(4.0);
+        List list1 = Arrays.asList(doubleValue);                    //asList : 배열을 리스트로 변환 (꺼내올순 있어도 추가는 안된다.)
+        List list2 = Arrays.asList(doubleValue);
+        List<Double> list3 = new ArrayList<>(Arrays.asList(5.0,6.0));
+        System.out.println(list3);
+        System.out.println(list1);
 
-        list2.add(1.0);
-        list2.add(2.0);
-        list2.add(3.0);
-        list2.add(4.0);
+        for (int i = 0; i < list1.size(); i++) {
+            System.out.println(list1.get(i));
+        }
 
         for (int i = 0; i < list1.size(); i++) {
             if (list1.get(i).equals(list2.get(i)))                      //제네릭이 Integer일때는 == 로 비교 가능하나 Double때는 equals로 비교가능함.

@@ -22,10 +22,7 @@ public class CoordinateMain {
         PrintView.drawVertical(line.getPoints());
         PrintView.drawRow();
         PrintView.rowNumber();
-        if (numbers.size() == 4)
-            PrintView.printLength();
-        if (numbers.size() == 8)
-            PrintView.printCube();
-        System.out.println((int) line.judgeDotCount());
+        PrintView.printWhatIs(numbers.size()/2);
+        System.out.print(line.judgeDotCount());
     }
 }

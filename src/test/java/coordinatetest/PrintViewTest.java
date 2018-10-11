@@ -124,6 +124,10 @@ public class PrintViewTest {
         }
     }
 
-
+    @Test
+    public void downCasting(){
+        double a = 2.9;                 //double -> int 로 강제 형변환시 소수점은 버린다.
+        System.out.println((int)a);
+    }
 
 }

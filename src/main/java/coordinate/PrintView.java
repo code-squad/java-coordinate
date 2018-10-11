@@ -32,7 +32,7 @@ public class PrintView {
     private static Boolean drawDot(int y, List<Point> points, int x) {
         String dot = "●";
         for (Point point : points) {
-            if (point.isY(y) && point.isX(x)) {
+            if (point.matchPoint(x, y)) {
                 System.out.print(dot);
                 return false;
             }
@@ -65,8 +65,20 @@ public class PrintView {
         System.out.print("사각형의 넓이는 ");
     }
 
-    public static void dotCountReWrite() {
-        System.out.println("직사각형이 아니거나 점의 개수는 2개혹은 4개 이어야 합니다.");
+    public static void printTriangle(){
+        System.out.print("삼각형의 넓이는 ");
     }
 
+    public static void dotCountReWrite() {
+        System.out.print("직사각형이 아니거나 점의 개수는 2개혹은 4개 이어야 합니다.");
+    }
+
+    public static void printWhatIs(int count){
+        if(count==2)
+            printLength();
+        if(count==3)
+            printTriangle();
+        if (count==4)
+            printCube();
+    }
 }
