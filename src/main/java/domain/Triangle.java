@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Triangle implements Figure {
-    private List<Point> points;
+public class Triangle extends Figure {
 
     public Triangle() {
 
@@ -15,20 +14,20 @@ public class Triangle implements Figure {
 
     public Triangle(List<Point> points) throws PointException {
         this.points = points;
+        Collections.sort(points);
         if(!isComputable()) {
             throw new PointException("잘못된 삼각형의 형태입니다. (예 : 동일선상에 위치)");
         }
-        Collections.sort(points);
     }
 
     @Override
     public double evaluate() throws PointException {
         /*  */
         double[] lines = getTriangleLine();
-        double s = getSumLine(lines) / 2;
-        double result = s;
+        double spaceConstant = getSumLine(lines) / 2;
+        double result = spaceConstant;
         for(double num : lines) {
-            result *= (s - num);
+            result *= (spaceConstant - num);
         }
         return Math.sqrt(result);
     }
@@ -42,11 +41,6 @@ public class Triangle implements Figure {
     }
 
     @Override
-    public List<Point> getPoints() {
-        return Collections.unmodifiableList(points);
-    }
-
-    @Override
     public String stringFormat() throws PointException {
         return String.format("삼각형의 넓이는 : %5f", evaluate());
     }
@@ -54,14 +48,11 @@ public class Triangle implements Figure {
     @Override
     public boolean isComputable() {
         /* 동일 선상에 위치하는지를 확인해야함 */
-        return getGradient(points.get(0), points.get(1)) != getGradient(points.get(1), points.get(2));
+        return points.get(0).getGradient(points.get(1)) != points.get(1).getGradient(points.get(2));
     }
 
-    public double getGradient(Point p1, Point p2) {
-        return (double)Math.abs(p2.getY() - p1.getY()) / Math.abs(p2.getX() - p1.getX());
-    }
 
-    public double getLineDistance(List<Point> subList) throws PointException {
+    protected double getLineDistance(List<Point> subList) throws PointException {
         return new Line(subList).evaluate();
     }
 

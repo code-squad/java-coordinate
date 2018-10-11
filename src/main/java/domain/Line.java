@@ -3,7 +3,7 @@ package domain;
 import util.PointException;
 import java.util.*;
 
-public class Line implements Figure {
+public class Line extends Figure {
     private List<Point> points;
 
     public Line(List<Point> points) throws PointException {

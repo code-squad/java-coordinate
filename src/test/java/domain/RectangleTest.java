@@ -1,6 +1,5 @@
-import domain.Point;
-import domain.PointFactory;
-import domain.Rectangle;
+package domain;
+
 import org.junit.Test;
 import util.PointException;
 
@@ -9,7 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class QuadrangleTest {
+public class RectangleTest {
     @Test
     public void isComputableTest() throws PointException {
         List<Point> points1 = new ArrayList<>();
@@ -35,5 +34,29 @@ public class QuadrangleTest {
         points3.add(PointFactory.create("(5,6)"));
 
         assertThat(new Rectangle(points3).isComputable()).isFalse();
+    }
+
+    public void isSameZeroGradientTest() {
+        //return points.get(0).getGradient(points.get(1)) == 0 && points.get(2).getGradient(points.get(3)) == 0;
+    }
+
+    @Test
+    public void isSameLengthTest() throws PointException {
+        List<Point> points = new ArrayList<>();
+        points.add(new Point(1,1));
+        points.add(new Point(3,3));
+        points.add(new Point(3,1));
+        points.add(new Point(1,3));
+
+        assertThat(new Rectangle(points).isSameLength()).isTrue();
+    }
+
+    @Test
+    public void getLineLengthTest() throws PointException {
+        List<Point> points1 = new ArrayList<>();
+        points1.add(new Point(1,1));
+        points1.add(new Point(1,3));
+
+        assertThat(new Rectangle().getLineLength(points1)).isEqualTo(2);
     }
 }

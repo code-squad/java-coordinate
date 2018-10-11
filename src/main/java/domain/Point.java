@@ -23,6 +23,10 @@ public class Point implements Comparable<Point> {
         return y - num;
     }
 
+    protected double getGradient(Point otherPoint) {
+        return Math.abs(otherPoint.getDifference(x, 'x')) / Math.abs(otherPoint.getDifference(y, 'y'));
+    }
+
     public int getX() {
         return x;
     }
@@ -39,8 +43,16 @@ public class Point implements Comparable<Point> {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        Point other = (Point) obj;
-        return this.x == other.getX() && this.y == other.getY();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return x == point.x &&
+                y == point.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }

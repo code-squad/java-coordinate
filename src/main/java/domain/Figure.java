@@ -4,9 +4,15 @@ import util.PointException;
 
 import java.util.*;
 
-public interface Figure {
-    double evaluate() throws PointException;
-    List<Point> getPoints();
-    String stringFormat() throws PointException;
-    boolean isComputable();
+public abstract class Figure {
+    protected List<Point> points;
+
+    abstract public double evaluate() throws PointException;
+    abstract public String stringFormat() throws PointException;
+    abstract boolean isComputable() throws PointException;
+
+    public List<Point> getPoints() {
+        return Collections.unmodifiableList(points);
+    }
+
 }

@@ -1,3 +1,5 @@
+package domain;
+
 import domain.FigureFactory;
 import domain.Point;
 import org.junit.Test;
