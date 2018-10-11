@@ -4,13 +4,8 @@ import java.util.List;
 
 public class Triangle extends Figure {
 
-    Triangle() {
-        super();
-    }
-
-    public Figure init(List<Point> points) {
-        this.points = checkTriangle(points);
-        return this;
+    Triangle(List<Point> points) {
+        super(checkTriangle(checkSamePoint(points)));
     }
 
     private static List<Point> checkTriangle(List<Point> points) {

@@ -12,14 +12,8 @@ public abstract class Figure {
 
     protected List<Point> points;
 
-    protected Figure() {
-        this.points = null;
-    }
-
-    abstract Figure init(List<Point> points) throws IllegalArgumentException;
-
-    public static Figure initPoints(List<Point> points) throws IllegalArgumentException {
-        return FigureMaker.checkFigure(checkSamePoint(points));
+    protected Figure(List<Point> points) throws IllegalArgumentException {
+        this.points = points;
     }
 
     abstract public double area();

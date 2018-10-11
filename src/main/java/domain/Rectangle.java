@@ -5,16 +5,10 @@ import java.util.List;
 
 public class Rectangle extends Figure {
 
-    Rectangle() {
-        super();
+    Rectangle(List<Point> points) {
+        super(checkRectangle(checkSamePoint(points)));
     }
 
-    @Override
-    public Figure init(List<Point> points) {
-        this.points = checkRectangle(points);
-        return this;
-    }
-    
     private static List<Point> checkRectangle(List<Point> points) throws IllegalArgumentException {
         List<Point> tmp = new ArrayList<>(points);
         Point p = points.get(0);

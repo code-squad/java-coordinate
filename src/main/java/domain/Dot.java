@@ -4,14 +4,8 @@ import java.util.List;
 
 public class Dot extends Figure {
 
-    protected Dot() {
-        super();
-    }
-
-    @Override
-    public Figure init(List<Point> points) {
-        this.points = points;
-        return this;
+    protected Dot(List<Point> points) {
+        super(checkSamePoint(points));
     }
 
     @Override

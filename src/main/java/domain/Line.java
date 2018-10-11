@@ -4,14 +4,8 @@ import java.util.List;
 
 public class Line extends Figure {
 
-    Line() {
-        super();
-    }
-
-    @Override
-    public Figure init(List<Point> points) {
-        this.points = points;
-        return this;
+    Line(List<Point> points) {
+        super(checkSamePoint(points));
     }
 
     private double getDistance() {

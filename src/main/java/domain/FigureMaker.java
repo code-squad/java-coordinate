@@ -2,34 +2,49 @@ package domain;
 
 import java.util.List;
 
-public enum FigureMaker {
-    DOT(1, new Dot()),
-    LINE(2, new Line()),
-    TRIANGLE(3, new Triangle()),
-    RECTANGLE(4, new Rectangle());
+public enum FigureMaker implements FigureFactory {
+    DOT(1) {
+        @Override
+        public Figure create(List<Point> points) {
+            return new Dot(points);
+        }
+    },
+    LINE(2) {
+        @Override
+        public Figure create(List<Point> points) {
+            return new Line(points);
+        }
+    },
+    TRIANGLE(3) {
+        @Override
+        public Figure create(List<Point> points) {
+            return new Triangle(points);
+        }
+    },
+    RECTANGLE(4) {
+        @Override
+        public Figure create(List<Point> points) {
+            return new Rectangle(points);
+        }
+    };
 
     private int pointSize;
-    private Figure figure;
 
-    FigureMaker(int pointSize, Figure figure) {
+    FigureMaker(int pointSize) {
         this.pointSize = pointSize;
-        this.figure = figure;
     }
 
-    public Figure init(List<Point> points) {
-        return this.figure.init(points);
+    public static Figure init(List<Point> points) {
+        return FigureMaker.findFigure(points.size()).create(points);
     }
 
-    public static Figure checkFigure(List<Point> points) {
-        for (FigureMaker figure : FigureMaker.values()) {
-            if (figure.isMatchSize(points))
-                return figure.init(points);
+    public static FigureMaker findFigure(int size) {
+        for (FigureMaker fm : FigureMaker.values()) {
+            if(size == fm.pointSize) {
+                return fm;
+            }
         }
         throw new IllegalArgumentException("Point 갯수가 너무 많습니다.");
-    }
-
-    private Boolean isMatchSize(List<Point> points) {
-        return this.pointSize == points.size();
     }
 
 }

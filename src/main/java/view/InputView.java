@@ -1,6 +1,7 @@
 package view;
 
 import domain.Figure;
+import domain.FigureMaker;
 import domain.Point;
 import util.Parser;
 
@@ -34,7 +35,7 @@ public class InputView {
     public static Figure makeFigure() {
         while (true) {
             try {
-                return Figure.initPoints(makePoints(Parser.parsingPointString(input())));
+                return FigureMaker.init(makePoints(Parser.parsingPointString(input())));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
