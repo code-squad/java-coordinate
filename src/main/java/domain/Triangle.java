@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Triangle extends Figure {
 
-    public Triangle(List<Point> points) throws IllegalArgumentException {
-        super(checkTriangle(points));
+    Triangle(List<Point> points) {
+        super(checkTriangle(checkSamePoint(points)));
     }
 
     private static List<Point> checkTriangle(List<Point> points) {

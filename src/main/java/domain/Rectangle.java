@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Rectangle extends Figure {
 
-    public Rectangle(List<Point> points) throws IllegalArgumentException {
-        super(checkRectangle(points));
+    Rectangle(List<Point> points) {
+        super(checkRectangle(checkSamePoint(points)));
     }
 
     private static List<Point> checkRectangle(List<Point> points) throws IllegalArgumentException {

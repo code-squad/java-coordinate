@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Line extends Figure {
 
-    public Line(List<Point> points) throws IllegalArgumentException {
-        super(points);
+    Line(List<Point> points) {
+        super(checkSamePoint(points));
     }
 
     private double getDistance() {

@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Dot extends Figure {
 
-    protected Dot(List<Point> points) throws IllegalArgumentException {
-        super(points);
+    protected Dot(List<Point> points) {
+        super(checkSamePoint(points));
     }
 
     @Override
