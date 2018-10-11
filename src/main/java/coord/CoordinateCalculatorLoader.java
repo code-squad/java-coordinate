@@ -12,7 +12,13 @@ import java.util.List;
 
 public class CoordinateCalculatorLoader {
     public static void main(String[] args) {
-        List<Point> points = Parser.parseToPoints(InputView.getCoord());
+        List<Point> points;
+        try {
+            points = Parser.parseToPoints(InputView.getCoord());
+        } catch (IllegalArgumentException e) {
+            main(args);
+            return;
+        }
 
         GridPaper gridPaper = new GridPaper(Setting.MAXIMUM);
         gridPaper.draw(points);
