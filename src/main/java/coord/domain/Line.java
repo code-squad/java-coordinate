@@ -1,11 +1,12 @@
 package coord.domain;
 
-import java.util.Arrays;
+import java.util.List;
 
-public class Line extends Figure{
+public class Line extends Figure {
 
-    Line(Point pointA, Point pointB) {
-        this.points = Arrays.asList(pointA, pointB);
+    Line(List<Point> points, Point point) {
+        super(points);
+        this.points.add(point);
     }
 
     @Override

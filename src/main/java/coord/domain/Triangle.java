@@ -5,7 +5,7 @@ import java.util.List;
 public class Triangle extends Figure {
 
     Triangle(List<Point> points, Point point) {
-        this.points = points;
+        super(points);
         points.add(point);
     }
 

@@ -5,32 +5,14 @@ import java.util.List;
 public class Rectangle extends Figure {
 
     Rectangle(List<Point> points, Point point) {
-        this.points = points;
+        super(points);
         points.add(point);
         validCheck();
     }
 
     private void validCheck() {
         Point benchmark = points.get(0);
-        isDiagonalPointValid(verticalOf(benchmark), horizontalOf(benchmark));
-    }
-
-    private Point verticalOf(Point benchmark) {
-        for (Point point : points) {
-            if (benchmark.x == point.x && benchmark.y != point.y) {
-                return point;
-            }
-        }
-        throw new IllegalArgumentException();
-    }
-
-    private Point horizontalOf(Point benchmark) {
-        for (Point point : points) {
-            if (benchmark.y == point.y && benchmark.x != point.x) {
-                return point;
-            }
-        }
-        throw new IllegalArgumentException();
+        isDiagonalPointValid(benchmark.grepVertical(points), benchmark.grepHorizontal(points));
     }
 
     private void isDiagonalPointValid(Point vertical, Point horizontal) {
@@ -45,8 +27,8 @@ public class Rectangle extends Figure {
     @Override
     public double size() {
         Point benchmark = points.get(0);
-        Point vertical = verticalOf(benchmark);
-        Point horizontal = horizontalOf(benchmark);
+        Point vertical = benchmark.grepVertical(points);
+        Point horizontal = benchmark.grepHorizontal(points);
         return Math.abs((benchmark.x - horizontal.x) * (benchmark.y - vertical.y));
     }
 

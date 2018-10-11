@@ -3,6 +3,7 @@ package coord.util;
 import coord.domain.Point;
 
 import java.util.List;
+import java.util.Objects;
 
 public class GridPaper {
     private static final String BLANK = " ";
@@ -25,47 +26,44 @@ public class GridPaper {
 
     public void draw(List<Point> points) {
         drawAxisOfY(points);
-        drawAxisOfX(size);
+        drawAxisOfX();
         drawNumberOfXAxis();
     }
 
     private void drawAxisOfY(List<Point> points) {
-        String[] axisY = drawNumberOfYAxis();
+        StringBuilder[] axisY = drawNumberOfYAxis();
         markPoints(points, axisY);
         append(axisY);
     }
 
-    private String[] drawNumberOfYAxis() {
-        String[] ret = new String[size + 1];
+    private StringBuilder[] drawNumberOfYAxis() {
+        StringBuilder[] ret = new StringBuilder[size + 1];
         for (int i = 0; i <= size; i++) {
-            ret[i] = String.format("%" + offset + "d|", i);
+            ret[i] = new StringBuilder();
+            ret[i].append(String.format("%" + offset + "d|", i));
+            ret[i].append(repeatLetter(BLANK, offset * (size + 1)));
         }
         return ret;
     }
 
-    private void markPoints(List<Point> points, String[] axisY) {
+    private void markPoints(List<Point> points, StringBuilder[] axisY) {
         for (Point point : points) {
-            axisY[point.y] += offsetX(point.x);
-            axisY[point.y] += marker();
+            //y축의 길이와 눈금 하나의 길이를 고려해서 점을 찍는다.
+            axisY[point.y].replace(
+                    offset + ((point.x + 1) * offset),
+                    offset + ((point.x + 1) * offset) + 1,
+                    POINT_MARKER);
         }
     }
 
-    private String offsetX(int x) {
-        return repeatLetter(" ", offset * x);
-    }
-
-    private String marker() {
-        return String.format("%" + offset + "s", POINT_MARKER);
-    }
-
-    private void append(String[] yAxisFactors) {
+    private void append(StringBuilder[] yAxisFactors) {
         for (int i = size; i >= 0; i--) {
             stringBuilder.append(yAxisFactors[i]);
             lineBreak();
         }
     }
 
-    private void drawAxisOfX(int size) {
+    private void drawAxisOfX() {
         stringBuilder.append(repeatLetter(BLANK, offset));
         stringBuilder.append(PLUS);
         stringBuilder.append(repeatLetter(DASH, offset * (size + 1)));
@@ -94,5 +92,20 @@ public class GridPaper {
     @Override
     public String toString() {
         return stringBuilder.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GridPaper gridPaper = (GridPaper) o;
+        return size == gridPaper.size &&
+                offset == gridPaper.offset &&
+                Objects.equals(stringBuilder, gridPaper.stringBuilder);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(size, offset, stringBuilder);
     }
 }
