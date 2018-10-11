@@ -1,5 +1,6 @@
 package view;
 
+import domain.CoordCalculator;
 import domain.Val;
 import dto.PointDto;
 
@@ -66,9 +67,13 @@ public class ResultView {
         return BLANCK;
     }
 
-    public static void printResult(double lineDistance) {
+    public static void printResult(double resultValue, int pointsSize) {
         System.out.println();
-        System.out.printf("두 점 사이 거리는 %f\n", lineDistance);
+        if(pointsSize == CoordCalculator.NUM_FOR_LINE) {
+            System.out.println("두 점 사이 거리는 " + resultValue);
+            return;
+        }
+        System.out.println("사각형 넓이는 " + resultValue);
     }
 
 }

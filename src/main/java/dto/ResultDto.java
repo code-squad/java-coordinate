@@ -1,13 +1,26 @@
 package dto;
 
+import java.util.List;
+
 public class ResultDto {
-    private double lineDistance;
+    private double resultValue = -1;
+    private List<PointDto> pointsDto;
 
-    public ResultDto(double lineDistance) {
-        this.lineDistance = lineDistance;
+    public ResultDto(double resultValue, List<PointDto> pointsDto) {
+        this.resultValue = resultValue;
+        this.pointsDto = pointsDto;
     }
 
-    public double getLineDistance() {
-        return lineDistance;
+    public ResultDto(List<PointDto> pointsDto) {
+        this.pointsDto = pointsDto;
     }
+
+    public double getResultValue() {
+        return resultValue;
+    }
+
+    public List<PointDto> getPointsDto() {
+        return pointsDto;
+    }
+
 }

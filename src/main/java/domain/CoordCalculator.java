@@ -7,24 +7,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CoordCalculator {
+    public static final int NUM_FOR_LINE = 2;
     private List<Point> points;
 
     public CoordCalculator(List<Point> points) {
         this.points = points;
     }
 
-    public List<PointDto> getPoints() {
+    public ResultDto calculate() {
         List<PointDto> pointsDto = new ArrayList<>();
         for (Point point : points) {
             pointsDto.add(point.makePointDto());
         }
-        return pointsDto;
-    }
 
-    public ResultDto getLineDistance() {
-        Point p1 = points.get(0);
-        Point p2 = points.get(1);
-        return new ResultDto(p1.calculateLineDistance(p2));
+        if(pointsDto.size() == NUM_FOR_LINE) {
+            return new ResultDto(points.get(0).calculateLineDistance(points.get(1)), pointsDto);
+        }
+
+        try{
+            return new ResultDto(Square.calculateWide(points), pointsDto);
+        } catch(Exception e) {
+            return new ResultDto(pointsDto);
+        }
     }
 
 }

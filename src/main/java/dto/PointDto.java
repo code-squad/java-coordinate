@@ -1,6 +1,5 @@
 package dto;
 
-import java.util.Objects;
 
 public class PointDto {
     private int x;

@@ -15,9 +15,6 @@ public class TextParser {
     public static List<Point> parse(String s) {
         List<Point> points = new ArrayList<>();
         String[] pointsText = s.split(MINUS);
-        if(pointsText.length != 2) {
-            throw new IndexOutOfBoundsException();
-        }
         for (String pointText : pointsText) {
             String[] valsText = removeParenthesis(pointText).split(COMMA);
             points.add(makePoint(valsText));
