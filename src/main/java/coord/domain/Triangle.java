@@ -1,5 +1,7 @@
 package coord.domain;
 
+
+import java.util.Arrays;
 import java.util.List;
 
 public class Triangle extends Figure {
@@ -11,7 +13,19 @@ public class Triangle extends Figure {
 
     @Override
     public double size() {
-        return 3.0; //TODO
+        return formulaOfHeron();
+    }
+
+    private double formulaOfHeron() {
+        List<Double> sidesOfTriangle = Arrays.asList(
+                points.get(0).distanceTo(points.get(1)),
+                points.get(1).distanceTo(points.get(2)),
+                points.get(2).distanceTo(points.get(0)));
+        return 0.25 * Math.sqrt(
+                (sidesOfTriangle.get(0) + sidesOfTriangle.get(1) + sidesOfTriangle.get(2))
+                        * (-sidesOfTriangle.get(0) + sidesOfTriangle.get(1) + sidesOfTriangle.get(2))
+                        * (sidesOfTriangle.get(0) - sidesOfTriangle.get(1) + sidesOfTriangle.get(2))
+                        * (sidesOfTriangle.get(0) + sidesOfTriangle.get(1) - sidesOfTriangle.get(2)));
     }
 
     @Override
