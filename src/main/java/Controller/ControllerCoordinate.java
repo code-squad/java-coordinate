@@ -17,4 +17,6 @@ public class ControllerCoordinate {
         ResultView.drawAxis(figure);
         ResultView.printDistance(figure);
     }
+
 }
+

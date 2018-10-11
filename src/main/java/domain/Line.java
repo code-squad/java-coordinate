@@ -25,11 +25,6 @@ public class Line extends Figure {
     }
 
     @Override
-    public String stringFormat() {
-        return String.format("두 점 사이의 거리는 : %5f", evaluate());
-    }
-
-    @Override
     public boolean isComputable() {
         return points.get(0) != points.get(1);
     }

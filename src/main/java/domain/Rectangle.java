@@ -32,10 +32,6 @@ public class Rectangle extends Figure {
         return getLineLength(makeSubList(0, 2)) == getLineLength(makeSubList(2, 4));
     }
 
-    protected double getLineLength(List<Point> subPoints) throws PointException {
-        return new Line(subPoints).evaluate();
-    }
-
     private List<Point> makeSubList(int start, int end) {
         return points.subList(start, end);
     }
@@ -44,11 +40,6 @@ public class Rectangle extends Figure {
     public double evaluate() throws PointException {
         /* 이처럼 0 2 숫자를 직접 입력하는 부분도 하드코딩인가요? */
         return getLineLength(makeSubList(0, 2)) * getLineLength(makeSubList(2, 4));
-    }
-
-    @Override
-    public String stringFormat() throws PointException {
-        return String.format("사각형의 넓이는 : %d", evaluate());
     }
 }
 
