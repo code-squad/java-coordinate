@@ -1,6 +1,8 @@
 package coordinate.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
+import org.assertj.core.util.Arrays;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -68,16 +70,12 @@ public class PointTest {
         System.out.println(p2.equals(p3));
         System.out.println(p1.equals(p4));
 
-        assertThat(p1.equals(p2)).isTrue();
-        assertThat(p3.equals(p4)).isTrue();
+        assertThat(p1).isEqualTo(p2);
+        assertThat(p3).isEqualTo(p4);
         assertThat(p2.equals(p3)).isFalse();
         assertThat(p1.equals(p4)).isFalse();
 
-        List<Point> points = new ArrayList<>();
-        points.add(p1);
-        points.add(p2);
-        points.add(p3);
-        points.add(p4);
+        List points = Arrays.asList(new Point[]{p1,p2,p3,p4});
         System.out.println(points);
 
         Set<Point> pointSet = new HashSet<>();
