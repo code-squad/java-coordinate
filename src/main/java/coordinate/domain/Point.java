@@ -1,47 +1,46 @@
 package coordinate.domain;
 
-import coordinate.CoordinateMain;
+import coordinate.utill.AxisCondition;
+
+import java.util.Arrays;
 
 public class Point {
     private int x;
     private int y;
 
-    Point(int x, int y){
-        try{
-            if(x < 0 || x > 24){
-                throw new IllegalArgumentException();
-            }
-            this.x = x;
-        }catch (IllegalArgumentException e){
-            System.out.println("x 좌표값이 범위를 초과했습니다. 다시입력하세요.");
-            CoordinateMain.run();
+    private Point(int x, int y) {
+        if (x < AxisCondition.MIN_AXIS || x > AxisCondition.MAX_AXIS ||
+                y < AxisCondition.MIN_AXIS || y > AxisCondition.MAX_AXIS) {
+            throw new IllegalArgumentException();
         }
-
-        try{
-            if(y < 0 || y > 24){
-                throw new IllegalArgumentException();
-            }
-            this.y = y;
-        }catch (IllegalArgumentException e){
-            System.out.println("y 좌표값이 범위를 초과했습니다. 다시입력하세요.");
-            CoordinateMain.run();
-        }
+        this.x = x;
+        this.y = y;
     }
 
-    public static Point ofCommaSeparator(String text){
-        String [] values = text.split(",");
+    public static Point of(int x, int y) {
+        return new Point(x, y);
+    }
+
+    public static Point ofCommaSeparator(String text) {
+        String[] values = text.split(",");
         return new Point(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
     }
 
-    public double distance(Point point){
-        return Math.sqrt(Math.pow(point.x - this.x, 2) + Math.pow(point.y - this.y, 2));
+    public double distance(Point other) {
+        return Math.sqrt(Math.pow(Math.abs(other.x - this.x), 2) + Math.pow(Math.abs(other.y - this.y), 2));
     }
 
-    public int getX(){
-        return x;
+    public boolean equalToAxisOfX(int other){
+        return x == other;
     }
 
-    public int getY(){
-        return y;
+    public boolean equalToAxisOfY(int other){
+        return y == other;
+    }
+
+    public int[] sort(Point other){
+        int[] values = new int[]{x, other.x};
+        Arrays.sort(values);
+        return values;
     }
 }

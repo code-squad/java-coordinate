@@ -1,20 +1,29 @@
 package coordinate;
 
 import coordinate.domain.Point;
+import coordinate.utill.Parser;
 import coordinate.view.InputView;
 import coordinate.view.ResultView;
 
 public class CoordinateMain {
     public static void main(String[] args) {
-        run();
+        while (true) {
+            try {
+                run();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("값의 범위가 잘못 입력되었습니다.");
+            }
+        }
     }
 
     public static void run() {
-        String[] axis = InputView.inputCoordinate();
-        Point firstPoint = Point.ofCommaSeparator(axis[0]);
-        Point secondPoint = Point.ofCommaSeparator(axis[1]);
+        String[] points = Parser.parenthesisRemove(Parser.deshSeparator(InputView.getLocation()));
 
-        ResultView.createLocationAxis(firstPoint,secondPoint);
+        Point firstPoint = Point.ofCommaSeparator(points[0]);
+        Point secondPoint = Point.ofCommaSeparator(points[1]);
+
+        ResultView.createLocationAxis(firstPoint, secondPoint);
         ResultView.distView(firstPoint.distance(secondPoint));
     }
 }
