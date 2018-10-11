@@ -1,8 +1,9 @@
 package coordinate;
 
 import coordinate.domain.Coordinate;
+import coordinate.domain.Line;
 import coordinate.domain.Point;
-import coordinate.dto.CoordinateDto;
+import coordinate.dto.PointDtoFactory;
 import coordinate.inputview.InputView;
 import coordinate.resultview.ResultView;
 
@@ -13,12 +14,12 @@ public class CoordinateMain {
         ArrayList<Point> points = InputView.input();
 
         //dto 만들기
-        CoordinateDto coordinateDto = new CoordinateDto(points);
+        PointDtoFactory pointDtoFactory = new PointDtoFactory(points);
 
         Coordinate coordinate = new Coordinate();
-        coordinate.drawPoint(coordinateDto.getPointDTO());
+        coordinate.drawPoint(pointDtoFactory.getPointDTO());
 
         ResultView resultView = new ResultView(coordinate.getCoordinatesAxis(), coordinate.getCoordinatePlane());
-        resultView.disPlay(coordinateDto.getLineResult());
+        resultView.disPlay(Line.calculatorLine(points));
     }
 }

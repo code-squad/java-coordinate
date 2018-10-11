@@ -32,8 +32,8 @@ public class ResultView {
         }
         System.out.println();
 
-        for (CoordinateString myString : this.coordinateAxis) {
-            System.out.print(myString);
+        for (CoordinateString coordinateAxis : this.coordinateAxis) {
+            System.out.print(coordinateAxis);
         }
 
         System.out.println();

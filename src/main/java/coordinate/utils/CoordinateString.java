@@ -4,14 +4,14 @@ public class CoordinateString {
     private String coordinateString;
 
     public CoordinateString(int num) {
-        this.coordinateString = makeString(num);
+        this.coordinateString = makeAxis(num);
     }
 
     public CoordinateString() {
-        this.coordinateString = makeString();
+        this.coordinateString = makePlaneBlank();
     }
 
-    public static String makeString(int i) {
+    public static String makeAxis(int i) {
         if (i == 0) {
             return "  0 ";
         }
@@ -21,7 +21,7 @@ public class CoordinateString {
         return "   ";
     }
 
-    public static String makeString() {
+    public static String makePlaneBlank() {
         return String.format("%3s", " ");
     }
 
