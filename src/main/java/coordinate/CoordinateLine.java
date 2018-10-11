@@ -52,7 +52,9 @@ public class CoordinateLine {
                 count++;
         }
         // 세쌍의 길이가 서로 같으면 직삭각형이라고 판별한다.
-        return count == 3;
+        if (count == 3)
+            return true;
+        return false;
     }
 
 
