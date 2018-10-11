@@ -1,22 +1,38 @@
 package coordinate.domain;
 
-public class Line implements Comparable<Line>{
-    private Point point;
-    private Point anotherPoint;
+import java.util.List;
 
-    public Line(Point point, Point anotherPoint) {
-        this.point = point;
-        this.anotherPoint = anotherPoint;
+public class Line extends Figure implements Comparable<Line>{
+    private static final int ZERO = 0;
+    private static final int ONE = 1;
+    private static final String NAME = "Line";
+
+    public Line(List<Point> points) {
+        super(points);
     }
 
-    public double length(){
-        return point.calculateLineLength(anotherPoint);
+    @Override
+    public double area() {
+        return points.get(ZERO).calculateLineLength(points.get(ONE));
+    }
+
+    @Override
+    public String getName() {
+        return NAME;
     }
 
     @Override
     public int compareTo(Line o) {
-        if(this.length() > o.length()) return 1;
-        if(this.length() < o.length()) return -1;
-        return 0;
+        if(this.area() > o.area()) return ONE;
+        if(this.area() < o.area()) return -ONE;
+        return ZERO;
     }
+
+    // just override. don't use.
+    @Override
+    protected boolean isValid() {
+        return false;
+    }
+
+
 }

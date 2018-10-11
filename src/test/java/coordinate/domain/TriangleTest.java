@@ -55,6 +55,11 @@ public class TriangleTest {
         Assertions.assertThat(t.area()).isEqualTo(29.0, Offset.offset(0.09));
     }
 
+    @Test
+    public void test(){
+        String NEWLINE = System.getProperty("line.separator");
+        System.out.print(NEWLINE);
+    }
 
 
 }

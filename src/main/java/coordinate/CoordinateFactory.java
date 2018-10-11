@@ -1,13 +1,8 @@
 package coordinate;
 
-import coordinate.controller.LineFactory;
+import coordinate.controller.FigureMapper;
 import coordinate.controller.PointFactory;
-import coordinate.controller.RectangleFactory;
-import coordinate.controller.TriangleFactory;
-import coordinate.domain.Line;
-import coordinate.domain.Point;
-import coordinate.domain.Rectangle;
-import coordinate.domain.Triangle;
+import coordinate.domain.*;
 import coordinate.dto.CoordinateResult;
 import coordinate.view.InputView;
 import coordinate.view.ResultView;
@@ -22,10 +17,7 @@ public class CoordinateFactory {
     private static void goCoordinate(){
         try{
             List<Point> points = inputCoordinate();
-            ResultView.draw(makeResultDto(points));
-            goLine(points);
-            goTriangle(points);
-            goRectangle(points);
+            goFigure(points);
         }catch (IllegalArgumentException | IndexOutOfBoundsException e){
             reEnterCoordinate(e.getMessage());
         }
@@ -39,24 +31,12 @@ public class CoordinateFactory {
         return result;
     }
 
-    private static void goRectangle(List<Point> points) {
-        if(RectangleFactory.isPossibleRectangle(points)){
-            Rectangle rectangle = RectangleFactory.generateRectangle(points);
-            ResultView.showRectangleArea(rectangle.area());
-        }
-    }
-
-    private static void goTriangle(List<Point> points) {
-        if(TriangleFactory.isPossibleTriangle(points)){
-            Triangle triangle = TriangleFactory.generateTriangle(points);
-            ResultView.showTriangleArea(triangle.area());
-        }
-    }
-
-    private static void goLine(List<Point> points){
-        if(LineFactory.isPossibleLine(points.size())){
-            Line line = LineFactory.generateLine(points);
-            ResultView.showLineLength(line.length());
+    private static void goFigure(List<Point> points){
+        FigureMapper mapper = new FigureMapper();
+        Figure figure = mapper.getFigure(points);
+        ResultView.draw(makeResultDto(points));
+        if(figure != null){
+            ResultView.showFigureArea(figure.getName(), figure.area());
         }
     }
 

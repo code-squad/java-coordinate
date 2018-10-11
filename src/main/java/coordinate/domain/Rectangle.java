@@ -6,31 +6,29 @@ import java.util.List;
 import java.util.Set;
 
 // 직사각형의 밑변은 x축과 평행하다고 가정.
-public class Rectangle {
+public class Rectangle extends Figure{
     private static final int ZERO = 0;
     private static final int TWO = 2;
-
-    private List<Point> points;
+    private static final String NAME = "Rectangle";
 
     public Rectangle(List<Point> points) {
-        this.points = points;
-        if(isIncludeDuplication() || !isValidCount()) throw new IllegalArgumentException("RectangleException");
+        super(points);
+        if(!isValid()) throw new IllegalArgumentException("RectangleException");
     }
 
-    private boolean isIncludeDuplication(){
-        Set<Point> newPoints = new HashSet<>();
-        for (Point point : this.points) {
-            newPoints.add(point);
-        }
-        return !(this.points.size() == newPoints.size());
-    }
-
-    private boolean isValidCount(){
+    @Override
+    protected boolean isValid() {
         return this.makeHeightSet().size() == TWO && this.makeWidthSet().size() == TWO;
     }
 
-    public int area() {
+    @Override
+    public double area() {
         return this.calculateWidth() * this.calculateHeight();
+    }
+
+    @Override
+    public String getName() {
+        return NAME;
     }
 
     // default modifier for test
