@@ -34,7 +34,7 @@ public class TestFigure {
         Point point = Point.of(1, 2);
         Figure f = point.addPoint(Point.of(2, 3));
         assertThat(f.getClass()).isEqualTo(Line.class);
-        System.out.println("LINE : " + f.size());
+        System.out.println("LINE : " + f.area());
     }
 
     @Test

@@ -12,7 +12,7 @@ public class Triangle extends Figure {
     }
 
     @Override
-    public double size() {
+    public double area() {
         return formulaOfHeron();
     }
 

@@ -14,6 +14,6 @@ public class TestLine {
         List<Point> points = new ArrayList<>();
         points.add(Point.of(1, 1));
         points.add(Point.of(4, 5));
-        assertThat(Factory.of(points).size()).isCloseTo(5.0, Offset.offset(5.0));
+        assertThat(Factory.of(points).area()).isCloseTo(5.0, Offset.offset(5.0));
     }
 }

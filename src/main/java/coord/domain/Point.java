@@ -60,7 +60,7 @@ public class Point extends Figure {
     }
 
     @Override
-    public double size() {
+    public double area() {
         return 0;
     }
 

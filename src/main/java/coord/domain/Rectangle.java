@@ -25,7 +25,7 @@ public class Rectangle extends Figure {
     }
 
     @Override
-    public double size() {
+    public double area() {
         Point benchmark = points.get(0);
         Point vertical = benchmark.grepVertical(points);
         Point horizontal = benchmark.grepHorizontal(points);
