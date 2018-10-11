@@ -2,10 +2,11 @@ package com.zingoworks.coordinate.domain;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class Coordinate {
-    public static ArrayList<Point> getRefinedPoint(String[] input) {
-        ArrayList<Point> points = new ArrayList<>();
+    public static List<Point> getRefinedPoint(String[] input) {
+        List<Point> points = new ArrayList<>();
         String[] refinedInput = new String[input.length];
         for (int i = 0; i < input.length; i++) {
             refinedInput[i] = removeParentheses(input[i]);
@@ -19,7 +20,7 @@ public class Coordinate {
         return points;
     }
 
-    private static boolean findOverlappedPoints(ArrayList<Point> points) {
+    private static boolean findOverlappedPoints(List<Point> points) {
         HashSet<Point> pointSets = new HashSet<>();
         for (Point point : points) {
             pointSets.add(point);

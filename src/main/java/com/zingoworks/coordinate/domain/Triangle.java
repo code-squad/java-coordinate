@@ -1,11 +1,12 @@
 package com.zingoworks.coordinate.domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class Triangle extends Figure{
-    private ArrayList<Point> points;
+public class Triangle extends Figure {
+    private List<Point> points;
 
-    public Triangle(ArrayList<Point> points){
+    public Triangle(List<Point> points){
+        super(3, "삼각형의 성립조건이 아닙니다.");
         this.points = points;
 
         throwExceptionByNumberOfPoints(points);
@@ -16,10 +17,8 @@ public class Triangle extends Figure{
     }
 
     @Override
-    void throwExceptionByNumberOfPoints(ArrayList<Point> points) {
-        if(points.size() != 3){
-            throw new IllegalArgumentException("삼각형의 성립 조건이 아닙니다.");
-        }
+    public String getFigure() {
+        return "삼각형";
     }
 
     @Override
@@ -31,4 +30,14 @@ public class Triangle extends Figure{
 
         return Math.sqrt(s * (s-a) * (s-b) * (s-c));
     }
+
+    //    @Override
+//    public double getArea() {
+//        double a = this.points.get(0).getDistance(this.points.get(1));
+//        double b = this.points.get(1).getDistance(this.points.get(2));
+//        double c = this.points.get(0).getDistance(this.points.get(2));
+//        double s = (a+b+c) / 2;
+//
+//        return Math.sqrt(s * (s-a) * (s-b) * (s-c));
+//    }
 }
