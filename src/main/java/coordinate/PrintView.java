@@ -19,13 +19,12 @@ public class PrintView {
                 System.out.printf(THREE_STRING, VERTICAL);
             drawDotSpace(y, points);
             System.out.println();
-
         }
     }
 
     private static void drawDotSpace(int y, List<Point> points) {
         for (int x = 1; x <= AXIS_MAX * ROW.length(); x++) {
-            if(drawDot(y, points, x))
+            if (drawDot(y, points, x))
                 System.out.print(BLANK);
         }
     }
@@ -33,7 +32,7 @@ public class PrintView {
     private static Boolean drawDot(int y, List<Point> points, int x) {
         String dot = "●";
         for (Point point : points) {
-            if(point.isY(y) && point.isX(x)) {
+            if (point.isY(y) && point.isX(x)) {
                 System.out.print(dot);
                 return false;
             }
@@ -58,8 +57,16 @@ public class PrintView {
         System.out.println();
     }
 
-    public static void printLength(double lineLength) {
+    public static void printLength() {
         System.out.print("두 점 사이 거리는 ");
-        System.out.println(lineLength);
     }
+
+    public static void printCube() {
+        System.out.print("사각형의 넓이는 ");
+    }
+
+    public static void dotCountReWrite() {
+        System.out.println("직사각형이 아니거나 점의 개수는 2개혹은 4개 이어야 합니다.");
+    }
+
 }
