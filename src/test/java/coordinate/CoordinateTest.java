@@ -1,26 +1,66 @@
 package coordinate;
 
+import coordinate.domain.Coordinate;
+import coordinate.domain.CoordinateYLine;
+import coordinate.domain.Point;
+import coordinate.domain.PointFactory;
+import coordinate.resultview.ResultView;
+import coordinate.utils.CoordinateString;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Java6Assertions.offset;
 
 public class CoordinateTest {
+    //
+    //
+    ///
+    @Test
+    public void pointCalculator() {
+        String input = "(4,4) - (4,2)";
+        ArrayList<Point> points = PointFactory.testInput(input);
+        assertThat(points.get(0).calculateLIne(points.get(1))).isEqualTo((Math.sqrt(Math.pow(4 - 4, 2)
+                + Math.pow(2 - 4, 2))), offset(0.00099));
+
+        input = "(6,4) - (4,8)";
+        points = PointFactory.testInput(input);
+        assertThat(points.get(0).calculateLIne(points.get(1))).isEqualTo((Math.sqrt(Math.pow(4 - 6, 2)
+                + Math.pow(8 - 4, 2))), offset(0.00099));
+    }
+
+    @Test
+    public void inputTest() {
+        String input = "(12,12) - (12, 22)";
+        ArrayList<Point> points = PointFactory.testInput(input);
+        assertThat(points.get(0).getXPoint()).isEqualTo(12);
+        assertThat(points.get(0).getYPoint()).isEqualTo(12);
+        assertThat(points.get(1).getXPoint()).isEqualTo(12);
+        assertThat(points.get(1).getYPoint()).isEqualTo(22);
+    }
+
+    @Test
+    public void coordinateLineSizeTest() {
+        CoordinateYLine coordinateYLine = new CoordinateYLine();
+        assertThat(coordinateYLine.getCoordinateLine().size()).isEqualTo(25);
+        System.out.println(coordinateYLine);
+    }
 
     @Test
     public void displayTest() {
         // 배열을 만들어 0부터 24 한칸씩 띄워 배열을 생성
         // x 축에 0을 포함 y축 그릴땐 0번째 제외
         Coordinate coordinate = new Coordinate();
-        coordinate.displayYCoordinate();
-        coordinate.displayXCoordinate();
+        ResultView resultView = new ResultView(coordinate.getCoordinatesAxis(), coordinate.getCoordinatePlane());
+        resultView.displayTest();
     }
+
     @Test
     public void StringTest() {
-        String a = MyString.makeString(4);
+        String a = CoordinateString.makeAxis(4);
         assertThat(a).isEqualTo("  4");
-        assertThat(MyString.makeString(3)).isEqualTo("   ");
-        assertThat(MyString.makeString(6)).isEqualTo("  6");
+        assertThat(CoordinateString.makeAxis(3)).isEqualTo("   ");
+        assertThat(CoordinateString.makeAxis(6)).isEqualTo("  6");
     }
 }
