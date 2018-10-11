@@ -4,8 +4,13 @@ import java.util.List;
 
 public class Triangle extends Figure {
 
-    public Triangle(List<Point> points) throws IllegalArgumentException {
-        super(checkTriangle(points));
+    Triangle() {
+        super();
+    }
+
+    public Figure init(List<Point> points) {
+        this.points = checkTriangle(points);
+        return this;
     }
 
     private static List<Point> checkTriangle(List<Point> points) {

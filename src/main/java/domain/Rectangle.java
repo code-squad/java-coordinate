@@ -5,10 +5,16 @@ import java.util.List;
 
 public class Rectangle extends Figure {
 
-    public Rectangle(List<Point> points) throws IllegalArgumentException {
-        super(checkRectangle(points));
+    Rectangle() {
+        super();
     }
 
+    @Override
+    public Figure init(List<Point> points) {
+        this.points = checkRectangle(points);
+        return this;
+    }
+    
     private static List<Point> checkRectangle(List<Point> points) throws IllegalArgumentException {
         List<Point> tmp = new ArrayList<>(points);
         Point p = points.get(0);

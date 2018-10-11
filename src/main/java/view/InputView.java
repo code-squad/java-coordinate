@@ -34,8 +34,7 @@ public class InputView {
     public static Figure makeFigure() {
         while (true) {
             try {
-                Figure figure = Figure.init(makePoints(Parser.parsingPointString(input())));
-                return figure;
+                return Figure.initPoints(makePoints(Parser.parsingPointString(input())));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

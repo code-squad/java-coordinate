@@ -4,8 +4,14 @@ import java.util.List;
 
 public class Dot extends Figure {
 
-    protected Dot(List<Point> points) throws IllegalArgumentException {
-        super(points);
+    protected Dot() {
+        super();
+    }
+
+    @Override
+    public Figure init(List<Point> points) {
+        this.points = points;
+        return this;
     }
 
     @Override
