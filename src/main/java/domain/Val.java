@@ -5,21 +5,28 @@ import java.util.Objects;
 public class Val {
     public final static int VAL_MAX = 24;
     public final static int VAL_MIN = 0;
-    private int v;
+    private double v;
 
-    public Val(int v) {
+    public Val(double v) {
         if(v < VAL_MIN || v > VAL_MAX) {
             throw new IllegalArgumentException();
         }
         this.v = v;
     }
 
-    public int getV() {
+    public double getV() {
         return v;
     }
 
-    public int substract(Val w) {
+    public double substract(Val w) {
         return v - w.v;
+    }
+
+    @Override
+    public String toString() {
+        return "Val{" +
+                "v=" + v +
+                '}';
     }
 
     @Override
@@ -27,12 +34,11 @@ public class Val {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Val val = (Val) o;
-        return v == val.v;
+        return Double.compare(val.v, v) == 0;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(v);
     }
-
 }

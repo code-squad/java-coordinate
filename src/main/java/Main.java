@@ -16,12 +16,14 @@ public class Main {
                 points = parse(InputView.getUserInput());
                 break;
             } catch(Exception e) {
-                System.out.println("출력 범위를 넘었거나 숫자가 입력되지 않았습니다. 다시 입력해주세요");
+                System.out.println("출력 범위를 넘었거나 수가 정상적으로 입력되지 않았습니다. 다시 입력해주세요");
             }
         }
         CoordCalculator coordCalculator = new CoordCalculator(points);
-        ResultDto resultDto = coordCalculator.getLineDistance();
-        ResultView.printCoord(coordCalculator.getPoints());
-        ResultView.printResult(resultDto.getLineDistance());
+        ResultDto resultDto = coordCalculator.calculate();
+        ResultView.printCoord(resultDto.getPointsDto());
+        if(resultDto.getResultValue() != -1) {
+            ResultView.printResult(resultDto.getResultValue(), points.size());
+        }
     }
 }

@@ -3,10 +3,14 @@ package domain;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.offset;
 
 public class PointTest {
+    List<Point> points = new ArrayList<>();
     Point p1;
     Point p2;
 
@@ -14,6 +18,8 @@ public class PointTest {
     public void setUp() throws Exception {
         p1 = new Point(10, 10);
         p2 = new Point(14, 15);
+        points.add(p1);
+        points.add(p2);
     }
 
     @Test
@@ -24,5 +30,10 @@ public class PointTest {
     @Test
     public void 포인트간_거리() {
         assertThat(p1.calculateLineDistance(p2)).isEqualTo(6.403124, offset(0.00099));
+    }
+
+    @Test
+    public void 평균값_계산() {
+        assertThat(Point.calculatePointsAverage(points)).isEqualTo(new Point(12, 12.5));
     }
 }
