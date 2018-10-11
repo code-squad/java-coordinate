@@ -1,10 +1,11 @@
 package coordinate.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,12 +19,7 @@ public class RectangleTest {
         Point p3 = new Point(22, 18);
         Point p4 = new Point(10, 18);
 
-        List<Point> list = new ArrayList<>();
-
-        list.add(p1);
-        list.add(p2);
-        list.add(p3);
-        list.add(p4);
+        List list = Arrays.asList(p1,p2,p3,p4);
 
         r = new Rectangle(list);
     }
@@ -35,12 +31,7 @@ public class RectangleTest {
         Point p3 = new Point(22, 18);
         Point p4 = new Point(10, 12);
 
-        List<Point> list = new ArrayList<>();
-
-        list.add(p1);
-        list.add(p2);
-        list.add(p3);
-        list.add(p4);
+        List list = Arrays.asList(p1,p2,p3,p4);
 
         Rectangle r2 = new Rectangle(list);
     }

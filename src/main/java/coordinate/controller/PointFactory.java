@@ -1,6 +1,5 @@
 package coordinate.controller;
 
-import coordinate.CoordinateFactory;
 import coordinate.domain.Point;
 import coordinate.util.StringHandler;
 
@@ -8,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PointFactory {
+    public static final int ZERO = 0;
+    public static final int ONE = 1;
 
     public static List<Point> generatePoints(String[] coordinate){
         List<Point> points = new ArrayList<>();
@@ -27,6 +28,6 @@ public class PointFactory {
 
     private static Point makePoint(String position){
         List<Integer> positionXY = makeRefinedXY(position);
-        return new Point(positionXY.get(CoordinateFactory.ZERO), positionXY.get(CoordinateFactory.ONE));
+        return new Point(positionXY.get(ZERO), positionXY.get(ONE));
     }
 }

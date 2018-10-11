@@ -7,6 +7,8 @@ public class ResultView {
     private static final String RECTANGLE_AREA_MESSAGE = "사각형 넓이는  ";
     private static final String RE_ENTER_MESSAGE = "0~24 까지의 유효한 값으로 다시 입력해주세요.";
     private static final String RE_ENTER_RECTANGLE_MESSAGE = "직사각형이 아닙니다. 유효한 값으로 다시 입력해주세요.";
+    private static final String RE_ENTER_TRIANGLE_MESSAGE = "삼각형 성립 조건이 아닙니다. 유효한 값으로 다시 입력해주세요.";
+    private static final String TRIANGLE_AREA_MESSAGE = "삼각형의 넓이는 ";
 
     public static void draw(CoordinateResult result){
         StringBuilder sb = CoordinateGenerator.initCoordinate();
@@ -23,6 +25,9 @@ public class ResultView {
             System.out.println(RE_ENTER_RECTANGLE_MESSAGE );
             return;
         }
+        if(message == "TriangleException"){
+            System.out.println(RE_ENTER_TRIANGLE_MESSAGE);
+        }
     }
 
     public static void showLineLength(double lineLength) {
@@ -31,5 +36,9 @@ public class ResultView {
 
     public static void showRectangleArea(int area) {
         System.out.println(RECTANGLE_AREA_MESSAGE + area);
+    }
+
+    public static void showTriangleArea(double area) {
+        System.out.println(TRIANGLE_AREA_MESSAGE + area);
     }
 }

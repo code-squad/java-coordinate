@@ -3,9 +3,11 @@ package coordinate;
 import coordinate.controller.LineFactory;
 import coordinate.controller.PointFactory;
 import coordinate.controller.RectangleFactory;
+import coordinate.controller.TriangleFactory;
 import coordinate.domain.Line;
 import coordinate.domain.Point;
 import coordinate.domain.Rectangle;
+import coordinate.domain.Triangle;
 import coordinate.dto.CoordinateResult;
 import coordinate.view.InputView;
 import coordinate.view.ResultView;
@@ -13,11 +15,6 @@ import coordinate.view.ResultView;
 import java.util.List;
 
 public class CoordinateFactory {
-    public static final int ZERO = 0;
-    public static final int ONE = 1;
-    public static final int TWO = 2;
-    public static final int FOUR = 4;
-
     public static void main(String[] args) {
         goCoordinate();
     }
@@ -27,6 +24,7 @@ public class CoordinateFactory {
             List<Point> points = inputCoordinate();
             ResultView.draw(makeResultDto(points));
             goLine(points);
+            goTriangle(points);
             goRectangle(points);
         }catch (IllegalArgumentException | IndexOutOfBoundsException e){
             reEnterCoordinate(e.getMessage());
@@ -45,6 +43,13 @@ public class CoordinateFactory {
         if(RectangleFactory.isPossibleRectangle(points)){
             Rectangle rectangle = RectangleFactory.generateRectangle(points);
             ResultView.showRectangleArea(rectangle.area());
+        }
+    }
+
+    private static void goTriangle(List<Point> points) {
+        if(TriangleFactory.isPossibleTriangle(points)){
+            Triangle triangle = TriangleFactory.generateTriangle(points);
+            ResultView.showTriangleArea(triangle.area());
         }
     }
 
