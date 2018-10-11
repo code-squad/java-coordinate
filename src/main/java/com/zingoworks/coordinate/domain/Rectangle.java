@@ -5,13 +5,12 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
-public class Rectangle extends Figure implements Area {
+public class Rectangle extends Figure {
     private List<Integer> xValues;
     private List<Integer> yValues;
 
     public Rectangle(List<Point> points) {
-        this.numberOfPoints = 4;
-        this.errorStatement = "사각형의 성립조건이 아닙니다.";
+        super(4, "사각형의 성립조건이 아닙니다.");
 
         throwExceptionByNumberOfPoints(points);
 

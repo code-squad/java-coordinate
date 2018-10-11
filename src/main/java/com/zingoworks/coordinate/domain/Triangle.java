@@ -2,13 +2,12 @@ package com.zingoworks.coordinate.domain;
 
 import java.util.List;
 
-public class Triangle extends Figure implements Area {
+public class Triangle extends Figure {
     private List<Point> points;
 
     public Triangle(List<Point> points){
+        super(3, "삼각형의 성립조건이 아닙니다.");
         this.points = points;
-        this.numberOfPoints = 3;
-        this.errorStatement = "삼각형의 성립조건이 아닙니다.";
 
         throwExceptionByNumberOfPoints(points);
 

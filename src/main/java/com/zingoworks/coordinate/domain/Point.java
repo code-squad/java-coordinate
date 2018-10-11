@@ -33,7 +33,7 @@ public class Point {
         return new Point(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
     }
 
-    public static int getVerifiedNumber(int number) {
+    private int getVerifiedNumber(int number) {
         if (number < 1 || number > 24) {
             throw new IllegalArgumentException("유효한 범위를 초과합니다.");
         }

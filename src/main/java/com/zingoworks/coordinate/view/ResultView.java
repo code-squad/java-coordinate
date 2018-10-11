@@ -1,6 +1,8 @@
 package com.zingoworks.coordinate.view;
 
 import com.zingoworks.coordinate.domain.*;
+
+import java.util.HashMap;
 import java.util.List;
 
 import static com.zingoworks.coordinate.CoordinateMain.LENGTH_X;
@@ -14,13 +16,14 @@ public class ResultView {
         printAxisY(points);
         printAxisX();
         System.out.print(NEW_LINE);
-
+//자바의 다형성을 활용하여 if문 최소화해보기
         if (points.size() == 2) {
             printDistance(new Line(points));
         }
 
         if (points.size() == 3) {
-            printArea(new Triangle(points));
+            //Trianlge Factory Class 이용
+            printArea(TriangleFactory.getTriangle(points));
         }
 
         if (points.size() == 4) {
@@ -51,6 +54,7 @@ public class ResultView {
     private static void printArea(Area area) {
         System.out.println(area.getFigure() + "의 넓이는 " + area.getArea() + "입니다.");
     }
+
 //    인터페이스 구현으로 불필요해짐(?)
 //    private static void printAreaOfRectangle(Rectangle rectangle) {
 //        System.out.println("사각형의 넓이는 " + rectangle.getArea() + "입니다.");
