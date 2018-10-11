@@ -1,6 +1,6 @@
 package coordinate.resultview;
 
-import coordinate.domain.CoordinateLine;
+import coordinate.domain.CoordinateYLine;
 import coordinate.utils.CoordinateString;
 
 import java.util.ArrayList;
@@ -12,9 +12,9 @@ public class ResultView {
     private static final String BAR = "l";
 
     private ArrayList<CoordinateString> coordinateAxis;
-    private ArrayList<CoordinateLine> coordinatePlane;
+    private ArrayList<CoordinateYLine> coordinatePlane;
 
-    public ResultView(ArrayList<CoordinateString> coordinateAxis, ArrayList<CoordinateLine> coordinatePlane) {
+    public ResultView(ArrayList<CoordinateString> coordinateAxis, ArrayList<CoordinateYLine> coordinatePlane) {
         this.coordinateAxis = coordinateAxis;
         this.coordinatePlane = coordinatePlane;
     }

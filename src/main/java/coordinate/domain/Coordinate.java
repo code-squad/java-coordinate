@@ -8,17 +8,17 @@ import java.util.ArrayList;
 public class Coordinate {
     private static final int MAXiMUM_NUM = 24;
     private ArrayList<CoordinateString> coordinatesAxis;
-    private ArrayList<CoordinateLine> coordinatePlane;
+    private ArrayList<CoordinateYLine> coordinatePlane;
 
     public Coordinate() {
         this.coordinatesAxis = makeCoordinateAxis();
         this.coordinatePlane = makeCoordinatePlane();
     }
 
-    private ArrayList<CoordinateLine> makeCoordinatePlane() {
-        ArrayList<CoordinateLine> coordinatePlane = new ArrayList<>();
+    private ArrayList<CoordinateYLine> makeCoordinatePlane() {
+        ArrayList<CoordinateYLine> coordinatePlane = new ArrayList<>();
         for (int i = 0; i <= MAXiMUM_NUM; i++) {
-            coordinatePlane.add(new CoordinateLine());
+            coordinatePlane.add(new CoordinateYLine());
         }
         return coordinatePlane;
     }
@@ -33,7 +33,7 @@ public class Coordinate {
 
     public void drawPoint(ArrayList<PointDTO> points) {
         for (PointDTO point : points) {
-            this.coordinatePlane.get(point.getYPointDTO()).toStar(point.getXPointDTO());
+            this.coordinatePlane.get(point.getYPointDTO()).toMarking(point.getXPointDTO());
         }
     }
 
@@ -43,7 +43,7 @@ public class Coordinate {
         return coordinatesAxis;
     }
 
-    public ArrayList<CoordinateLine> getCoordinatePlane() {
+    public ArrayList<CoordinateYLine> getCoordinatePlane() {
         return coordinatePlane;
     }
 }

@@ -4,11 +4,11 @@ import coordinate.utils.CoordinateString;
 
 import java.util.ArrayList;
 
-public class CoordinateLine {
+public class CoordinateYLine {
     private static final int MAXiMUM_NUM = 24;
 
     private ArrayList<CoordinateString> coordinateLine;
-    public CoordinateLine() {
+    public CoordinateYLine() {
         this.coordinateLine = makeLine();
     }
 
@@ -20,8 +20,8 @@ public class CoordinateLine {
         return line;
     }
 
-    public void toStar(int xPoint) {
-        this.coordinateLine.get(xPoint).toStar();
+    public void toMarking(int xPoint) {
+        this.coordinateLine.get(xPoint).toMarking();
     }
 
     public ArrayList<CoordinateString> getCoordinateLine() {

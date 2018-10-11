@@ -25,10 +25,8 @@ public class CoordinateString {
         return String.format("%3s", " ");
     }
 
-    public void toStar() {
-        if (true) {
+    public void toMarking() {
             this.coordinateString = String.format("%3s", "*");
-        }
     }
 
     @Override

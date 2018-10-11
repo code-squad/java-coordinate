@@ -40,9 +40,9 @@ public class CoordinateTest {
 
     @Test
     public void coordinateLineSizeTest() {
-        CoordinateLine coordinateLine = new CoordinateLine();
-        assertThat(coordinateLine.getCoordinateLine().size()).isEqualTo(25);
-        System.out.println(coordinateLine);
+        CoordinateYLine coordinateYLine = new CoordinateYLine();
+        assertThat(coordinateYLine.getCoordinateLine().size()).isEqualTo(25);
+        System.out.println(coordinateYLine);
     }
 
     @Test
