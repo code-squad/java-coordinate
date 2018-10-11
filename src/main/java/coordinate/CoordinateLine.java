@@ -13,7 +13,7 @@ public class CoordinateLine {
     }
 
     public double judgeDotCount() throws IllegalArgumentException {
-        if (points.size() == 2)                               // 두점 혹은 직사각형만 출력 하도록 값을 반환한다. 그외는 예외 발생.
+        if (points.size() == 2)                               // 두점의 길이 혹은 네점일 경우 직사각형의 넓이 값을 출력 하도록 반환한다. 그외는 예외 발생.
             return findLength();
         if (points.size() == 4 && isSquare())
             return CalculatorSquare();
@@ -34,7 +34,7 @@ public class CoordinateLine {
             if (lengthArr.get(i).equals(anotherArr.get(i)))
                 count++;
         }
-        if (count == 3)                                       //세쌍의 길이가 서로 같으면 직삭각형이라고 판별한다.
+        if (count == 3)                                       // 세쌍의 길이가 서로 같으면 직삭각형이라고 판별한다.
             return true;
         return false;
     }
@@ -62,11 +62,10 @@ public class CoordinateLine {
 
     public int CalculatorSquare() {
         int cube = 0;
-        List<Double> lengthArr = oneLength();
-        List<Integer> intList = isInteger(lengthArr);
+        List<Integer> intList = isInteger(oneLength());
         if (intList.size() == 2)
             cube = intList.get(0) * intList.get(1);
-        if (intList.size() == 3) {
+        if (intList.size() == 3) {                          //세변 모두 (대각선포함) 정수일 경우 정렬한뒤 두번째만 길이를 뽑아서 곱함
             Collections.sort(intList);
             cube = intList.get(0) * intList.get(1);
         }
