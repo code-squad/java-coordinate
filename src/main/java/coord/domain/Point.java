@@ -66,7 +66,7 @@ public class Point extends Figure {
 
     @Override
     public Figure addPoint(Point point) {
-        return new Line(this.points, point);
+        return new Line(points, point);
     }
 
     @Override

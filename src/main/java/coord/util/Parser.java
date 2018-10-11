@@ -5,6 +5,7 @@ import coord.view.InputView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class Parser {
@@ -17,14 +18,17 @@ public class Parser {
         for (String str : seperatedInput) {
             String replaced = str.replace("(", "")
                     .replace(")", "");
-            try {
-                points.add(Point.ofText(replaced));
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                System.out.println("다시 입력하세요");
-                return parseToPoints(InputView.getCoord());
-            }
+            points.add(Point.ofText(replaced));
         }
+        duplicateCheck(points);
         return points;
+    }
+
+    private static void duplicateCheck(List<Point> points) {
+        HashSet<Point> set = new HashSet<>(points);
+        if (set.size() != points.size()) {
+            System.out.println("위치가 같은 점이 존재합니다.");
+            throw new IllegalArgumentException();
+        }
     }
 }
