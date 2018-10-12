@@ -3,11 +3,13 @@ package coordinate.view;
 import coordinate.domain.Coordinate;
 import coordinate.domain.CoordinatePlane;
 import coordinate.domain.Rectangles;
+import coordinate.domain.Triangle;
 import coordinate.util.InputException;
 
 import java.util.ArrayList;
 
 import static coordinate.util.Constant.CRITERIA_FOR_RECTANGLE;
+import static coordinate.util.Constant.CRITERIA_FOR_TRIANGLE;
 
 public class ResultView {
     public static final String ORIGIN_OF_COORDINATES = "  +";
@@ -80,7 +82,15 @@ public class ResultView {
         if (p.size() == CRITERIA_FOR_LINE) {
             double distance = p.get(0).getDistance(p.get(1));
             System.out.println("\n두 점 사이 거리는 " + distance);
-        } else if (p.size() == CRITERIA_FOR_RECTANGLE) {
+        }
+
+        if (p.size() == CRITERIA_FOR_TRIANGLE) {
+            Triangle t = new Triangle(p);
+            double result = t.getArea();
+            System.out.println("\n삼각형의 넓이는 " + result);
+        }
+
+        if (p.size() == CRITERIA_FOR_RECTANGLE) {
             Rectangles r = new Rectangles(p);
             double result = r.getArea();
             System.out.println("\n사각형의 넓이는 " + result);
