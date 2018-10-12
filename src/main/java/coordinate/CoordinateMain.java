@@ -18,11 +18,10 @@ public class CoordinateMain {
         try{
             ArrayList<Coordinate> coordinates  = CoordinatePlane.enterCoordinates(InputView.getPoint());
             CoordinatePlane c = new CoordinatePlane();
-
             c.checkFigure(coordinates);
 
             ResultView.drawCoordinatePlane(c, coordinates);
-            ResultView.showCalculation(coordinates);
+            ResultView.showCalculation(coordinates) ;
         }  catch (InputException | IllegalArgumentException e) {
             CoordinateMain.run();
         }

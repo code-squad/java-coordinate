@@ -1,8 +1,9 @@
-package coordinate.util;
+package coordinate.domain;
 
 import coordinate.domain.Coordinate;
 import coordinate.domain.CoordinatePlane;
 import coordinate.domain.Rectangles;
+import coordinate.util.InputException;
 import org.junit.Test;
 
 import java.util.ArrayList;

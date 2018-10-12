@@ -39,11 +39,11 @@ public class Coordinate implements Comparable<Coordinate>  {
     }
 
     private int minusX(int number) {
-        return this.x - number;
+        return Math.abs(this.x - number);
     }
 
     private int minusY(int number) {
-        return this.y - number;
+        return Math.abs(this.y - number);
     }
 
     public boolean isSameXCoordinate(Coordinate other) {
