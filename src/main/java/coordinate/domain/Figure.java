@@ -2,7 +2,7 @@ package coordinate.domain;
 
 import java.util.List;
 
-public abstract class Figure {
+public abstract class Figure implements Area{
     private List<Point> points;
 
     public Figure(List<Point> points) {
@@ -13,13 +13,7 @@ public abstract class Figure {
         return this.points.get(index);
     }
 
-    protected int getPointsSize(){
-        return this.points.size();
-    }
-
     protected abstract boolean isValid();
-
-    public abstract double area();
 
     public abstract String getName();
 }
