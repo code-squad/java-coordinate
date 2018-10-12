@@ -18,6 +18,10 @@ public class Point {
         return new PointDto((int)x.getV(), (int)y.getV());
     }
 
+    public double calculateLength(Point p) {
+        return Math.sqrt(Math.pow(x.substract(p.x), 2) + Math.pow(y.substract(p.y), 2));
+    }
+
     public static Point calculatePointsAverage(List<Point> points) {
         int pointSize = points.size();
         double middleX = 0, middleY = 0;
@@ -28,9 +32,7 @@ public class Point {
         return new Point(middleX / pointSize, middleY / pointSize);
     }
 
-    public double calculateLineDistance(Point p) {
-        return Math.sqrt(Math.pow(x.substract(p.x), 2) + Math.pow(y.substract(p.y), 2));
-    }
+    
 
     @Override
     public String toString() {

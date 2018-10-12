@@ -1,10 +1,13 @@
 package view;
 
 import domain.CoordCalculator;
+import static domain.CoordCalculator.*;
 import domain.Val;
 import dto.PointDto;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ResultView {
     public static final String Y_AXIS = "|";
@@ -13,6 +16,16 @@ public class ResultView {
     public static final String X_SPACE = "3";
     public static final String POINT_MARK = "●";
     public static final String BLANCK = "";
+    public static final String MESSAGE_FOR_LINE = "두 점 사이 거리는 ";
+    public static final String MESSAGE_FOR_TRIANGLE = "삼각형 넓이는 ";
+    public static final String MESSAGE_FOR_SQUARE = "사각형 넓이는 ";
+    static private Map<Integer, String> printMessages = new HashMap<>();
+
+    static {
+        printMessages.put(NUM_FOR_LINE, MESSAGE_FOR_LINE);
+        printMessages.put(NUM_FOR_TRIANGLE, MESSAGE_FOR_TRIANGLE);
+        printMessages.put(NUM_FOR_SQUARE, MESSAGE_FOR_SQUARE);
+    }
 
 
     private ResultView() {
@@ -69,11 +82,7 @@ public class ResultView {
 
     public static void printResult(double resultValue, int pointsSize) {
         System.out.println();
-        if(pointsSize == CoordCalculator.NUM_FOR_LINE) {
-            System.out.println("두 점 사이 거리는 " + resultValue);
-            return;
-        }
-        System.out.println("사각형 넓이는 " + resultValue);
+        System.out.printf(printMessages.get(pointsSize) + "%.1f", resultValue);
     }
 
 }

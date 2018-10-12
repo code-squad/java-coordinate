@@ -29,7 +29,7 @@ public class PointTest {
 
     @Test
     public void 포인트간_거리() {
-        assertThat(p1.calculateLineDistance(p2)).isEqualTo(6.403124, offset(0.00099));
+        assertThat(p1.calculateLength(p2)).isEqualTo(6.403124, offset(0.00099));
     }
 
     @Test
