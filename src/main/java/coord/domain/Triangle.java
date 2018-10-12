@@ -17,9 +17,9 @@ public class Triangle extends Figure {
 
     private double formulaOfHeron() {
         List<Double> sidesOfTriangle = Arrays.asList(
-                getPoints().get(0).distanceTo(getPoints().get(1)),
-                getPoints().get(1).distanceTo(getPoints().get(2)),
-                getPoints().get(2).distanceTo(getPoints().get(0)));
+                getPoint(0).distanceTo(getPoint(1)),
+                getPoint(1).distanceTo(getPoint(2)),
+                getPoint(2).distanceTo(getPoint(0)));
         return 0.25 * Math.sqrt(
                 (sidesOfTriangle.get(0) + sidesOfTriangle.get(1) + sidesOfTriangle.get(2))
                         * (-sidesOfTriangle.get(0) + sidesOfTriangle.get(1) + sidesOfTriangle.get(2))

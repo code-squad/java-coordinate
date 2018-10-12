@@ -10,7 +10,7 @@ public class Line extends Figure {
 
     @Override
     public double area() {
-        return getPoints().get(0).distanceTo(getPoints().get(1));
+        return getPoint(0).distanceTo(getPoint(1));
     }
 
     @Override

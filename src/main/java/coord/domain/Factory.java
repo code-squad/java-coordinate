@@ -8,7 +8,7 @@ public class Factory {
     private static Map<Integer, FigureCreator> map;
     static{
         map = new HashMap<>();
-        map.put(1, Point::new);
+        map.put(1, Dot::new);
         map.put(2, Line::new);
         map.put(3, Triangle::new);
         map.put(4, Rectangle::new);

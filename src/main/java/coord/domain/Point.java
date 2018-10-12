@@ -2,35 +2,17 @@ package coord.domain;
 
 import coord.util.Setting;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
-public class Point extends Figure {
+public class Point {
     public final int x;
     public final int y;
 
-    public Point(List<Point> points) {
-        super(points);
-        Point p = points.get(0);
-        this.x = p.x;
-        this.y = p.y;
-        validCheck();
-    }
-
-    public Point(int x, int y) {
-        super(new ArrayList<>());
+    private Point(int x, int y) {
         this.x = x;
         this.y = y;
-        getPoints().add(this);
         validCheck();
-    }
-
-    private void validCheck() {
-        if (x > Setting.MAXIMUM || x < Setting.MINIMUM ||
-                y > Setting.MAXIMUM || y < Setting.MINIMUM) {
-            throw new IllegalArgumentException("잘못된 값 범위");
-        }
     }
 
     public static Point of(int x, int y) {
@@ -45,6 +27,13 @@ public class Point extends Figure {
         return of(Integer.parseInt(split[0]), Integer.parseInt(split[1]));
     }
 
+    private void validCheck() {
+        if (x > Setting.MAXIMUM || x < Setting.MINIMUM ||
+                y > Setting.MAXIMUM || y < Setting.MINIMUM) {
+            throw new IllegalArgumentException("잘못된 값 범위");
+        }
+    }
+
     double distanceTo(Point point) {
         return Math.sqrt(square(x - point.x) + square(y - point.y));
     }
@@ -53,32 +42,18 @@ public class Point extends Figure {
         return Math.pow(value, 2);
     }
 
-    Point grepVertical(List<Point> points) {
-        for (Point point : points) {
-            if (this.x == point.x && this.y != point.y) {
-                return point;
-            }
-        }
-        throw new IllegalArgumentException();
+    Point grepVertical(Stream<Point> stream) {
+        return stream
+                .filter(point -> x == point.x && y != point.y)
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
-    Point grepHorizontal(List<Point> points) {
-        for (Point point : points) {
-            if (this.y == point.y && this.x != point.x) {
-                return point;
-            }
-        }
-        throw new IllegalArgumentException();
-    }
-
-    @Override
-    public double area() {
-        return 0;
-    }
-
-    @Override
-    public String figureKind() {
-        return "점";
+    Point grepHorizontal(Stream<Point> stream) {
+        return stream
+                .filter(point -> x != point.x && y == point.y)
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     @Override

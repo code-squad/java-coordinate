@@ -9,10 +9,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestFactory {
     @Test
-    public void factoryPointTest() {
+    public void factoryDotTest() {
         List<Point> points = Arrays.asList(Point.of(1, 2));
         Figure f = Factory.of(points);
-        assertThat(f.getClass()).isEqualTo(Point.class);
+        assertThat(f.getClass()).isEqualTo(Dot.class);
     }
 
     @Test
