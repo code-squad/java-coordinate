@@ -1,5 +1,6 @@
 package coordinate.domain;
 
+import coordinate.CoordinateMain;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -25,5 +26,4 @@ public class CoordinatePlaneTest {
         ArrayList<Coordinate> p = c.enterCoordinates("(1,1)");
         assertThat(p.size()).isEqualTo(1);
     }
-
 }

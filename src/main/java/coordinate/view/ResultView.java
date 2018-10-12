@@ -2,9 +2,12 @@ package coordinate.view;
 
 import coordinate.domain.Coordinate;
 import coordinate.domain.CoordinatePlane;
-import coordinate.domain.LineSegment;
+import coordinate.domain.Rectangles;
+import coordinate.util.InputException;
 
 import java.util.ArrayList;
+
+import static coordinate.util.Constant.CRITERIA_FOR_RECTANGLE;
 
 public class ResultView {
     public static final String ORIGIN_OF_COORDINATES = "  +";
@@ -12,6 +15,7 @@ public class ResultView {
     public static final String NULL = "";
     public static final String VERTICAL = "|";
     public static final int CRITERIA_FOR_LINE = 2;
+
 
     public static void drawCoordinatePlane(CoordinatePlane c, ArrayList<Coordinate> p) {
         for (int i = c.getSize() - 1; i > 0; i--) {
@@ -31,23 +35,27 @@ public class ResultView {
 
     private static StringBuilder printCoordinate(ArrayList<Coordinate> points, int index) {
         StringBuilder sb = new StringBuilder();
+        int preX = 0;
         for (Coordinate point : points) {
-            isExistCoordinate(index, sb, point);
+            preX = printLineAsterisk(index, sb, preX, point);
         }
         return sb;
     }
 
-    private static void isExistCoordinate(int index, StringBuilder sb, Coordinate point) {
-        if (point.getY() == index) {
-            printAsterisk(sb, point);
+    private static int printLineAsterisk(int index, StringBuilder sb, int preX, Coordinate point) {
+        if(point.getY() == index) {
+            preX = printAsterisk(sb, preX, point);
         }
+        return preX;
     }
 
-    private static void printAsterisk(StringBuilder sb, Coordinate point) {
-        for (int i = 0; i < point.getX() - 1; i++) {
+    private static int printAsterisk(StringBuilder sb, int preX, Coordinate point) {
+        for (int i = preX; i < point.getX() - 1; i++) {
             sb.append(String.format("%3s", " "));
         }
         sb.append(String.format("%3s", "*"));
+        preX = point.getX();
+        return preX;
     }
 
     private static void printXAxis(int size) {
@@ -68,10 +76,14 @@ public class ResultView {
         }
     }
 
-    public static void showDistanceCalculation(ArrayList<Coordinate> p) {
-        if(p.size() == CRITERIA_FOR_LINE) {
-            LineSegment line = new LineSegment(p.get(0), p.get(1));
-            System.out.println("\n두 점 사이 거리는 " + line.getDistance());
+    public static void showCalculation(ArrayList<Coordinate> p) throws InputException {
+        if (p.size() == CRITERIA_FOR_LINE) {
+            double distance = p.get(0).getDistance(p.get(1));
+            System.out.println("\n두 점 사이 거리는 " + distance);
+        } else if (p.size() == CRITERIA_FOR_RECTANGLE) {
+            Rectangles r = new Rectangles(p);
+            double result = r.getArea();
+            System.out.println("\n사각형의 넓이는 " + result);
         }
     }
 }
