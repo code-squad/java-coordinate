@@ -6,31 +6,25 @@ import java.util.List;
 
 public class Triangle extends Figure {
 
-    Triangle(List<Point> points, Point point) {
+    Triangle(List<Point> points) {
         super(points);
-        points.add(point);
     }
 
     @Override
-    public double size() {
+    public double area() {
         return formulaOfHeron();
     }
 
     private double formulaOfHeron() {
         List<Double> sidesOfTriangle = Arrays.asList(
-                points.get(0).distanceTo(points.get(1)),
-                points.get(1).distanceTo(points.get(2)),
-                points.get(2).distanceTo(points.get(0)));
+                getPoint(0).distanceTo(getPoint(1)),
+                getPoint(1).distanceTo(getPoint(2)),
+                getPoint(2).distanceTo(getPoint(0)));
         return 0.25 * Math.sqrt(
                 (sidesOfTriangle.get(0) + sidesOfTriangle.get(1) + sidesOfTriangle.get(2))
                         * (-sidesOfTriangle.get(0) + sidesOfTriangle.get(1) + sidesOfTriangle.get(2))
                         * (sidesOfTriangle.get(0) - sidesOfTriangle.get(1) + sidesOfTriangle.get(2))
                         * (sidesOfTriangle.get(0) + sidesOfTriangle.get(1) - sidesOfTriangle.get(2)));
-    }
-
-    @Override
-    public Figure addPoint(Point point) {
-        return new Rectangle(this.points, point);
     }
 
     @Override

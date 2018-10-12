@@ -4,37 +4,30 @@ import java.util.List;
 
 public class Rectangle extends Figure {
 
-    Rectangle(List<Point> points, Point point) {
+    Rectangle(List<Point> points) {
         super(points);
-        points.add(point);
         validCheck();
     }
 
     private void validCheck() {
-        Point benchmark = points.get(0);
-        isDiagonalPointValid(benchmark.grepVertical(points), benchmark.grepHorizontal(points));
+        Point benchmark = getPoint(0);
+        isDiagonalPointValid(benchmark.grepVertical(getPointStream()),
+                benchmark.grepHorizontal(getPointStream()));
     }
 
     private void isDiagonalPointValid(Point vertical, Point horizontal) {
-        for (Point point : points) {
-            if (vertical.y == point.y && horizontal.x == point.x) {
-                return;
-            }
-        }
-        throw new IllegalArgumentException();
+        getPointStream()
+                .filter(point -> vertical.x == point.x && horizontal.y == point.y)
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     @Override
-    public double size() {
-        Point benchmark = points.get(0);
-        Point vertical = benchmark.grepVertical(points);
-        Point horizontal = benchmark.grepHorizontal(points);
+    public double area() {
+        Point benchmark = getPoint(0);
+        Point vertical = benchmark.grepVertical(getPointStream());
+        Point horizontal = benchmark.grepHorizontal(getPointStream());
         return Math.abs((benchmark.x - horizontal.x) * (benchmark.y - vertical.y));
-    }
-
-    @Override
-    public Figure addPoint(Point point) {
-        return null;
     }
 
     @Override

@@ -4,19 +4,13 @@ import java.util.List;
 
 public class Line extends Figure {
 
-    Line(List<Point> points, Point point) {
+    Line(List<Point> points) {
         super(points);
-        this.points.add(point);
     }
 
     @Override
-    public double size() {
-        return points.get(0).distanceTo(points.get(1));
-    }
-
-    @Override
-    public Figure addPoint(Point point) {
-        return new Triangle(this.points, point);
+    public double area() {
+        return getPoint(0).distanceTo(getPoint(1));
     }
 
     @Override

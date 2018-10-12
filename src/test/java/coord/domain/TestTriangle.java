@@ -17,6 +17,6 @@ public class TestTriangle {
                 Point.of(1, 2)
         );
         Figure f = Factory.of(points);
-        assertThat(f.size()).isCloseTo(0.5, Offset.offset(0.01));
+        assertThat(f.area()).isCloseTo(0.5, Offset.offset(0.01));
     }
 }

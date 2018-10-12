@@ -1,6 +1,7 @@
 package coord;
 
 import coord.domain.Factory;
+import coord.domain.Figure;
 import coord.domain.Point;
 import coord.util.GridPaper;
 import coord.util.Parser;
@@ -24,6 +25,8 @@ public class CoordinateCalculatorLoader {
         gridPaper.draw(points);
 
         OutputView.printGridPaper(gridPaper.toString());
-        OutputView.printSize(Factory.of(points));
+        Figure figure = Factory.of(points);
+        OutputView.printKind(figure);
+        OutputView.printSize(figure);
     }
 }

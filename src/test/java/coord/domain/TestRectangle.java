@@ -15,7 +15,7 @@ public class TestRectangle {
         points.add(Point.of(1, 4));
         points.add(Point.of(3, 1));
         points.add(Point.of(3, 4));
-        assertThat(Factory.of(points).size()).isEqualTo(6);
+        assertThat(Factory.of(points).area()).isEqualTo(6);
     }
 
     @Test(expected = IllegalArgumentException.class)

@@ -1,13 +1,21 @@
 package coord.domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Factory {
+    private static Map<Integer, FigureCreator> map;
+    static{
+        map = new HashMap<>();
+        map.put(1, Dot::new);
+        map.put(2, Line::new);
+        map.put(3, Triangle::new);
+        map.put(4, Rectangle::new);
+    }
+
     public static Figure of(List<Point> points) {
-        Figure figure = points.get(0);
-        for (int i = 1; i < points.size(); i++) {
-            figure = figure.addPoint(points.get(i));
-        }
-        return figure;
+        FigureCreator creator = map.get(points.size());
+        return creator.create(points);
     }
 }

@@ -1,17 +1,22 @@
 package coord.domain;
 
 import java.util.List;
+import java.util.stream.Stream;
 
-abstract public class Figure {
-    protected List<Point> points;
+public abstract class Figure implements Area {
+    private List<Point> points;
 
     Figure(List<Point> points) {
         this.points = points;
     }
 
-    abstract public double size();
+    Point getPoint(int index) {
+        return points.get(index);
+    }
 
-    abstract public Figure addPoint(Point point);
+    Stream<Point> getPointStream(){
+        return points.stream();
+    }
 
     abstract public String figureKind();
 }
