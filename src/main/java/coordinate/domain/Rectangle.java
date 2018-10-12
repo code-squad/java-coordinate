@@ -6,31 +6,31 @@ import java.util.List;
 import java.util.Set;
 
 // 직사각형의 밑변은 x축과 평행하다고 가정.
-public class Rectangle {
+public class Rectangle extends Figure{
     private static final int ZERO = 0;
+    private static final int ONE = 1;
     private static final int TWO = 2;
-
-    private List<Point> points;
+    private static final int FOUR = 4;
+    private static final String NAME = "Rectangle";
 
     public Rectangle(List<Point> points) {
-        this.points = points;
-        if(isIncludeDuplication() || !isValidCount()) throw new IllegalArgumentException("RectangleException");
+        super(points);
+        if(!this.isValid()) throw new IllegalArgumentException("RectangleException");
     }
 
-    private boolean isIncludeDuplication(){
-        Set<Point> newPoints = new HashSet<>();
-        for (Point point : this.points) {
-            newPoints.add(point);
-        }
-        return !(this.points.size() == newPoints.size());
-    }
-
-    private boolean isValidCount(){
+    @Override
+    protected boolean isValid() {
         return this.makeHeightSet().size() == TWO && this.makeWidthSet().size() == TWO;
     }
 
-    public int area() {
+    @Override
+    public double area() {
         return this.calculateWidth() * this.calculateHeight();
+    }
+
+    @Override
+    public String getName() {
+        return NAME;
     }
 
     // default modifier for test
@@ -52,9 +52,9 @@ public class Rectangle {
     // default modifier for test
     Set<Integer> makeWidthSet(){
         Set<Integer> widthSet = new HashSet<>();
-        Point point = points.get(ZERO);
-        for (Point target : points) {
-            widthSet.add(point.subPositionX(target));
+        Point point = super.getPoint(ZERO);
+        for (int i = ZERO; i < FOUR; i++){
+            widthSet.add(point.subPositionX(super.getPoint(i)));
         }
         return widthSet;
     }
@@ -62,11 +62,10 @@ public class Rectangle {
     // default modifier for test
     Set<Integer> makeHeightSet(){
         Set<Integer> heightSet = new HashSet<>();
-        Point point = points.get(ZERO);
-        for (Point target : points) {
-            heightSet.add(point.subPositionY(target));
+        Point point = super.getPoint(ZERO);
+        for (int i = ZERO; i < FOUR; i++){
+            heightSet.add(point.subPositionY(super.getPoint(i)));
         }
         return heightSet;
     }
-
 }
