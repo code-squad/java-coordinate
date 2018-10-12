@@ -13,10 +13,6 @@ public abstract class Figure implements Area{
         return this.points.get(index);
     }
 
-    protected int getPointsSize(){
-        return this.points.size();
-    }
-
     protected abstract boolean isValid();
 
     public abstract String getName();
