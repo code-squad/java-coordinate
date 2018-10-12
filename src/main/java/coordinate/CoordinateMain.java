@@ -1,7 +1,6 @@
 package coordinate;
 
 import coordinate.domain.Coordinate;
-import coordinate.domain.Line;
 import coordinate.domain.Point;
 import coordinate.dto.PointDtoFactory;
 import coordinate.inputview.InputView;
@@ -9,17 +8,22 @@ import coordinate.resultview.ResultView;
 
 import java.util.ArrayList;
 
-public class CoordinateMain {
+public class CoordinateMain extends IllegalAccessException {
     public static void main(String[] args) {
-        ArrayList<Point> points = InputView.input();
+        ArrayList<Point> points;
+        try {
+            points = InputView.input();
+            PointDtoFactory pointDtoFactory = new PointDtoFactory(points);
 
-        //dto 만들기
-        PointDtoFactory pointDtoFactory = new PointDtoFactory(points);
+            Coordinate coordinate = new Coordinate();
+            coordinate.drawPoint(pointDtoFactory.getPointDTO());
 
-        Coordinate coordinate = new Coordinate();
-        coordinate.drawPoint(pointDtoFactory.getPointDTO());
+            ResultView resultView = new ResultView(coordinate.getCoordinatesAxis(), coordinate.getCoordinatePlane());
+            resultView.toDo(points);
 
-        ResultView resultView = new ResultView(coordinate.getCoordinatesAxis(), coordinate.getCoordinatePlane());
-        resultView.disPlay(Line.calculatorLine(points));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            main(args);
+        }
     }
 }
