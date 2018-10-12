@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.assertj.core.util.Arrays;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -94,8 +93,4 @@ public class PointTest {
 
         assertThat(points.size() == pointSet.size()).isFalse();
     }
-
-
-
-
 }

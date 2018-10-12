@@ -60,6 +60,4 @@ public class TriangleTest {
         String NEWLINE = System.getProperty("line.separator");
         System.out.print(NEWLINE);
     }
-
-
 }

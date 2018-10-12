@@ -44,5 +44,4 @@ public class PointFactory {
         if(copyPoints.size() != points.size()) return true;
         return false;
     }
-
 }

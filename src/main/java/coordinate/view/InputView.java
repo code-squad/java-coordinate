@@ -17,5 +17,4 @@ public class InputView {
     private static String inputText(){
         return sc.next();
     }
-
 }

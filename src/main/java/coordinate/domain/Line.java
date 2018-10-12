@@ -13,7 +13,7 @@ public class Line extends Figure implements Comparable<Line>{
 
     @Override
     public double area() {
-        return points.get(ZERO).calculateLineLength(points.get(ONE));
+        return super.getPoint(ZERO).calculateLineLength(super.getPoint(ONE));
     }
 
     @Override
@@ -33,6 +33,4 @@ public class Line extends Figure implements Comparable<Line>{
     protected boolean isValid() {
         return false;
     }
-
-
 }

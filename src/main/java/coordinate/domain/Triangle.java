@@ -39,9 +39,9 @@ public class Triangle extends Figure{
     }
 
     private List<Line> generateLines(){
-        Line a = new Line(Arrays.asList(this.points.get(ZERO), this.points.get(ONE)));
-        Line b = new Line(Arrays.asList(this.points.get(ZERO), this.points.get(TWO)));
-        Line c = new Line(Arrays.asList(this.points.get(ONE), this.points.get(TWO)));
+        Line a = new Line(Arrays.asList(super.getPoint(ZERO), super.getPoint(ONE)));
+        Line b = new Line(Arrays.asList(super.getPoint(ZERO), super.getPoint(TWO)));
+        Line c = new Line(Arrays.asList(super.getPoint(ONE), super.getPoint(TWO)));
         return Arrays.asList(a, b, c);
     }
 
@@ -50,5 +50,4 @@ public class Triangle extends Figure{
         Collections.sort(lines);
         return Arrays.asList(lines.get(ZERO).area(), lines.get(ONE).area(), lines.get(TWO).area());
     }
-
 }
