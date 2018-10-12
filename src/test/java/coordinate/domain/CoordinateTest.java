@@ -3,6 +3,7 @@ package coordinate.domain;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.offset;
 
 public class CoordinateTest {
 
@@ -22,19 +23,13 @@ public class CoordinateTest {
         Coordinate p = Coordinate.of(4, 30);
     }
 
-    @Test
-    public void 두점의X좌표계산() {
-        Coordinate a = Coordinate.of(1,1);
-        Coordinate b = Coordinate.of(6,2);
-        int c = a.subtractXCoordinateFrom(b);
-        assertThat(c).isEqualTo(5);
-    }
 
     @Test
-    public void 두점의Y좌표계산() {
-        Coordinate a = Coordinate.of(1,1);
-        Coordinate b = Coordinate.of(2,3);
-        int c = a.subtractYCoordinateFrom(b);
-        assertThat(c).isEqualTo(2);
+    public void 두점거리계산() {
+        Coordinate p1 = Coordinate.of(1,1);
+        Coordinate p2 = Coordinate.of(2,2);
+        double distance = p1.getDistance(p2);
+        assertThat(distance).isEqualTo(1.414, offset(0.00099));
+
     }
 }
