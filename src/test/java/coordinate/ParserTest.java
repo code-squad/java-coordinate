@@ -3,6 +3,8 @@ package coordinate;
 import coordinate.utill.Parser;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ParserTest {
@@ -16,9 +18,9 @@ public class ParserTest {
 
     @Test
     public void 괄호제거() {
-        String[] values = Parser.parenthesisRemove(Parser.deshSeparator("(1,2)-(3,4)"));
+        List<String> values = Parser.parenthesisRemove(Parser.deshSeparator("(1,2)-(3,4)"));
 
-        assertThat(values[0]).isEqualTo("1,2");
-        assertThat(values[1]).isEqualTo("3,4");
+        assertThat(values.get(0)).isEqualTo("1,2");
+        assertThat(values.get(1)).isEqualTo("3,4");
     }
 }

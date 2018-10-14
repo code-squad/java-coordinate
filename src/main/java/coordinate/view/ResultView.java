@@ -1,7 +1,11 @@
 package coordinate.view;
 
 import coordinate.domain.Point;
+import coordinate.domain.Rectangle;
+import coordinate.domain.Triangle;
 import coordinate.utill.AxisCondition;
+
+import java.util.List;
 
 public class ResultView {
     static final String X_BAR = "-";
@@ -9,78 +13,43 @@ public class ResultView {
     static final char ZERO_BAR = '+';
     static final String BLANK = " ";
     static final String DOT = "0";
+    static final int Y_OFFSET = 3;
+    static final int X_OFFSET = 2;
 
-    public static void createLocationAxis(Point first, Point second) {
-        createAxisOfY(first, second);
+
+    public static void createStraight(List<Point> points) {
+        createAxisOfY(points);
         createAxisOfX();
     }
 
-    private static void createAxisOfY(Point first, Point second) {
-        for (int i = AxisCondition.MAX_AXIS; i > AxisCondition.MIN_AXIS; i--) {
-            if (i % 2 == 0) {
-                System.out.printf("%2d%s", i, Y_BAR);
-                createDot(first, second, i);
-                System.out.println();
-                continue;
+    private static void createAxisOfY(List<Point> points) {
+        for (int currentY = AxisCondition.MAX_AXIS; currentY > AxisCondition.MIN_AXIS; currentY--) {
+            if (currentY % 2 == 0) {
+                System.out.printf("%" + Y_OFFSET + "s", String.valueOf(currentY) + Y_BAR);
             }
-            System.out.printf("%3s", Y_BAR);
-            createDot(first, second, i);
+            if (currentY % 2 == 1) {
+                System.out.printf("%" + Y_OFFSET + "s", Y_BAR);
+            }
+            drawDot(points, currentY);
             System.out.println();
         }
     }
 
-    private static void createDot(Point first, Point second, int currentToAxisOfY) {
-        if (first.equalToAxisOfY(currentToAxisOfY) && second.equalToAxisOfY(currentToAxisOfY)) {
-            existToFirstAndSecondOfYInLine(first.sort(second));
+    private static void drawDot(List<Point> points, int currentY) {
+        for (int currentX = AxisCondition.MIN_AXIS + 1; currentX <= AxisCondition.MAX_AXIS; currentX++) {
+            System.out.printf("%" + X_OFFSET + "s", checkPoint(points, currentX, currentY));
         }
-        existToFirstAxisOfYInLine(first, second, currentToAxisOfY);
-        existToSecondAxisOfYInLine(first, second, currentToAxisOfY);
     }
 
-    private static void existToFirstAndSecondOfYInLine(int[] axisOfX) {
-        for (int currentX = 1; currentX < AxisCondition.MAX_AXIS; currentX++) {
-            System.out.print(BLANK);
-            if (axisOfX[0] == currentX) {
-                System.out.print(DOT);
-            }
-            if (axisOfX[1] == currentX) {
-                System.out.print(DOT);
+    private static String checkPoint(List<Point> points, int currentX, int currentY) {
+        for (Point point : points) {
+            if (point.equalToAxisOfX(currentX) && point.equalToAxisOfY(currentY)) {
+                return DOT;
             }
         }
+        return BLANK;
     }
 
-    private static void existToFirstAxisOfYInLine(Point first, Point second, int currentToAxisOfY) {
-        if (first.equalToAxisOfY(currentToAxisOfY) && !second.equalToAxisOfY(currentToAxisOfY)) {
-            isExistFirst(first);
-        }
-    }
-
-    private static void isExistFirst(Point first) {
-        for (int currentX = 1; currentX < AxisCondition.MAX_AXIS; currentX++) {
-            if (first.equalToAxisOfX(currentX)) {
-                System.out.printf("%2s", DOT);
-                break;
-            }
-            System.out.printf("%2s", BLANK);
-        }
-    }
-
-    private static void existToSecondAxisOfYInLine(Point first, Point second, int currentToAxisOfY) {
-        if (second.equalToAxisOfY(currentToAxisOfY) && !first.equalToAxisOfY(currentToAxisOfY)) {
-            isExistSecond(second);
-        }
-    }
-
-    private static void isExistSecond(Point second) {
-        for (int currentX = 1; currentX < AxisCondition.MAX_AXIS; currentX++) {
-            if (second.equalToAxisOfX(currentX)) {
-                System.out.printf("%2s", DOT);
-                break;
-            }
-            System.out.printf("%2s", BLANK);
-
-        }
-    }
 
     private static void createAxisOfX() {
         drawXLine();
@@ -90,7 +59,7 @@ public class ResultView {
     }
 
     private static void drawXLine() {
-        System.out.printf("%3s", ZERO_BAR);
+        System.out.printf("%" + Y_OFFSET + "s", ZERO_BAR);
         for (int i = 0; i < AxisCondition.MAX_AXIS * 2; i++) {
             System.out.print(X_BAR);
         }
@@ -100,14 +69,23 @@ public class ResultView {
     private static void drawXNo() {
         for (int i = 0; i <= AxisCondition.MAX_AXIS; i++) {
             if (i % 2 == 0) {
-                System.out.printf("%3d", i);
+                System.out.printf("%" + Y_OFFSET + "d", i);
                 continue;
             }
             System.out.print(BLANK);
         }
     }
 
-    public static void distView(double dist){
+    public static void distView(double dist) {
         System.out.printf("두 점 사이의 거리는 %6f", dist);
     }
+
+    public static void areaView(Rectangle q) {
+        System.out.print(q.name() + " 넓이는 : " + q.area());
+    }
+
+    public static void areaView(Triangle t) {
+        System.out.print(t.name() + " 넓이는 : " + t.area());
+    }
+
 }

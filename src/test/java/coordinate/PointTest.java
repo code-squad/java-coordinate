@@ -14,12 +14,4 @@ public class PointTest {
 
         assertThat(point.distance(point2)).isEqualTo(2.828,offset(0.001));
     }
-
-    @Test
-    public void 정렬() {
-        Point point = Point.of(3,2);
-        Point point2 = Point.of(1,4);
-
-        assertThat(point.sort(point2)[0]).isEqualTo(1);
-    }
 }
