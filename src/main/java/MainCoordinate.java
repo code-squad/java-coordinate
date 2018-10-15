@@ -14,10 +14,9 @@ public class MainCoordinate {
         start();
     }
 
-    public static void start() {
+    private static void start() {
         try {
-            List<Integer[]> posIntegerList = Parser.makePosition(getCoordinateValue());
-            List<Point> pointList = MakingPoints.makePointList(posIntegerList);
+            List<Point> pointList = MakingPoints.makePoints(Parser.makePosition(getCoordinateValue()));
             printCoordinate(pointList);
             printLineLength(new Line().getLength(pointList));
         } catch (Exception e) {

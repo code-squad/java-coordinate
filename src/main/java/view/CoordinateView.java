@@ -9,13 +9,13 @@ public class CoordinateView {
     static final int LENGTH = 24;
     private StringBuilder sb = new StringBuilder();
 
-    public void drawRow() {
+    private void drawRow() {
         for (int i = LENGTH; i > 0; i--) {
             drawRowValue(i);
         }
     }
 
-    public void drawRowValue(int index) {
+    private void drawRowValue(int index) {
         if (index % 2 != 0) {
             sb.append(String.format("%2s", BLANK) + VERTICAL_LINE + String.format("%47s", BLANK) + '\n');
             return;
@@ -23,7 +23,7 @@ public class CoordinateView {
         sb.append(String.format("%2s", index) + VERTICAL_LINE + String.format("%47s", BLANK) + '\n');
     }
 
-    public void drawXLine() {
+    private void drawXLine() {
         sb.append(String.format("%3s", CROSS));
         for (int i = 0; i < LENGTH; i++) {
             sb.append(HORIZONTAL_LINE);
@@ -32,7 +32,7 @@ public class CoordinateView {
         drawXLineNum();
     }
 
-    public void drawXLineNum() {
+    private void drawXLineNum() {
         sb.append(String.format("%2s", ZERO) + BLANK);
         for (int i = 1; i <= LENGTH; i++) {
             if (i % 2 == 1) {
