@@ -2,7 +2,7 @@ package coordinate.domain;
 
 import java.util.List;
 
-public class Rectangle extends Figure {
+public class Rectangle extends AbstractFigure {
     public Rectangle(List<Point> points) {
         super(points);
     }
