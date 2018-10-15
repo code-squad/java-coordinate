@@ -26,6 +26,17 @@ public class CoordinateTest {
         ArrayList<Point> points = PointFactory.testInput(input);
         assertThat(new Rectangle(points).calculate()).isEqualTo("사각형이 아닙니다.");
     }*/
+    @Test
+    public void TriangleTest() {
+        ArrayList<Point> points;
+        String input = "(12,12) - (12, 22) - (22,22)";
+        points = PointFactory.testInput(input);
+        assertThat(new Triangle(points).calculate()).isEqualTo("삼각형의 면적은 50.0 입니다.");
+
+        input = "(10,10)-(14,15)-(20,8)";
+        points = PointFactory.testInput(input);
+        assertThat(new Triangle(points).calculate()).isEqualTo("삼각형의 면적은 28.999999999999996 입니다.");
+    }
 
     @Test
     public void squareTrueTest() {

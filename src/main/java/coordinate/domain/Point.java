@@ -19,18 +19,12 @@ public class Point {
         return Math.sqrt((Math.pow(a,2) + Math.pow(b,2)));
     }
 
-    public Boolean commpareXPoint(Point point) {
-        if (this.xPoint == point.xPoint)  {
-            return true;
-        }
-        return false;
+    public Boolean compareXPoint(Point point) {
+        return this.xPoint == point.xPoint;
     }
 
-    public Boolean commpareYPoint(Point point) {
-        if (this.yPoint == point.yPoint)  {
-            return true;
-        }
-        return false;
+    public Boolean compareYPoint(Point point) {
+        return this.yPoint == point.yPoint;
     }
 
     public int subtractionXPoint(Point point) {

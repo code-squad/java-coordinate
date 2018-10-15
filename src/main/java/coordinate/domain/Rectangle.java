@@ -30,10 +30,10 @@ public class Rectangle {
     private int[] findBaseHeight() {
         int[] BaseAndHeight = new int[2];
         for (int i = 1; i < points.size(); i++) {
-            if (points.get(0).commpareXPoint(points.get(i)).equals(true)) {
+            if (points.get(0).compareXPoint(points.get(i)).equals(true)) {
                 BaseAndHeight[0] = points.get(0).subtractionYPoint(points.get(i));
             }
-            if (points.get(0).commpareYPoint(points.get(i)).equals(true)) {
+            if (points.get(0).compareYPoint(points.get(i)).equals(true)) {
                 BaseAndHeight[1] = points.get(0).subtractionXPoint(points.get(i));
             }
         }
