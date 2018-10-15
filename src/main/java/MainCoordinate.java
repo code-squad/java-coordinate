@@ -1,7 +1,7 @@
 import domain.Line;
-import util.Parcer;
+import util.Parser;
 import domain.Point;
-import domain.PointList;
+import domain.MakingPoints;
 
 import java.util.List;
 
@@ -16,13 +16,10 @@ public class MainCoordinate {
 
     public static void start() {
         try {
-            Parcer parcer = new Parcer(getCoordinateValue());
-            PointList pl = new PointList(parcer.makePostion());
-            List<Point> pointList = pl.makePointList();     //pointList에 모든 point들을 담는다
-            Line line = new Line(pointList);
-
+            List<Integer[]> posIntegerList = Parser.makePosition(getCoordinateValue());
+            List<Point> pointList = MakingPoints.makePointList(posIntegerList);
             printCoordinate(pointList);
-            printLineLength(line.calcLength());
+            printLineLength(new Line().getLength(pointList));
         } catch (Exception e) {
             System.out.println("좌표값을 잘못 입력했습니다. 다시 입력하세요.");
             start();

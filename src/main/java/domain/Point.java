@@ -25,9 +25,13 @@ public class Point {
         return yPos - p.yPos;
     }
 
-    public int findPointPostion() {
+    public int findPointPosition() {
         int index = (MAX_POINT_VALUE - yPos) * LINE_SIZE + (xPos * TWO) + ONE;
         if (xPos < UNIT_DIGIT_RANGE) index += 1;
         return index;
+    }
+
+    public double calculateLength(Point p) {
+        return Math.sqrt(Math.pow(this.subtractXPoint(p), 2) + Math.pow(this.subtractYPoint(p), 2));
     }
 }

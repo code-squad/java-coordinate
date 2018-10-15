@@ -9,7 +9,7 @@ public class ResultView {
         CoordinateView cv = new CoordinateView();
         cv.makeCoordinate();
         for (int i = 0; i < pl.size(); i++) {
-            cv.drawDot(pl.get(i).findPointPostion());
+            cv.drawDot(pl.get(i).findPointPosition());
         }
         System.out.println(cv.getCoordinateSb());
     }

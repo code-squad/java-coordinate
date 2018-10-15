@@ -35,11 +35,12 @@ public class CoordinateView {
     public void drawXLineNum() {
         sb.append(String.format("%2s", ZERO) + BLANK);
         for (int i = 1; i <= LENGTH; i++) {
-            if (i % 2 != 0) {
+            if (i % 2 == 1) {
                 sb.append(String.format("%2s", BLANK));
-                continue;
             }
-            sb.append(String.format("%2s", i));
+            if (i % 2 == 0) {
+                sb.append(String.format("%2s", i));
+            }
         }
     }
 
