@@ -46,22 +46,12 @@ public class Triangle extends Figure {
         return points.get(0).getGradient(points.get(1)) != points.get(1).getGradient(points.get(2));
     }
 
-
-    private List<Point> makeSubList(int i, List<Point> points) {
-        if(i < points.size() - 1) {
-            return points.subList(i, i + 2);
-        }
-        List<Point> subList = new ArrayList<>();
-        subList.add(points.get(0));
-        subList.add(points.get(2));
-        return subList;
-    }
-
     private double[] getTriangleLine() throws PointException {
-        double[] lines = new double[points.size()];
-        for(int i = 0; i < lines.length; i++) {
-            lines[i] = getLineLength(makeSubList(i, points));
-        }
+        double[] lines = {
+          getLineLength(points.get(0), points.get(1)),
+          getLineLength(points.get(1), points.get(2)),
+          getLineLength(points.get(2), points.get(0))
+        };
         return lines;
     }
 }
