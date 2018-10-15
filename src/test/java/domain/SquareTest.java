@@ -16,11 +16,11 @@ public class SquareTest {
         Point p1 = new Point(5, 7);
         Point p2 = new Point(12, 14);
         Point p3 = new Point(11, 3);
-//        Point p4 = new Point(6, 4);
+        Point p4 = new Point(6, 4);
         points.add(p1);
         points.add(p2);
         points.add(p3);
-//        points.add(p4);
+        points.add(p4);
     }
 
     @Test

@@ -2,7 +2,7 @@ package domain;
 
 import java.util.List;
 
-public abstract class Figure {
+public interface Figure {
 
-    abstract double calculateWide(List<Point> points);
+    double area(List<Point> points);
 }

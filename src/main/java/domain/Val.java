@@ -9,7 +9,7 @@ public class Val {
 
     public Val(double v) {
         if(v < VAL_MIN || v > VAL_MAX) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(VAL_MIN + "초과 " + VAL_MAX + "이하의 수를 입력해주세요");
         }
         this.v = v;
     }

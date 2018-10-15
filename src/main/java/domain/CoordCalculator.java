@@ -33,7 +33,7 @@ public class CoordCalculator {
 
         try {
             int pointsCount = points.size();
-            return new ResultDto(figures.get(pointsCount).calculateWide(points), pointsDto);
+            return new ResultDto(figures.get(pointsCount).area(points), pointsDto);
         } catch(Exception e) {
             return new ResultDto(pointsDto);
         }
