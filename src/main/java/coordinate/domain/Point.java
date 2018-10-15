@@ -2,7 +2,6 @@ package coordinate.domain;
 
 import coordinate.utill.AxisCondition;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 public class Point {

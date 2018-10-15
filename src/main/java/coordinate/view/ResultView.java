@@ -2,8 +2,6 @@ package coordinate.view;
 
 import coordinate.domain.Figure;
 import coordinate.domain.Point;
-import coordinate.domain.Rectangle;
-import coordinate.domain.Triangle;
 import coordinate.utill.AxisCondition;
 
 import java.util.List;

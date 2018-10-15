@@ -14,9 +14,9 @@ public class Triangle extends Figure {
 
     @Override
     public double area() {
-        double a = getPoints().get(0).distance(getPoints().get(1));
-        double b = getPoints().get(1).distance(getPoints().get(2));
-        double c = getPoints().get(2).distance(getPoints().get(0));
+        double a = getDist(0,1);
+        double b = getDist(1,2);
+        double c = getDist(2,0);
         double s = (a + b + c) / 2;
 
         return Math.round(Math.sqrt(s * (s - a) * (s - b) * (s - c)));
