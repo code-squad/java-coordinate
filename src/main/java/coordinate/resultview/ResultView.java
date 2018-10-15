@@ -1,9 +1,6 @@
 package coordinate.resultview;
 
-import coordinate.domain.CoordinateYLine;
-import coordinate.domain.Line;
-import coordinate.domain.Point;
-import coordinate.domain.Rectangle;
+import coordinate.domain.*;
 import coordinate.utils.CoordinateString;
 
 import java.util.ArrayList;
@@ -11,6 +8,7 @@ import java.util.HashMap;
 
 public class ResultView {
     private static final int FOUR = 4;
+    private static final int T = 3;
     private static final int TWO = 2;
 
     private static final int MAXiMUM_NUM = 24;
@@ -50,6 +48,7 @@ public class ResultView {
         HashMap<Integer, String> toDo = new HashMap<>();
         toDo.put(TWO, new Line(points).calculate());
         toDo.put(FOUR, new Rectangle(points).calculate());
+        toDo.put(T, new Triangle(points).calculate());
         displayTest();
         System.out.println(toDo.get(points.size()));
     }
