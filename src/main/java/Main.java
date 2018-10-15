@@ -9,14 +9,15 @@ import java.util.List;
 import static utils.TextParser.parse;
 
 public class Main {
+    public static final String NEWLINE = System.getProperty("line.separator");
     public static void main(String[] args) {
         List<Point> points;
         while(true) {
             try {
                 points = parse(InputView.getUserInput());
                 break;
-            } catch(Exception e) {
-                System.out.println("출력 범위를 넘었거나 수가 정상적으로 입력되지 않았습니다. 다시 입력해주세요");
+            } catch(IllegalArgumentException e) {
+                System.out.println(NEWLINE + e.getMessage() + NEWLINE);
             }
         }
         CoordCalculator coordCalculator = new CoordCalculator(points);

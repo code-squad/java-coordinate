@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Square extends Figure {
+public class Square implements Figure {
     @Override
-    public double calculateWide(List<Point> points) {
+    public double area(List<Point> points) {
         if (!checkRectangle(points)) {
             throw new IllegalArgumentException();
         }
@@ -24,7 +24,7 @@ public class Square extends Figure {
     }
 
     /*  4개 Point의 중점(평균) 좌표로부터 각 Point까지 거리가 모두 같을 때 직사각형(정사각형)이라 전제  */
-    public boolean checkRectangle(List<Point> points) {
+    public static boolean checkRectangle(List<Point> points) {
         Point middlePoint = Point.calculatePointsAverage(points);
         double criteria = middlePoint.calculateLength(points.get(0));
 

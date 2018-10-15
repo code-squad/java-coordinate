@@ -32,7 +32,6 @@ public class Point {
         return new Point(middleX / pointSize, middleY / pointSize);
     }
 
-    
 
     @Override
     public String toString() {
