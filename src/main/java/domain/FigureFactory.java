@@ -2,18 +2,24 @@ package domain;
 
 import util.PointException;
 
+import java.lang.reflect.Constructor;
 import java.util.*;
 
 public class FigureFactory {
+    private static Map<Integer, String> constructorMap = new HashMap<>();
+    static {
+        constructorMap.put(2, "domain.Line");
+        constructorMap.put(3, "domain.Triangle");
+        constructorMap.put(4, "domain.Rectangle");
+    }
+
     public static Figure create(String[] inputPoint) throws PointException {
-        if(inputPoint.length == 2) {
-            return new Line(init(inputPoint));
-        }
-        if(inputPoint.length == 4) {
-            return new Rectangle(init(inputPoint));
-        }
-        if(inputPoint.length == 3) {
-            return new Triangle(init(inputPoint));
+        Constructor constructor = null;
+        try {
+            constructor = Class.forName(constructorMap.get(inputPoint.length)).getConstructor(List.class);
+            return (Figure)constructor.newInstance(init(inputPoint));
+        } catch (Exception e) {
+
         }
         throw new PointException("직선, 삼각형, 직사각형이 아닌 형태로 입력하셨습니다.");
     }
@@ -38,4 +44,5 @@ public class FigureFactory {
         }
         points.add(point);
     }
+
 }

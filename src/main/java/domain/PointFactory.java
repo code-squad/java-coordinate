@@ -2,6 +2,7 @@ package domain;
 
 import util.Parser;
 import util.PointException;
+import view.AxisView;
 
 public class PointFactory {
     public static Point create(String text) throws PointException {
@@ -15,7 +16,7 @@ public class PointFactory {
     }
 
     public static boolean isValid(int num) throws PointException {
-        if(num < 0 || num > Axis.MAX_SIZE) {
+        if(num < 0 || num > AxisView.MAX_SIZE) {
             throw new PointException("좌표범위가 초과했습니다. 예) 0 이상 24 이하");
         }
         return true;

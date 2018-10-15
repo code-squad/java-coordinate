@@ -21,8 +21,8 @@ public class TriangleTest {
         points.add(new Point(4,1));
         points.add(new Point(4,5));
 
-        assertThat(new Triangle(points).getLineDistance(points.subList(0, 2))).isEqualTo(3);
-        assertThat(new Triangle(points).getLineDistance(points.subList(1, 3))).isEqualTo(4);
+        assertThat(new Triangle(points).getLineLength(points.get(0), points.get(1))).isEqualTo(3);
+        assertThat(new Triangle(points).getLineLength(points.get(1), points.get(2))).isEqualTo(4);
     }
 
 }

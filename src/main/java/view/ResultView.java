@@ -1,87 +1,74 @@
 package view;
 
 import domain.*;
+import dto.ResultDto;
 import util.PointException;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ResultView {
+    public static final String DOT_IMAGE = "()";
+    private static Map<Integer, String> messageMap = new HashMap<>();
+
+    static {
+        messageMap.put(2, "두 점 사이의 거리는 : ");
+        messageMap.put(3, "삼각형의 넓이는 : ");
+        messageMap.put(4, "사각형의 넓이는 : ");
+    }
+
     private ResultView() {
 
     }
 
-    public static void printDistance(Figure figure) throws PointException {
-        String msg = null;
-        if(figure instanceof Line) {
-            msg = "두 점 사이의 거리는 : ";
-        }
-        if(figure instanceof Triangle) {
-            msg = "삼각형의 넓이는 : ";
-        }
-        if(figure instanceof Rectangle) {
-            msg = "사각형의 넓이는 : ";
-        }
-        System.out.println(String.format("%s : %5f",msg , figure.evaluate()));
+    public static void printDistance(ResultDto resultDto)  {
+        System.out.println(String.format("%s : %5f",messageMap.get(resultDto.getCountOfPoint()) , resultDto.getValue()));
     }
 
-    public static void drawAxis(Figure figure) {
-        drawYaxis(figure);
+    public static void drawAxis(ResultDto resultDto) {
+        drawYaxis(resultDto);
         drawXaxis();
     }
-    private static void drawYaxis(Figure figure) {
-        for (int i = Axis.MAX_SIZE -1; i >= 0; i--) {
-            printYaxisNum(i);
-            printYaxisBar(i);
-            printPoints(i, figure);
+    private static void drawYaxis(ResultDto resultDto) {
+        for (int i = Point.MAX_SIZE; i > 0; i--) {
+            AxisView.printVerticalAxisNum(i);
+            AxisView.printVerticalAxisBar();
+            printPoints(resultDto, i, initLine());
         }
     }
 
-    private static void printYaxisNum(int index) {
-        System.out.print(Axis.getVerticalAxisNum().get(index));
-    }
-
-    private static void printYaxisBar(int index) {
-        System.out.print(Axis.getVerticalAxisBar().get(index));
-    }
-
-    private static void printPoints(int index, Figure figure) {
+    private static String initLine() {
         StringBuilder sb = new StringBuilder();
-        int prevPointIndex = 0;
-        for(Point point : figure.getPoints()) {
-            if(point.getY() == index + 1) {
-                sb.append(printDot(prevPointIndex, point.getX()));
-                prevPointIndex = point.getX();
-            }
+        for (int i = 0; i < Point.MAX_SIZE; i++) {
+            sb.append(AxisView.BLANK);
         }
-        System.out.println(sb.toString());
-
-    }
-
-    private static String printDot(int prevPointIndex, int xIndex) {
-        StringBuilder sb = new StringBuilder();
-        for(int i = prevPointIndex; i < xIndex - 1; i++) {
-            sb.append(Axis.BLANK);
-        }
-        sb.append(Point.DOT_IMAGE);
         return sb.toString();
     }
 
+    private static void printPoints(ResultDto resultDto, int index, String line) {
+        for (int i = 0; i <= Point.MAX_SIZE; i++) {
+            line = printLine(i, index, resultDto, line);
+        }
+        System.out.println(line);
+    }
+
+    private static String printLine(int xIndex, int yIndex, ResultDto resultDto, String line) {
+        for(Point point : resultDto.getPoints()) {
+            line = printDots(xIndex, yIndex, point, line);
+        }
+        return line;
+    }
+
+    private static String printDots(int xIndex, int yIndex, Point point, String line) {
+        if(point.isDot(xIndex, yIndex)) {
+            line = line.substring(0, (xIndex - 1) * DOT_IMAGE.length()) + DOT_IMAGE + line.substring(xIndex * DOT_IMAGE.length());
+        }
+        return line;
+    }
+
     private static void drawXaxis() {
-        printXaxisBar();
-        printXaxisNum();
-    }
+        AxisView.printHorizontalAxisBar();
+        AxisView.printHorizontalAxisNum();
 
-    private static void printXaxisNum() {
-        StringBuilder sb = new StringBuilder();
-        for (String horizontalEven : Axis.getHorizontalAxisNum()) {
-            sb.append(horizontalEven);
-        }
-        System.out.println(sb.toString());
-    }
-
-    private static void printXaxisBar() {
-        StringBuilder sb = new StringBuilder();
-        for (String bar : Axis.getHorizontalAxisBar()) {
-            sb.append(bar);
-        }
-        System.out.println(sb.toString());
     }
 }

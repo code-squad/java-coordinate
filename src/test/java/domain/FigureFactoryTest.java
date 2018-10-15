@@ -3,6 +3,7 @@ package domain;
 import domain.FigureFactory;
 import domain.Point;
 import org.junit.Test;
+import util.PointException;
 
 import java.util.*;
 

@@ -1,9 +1,7 @@
 package domain;
 
-import java.util.Comparator;
-
 public class Point implements Comparable<Point> {
-    public static final String DOT_IMAGE = "()";
+    public static final int MAX_SIZE = 24;
     private int x;
     private int y;
 
@@ -27,12 +25,12 @@ public class Point implements Comparable<Point> {
         return Math.abs(otherPoint.getDifference(x, 'x')) / Math.abs(otherPoint.getDifference(y, 'y'));
     }
 
-    public int getX() {
+    private int getX() {
         return x;
     }
 
-    public int getY() {
-        return y;
+    public boolean isDot(int x, int y) {
+        return this.x == x && this.y == y;
     }
 
     @Override
