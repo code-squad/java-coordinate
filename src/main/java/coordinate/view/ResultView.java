@@ -1,5 +1,6 @@
 package coordinate.view;
 
+import coordinate.domain.Figure;
 import coordinate.domain.Point;
 import coordinate.domain.Rectangle;
 import coordinate.domain.Triangle;
@@ -12,7 +13,7 @@ public class ResultView {
     static final char Y_BAR = '│';
     static final char ZERO_BAR = '+';
     static final String BLANK = " ";
-    static final String DOT = "0";
+    static final String DOT = "●";
     static final int Y_OFFSET = 3;
     static final int X_OFFSET = 2;
 
@@ -80,12 +81,7 @@ public class ResultView {
         System.out.printf("두 점 사이의 거리는 %6f", dist);
     }
 
-    public static void areaView(Rectangle q) {
-        System.out.print(q.name() + " 넓이는 : " + q.area());
+    public static void areaView(Figure f) {
+        System.out.print(f.name() + " 넓이는 : " + f.area());
     }
-
-    public static void areaView(Triangle t) {
-        System.out.print(t.name() + " 넓이는 : " + t.area());
-    }
-
 }

@@ -3,9 +3,6 @@ package coordinate.domain;
 import java.util.List;
 
 public class Rectangle extends Figure {
-    private double width;
-    private double height;
-
     public Rectangle(List<Point> points) {
         super(points);
     }
@@ -17,12 +14,15 @@ public class Rectangle extends Figure {
 
     @Override
     public double area() {
-        for (int i = 1; i < points.size(); i++) {
-            if (points.get(0).equalToAxisOfX(points.get(i))) {
-                width = points.get(0).distance(points.get(i));
+        double width = 0;
+        double height = 0;
+
+        for (int i = 1; i < getPoints().size(); i++) {
+            if (getPoints().get(0).equalToAxisOfX(getPoints().get(i))) {
+                width = getPoints().get(0).distance(getPoints().get(i));
             }
-            if (points.get(0).equalToAxisOfY(points.get(i))) {
-                height = points.get(0).distance(points.get(i));
+            if (getPoints().get(0).equalToAxisOfY(getPoints().get(i))) {
+                height = getPoints().get(0).distance(getPoints().get(i));
             }
         }
         if (width * height == 0) {
