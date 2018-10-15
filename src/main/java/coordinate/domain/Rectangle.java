@@ -17,12 +17,12 @@ public class Rectangle extends Figure {
         double width = 0;
         double height = 0;
 
-        for (int i = 1; i < getPoints().size(); i++) {
-            if (getPoints().get(0).equalToAxisOfX(getPoints().get(i))) {
-                width = getPoints().get(0).distance(getPoints().get(i));
+        for (int i = 1; i < getSize(); i++) {
+            if (getPoint(0).equalToAxisOfX(getPoint(i))) {
+                width = getDist(0, i);
             }
-            if (getPoints().get(0).equalToAxisOfY(getPoints().get(i))) {
-                height = getPoints().get(0).distance(getPoints().get(i));
+            if (getPoint(0).equalToAxisOfY(getPoint(i))) {
+                height = getDist(0, i);
             }
         }
         if (width * height == 0) {
