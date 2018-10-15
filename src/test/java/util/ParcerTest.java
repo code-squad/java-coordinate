@@ -1,4 +1,4 @@
-package domain;
+package util;
 
 import org.junit.Test;
 
@@ -8,7 +8,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class ParcerTest {
     @Test
-    public void splitHyphenTest(){
+    public void splitHyphenTest() {
         Parcer p = new Parcer("(10,10)-(14,15)");
         String result[] = p.splitHyphen();
         assertThat(result[0]).isEqualTo("(10,10)");
@@ -16,7 +16,7 @@ public class ParcerTest {
     }
 
     @Test
-    public void removeBracketTest(){
+    public void removeBracketTest() {
         Parcer p = new Parcer("test");
         String[] str = {"(10,10)"};
         String[] result = p.removeBracket(str);
@@ -27,7 +27,7 @@ public class ParcerTest {
     }
 
     @Test
-    public void splitCommaTest(){
+    public void splitCommaTest() {
         String str = "10,20";
         Parcer p = new Parcer("10");
         String result[] = p.splitComma(str);
@@ -36,8 +36,8 @@ public class ParcerTest {
     }
 
     @Test
-    public void stringToIntegerTest(){
-        String[] str = {"10","20"};
+    public void stringToIntegerTest() {
+        String[] str = {"10", "20"};
         Parcer p = new Parcer("10");
         Integer[] result = p.stringToInteger(str);
         assertThat(result[0]).isEqualTo(10);
@@ -45,7 +45,7 @@ public class ParcerTest {
     }
 
     @Test
-    public void makePositionTest(){
+    public void makePositionTest() {
         Parcer p = new Parcer("(10,10)-(14,15)");
         List<Integer[]> v = p.makePostion();
         assertThat(v.get(0)[0]).isEqualTo(10);

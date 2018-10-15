@@ -1,12 +1,14 @@
 package domain;
 
+import java.util.List;
+
 public class Line {
     private Point p1;
     private Point p2;
 
-    public Line(Point p1, Point p2) {
-        this.p1 = p1;
-        this.p2 = p2;
+    public Line(List<Point> pointList) {
+        this.p1 = pointList.get(0);
+        this.p2 = pointList.get(1);
     }
 
     public double calcLength() {

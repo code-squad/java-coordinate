@@ -25,7 +25,7 @@ public class Point {
         return yPos - p.yPos;
     }
 
-    public int findPointInedx() {
+    public int findPointPostion() {
         int index = (MAX_POINT_VALUE - yPos) * LINE_SIZE + (xPos * TWO) + ONE;
         if (xPos < UNIT_DIGIT_RANGE) index += 1;
         return index;

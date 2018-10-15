@@ -1,13 +1,13 @@
-import View.CoordinateView;
 import domain.Line;
-import domain.Parcer;
+import util.Parcer;
 import domain.Point;
+import domain.PointList;
 
 import java.util.List;
 
-import static View.InputView.getCoordinateValue;
-import static View.ResultView.printCoordinate;
-import static View.ResultView.printLineLength;
+import static view.InputView.getCoordinateValue;
+import static view.ResultView.printCoordinate;
+import static view.ResultView.printLineLength;
 
 public class MainCoordinate {
     public static void main(String[] args) {
@@ -17,16 +17,11 @@ public class MainCoordinate {
     public static void start() {
         try {
             Parcer parcer = new Parcer(getCoordinateValue());
-            List<Integer[]> pos = parcer.makePostion();
-            Point p1 = new Point(pos.get(0)[0], pos.get(0)[1]);
-            Point p2 = new Point(pos.get(1)[0], pos.get(1)[1]);
-            Line line = new Line(p1, p2);
+            PointList pl = new PointList(parcer.makePostion());
+            List<Point> pointList = pl.makePointList();     //pointList에 모든 point들을 담는다
+            Line line = new Line(pointList);
 
-            CoordinateView cv = new CoordinateView();
-            cv.makeCoordinate();
-            cv.drawDot(p1.findPointInedx());
-            cv.drawDot(p2.findPointInedx());
-            printCoordinate(cv.getCoordinateSb());
+            printCoordinate(pointList);
             printLineLength(line.calcLength());
         } catch (Exception e) {
             System.out.println("좌표값을 잘못 입력했습니다. 다시 입력하세요.");

@@ -1,4 +1,4 @@
-package domain;
+package view;
 
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ public class CoordinateViewTest {
     static StringBuilder sb = new StringBuilder();
 
     @Test
-    public void sizeTest(){
+    public void sizeTest() {
         System.out.println(VERTICAL_LINE.length());
         System.out.println(HORIZONTAL_LINE.length());
     }
@@ -21,26 +21,26 @@ public class CoordinateViewTest {
     public void drawYLineTest() {
         for (int i = LENGTH; i > 0; i--) {
             if (i % 2 != 0) {
-                sb.append(String.format("%2s", BLANK) + VERTICAL_LINE + String.format("%47s",BLANK)  + '\n');
+                sb.append(String.format("%2s", BLANK) + VERTICAL_LINE + String.format("%47s", BLANK) + '\n');
                 continue;
             }
-            sb.append(String.format("%2s", i) + VERTICAL_LINE + String.format("%47s",BLANK) + '\n');
+            sb.append(String.format("%2s", i) + VERTICAL_LINE + String.format("%47s", BLANK) + '\n');
         }
-        System.out.println(sb.length()/24);
+        System.out.println(sb.length() / 24);
     }
 
     @Test
-    public void sizeOfXLineTest(){
-        sb.append(String.format("%2s", 0) + VERTICAL_LINE + String.format("%47s",BLANK) + '\n');
+    public void sizeOfXLineTest() {
+        sb.append(String.format("%2s", 0) + VERTICAL_LINE + String.format("%47s", BLANK) + '\n');
         System.out.println(sb.length());
     }
 
     @Test
-    public void stringBuilderTest(){
+    public void stringBuilderTest() {
         StringBuilder s = new StringBuilder();
         s.append("abc");
         System.out.println(s);
-        s.setCharAt(1,'B');
+        s.setCharAt(1, 'B');
         System.out.println(s);
     }
 
@@ -67,21 +67,21 @@ public class CoordinateViewTest {
     }
 
     @Test
-    public void drawCoordinateViewTest(){
+    public void drawCoordinateViewTest() {
         drawYLineTest();
         drawXLineTest();
         drawXLineNumTest();
-        int e = exp(14,23);
-        System.out.println("e : "+ e);
-        sb.setCharAt(e,'*');
+        int e = exp(14, 23);
+        System.out.println("e : " + e);
+        sb.setCharAt(e, '*');
         String s = "24│                                              *";
         System.out.println(s.length());
         System.out.println(sb);
     }
 
-    public int exp(int x, int y){
-        int answer = (24-y) * 51 + (x * 2) + 1;
-        if(x < 10) answer += 1;
+    public int exp(int x, int y) {
+        int answer = (24 - y) * 51 + (x * 2) + 1;
+        if (x < 10) answer += 1;
         return answer;
     }
 }

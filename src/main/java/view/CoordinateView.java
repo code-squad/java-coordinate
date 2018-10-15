@@ -1,4 +1,4 @@
-package View;
+package view;
 
 public class CoordinateView {
     static final String VERTICAL_LINE = "│";
@@ -15,7 +15,7 @@ public class CoordinateView {
         }
     }
 
-    public void drawRowValue(int index){
+    public void drawRowValue(int index) {
         if (index % 2 != 0) {
             sb.append(String.format("%2s", BLANK) + VERTICAL_LINE + String.format("%47s", BLANK) + '\n');
             return;
@@ -43,15 +43,16 @@ public class CoordinateView {
         }
     }
 
-    public void drawDot(int index) {
-        sb.setCharAt(index, '●');
+    public void drawDot(int position) {
+        sb.setCharAt(position, '●');
     }
 
     public void makeCoordinate() {
         drawRow();
         drawXLine();
     }
-    public StringBuilder getCoordinateSb(){
+
+    public StringBuilder getCoordinateSb() {
         return sb;
     }
 }
