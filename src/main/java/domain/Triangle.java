@@ -8,21 +8,15 @@ import java.util.List;
 
 public class Triangle extends Figure {
 
-    public Triangle() {
-
-    }
-
     public Triangle(List<Point> points) throws PointException {
-        this.points = points;
-        Collections.sort(points);
+        super(points);
         if(!isComputable()) {
             throw new PointException("잘못된 삼각형의 형태입니다. (예 : 동일선상에 위치)");
         }
     }
 
     @Override
-    public double evaluate() throws PointException {
-        /*  */
+    public double area() throws PointException {
         double[] lines = getTriangleLine();
         double spaceConstant = getSumLine(lines) / 2;
         double result = spaceConstant;
@@ -43,14 +37,14 @@ public class Triangle extends Figure {
     @Override
     public boolean isComputable() {
         /* 동일 선상에 위치하는지를 확인해야함 */
-        return points.get(0).getGradient(points.get(1)) != points.get(1).getGradient(points.get(2));
+        return getPoint(0).getGradient(getPoint(1)) != getPoint(1).getGradient(getPoint(2));
     }
 
     private double[] getTriangleLine() throws PointException {
         double[] lines = {
-          getLineLength(points.get(0), points.get(1)),
-          getLineLength(points.get(1), points.get(2)),
-          getLineLength(points.get(2), points.get(0))
+          getLineLength(getPoint(0), getPoint(1)),
+          getLineLength(getPoint(1), getPoint(2)),
+          getLineLength(getPoint(2), getPoint(0))
         };
         return lines;
     }

@@ -31,6 +31,8 @@ public class FigureFactory {
             /* 중복된 점이 있는지 확인 */
             addPoint(points, point);
         }
+        Collections.sort(points);
+        Collections.unmodifiableList(points);
         return points;
     }
 

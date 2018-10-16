@@ -22,7 +22,7 @@ public class AsListPractice {
         List<String> list = new ArrayList<>();
         Collections.addAll(list, arr);
         /* 리스트에 배열에 있는 데이터를 모두 더하는 방식이기 때무에 추가적으로 데이터 수정 가능! */
-        list.add("Inserted Data");
+        list.add("Inserted Data!");
         for(String str : list)
             System.out.println(str);
     }
