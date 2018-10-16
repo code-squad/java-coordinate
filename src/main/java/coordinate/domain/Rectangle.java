@@ -3,28 +3,23 @@ package coordinate.domain;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class Rectangle {
-    private ArrayList<Point> points;
+public class Rectangle extends Figure{
     private HashSet<Integer> base = new HashSet<>();
     private HashSet<Integer> height = new HashSet<>();
 
     public Rectangle(ArrayList<Point> points) {
+        this.name = "사각형";
         this.points = points;
+        this.size = 4;
         for (Point point : this.points) {
             this.base.add(point.getXPoint());
             this.height.add(point.getYPoint());
         }
     }
 
-    public String calculate() {
-        if (this.points.size() < 4) {
-            return "사각형이 아닙니다.";
-        }
-        if (isRectangle().equals(false)) {
-            throw new IllegalArgumentException("사각형이 아닙니다.");
-        }
+    public void calculate() {
         int[] a = findBaseHeight();
-        return "사각형의 면적은 " + (a[0] * a[1]) + " 입니다.";
+        this.result = a[0] * a[1];
     }
 
     private int[] findBaseHeight() {
@@ -40,7 +35,9 @@ public class Rectangle {
         return BaseAndHeight;
     }
 
-    private Boolean isRectangle() {
-        return (this.base.size() == 2 && this.height.size() == 2);
+    @Override
+    protected boolean isFigure() {
+        return this.base.size() == 2 && this.height.size() == 2;
     }
+
 }

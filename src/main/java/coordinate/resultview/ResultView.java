@@ -46,9 +46,9 @@ public class ResultView {
 
     public void toDo(ArrayList<Point> points) {
         HashMap<Integer, String> toDo = new HashMap<>();
-        toDo.put(TWO, new Line(points).calculate());
-        toDo.put(FOUR, new Rectangle(points).calculate());
-        toDo.put(T, new Triangle(points).calculate());
+        toDo.put(TWO, new Line(points).area());
+        toDo.put(FOUR, new Rectangle(points).area());
+        toDo.put(T, new Triangle(points).area());
         displayTest();
         System.out.println(toDo.get(points.size()));
     }

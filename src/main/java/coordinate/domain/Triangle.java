@@ -2,28 +2,18 @@ package coordinate.domain;
 
 import java.util.ArrayList;
 
-public class Triangle {
-    private ArrayList<Point> points;
+public class Triangle extends Figure{
 
     public Triangle(ArrayList<Point> points) {
+        this.name = "삼각형";
         this.points = points;
+        this.size = 3;
     }
 
-    public String calculate() {
-        if (this.points.size() < 3) {
-            return "사각형이 아닙니다.";
-        }
-        if (isTriangle().equals(false)) {
-            throw new IllegalArgumentException("사각형이 아닙니다.");
-        }
+    public void calculate() {
         double[] a = findLine();
         double s = (a[0] + a[1] + a[2]) / 2;
-        double result = Math.sqrt(s * (s - a[0]) * (s - a[1]) * (s - a[2]));
-        return "삼각형의 면적은 " + result + " 입니다.";
-    }
-
-    private Boolean isTriangle() {
-        return true;
+        this.result = Math.sqrt(s * (s - a[0]) * (s - a[1]) * (s - a[2]));
     }
 
     private double[] findLine() {
@@ -33,4 +23,5 @@ public class Triangle {
         }
         return lines;
     }
+
 }
