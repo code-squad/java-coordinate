@@ -13,24 +13,24 @@ import static org.assertj.core.api.Java6Assertions.offset;
 
 public class CoordinateTest {
 
-
     @Test
-    public void hashsetArrayslistTests() {
+    public void HashSetArraysListTests() {
         ArrayList<Point> points;
         String input = "(12,12) - (12, 22) - (22,22)";
         points = PointFactory.testInput(input);
         HashSet<Point> list = new HashSet<>(points);
     }
+
     @Test
     public void TriangleTest() {
         ArrayList<Point> points;
         String input = "(12,12) - (12, 22) - (22,22)";
         points = PointFactory.testInput(input);
-        assertThat(new Triangle(points).area()).isEqualTo("삼각형의 면적은 50.0 입니다.");
+        assertThat(new Triangle(points).result()).isEqualTo("삼각형의 면적은 50.0 입니다.");
 
         input = "(10,10)-(14,15)-(20,8)";
         points = PointFactory.testInput(input);
-        assertThat(new Triangle(points).area()).isEqualTo("삼각형의 면적은 28.999999999999996 입니다.");
+        assertThat(new Triangle(points).result()).isEqualTo("삼각형의 면적은 28.999999999999996 입니다.");
     }
 
     @Test
@@ -38,15 +38,15 @@ public class CoordinateTest {
         ArrayList<Point> points;
         String input = "(12,12) - (12, 22) - (22,22) - (22,12)";
         points = PointFactory.testInput(input);
-        assertThat(new Rectangle(points).area()).isEqualTo("사각형의 면적은 100.0 입니다.");
+        assertThat(new Rectangle(points).result()).isEqualTo("사각형의 면적은 100.0 입니다.");
 
         String input1 = "(4,3) - (4, 6) - (7,3) - (7,6)";
         points = PointFactory.testInput(input1);
-        assertThat(new Rectangle(points).area()).isEqualTo("사각형의 면적은 9.0 입니다.");
+        assertThat(new Rectangle(points).result()).isEqualTo("사각형의 면적은 9.0 입니다.");
 
         String input2 = "(5,5) - (10, 5) - (5,10) - (10,10)";
         points = PointFactory.testInput(input2);
-        assertThat(new Rectangle(points).area()).isEqualTo("사각형의 면적은 25.0 입니다.");
+        assertThat(new Rectangle(points).result()).isEqualTo("사각형의 면적은 25.0 입니다.");
     }
 
     @Test
@@ -56,7 +56,7 @@ public class CoordinateTest {
         Coordinate coordinate = new Coordinate();
 
         ResultView resultView = new ResultView(coordinate.getCoordinatesAxis(), coordinate.getCoordinatePlane());
-        resultView.toDo(points);
+        resultView.toDisplay(FigureFactory.create(points).result());
     }
 
     @Test
@@ -95,7 +95,7 @@ public class CoordinateTest {
         // x 축에 0을 포함 y축 그릴땐 0번째 제외
         Coordinate coordinate = new Coordinate();
         ResultView resultView = new ResultView(coordinate.getCoordinatesAxis(), coordinate.getCoordinatePlane());
-        resultView.displayTest();
+        resultView.displayCoordinate();
     }
 
     @Test

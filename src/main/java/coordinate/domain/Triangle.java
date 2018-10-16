@@ -2,18 +2,10 @@ package coordinate.domain;
 
 import java.util.ArrayList;
 
-public class Triangle extends Figure{
+public class Triangle extends AbstractFigure {
 
     public Triangle(ArrayList<Point> points) {
-        this.name = "삼각형";
-        this.points = points;
-        this.size = 3;
-    }
-
-    public void calculate() {
-        double[] a = findLine();
-        double s = (a[0] + a[1] + a[2]) / 2;
-        this.result = Math.sqrt(s * (s - a[0]) * (s - a[1]) * (s - a[2]));
+        super(points);
     }
 
     private double[] findLine() {
@@ -24,4 +16,20 @@ public class Triangle extends Figure{
         return lines;
     }
 
+    @Override
+    protected String name() {
+        return "삼각형";
+    }
+
+    @Override
+    protected int size() {
+        return 3;
+    }
+
+    @Override
+    public double area() {
+        double[] a = findLine();
+        double s = (a[0] + a[1] + a[2]) / 2;
+        return Math.sqrt(s * (s - a[0]) * (s - a[1]) * (s - a[2]));
+    }
 }

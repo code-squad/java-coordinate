@@ -1,16 +1,11 @@
 package coordinate.resultview;
 
-import coordinate.domain.*;
+import coordinate.domain.CoordinateYLine;
 import coordinate.utils.CoordinateString;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ResultView {
-    private static final int FOUR = 4;
-    private static final int T = 3;
-    private static final int TWO = 2;
-
     private static final int MAXiMUM_NUM = 24;
     private static final String DASH = "---";
     private static final String PLUS = "   +";
@@ -22,6 +17,7 @@ public class ResultView {
     public ResultView(ArrayList<CoordinateString> coordinateAxis, ArrayList<CoordinateYLine> coordinatePlane) {
         this.coordinateAxis = coordinateAxis;
         this.coordinatePlane = coordinatePlane;
+
     }
 
     private void displayYCoordinate() {
@@ -44,16 +40,13 @@ public class ResultView {
         System.out.println();
     }
 
-    public void toDo(ArrayList<Point> points) {
-        HashMap<Integer, String> toDo = new HashMap<>();
-        toDo.put(TWO, new Line(points).area());
-        toDo.put(FOUR, new Rectangle(points).area());
-        toDo.put(T, new Triangle(points).area());
-        displayTest();
-        System.out.println(toDo.get(points.size()));
+
+    public void toDisplay(String result) {
+        displayCoordinate();
+        System.out.println(result);
     }
 
-    public void displayTest() {
+    public void displayCoordinate() {
         displayYCoordinate();
         displayXCoordinate();
     }

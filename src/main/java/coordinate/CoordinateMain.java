@@ -1,6 +1,7 @@
 package coordinate;
 
 import coordinate.domain.Coordinate;
+import coordinate.domain.FigureFactory;
 import coordinate.domain.Point;
 import coordinate.dto.PointDtoFactory;
 import coordinate.inputview.InputView;
@@ -19,7 +20,7 @@ public class CoordinateMain extends IllegalAccessException {
             coordinate.drawPoint(pointDtoFactory.getPointDTO());
 
             ResultView resultView = new ResultView(coordinate.getCoordinatesAxis(), coordinate.getCoordinatePlane());
-            resultView.toDo(points);
+            resultView.toDisplay(FigureFactory.create(points).result());
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
