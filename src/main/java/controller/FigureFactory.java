@@ -1,7 +1,10 @@
 package controller;
 
 import domain.Figure;
+import domain.Point;
+
+import java.util.List;
 
 public interface FigureFactory {
-    Figure create();
+    Figure create(List<Point> points);
 }

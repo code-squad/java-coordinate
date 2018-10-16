@@ -17,8 +17,7 @@ public class CoordCalculator {
         List<PointDto> pointsDto = PointDtoFactory.create(points);
 
         try {
-            int pointCount = points.size();
-            return new ResultDto(FigureMapper.get(pointCount).area(points), pointsDto);
+            return new ResultDto(FigureMapper.get(points).area(), pointsDto);
         } catch(Exception e) {
             return new ResultDto(pointsDto);
         }

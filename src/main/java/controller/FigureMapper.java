@@ -1,8 +1,10 @@
 package controller;
 
 import domain.Figure;
+import domain.Point;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FigureMapper {
@@ -20,8 +22,8 @@ public class FigureMapper {
     private FigureMapper() {
     }
 
-    static public Figure get(int pointCount) {
-        return figures.get(pointCount).create();
+    static public Figure get(List<Point> points) {
+        return figures.get(points.size()).create(points);
     }
 
 }
