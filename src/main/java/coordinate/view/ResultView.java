@@ -1,25 +1,16 @@
 package coordinate.view;
 
-import coordinate.domain.Coordinate;
-import coordinate.domain.CoordinatePlane;
-import coordinate.domain.Rectangles;
-import coordinate.domain.Triangle;
-import coordinate.util.InputException;
-
+import coordinate.domain.*;
 import java.util.ArrayList;
-
-import static coordinate.util.Constant.CRITERIA_FOR_RECTANGLE;
-import static coordinate.util.Constant.CRITERIA_FOR_TRIANGLE;
 
 public class ResultView {
     public static final String ORIGIN_OF_COORDINATES = "  +";
     public static final String DASH = "---";
     public static final String NULL = "";
     public static final String VERTICAL = "|";
-    public static final int CRITERIA_FOR_LINE = 2;
 
 
-    public static void drawCoordinatePlane(CoordinatePlane c, ArrayList<Coordinate> p) {
+    public static void drawCoordinatePlane(CoordinatePlane c, ArrayList<Point> p) {
         for (int i = c.getSize() - 1; i > 0; i--) {
             System.out.print(initYAxisLable(i));
             System.out.println(printCoordinate(p, i));
@@ -35,23 +26,23 @@ public class ResultView {
         return tmp + VERTICAL;
     }
 
-    private static StringBuilder printCoordinate(ArrayList<Coordinate> points, int index) {
+    private static StringBuilder printCoordinate(ArrayList<Point> points, int index) {
         StringBuilder sb = new StringBuilder();
         int preX = 0;
-        for (Coordinate point : points) {
+        for (Point point : points) {
             preX = printLineAsterisk(index, sb, preX, point);
         }
         return sb;
     }
 
-    private static int printLineAsterisk(int index, StringBuilder sb, int preX, Coordinate point) {
+    private static int printLineAsterisk(int index, StringBuilder sb, int preX, Point point) {
         if(point.getY() == index) {
             preX = printAsterisk(sb, preX, point);
         }
         return preX;
     }
 
-    private static int printAsterisk(StringBuilder sb, int preX, Coordinate point) {
+    private static int printAsterisk(StringBuilder sb, int preX, Point point) {
         for (int i = preX; i < point.getX() - 1; i++) {
             sb.append(String.format("%3s", " "));
         }
@@ -78,22 +69,20 @@ public class ResultView {
         }
     }
 
-    public static void showCalculation(ArrayList<Coordinate> p) throws InputException {
-        if (p.size() == CRITERIA_FOR_LINE) {
-            double distance = p.get(0).getDistance(p.get(1));
-            System.out.println("\n두 점 사이 거리는 " + distance);
+    public static void showCalculation(Figure figure) {
+
+        if (figure instanceof Line) {
+            System.out.println("\n두 점 사이 거리는 " +  ((Line) figure).getArea());
         }
 
-        if (p.size() == CRITERIA_FOR_TRIANGLE) {
-            Triangle t = new Triangle(p);
-            double result = t.getArea();
-            System.out.println("\n삼각형의 넓이는 " + result);
+        if (figure instanceof Triangle) {
+            System.out.println("\n" + ((Triangle) figure).getName()
+                    + "의 넓이는 " + ((Triangle) figure).getArea());
         }
 
-        if (p.size() == CRITERIA_FOR_RECTANGLE) {
-            Rectangles r = new Rectangles(p);
-            double result = r.getArea();
-            System.out.println("\n사각형의 넓이는 " + result);
+        if (figure instanceof Rectangle) {
+            System.out.println("\n" + ((Rectangle) figure).getName()
+                    + "의 넓이는 " + ((Rectangle) figure).getArea());
         }
     }
 }
