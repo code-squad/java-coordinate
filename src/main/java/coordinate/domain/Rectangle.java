@@ -32,4 +32,8 @@ public class Rectangle extends AbstractFigure {
         return width * height;
     }
 
+    @Override
+    public String outputMessage() {
+        return name() + " 넓이는 " + area();
+    }
 }

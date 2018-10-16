@@ -75,11 +75,7 @@ public class ResultView {
         }
     }
 
-    public static void distView(double dist) {
-        System.out.printf("두 점 사이의 거리는 %6f", dist);
-    }
-
     public static void areaView(AbstractFigure f) {
-        System.out.print(f.name() + " 넓이는 : " + f.area());
+        System.out.print(f.outputMessage());
     }
 }

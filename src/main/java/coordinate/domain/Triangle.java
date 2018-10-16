@@ -21,4 +21,9 @@ public class Triangle extends AbstractFigure {
 
         return Math.round(Math.sqrt(s * (s - a) * (s - b) * (s - c)));
     }
+
+    @Override
+    public String outputMessage() {
+        return name() + " 넓이는 " + area();
+    }
 }

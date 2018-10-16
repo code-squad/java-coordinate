@@ -34,12 +34,13 @@ public class CoordinateMain {
     private static void run(List<Point> points) {
         ResultView.createStraight(points);
 
-        HashMap<Integer, AbstractFigure> map = new HashMap<>();
+        HashMap<Integer, FigureCreator> map = new HashMap<>();
         try {
-            map.put(2, new Line(points));
-            map.put(3, new Triangle(points));
-            map.put(4, new Rectangle(points));
-            ResultView.areaView(map.get(points.size()));
+            map.put(2, new LineFactory());
+            map.put(3, new TriangleFactory());
+            map.put(4, new RectangleFactory());
+
+            ResultView.areaView(map.get(points.size()).create(points));
         }catch (NullPointerException e){
             throw new IllegalArgumentException("좌표의 개수를 정확하게 맞추세요.");
         }
