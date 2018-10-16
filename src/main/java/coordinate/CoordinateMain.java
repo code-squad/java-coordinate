@@ -6,11 +6,11 @@ import coordinate.view.InputView;
 import coordinate.view.ResultView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class CoordinateMain {
     public static void main(String[] args) {
+        MapFactory.makeFactory();
         while (true) {
             try {
                 run(inputText());
@@ -33,14 +33,8 @@ public class CoordinateMain {
 
     private static void run(List<Point> points) {
         ResultView.createStraight(points);
-
-        HashMap<Integer, FigureCreator> map = new HashMap<>();
         try {
-            map.put(2, new LineFactory());
-            map.put(3, new TriangleFactory());
-            map.put(4, new RectangleFactory());
-
-            ResultView.areaView(map.get(points.size()).create(points));
+            ResultView.areaView(MapFactory.map.get(points.size()).create(points));
         }catch (NullPointerException e){
             throw new IllegalArgumentException("좌표의 개수를 정확하게 맞추세요.");
         }
