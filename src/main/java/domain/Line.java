@@ -2,13 +2,16 @@ package domain;
 
 import java.util.List;
 
-public class Line implements Figure {
+public class Line extends FigureAbstract {
+
+    public Line(List<Point> points) {
+        super(points);
+    }
 
     @Override
-    public double area(List<Point> points) {
-        Point p1 = points.get(0);
-        Point p2 = points.get(1);
-        return p1.calculateLength(p2);
+    public double area() {
+        Point[] p = getPoints().toArray(new Point[getPoints().size()]);
+        return p[0].calculateLength(p[1]);
     }
 
 }

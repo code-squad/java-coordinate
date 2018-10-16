@@ -4,9 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Square implements Figure {
+public class Square extends FigureAbstract {
+
+    public Square(List<Point> points) {
+        super(points);
+    }
+
     @Override
-    public double area(List<Point> points) {
+    public double area() {
+        List<Point> points = getPoints();
         if (!checkRectangle(points)) {
             throw new IllegalArgumentException();
         }

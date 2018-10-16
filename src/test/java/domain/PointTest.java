@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,15 +12,10 @@ import static org.assertj.core.api.Assertions.offset;
 
 public class PointTest {
     List<Point> points = new ArrayList<>();
-    Point p1;
-    Point p2;
 
     @Before
     public void setUp() throws Exception {
-        p1 = new Point(10, 10);
-        p2 = new Point(14, 15);
-        points.add(p1);
-        points.add(p2);
+        points = Arrays.asList(new Point(10, 10), new Point(14, 15));
     }
 
     @Test
@@ -29,7 +25,7 @@ public class PointTest {
 
     @Test
     public void 포인트간_거리() {
-        assertThat(p1.calculateLength(p2)).isEqualTo(6.403124, offset(0.00099));
+        assertThat(points.get(0).calculateLength(points.get(1))).isEqualTo(6.403124, offset(0.00099));
     }
 
     @Test
