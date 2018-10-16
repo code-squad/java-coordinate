@@ -4,6 +4,8 @@ import domain.Point;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Hashtable;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,10 +35,8 @@ public class TextParserTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void isValid() {
-        List<Point> points = new ArrayList<>();
-        points.add(new Point(10, 10));
-        points.add(new Point(10, 10));
-        points.add(new Point(14, 15));
+        List<Point> points;
+        points = Arrays.asList(new Point(10, 10), new Point(10, 10), new Point(14, 15));
         TextParser.isValid(points);
     }
 }

@@ -14,7 +14,7 @@ public class Point {
         this.y = new Val(y);
     }
 
-    public PointDto makePointDto() {
+    public PointDto addPointDto() {
         return new PointDto((int)x.getV(), (int)y.getV());
     }
 
@@ -31,7 +31,6 @@ public class Point {
         }
         return new Point(middleX / pointSize, middleY / pointSize);
     }
-
 
     @Override
     public String toString() {

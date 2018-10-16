@@ -1,13 +1,15 @@
 package view;
 
-import domain.CoordCalculator;
-import static domain.CoordCalculator.*;
 import domain.Val;
 import dto.PointDto;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static controller.FigureMapper.NUM_FOR_LINE;
+import static controller.FigureMapper.NUM_FOR_SQUARE;
+import static controller.FigureMapper.NUM_FOR_TRIANGLE;
 
 public class ResultView {
     public static final String Y_AXIS = "|";
@@ -26,7 +28,6 @@ public class ResultView {
         printMessages.put(NUM_FOR_TRIANGLE, MESSAGE_FOR_TRIANGLE);
         printMessages.put(NUM_FOR_SQUARE, MESSAGE_FOR_SQUARE);
     }
-
 
     private ResultView() {
     }
