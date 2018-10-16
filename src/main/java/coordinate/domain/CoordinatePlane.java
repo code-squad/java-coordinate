@@ -25,15 +25,6 @@ public class CoordinatePlane {
         return points;
     }
 
-    public void checkDuplicate(ArrayList<Point> p) throws InputException{
-        HashSet h = new HashSet();
-        h.addAll(p);
-
-        if(p.size() != h.size()) {
-            throw new InputException("위치가 같은 점(Point)이 존재합니다. 각 점의 위치는 달라야 합니다.");
-        }
-    }
-
     private static ArrayList<Point> createPoint(String input) throws IllegalArgumentException{
         ArrayList<Point> points = new ArrayList<>();
         String[] inputs = StringUtil.splitStringByDash(input);
@@ -45,8 +36,19 @@ public class CoordinatePlane {
         return points;
     }
 
-    public Figure checkFigure(ArrayList<Point> points) throws InputException {
+    public Figure createFigure(ArrayList<Point> points) throws InputException {
+        checkDuplicate(points);
+
         FigureMapper fm = new FigureMapper();
         return fm.getFigure(points);
+    }
+
+    public void checkDuplicate(ArrayList<Point> points) throws InputException{
+        HashSet h = new HashSet();
+        h.addAll(points);
+
+        if(points.size() != h.size()) {
+            throw new InputException("위치가 같은 점(Point)이 존재합니다. 각 점의 위치는 달라야 합니다.");
+        }
     }
 }
