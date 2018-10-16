@@ -1,4 +1,9 @@
-package coordinate.domain;
+package coordinate.domain.factory;
+
+import coordinate.domain.AbstractFigure;
+import coordinate.domain.FigureCreator;
+import coordinate.domain.Point;
+import coordinate.domain.Triangle;
 
 import java.util.List;
 
