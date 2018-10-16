@@ -10,10 +10,7 @@ public abstract class Figure {
     protected double result;
 
     protected Boolean isSamePoint() {
-        HashSet<Point> isTrue = new HashSet<>();
-        for (Point point : points) {
-            isTrue.add(point);
-        }
+        HashSet<Point> isTrue = new HashSet<>(points);
         return isTrue.size() == this.points.size();
     }
 

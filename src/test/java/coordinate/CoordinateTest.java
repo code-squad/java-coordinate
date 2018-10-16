@@ -6,6 +6,7 @@ import coordinate.utils.CoordinateString;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Java6Assertions.offset;
@@ -13,6 +14,13 @@ import static org.assertj.core.api.Java6Assertions.offset;
 public class CoordinateTest {
 
 
+    @Test
+    public void hashsetArrayslistTests() {
+        ArrayList<Point> points;
+        String input = "(12,12) - (12, 22) - (22,22)";
+        points = PointFactory.testInput(input);
+        HashSet<Point> list = new HashSet<>(points);
+    }
     @Test
     public void TriangleTest() {
         ArrayList<Point> points;
