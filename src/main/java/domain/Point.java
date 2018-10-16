@@ -34,4 +34,16 @@ public class Point {
     public double calculateLength(Point p) {
         return Math.sqrt(Math.pow(this.subtractXPoint(p), 2) + Math.pow(this.subtractYPoint(p), 2));
     }
+
+    public double calculateSquareLength(Point p) {
+        return Math.pow(this.subtractXPoint(p), 2) + Math.pow(this.subtractYPoint(p), 2);
+    }
+
+    public int getxPos() {
+        return xPos;
+    }
+
+    public int getyPos() {
+        return yPos;
+    }
 }
