@@ -1,7 +1,8 @@
 package coordinate;
 
 import coordinate.domain.CoordinatePlane;
-import coordinate.domain.Coordinate;
+import coordinate.domain.Figure;
+import coordinate.domain.Point;
 import coordinate.util.InputException;
 import coordinate.view.InputView;
 import coordinate.view.ResultView;
@@ -16,12 +17,14 @@ public class CoordinateMain {
 
     static void run() {
         try{
-            ArrayList<Coordinate> coordinates  = CoordinatePlane.enterCoordinates(InputView.getPoint());
+            ArrayList<Point> points  = CoordinatePlane.enterPoints(InputView.getPoint());
             CoordinatePlane c = new CoordinatePlane();
-            c.checkFigure(coordinates);
 
-            ResultView.drawCoordinatePlane(c, coordinates);
-            ResultView.showCalculation(coordinates) ;
+            c.checkDuplicate(points);
+            Figure figure = c.checkFigure(points);
+
+            ResultView.drawCoordinatePlane(c, points);
+            ResultView.showCalculation(figure) ;
         }  catch (InputException | IllegalArgumentException e) {
             CoordinateMain.run();
         }
