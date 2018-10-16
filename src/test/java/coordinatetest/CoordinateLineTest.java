@@ -1,5 +1,6 @@
 package coordinatetest;
 
+import coordinate.Coordinate;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -38,4 +39,11 @@ public class CoordinateLineTest {
     }
 
 
+    @Test
+    public void classFornameTest(){
+        String className = this.getClass().getSimpleName();
+        System.out.println(className);
+        String className1 = this.getClass().getSuperclass().getName();
+        System.out.println(className1);
+    }
 }
