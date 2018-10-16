@@ -1,6 +1,6 @@
 package coordinate.view;
 
-import coordinate.domain.Figure;
+import coordinate.domain.AbstractFigure;
 import coordinate.domain.Point;
 import coordinate.utill.AxisCondition;
 
@@ -75,11 +75,7 @@ public class ResultView {
         }
     }
 
-    public static void distView(double dist) {
-        System.out.printf("두 점 사이의 거리는 %6f", dist);
-    }
-
-    public static void areaView(Figure f) {
-        System.out.print(f.name() + " 넓이는 : " + f.area());
+    public static void areaView(AbstractFigure f) {
+        System.out.print(f.outputMessage());
     }
 }

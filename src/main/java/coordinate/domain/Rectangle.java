@@ -2,7 +2,7 @@ package coordinate.domain;
 
 import java.util.List;
 
-public class Rectangle extends Figure {
+public class Rectangle extends AbstractFigure {
     public Rectangle(List<Point> points) {
         super(points);
     }
@@ -32,4 +32,8 @@ public class Rectangle extends Figure {
         return width * height;
     }
 
+    @Override
+    public String outputMessage() {
+        return name() + " 넓이는 " + area();
+    }
 }
