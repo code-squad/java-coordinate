@@ -2,17 +2,25 @@ package coordinate.domain;
 
 import java.util.ArrayList;
 
-public class Line {
-    private ArrayList<Point> points;
+public class Line extends AbstractFigure {
 
     public Line(ArrayList<Point> points) {
-        this.points = points;
+        super(points);
     }
-    public String calculate() {
-        if (points.size() == 2) {
-            return  "직선의 길이는 " + points.get(0).calculateLIne(points.get(1)) + " 입니다.";
-        }
-        return "직선이 아닙니다.";
+
+    @Override
+    protected String name() {
+        return "직선";
+    }
+
+    @Override
+    protected int size() {
+        return 2;
+    }
+
+    @Override
+    public double area() {
+        return points.get(0).calculateLIne(points.get(1));
     }
 
 }

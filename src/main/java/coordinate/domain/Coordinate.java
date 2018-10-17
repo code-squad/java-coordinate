@@ -37,8 +37,6 @@ public class Coordinate {
         }
     }
 
-
-
     public ArrayList<CoordinateString> getCoordinatesAxis() {
         return coordinatesAxis;
     }
