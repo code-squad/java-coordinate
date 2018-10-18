@@ -11,7 +11,7 @@ public class Triangle extends AbstractFigure {
     private double[] findLine() {
         double[] lines = new double[3];
         for (int i = 0; i < 3; i++) {
-            lines[i] = points.get(i).calculateLIne(points.get((i+ 1) % 3));
+            lines[i] = points.get(i).calculateLIne(points.get((i + 1) % 3));
         }
         return lines;
     }

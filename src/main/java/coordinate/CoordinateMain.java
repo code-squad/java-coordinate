@@ -20,7 +20,6 @@ public class CoordinateMain extends IllegalAccessException {
             coordinate.drawPoint(pointDtoFactory.getPointDTO());
 
             ResultView resultView = new ResultView(coordinate.getCoordinatesAxis(), coordinate.getCoordinatePlane());
-            resultView.displayCoordinate();
             resultView.displayResult(FigureFactory.create(points));
 
         } catch (IllegalArgumentException e) {

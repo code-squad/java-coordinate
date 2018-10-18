@@ -44,9 +44,8 @@ public class ResultView {
 
 
     public void displayResult(Figure figure) {
-        System.out.println(figure.name()+ "의 면적은 " + figure.area() + " 입니다.");
-
-
+        displayCoordinate();
+        System.out.println(figure.name() + "의 면적은 " + figure.area() + " 입니다.");
     }
 
     public void displayCoordinate() {

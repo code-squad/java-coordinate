@@ -9,6 +9,7 @@ public class CoordinateYLine {
     private static final int MAXiMUM_NUM = 24;
 
     private List<CoordinateString> coordinateLine;
+
     public CoordinateYLine() {
         this.coordinateLine = makeLine();
     }

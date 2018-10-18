@@ -16,7 +16,7 @@ public class Point {
     public double calculateLIne(Point point) {
         int a = this.xPoint - point.xPoint;
         int b = this.yPoint - point.yPoint;
-        return Math.sqrt((Math.pow(a,2) + Math.pow(b,2)));
+        return Math.sqrt((Math.pow(a, 2) + Math.pow(b, 2)));
     }
 
     Boolean compareXPoint(Point point) {
@@ -30,19 +30,21 @@ public class Point {
     int subtractionXPoint(Point point) {
         return Math.abs(this.xPoint - point.xPoint);
     }
+
     int subtractionYPoint(Point point) {
         return Math.abs(this.yPoint - point.yPoint);
     }
 
 
     private int isException(int num) {
-        if (num >25 || num < 0) {
+        if (num > 25 || num < 0) {
             throw new IllegalArgumentException("유효한 범위를 초과 합니다.");
         }
         return num;
     }
+
     public PointDTO makePointDTO() {
-        return new PointDTO(this.xPoint,this.yPoint);
+        return new PointDTO(this.xPoint, this.yPoint);
     }
 
     int getXPoint() {

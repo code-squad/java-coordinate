@@ -23,7 +23,7 @@ public class PointFactory {
 
     private static Point makePoint(String point) {
         String[] pointCoordinate = replaceString(point).split(",");
-        return new Point(Integer.parseInt(pointCoordinate[0]),Integer.parseInt(pointCoordinate[1]));
+        return new Point(Integer.parseInt(pointCoordinate[0]), Integer.parseInt(pointCoordinate[1]));
     }
 
     public static List<Point> testInput(String input) {

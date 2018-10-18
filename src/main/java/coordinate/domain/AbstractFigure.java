@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public abstract class AbstractFigure implements Figure{
+public abstract class AbstractFigure implements Figure {
     protected List<Point> points;
 
     AbstractFigure(List<Point> points) {
@@ -16,7 +16,8 @@ public abstract class AbstractFigure implements Figure{
         Set<Point> isTrue = new HashSet<>(points);
         return isTrue.size() == this.points.size();
     }
-    protected void figureException() {
+
+    void figureException() {
         if (this.points.size() < size()) {
             throw new IllegalArgumentException(name() + "이 아닙니다. 다시 입력 해주세요");
         }
