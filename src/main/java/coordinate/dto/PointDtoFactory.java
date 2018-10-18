@@ -3,21 +3,22 @@ package coordinate.dto;
 import coordinate.domain.Point;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PointDtoFactory {
-    private ArrayList<PointDTO> pointDTOS = new ArrayList<>();
+    private List<PointDTO> pointDTOS = new ArrayList<>();
 
-    public PointDtoFactory(ArrayList<Point> points) {
+    public PointDtoFactory(List<Point> points) {
         add(points);
     }
 
-    public void add(ArrayList<Point> points) {
+    private void add(List<Point> points) {
         for (Point point : points) {
             this.pointDTOS.add(point.makePointDTO());
         }
     }
 
-    public ArrayList<PointDTO> getPointDTO() {
+    public List<PointDTO> getPointDTO() {
         return pointDTOS;
     }
 }

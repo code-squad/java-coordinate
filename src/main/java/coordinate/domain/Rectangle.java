@@ -1,18 +1,19 @@
 package coordinate.domain;
 
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class Rectangle extends AbstractFigure {
     private HashSet<Integer> base = new HashSet<>();
     private HashSet<Integer> height = new HashSet<>();
 
-    public Rectangle(ArrayList<Point> points) {
+    public Rectangle(List<Point> points) {
         super(points);
         for (Point point : this.points) {
             this.base.add(point.getXPoint());
             this.height.add(point.getYPoint());
         }
+        figureException();
     }
 
     private int[] findBaseHeight() {
@@ -34,7 +35,7 @@ public class Rectangle extends AbstractFigure {
     }
 
     @Override
-    protected String name() {
+    public String name() {
         return "사각형";
     }
 

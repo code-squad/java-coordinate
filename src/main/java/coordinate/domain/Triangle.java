@@ -1,11 +1,12 @@
 package coordinate.domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Triangle extends AbstractFigure {
 
-    public Triangle(ArrayList<Point> points) {
+    public Triangle(List<Point> points) {
         super(points);
+        figureException();
     }
 
     private double[] findLine() {
@@ -17,7 +18,7 @@ public class Triangle extends AbstractFigure {
     }
 
     @Override
-    protected String name() {
+    public String name() {
         return "삼각형";
     }
 
