@@ -3,34 +3,28 @@ package coordinate.domain;
 import java.util.Objects;
 
 public class Point implements Comparable<Point>  {
-    private final int x;
-    private final int y;
+    private final PointNo x;
+    private final PointNo y;
 
-    private Point(int x, int y) {
-        if (x < 0 || x > 24) {
-            throw new IllegalArgumentException("0 ~ 24까지만 입력 가능합니다.");
-        }
+    private Point(PointNo x, PointNo y) {
         this.x = x;
-        if (y < 0 || y > 24) {
-            throw new IllegalArgumentException("0 ~ 24까지만 입력 가능합니다.");
-        }
         this.y = y;
     }
 
     public static Point of(int x, int y) {
-        return new Point(x, y);
+        return new Point(new PointNo(x), new PointNo(y));
     }
 
     public static Point of(String x, String y) {
-        return new Point(Integer.parseInt(x), Integer.parseInt(y));
+        return new Point(new PointNo(x), new PointNo(y));
     }
 
     public int getX() {
-        return x;
+        return x.getNo();
     }
 
     public int getY() {
-        return y;
+        return y.getNo();
     }
 
     public double getDistance(Point other) {
@@ -38,28 +32,28 @@ public class Point implements Comparable<Point>  {
                 Math.pow(other.minusY(y), 2));
     }
 
-    private int minusX(int number) {
-        return Math.abs(this.x - number);
+    private int minusX(PointNo number) {
+        return x.abs(number);
     }
 
-    private int minusY(int number) {
-        return Math.abs(this.y - number);
+    private int minusY(PointNo number) {
+        return y.abs(number);
     }
 
     public boolean isSameXCoordinate(Point other) {
-        return other.isSameX(x);
+        return other.isSameX(x.getNo());
     }
 
     private boolean isSameX(int number) {
-        return number == x;
+        return number == x.getNo();
     }
 
     public boolean isSameYCoordinate(Point other) {
-        return other.isSameY(y);
+        return other.isSameY(y.getNo());
     }
 
     private boolean isSameY(int number) {
-        return number == y;
+        return number == y.getNo();
     }
 
     @Override
@@ -86,6 +80,6 @@ public class Point implements Comparable<Point>  {
 
     @Override
     public int compareTo(Point o) {
-        return Integer.compare(x, o.x);
+        return Integer.compare(x.getNo(), o.x.getNo());
     }
 }

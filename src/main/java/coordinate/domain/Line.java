@@ -2,7 +2,7 @@ package coordinate.domain;
 
 import java.util.List;
 
-public class Line extends Figure {
+public class Line extends FigureAbstract {
 
     public Line(List<Point> points) {
         super(points);
@@ -14,12 +14,12 @@ public class Line extends Figure {
     }
 
     @Override
-    public String getName() {
-        return "Line";
+    public String getMessage() {
+        return "\n두 점 사이 거리는 ";
     }
 
     @Override
-    int size() {
-        return 2;
+    public String getName() {
+        return "";
     }
 }
