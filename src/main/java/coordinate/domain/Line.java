@@ -22,9 +22,4 @@ public class Line extends FigureAbstract {
     public String getName() {
         return "";
     }
-
-    @Override
-    int size() {
-        return 2;
-    }
 }

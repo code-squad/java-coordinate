@@ -33,11 +33,11 @@ public class Point implements Comparable<Point>  {
     }
 
     private int minusX(PointNo number) {
-        return Math.abs(x.getNo() - number.getNo());
+        return x.abs(number);
     }
 
     private int minusY(PointNo number) {
-        return Math.abs(y.getNo() - number.getNo());
+        return y.abs(number);
     }
 
     public boolean isSameXCoordinate(Point other) {

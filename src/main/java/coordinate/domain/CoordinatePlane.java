@@ -34,7 +34,7 @@ public class CoordinatePlane {
         return points;
     }
 
-    public FigureAbstract createFigure(List<Point> points) throws InputException {
+    public Figure createFigure(List<Point> points) throws InputException {
         checkDuplicate(points);
 
         FigureMapper fm = new FigureMapper();

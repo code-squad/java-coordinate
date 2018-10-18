@@ -26,9 +26,4 @@ public class Triangle extends FigureAbstract {
     public String getName() {
         return "삼각형";
     }
-
-    @Override
-    int size() {
-        return 3;
-    }
 }

@@ -42,9 +42,4 @@ public class Rectangle extends FigureAbstract {
     public String getName() {
         return "사각형";
     }
-
-    @Override
-    int size() {
-        return 4;
-    }
 }

@@ -1,7 +1,7 @@
 package coordinate;
 
 import coordinate.domain.CoordinatePlane;
-import coordinate.domain.FigureAbstract;
+import coordinate.domain.Figure;
 import coordinate.domain.Point;
 import coordinate.util.InputException;
 import coordinate.view.InputView;
@@ -19,10 +19,10 @@ public class CoordinateMain {
             List<Point> points  = CoordinatePlane.enterPoints(InputView.getPoint());
             CoordinatePlane coordinatePlane = new CoordinatePlane();
 
-            FigureAbstract figureAbstract = coordinatePlane.createFigure(points);
+            Figure figure = coordinatePlane.createFigure(points);
 
             ResultView.drawCoordinatePlane(coordinatePlane, points);
-            ResultView.showCalculation(figureAbstract) ;
+            ResultView.showCalculation(figure) ;
         }  catch (InputException | IllegalArgumentException e) {
             CoordinateMain.run();
         }

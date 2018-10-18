@@ -70,7 +70,7 @@ public class ResultView {
         }
     }
 
-    public static void showCalculation(FigureAbstract figureAbstract) {
+    public static void showCalculation(Figure figureAbstract) {
         System.out.println(figureAbstract.getName() + figureAbstract.getMessage() + figureAbstract.getArea());
     }
 }

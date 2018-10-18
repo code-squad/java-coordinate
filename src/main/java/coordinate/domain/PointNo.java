@@ -17,4 +17,12 @@ public class PointNo {
     public int getNo() {
         return no;
     }
+
+    public int abs(PointNo otherNo) {
+        return otherNo.abs(no);
+    }
+
+    private int abs(int otherNo) {
+        return Math.abs(otherNo - no);
+    }
 }
