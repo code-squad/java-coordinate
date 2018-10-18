@@ -2,7 +2,7 @@ package coordinate.domain;
 
 import java.util.List;
 
-public class Triangle extends Figure{
+public class Triangle extends FigureAbstract {
     public Triangle(List<Point> points) {
         super(points);
     }
@@ -15,6 +15,11 @@ public class Triangle extends Figure{
         double s = (l1 + l2 + l3) / 2;
 
         return Math.round(Math.sqrt(s * (s - l1) * (s - l2) * (s - l3)));
+    }
+
+    @Override
+    public String getMessage() {
+        return "의 넓이는 ";
     }
 
     @Override

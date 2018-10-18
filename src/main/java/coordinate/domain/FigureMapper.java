@@ -21,7 +21,7 @@ public class FigureMapper {
         map.put(CRITERIA_FOR_RECTANGLE, new RectangleFactory());
     }
 
-    public Figure getFigure(List<Point> points) throws InputException {
+    public FigureAbstract getFigure(List<Point> points) throws InputException {
         if(points.size() < MIN || points.size() > MAX) {
             throw new InputException("2 ~ 4개의 점만 찍어주세요");
         }

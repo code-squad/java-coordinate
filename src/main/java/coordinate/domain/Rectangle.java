@@ -4,7 +4,7 @@ import coordinate.util.InputException;
 
 import java.util.List;
 
-public class Rectangle extends Figure{
+public class Rectangle extends FigureAbstract {
 
     public Rectangle(List<Point> points) throws InputException {
         super(points);
@@ -34,6 +34,11 @@ public class Rectangle extends Figure{
     }
 
     @Override
+    public String getMessage() {
+        return "의 넓이는 ";
+    }
+
+    @Override
     public String getName() {
         return "사각형";
     }
@@ -42,5 +47,4 @@ public class Rectangle extends Figure{
     int size() {
         return 4;
     }
-
 }

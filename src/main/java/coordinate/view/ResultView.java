@@ -1,8 +1,8 @@
 package coordinate.view;
 import coordinate.domain.CoordinatePlane;
-import coordinate.domain.Triangle;
 
-import java.util.ArrayList;
+import java.util.List;
+
 import coordinate.domain.*;
 
 public class ResultView {
@@ -11,8 +11,7 @@ public class ResultView {
     public static final String NULL = "";
     public static final String VERTICAL = "|";
 
-
-    public static void drawCoordinatePlane(CoordinatePlane c, ArrayList<Point> p) {
+    public static void drawCoordinatePlane(CoordinatePlane c, List<Point> p) {
         for (int i = c.getSize() - 1; i > 0; i--) {
             System.out.print(initYAxisLable(i));
             System.out.println(printCoordinate(p, i));
@@ -28,7 +27,7 @@ public class ResultView {
         return tmp + VERTICAL;
     }
 
-    private static StringBuilder printCoordinate(ArrayList<Point> points, int index) {
+    private static StringBuilder printCoordinate(List<Point> points, int index) {
         StringBuilder sb = new StringBuilder();
         int preX = 0;
         for (Point point : points) {
@@ -71,20 +70,7 @@ public class ResultView {
         }
     }
 
-    public static void showCalculation(Figure figure) {
-
-        if (figure instanceof Line) {
-            System.out.println("\n두 점 사이 거리는 " +  ((Line) figure).getArea());
-        }
-
-        if (figure instanceof Triangle) {
-            System.out.println("\n" + ((Triangle) figure).getName()
-                    + "의 넓이는 " + ((Triangle) figure).getArea());
-        }
-
-        if (figure instanceof Rectangle) {
-            System.out.println("\n" + ((Rectangle) figure).getName()
-                    + "의 넓이는 " + ((Rectangle) figure).getArea());
-        }
+    public static void showCalculation(FigureAbstract figureAbstract) {
+        System.out.println(figureAbstract.getName() + figureAbstract.getMessage() + figureAbstract.getArea());
     }
 }
