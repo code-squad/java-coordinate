@@ -130,4 +130,27 @@ public class PrintViewTest {
         System.out.println((int)a);
     }
 
+    @Test
+    public void flowTest(){
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 4; j++) {
+                System.out.println(i +"," + j);
+                if (i == 4) {
+                    functionReturn();
+//                    return;                    // 메서드의 흐름은 자신이 끊어야 함
+                }
+            }
+        }
+    }
+
+    public void functionReturn(){
+        return;
+    }
+
+    @Test
+    public void toStringTest(){
+        String a = "nanana";
+        System.out.println(a);
+        System.out.println(a.toString());
+    }
 }

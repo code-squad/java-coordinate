@@ -3,7 +3,6 @@ package coordinate;
 import java.util.*;
 
 public class InputView {
-
     public static String inputPoint() {
         Scanner scan = new Scanner(System.in);
         System.out.println("좌표를 입력하세요.");

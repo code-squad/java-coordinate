@@ -9,7 +9,6 @@ public class PrintView {
     private static final String ROW = "───";
     private static final String THREE_STRING = "%3s";
     private static final String SIX_STRING = "%6s";
-    private static final String BLANK = " ";
 
     public static void drawVertical(List<Point> points) {
         for (int y = AXIS_MAX; y > 0; y--) {
@@ -23,16 +22,17 @@ public class PrintView {
     }
 
     private static void drawDotSpace(int y, List<Point> points) {
+        String blank = " ";
         for (int x = 1; x <= AXIS_MAX * ROW.length(); x++) {
-            if (drawDot(y, points, x))
-                System.out.print(BLANK);
+            if (isDot(y, points, x))
+                System.out.print(blank);
         }
     }
 
-    private static Boolean drawDot(int y, List<Point> points, int x) {
+    private static Boolean isDot(int y, List<Point> points, int x) {
         String dot = "●";
         for (Point point : points) {
-            if (point.matchPoint(x, y)) {
+            if (point.matchDot(x, y)) {
                 System.out.print(dot);
                 return false;
             }
@@ -57,28 +57,7 @@ public class PrintView {
         System.out.println();
     }
 
-    public static void printLength() {
-        System.out.print("두 점 사이 거리는 ");
-    }
-
-    public static void printCube() {
-        System.out.print("사각형의 넓이는 ");
-    }
-
-    public static void printTriangle(){
-        System.out.print("삼각형의 넓이는 ");
-    }
-
-    public static void dotCountReWrite() {
-        System.out.print("직사각형이 아니거나 점의 개수는 2개혹은 4개 이어야 합니다.");
-    }
-
-    public static void printWhatIs(int count){
-        if(count==2)
-            printLength();
-        if(count==3)
-            printTriangle();
-        if (count==4)
-            printCube();
+    public static void printFigure(String figure){
+        System.out.println(figure);
     }
 }
