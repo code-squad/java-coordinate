@@ -22,6 +22,6 @@ public class CoordinateMain {
         PrintView.drawVertical(line.getPoints());
         PrintView.drawRow();
         PrintView.rowNumber();
-        System.out.println(line.checkFigure());
+        PrintView.printFigure(line.createFigure());
     }
 }

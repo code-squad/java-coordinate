@@ -32,7 +32,7 @@ public class PrintView {
     private static Boolean isDot(int y, List<Point> points, int x) {
         String dot = "●";
         for (Point point : points) {
-            if (point.matchPoint(x, y)) {
+            if (point.matchDot(x, y)) {
                 System.out.print(dot);
                 return false;
             }
@@ -55,5 +55,9 @@ public class PrintView {
                 System.out.printf(SIX_STRING, String.valueOf(i));
         }
         System.out.println();
+    }
+
+    public static void printFigure(String figure){
+        System.out.println(figure);
     }
 }

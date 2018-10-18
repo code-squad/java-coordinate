@@ -1,7 +1,6 @@
 package coordinate;
 
-import coordinate.figure.*;
-
+import coordinate.factory.*;
 import java.util.*;
 
 public class Coordinate {
@@ -16,12 +15,12 @@ public class Coordinate {
         checkSameDot();
     }
 
-    public String checkFigure() throws IllegalArgumentException {
-        HashMap<Integer, Figure> map = new HashMap<>();
-        map.put(2, new Line(points));
-        map.put(3, new Triangle(points));
-        map.put(4, new Rectangle(points));
-        return map.get(points.size()).toString();
+    public String createFigure() throws IllegalArgumentException {
+        HashMap<Integer, FigureFactory> map = new HashMap<>();
+        map.put(2, new LineFactory());
+        map.put(3, new TriangleFactory());
+        map.put(4, new RectangleFactory());
+        return map.get(points.size()).create(points).outputMessage();
     }
 
     public void mismatchPointCount() {
@@ -38,7 +37,7 @@ public class Coordinate {
 
     private Boolean subCheckSameDot(int i) {
         for (int j = i + 1; j < points.size(); j++) {
-            if (points.get(i).matchX(points.get(j)) && points.get(i).matchY(points.get(j)))
+            if (points.get(i).equals(points.get(j)))
                 return true;
         }
         return false;

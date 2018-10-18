@@ -9,10 +9,9 @@ public class Triangle extends Figure {
         super(points);
     }
 
-
-    public double calculatorTriangle() {
-        List<Double> lengths = oneLength();
-        lengths.add(getPoints().get(1).calculatorLength(getPoints().get(2)));
+    double calculatorTriangle() {
+        List<Double> lengths = eachLengthFromFirstPoint();
+        lengths.add(getPoints(1).calculatorLength(getPoints(2)));
         double halfSumAllLength = sumAllLength(lengths);
         double triangleLength = heronFormula(lengths, halfSumAllLength);
         return Math.sqrt(triangleLength * halfSumAllLength);
@@ -35,6 +34,11 @@ public class Triangle extends Figure {
     }
 
     @Override
+    public String outputMessage() {
+        return name() + area();
+    }
+
+    @Override
     public double area() {
         return Math.round(calculatorTriangle());
     }
@@ -42,10 +46,5 @@ public class Triangle extends Figure {
     @Override
     public String name() {
         return "삼각형의 넓이는 ";
-    }
-
-    @Override
-    public String toString() {
-        return name() + area();
     }
 }
