@@ -19,23 +19,23 @@ public class Point {
         return Math.sqrt((Math.pow(a,2) + Math.pow(b,2)));
     }
 
-    public Boolean compareXPoint(Point point) {
+    Boolean compareXPoint(Point point) {
         return this.xPoint == point.xPoint;
     }
 
-    public Boolean compareYPoint(Point point) {
+    Boolean compareYPoint(Point point) {
         return this.yPoint == point.yPoint;
     }
 
-    public int subtractionXPoint(Point point) {
+    int subtractionXPoint(Point point) {
         return Math.abs(this.xPoint - point.xPoint);
     }
-    public int subtractionYPoint(Point point) {
+    int subtractionYPoint(Point point) {
         return Math.abs(this.yPoint - point.yPoint);
     }
 
 
-    public int isException(int num) {
+    private int isException(int num) {
         if (num >25 || num < 0) {
             throw new IllegalArgumentException("유효한 범위를 초과 합니다.");
         }
@@ -45,11 +45,11 @@ public class Point {
         return new PointDTO(this.xPoint,this.yPoint);
     }
 
-    public int getXPoint() {
+    int getXPoint() {
         return xPoint;
     }
 
-    public int getYPoint() {
+    int getYPoint() {
         return yPoint;
     }
 

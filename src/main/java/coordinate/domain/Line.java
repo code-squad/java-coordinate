@@ -1,15 +1,16 @@
 package coordinate.domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Line extends AbstractFigure {
 
-    public Line(ArrayList<Point> points) {
+    public Line(List<Point> points) {
         super(points);
+        figureException();
     }
 
     @Override
-    protected String name() {
+    public String name() {
         return "직선";
     }
 
