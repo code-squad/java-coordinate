@@ -2,6 +2,8 @@ package lotto;
 
 import org.junit.Test;
 
+import java.util.StringTokenizer;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoGameTest {
