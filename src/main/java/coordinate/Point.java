@@ -3,18 +3,21 @@ package coordinate;
 import java.util.Objects;
 
 public class Point {
-    private int x;
-    private int y;
+    private PointNumber x;
+    private PointNumber y;
 
-    public Point(int x, int y) throws IllegalArgumentException {
-        if (x < 0 || x > 24 || y < 0 || y > 24)
-            throw new IllegalArgumentException("x와 y값은 0초과 24미만 값이어야 합니다.");
-        this.x = x;
-        this.y = y;
+//    public Point(PointNumber x, PointNumber y) {
+//        this.x = x;
+//        this.y = y;
+//    }
+
+    public Point(int x, int y) {
+        this.x = new PointNumber(x);
+        this.y = new PointNumber(y);
     }
 
     public double calculatorLength(Point point) {
-        return Math.sqrt(Math.pow(this.x - point.x, 2) + Math.pow(this.y - point.y, 2));
+        return Math.sqrt(Math.pow(this.x.getNumber() - point.x.getNumber(), 2) + Math.pow(this.y.getNumber() - point.y.getNumber(), 2));
     }
 
     public Boolean matchX(Point point) {
@@ -26,7 +29,7 @@ public class Point {
     }
 
     public Boolean matchDot(int x, int y) {
-        return this.x * 3 == x && this.y == y;
+        return this.x.getNumber() * 3 == x && this.y.getNumber() == y;
     }
 
     @Override

@@ -7,6 +7,7 @@ import java.util.*;
 public class Rectangle extends Figure {
     public Rectangle(List<Point> points) {
         super(points);
+        checkRectangle();
     }
 
     void checkRectangle() throws IllegalArgumentException {
