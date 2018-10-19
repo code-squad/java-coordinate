@@ -48,7 +48,7 @@ public class ResultView {
         System.out.println(figure.name() + "의 면적은 " + figure.area() + " 입니다.");
     }
 
-    public void displayCoordinate() {
+    private void displayCoordinate() {
         displayYCoordinate();
         displayXCoordinate();
     }

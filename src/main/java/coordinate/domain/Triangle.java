@@ -5,13 +5,12 @@ import java.util.List;
 public class Triangle extends AbstractFigure {
     public Triangle(List<Point> points) {
         super(points);
-        figureException();
     }
 
     private double[] findLine() {
         double[] lines = new double[3];
         for (int i = 0; i < 3; i++) {
-            lines[i] = points.get(i).calculateLIne(points.get((i + 1) % 3));
+            lines[i] = super.points.get(i).calculateLIne(super.points.get((i + 1) % 3));
         }
         return lines;
     }

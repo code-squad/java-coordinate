@@ -10,6 +10,7 @@ public abstract class AbstractFigure implements Figure {
 
     AbstractFigure(List<Point> points) {
         this.points = points;
+        figureException();
     }
 
     private Boolean isSamePoint() {
@@ -17,7 +18,7 @@ public abstract class AbstractFigure implements Figure {
         return isTrue.size() == this.points.size();
     }
 
-    void figureException() {
+    private void figureException() {
         if (this.points.size() < size()) {
             throw new IllegalArgumentException(name() + "이 아닙니다. 다시 입력 해주세요");
         }

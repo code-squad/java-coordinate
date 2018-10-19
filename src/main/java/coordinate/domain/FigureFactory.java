@@ -13,7 +13,7 @@ public class FigureFactory {
         whatFigure.put(4, new RectangleFactory());
     }
 
-    public static AbstractFigure create(List<Point> points) {
+    public static Figure create(List<Point> points) {
         if (!whatFigure.containsKey(points.size())) {
             throw new IllegalArgumentException("도형이 아닙니다.");
         }

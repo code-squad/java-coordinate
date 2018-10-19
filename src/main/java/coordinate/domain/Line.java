@@ -6,7 +6,6 @@ public class Line extends AbstractFigure {
 
     public Line(List<Point> points) {
         super(points);
-        figureException();
     }
 
     @Override
@@ -21,7 +20,7 @@ public class Line extends AbstractFigure {
 
     @Override
     public double area() {
-        return points.get(0).calculateLIne(points.get(1));
+        return super.points.get(0).calculateLIne(super.points.get(1));
     }
 
 }
