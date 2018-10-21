@@ -20,7 +20,7 @@ public class Line extends AbstractFigure {
 
     @Override
     public double area() {
-        return super.points.get(0).calculateLIne(super.points.get(1));
+        return getPoint(0).calculateLIne(getPoint(1));
     }
 
 }

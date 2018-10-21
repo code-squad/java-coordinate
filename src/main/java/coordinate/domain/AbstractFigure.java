@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public abstract class AbstractFigure implements Figure {
-    protected List<Point> points;
+    private List<Point> points;
 
     AbstractFigure(List<Point> points) {
         this.points = points;
@@ -35,4 +35,12 @@ public abstract class AbstractFigure implements Figure {
     }
 
     protected abstract int size();
+
+    protected Point getPoint(int index) {
+        return points.get(index);
+    }
+
+    protected List<Point> getPoints() {
+        return points;
+    }
 }

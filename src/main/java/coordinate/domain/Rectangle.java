@@ -10,12 +10,12 @@ public class Rectangle extends AbstractFigure {
 
     private int[] findBaseHeight() {
         int[] BaseAndHeight = new int[2];
-        for (int i = 1; i < super.points.size(); i++) {
-            if (super.points.get(0).compareXPoint(super.points.get(i)).equals(true)) {
-                BaseAndHeight[0] = super.points.get(0).subtractionYPoint(super.points.get(i));
+        for (int i = 1; i < getPoints().size(); i++) {
+            if (getPoint(0).compareXPoint(getPoint(i)).equals(true)) {
+                BaseAndHeight[0] = getPoint(0).subtractionYPoint(getPoint(i));
             }
-            if (super.points.get(0).compareYPoint(super.points.get(i)).equals(true)) {
-                BaseAndHeight[1] = super.points.get(0).subtractionXPoint(super.points.get(i));
+            if (getPoint(0).compareYPoint(getPoint(i)).equals(true)) {
+                BaseAndHeight[1] = getPoint(0).subtractionXPoint(getPoint(i));
             }
         }
         return BaseAndHeight;
@@ -25,7 +25,7 @@ public class Rectangle extends AbstractFigure {
     protected boolean isFigure() {
         HashSet<Integer> base = new HashSet<>();
         HashSet<Integer> height = new HashSet<>();
-        for (Point point : super.points) {
+        for (Point point : getPoints()) {
             base.add(point.getXPoint());
             height.add(point.getYPoint());
         }
