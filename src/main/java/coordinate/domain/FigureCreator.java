@@ -1,7 +1,7 @@
 package coordinate.domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface FigureCreator {
-    AbstractFigure create(ArrayList<Point> points);
+    Figure create(List<Point> points);
 }

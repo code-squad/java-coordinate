@@ -3,28 +3,30 @@ package coordinate.domain;
 import coordinate.utils.CoordinateString;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CoordinateYLine {
     private static final int MAXiMUM_NUM = 24;
 
-    private ArrayList<CoordinateString> coordinateLine;
+    private List<CoordinateString> coordinateLine;
+
     public CoordinateYLine() {
         this.coordinateLine = makeLine();
     }
 
-    public ArrayList<CoordinateString> makeLine() {
-        ArrayList<CoordinateString> line = new ArrayList<>();
+    private List<CoordinateString> makeLine() {
+        List<CoordinateString> line = new ArrayList<>();
         for (int i = 0; i <= MAXiMUM_NUM; i++) {
             line.add(new CoordinateString());
         }
         return line;
     }
 
-    public void toMarking(int xPoint) {
+    void toMarking(int xPoint) {
         this.coordinateLine.get(xPoint).toMarking();
     }
 
-    public ArrayList<CoordinateString> getCoordinateLine() {
+    public List<CoordinateString> getCoordinateLine() {
         return coordinateLine;
     }
 

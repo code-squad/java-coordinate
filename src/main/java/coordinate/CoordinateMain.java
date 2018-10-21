@@ -7,11 +7,11 @@ import coordinate.dto.PointDtoFactory;
 import coordinate.inputview.InputView;
 import coordinate.resultview.ResultView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CoordinateMain extends IllegalAccessException {
     public static void main(String[] args) {
-        ArrayList<Point> points;
+        List<Point> points;
         try {
             points = InputView.input();
             PointDtoFactory pointDtoFactory = new PointDtoFactory(points);
@@ -20,7 +20,7 @@ public class CoordinateMain extends IllegalAccessException {
             coordinate.drawPoint(pointDtoFactory.getPointDTO());
 
             ResultView resultView = new ResultView(coordinate.getCoordinatesAxis(), coordinate.getCoordinatePlane());
-            resultView.toDisplay(FigureFactory.create(points).result());
+            resultView.displayResult(FigureFactory.create(points));
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

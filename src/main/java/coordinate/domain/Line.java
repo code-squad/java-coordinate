@@ -1,15 +1,15 @@
 package coordinate.domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Line extends AbstractFigure {
 
-    public Line(ArrayList<Point> points) {
+    public Line(List<Point> points) {
         super(points);
     }
 
     @Override
-    protected String name() {
+    public String name() {
         return "직선";
     }
 
@@ -20,7 +20,7 @@ public class Line extends AbstractFigure {
 
     @Override
     public double area() {
-        return points.get(0).calculateLIne(points.get(1));
+        return getPoint(0).calculateLIne(getPoint(1));
     }
 
 }

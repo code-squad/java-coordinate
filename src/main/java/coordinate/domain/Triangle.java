@@ -1,23 +1,22 @@
 package coordinate.domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Triangle extends AbstractFigure {
-
-    public Triangle(ArrayList<Point> points) {
+    public Triangle(List<Point> points) {
         super(points);
     }
 
     private double[] findLine() {
         double[] lines = new double[3];
         for (int i = 0; i < 3; i++) {
-            lines[i] = points.get(i).calculateLIne(points.get((i+ 1) % 3));
+            lines[i] = getPoint(i).calculateLIne(getPoint((i + 1) % 3));
         }
         return lines;
     }
 
     @Override
-    protected String name() {
+    public String name() {
         return "삼각형";
     }
 

@@ -1,28 +1,21 @@
 package coordinate.domain;
 
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class Rectangle extends AbstractFigure {
-    private HashSet<Integer> base = new HashSet<>();
-    private HashSet<Integer> height = new HashSet<>();
-
-    public Rectangle(ArrayList<Point> points) {
+    public Rectangle(List<Point> points) {
         super(points);
-        for (Point point : this.points) {
-            this.base.add(point.getXPoint());
-            this.height.add(point.getYPoint());
-        }
     }
 
     private int[] findBaseHeight() {
         int[] BaseAndHeight = new int[2];
-        for (int i = 1; i < points.size(); i++) {
-            if (points.get(0).compareXPoint(points.get(i)).equals(true)) {
-                BaseAndHeight[0] = points.get(0).subtractionYPoint(points.get(i));
+        for (int i = 1; i < getPoints().size(); i++) {
+            if (getPoint(0).compareXPoint(getPoint(i)).equals(true)) {
+                BaseAndHeight[0] = getPoint(0).subtractionYPoint(getPoint(i));
             }
-            if (points.get(0).compareYPoint(points.get(i)).equals(true)) {
-                BaseAndHeight[1] = points.get(0).subtractionXPoint(points.get(i));
+            if (getPoint(0).compareYPoint(getPoint(i)).equals(true)) {
+                BaseAndHeight[1] = getPoint(0).subtractionXPoint(getPoint(i));
             }
         }
         return BaseAndHeight;
@@ -30,11 +23,17 @@ public class Rectangle extends AbstractFigure {
 
     @Override
     protected boolean isFigure() {
-        return this.base.size() == 2 && this.height.size() == 2;
+        HashSet<Integer> base = new HashSet<>();
+        HashSet<Integer> height = new HashSet<>();
+        for (Point point : getPoints()) {
+            base.add(point.getXPoint());
+            height.add(point.getYPoint());
+        }
+        return base.size() == 2 && height.size() == 2;
     }
 
     @Override
-    protected String name() {
+    public String name() {
         return "사각형";
     }
 

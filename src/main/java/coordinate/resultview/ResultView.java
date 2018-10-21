@@ -1,9 +1,11 @@
 package coordinate.resultview;
 
 import coordinate.domain.CoordinateYLine;
+
+import coordinate.domain.Figure;
 import coordinate.utils.CoordinateString;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ResultView {
     private static final int MAXiMUM_NUM = 24;
@@ -11,10 +13,10 @@ public class ResultView {
     private static final String PLUS = "   +";
     private static final String BAR = "l";
 
-    private ArrayList<CoordinateString> coordinateAxis;
-    private ArrayList<CoordinateYLine> coordinatePlane;
+    private List<CoordinateString> coordinateAxis;
+    private List<CoordinateYLine> coordinatePlane;
 
-    public ResultView(ArrayList<CoordinateString> coordinateAxis, ArrayList<CoordinateYLine> coordinatePlane) {
+    public ResultView(List<CoordinateString> coordinateAxis, List<CoordinateYLine> coordinatePlane) {
         this.coordinateAxis = coordinateAxis;
         this.coordinatePlane = coordinatePlane;
 
@@ -41,13 +43,14 @@ public class ResultView {
     }
 
 
-    public void toDisplay(String result) {
+    public void displayResult(Figure figure) {
         displayCoordinate();
-        System.out.println(result);
+        System.out.println(figure.name() + "의 면적은 " + figure.area() + " 입니다.");
     }
 
-    public void displayCoordinate() {
+    private void displayCoordinate() {
         displayYCoordinate();
         displayXCoordinate();
     }
+
 }

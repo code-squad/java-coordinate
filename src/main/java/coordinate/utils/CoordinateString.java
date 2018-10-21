@@ -26,7 +26,7 @@ public class CoordinateString {
     }
 
     public void toMarking() {
-            this.coordinateString = String.format("%3s", "*");
+        this.coordinateString = String.format("%3s", "*");
     }
 
     @Override
