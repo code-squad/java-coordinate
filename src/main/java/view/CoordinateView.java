@@ -1,21 +1,24 @@
 package view;
 
 public class CoordinateView {
-    static final String VERTICAL_LINE = "│";
-    static final String HORIZONTAL_LINE = "──";
-    static final String CROSS = "+";
-    static final String BLANK = " ";
-    static final String ZERO = "0";
-    static final int LENGTH = 24;
-    private StringBuilder sb = new StringBuilder();
+    private static final String VERTICAL_LINE = "│";
+    private static final String HORIZONTAL_LINE = "──";
+    private static final String CROSS = "+";
+    private static final String BLANK = " ";
+    private static final String ZERO = "0";
+    private static final int LENGTH = 24;
+    private static StringBuilder sb = new StringBuilder();
 
-    private void drawRow() {
+    private CoordinateView() {
+    }
+
+    private static void drawRow() {
         for (int i = LENGTH; i > 0; i--) {
             drawRowValue(i);
         }
     }
 
-    private void drawRowValue(int index) {
+    private static void drawRowValue(int index) {
         if (index % 2 != 0) {
             sb.append(String.format("%2s", BLANK) + VERTICAL_LINE + String.format("%47s", BLANK) + '\n');
             return;
@@ -23,7 +26,7 @@ public class CoordinateView {
         sb.append(String.format("%2s", index) + VERTICAL_LINE + String.format("%47s", BLANK) + '\n');
     }
 
-    private void drawXLine() {
+    private static void drawXLine() {
         sb.append(String.format("%3s", CROSS));
         for (int i = 0; i < LENGTH; i++) {
             sb.append(HORIZONTAL_LINE);
@@ -32,7 +35,7 @@ public class CoordinateView {
         drawXLineNum();
     }
 
-    private void drawXLineNum() {
+    private static void drawXLineNum() {
         sb.append(String.format("%2s", ZERO) + BLANK);
         for (int i = 1; i <= LENGTH; i++) {
             if (i % 2 == 1) {
@@ -44,16 +47,16 @@ public class CoordinateView {
         }
     }
 
-    public void drawDot(int position) {
+    static void drawDot(int position) {
         sb.setCharAt(position, '●');
     }
 
-    public void makeCoordinate() {
+    static void makeCoordinate() {
         drawRow();
         drawXLine();
     }
 
-    public StringBuilder getCoordinateSb() {
+    static StringBuilder getCoordinateSb() {
         return sb;
     }
 }

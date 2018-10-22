@@ -15,7 +15,7 @@ public class LineTest {
         List<Point> pl = new ArrayList<>();
         pl.add(p1);
         pl.add(p2);
-        Line line = new Line();
-        assertThat( line.getLength(pl)).isEqualTo(5.0000);
+        Line line = new Line(pl);
+        assertThat( line.calculateLength()).isEqualTo(5.0000);
     }
 }

@@ -1,6 +1,5 @@
 package domain;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -9,10 +8,7 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class RectangleTest {
-//    @Before
-//    public void setUp(){
-//
-//    }
+
     @Test
     public void chooseThreePointTest(){
         Point p1 = new Point(10,10);
@@ -25,7 +21,7 @@ public class RectangleTest {
         points.add(p3);
         points.add(p4);
         Rectangle rectangle = new Rectangle(points);
-        //rectangle.checkRectangle();
+        assertThat(rectangle.calculateArea()).isEqualTo(96) ;
     }
 
     @Test

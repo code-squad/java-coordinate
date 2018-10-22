@@ -1,11 +1,11 @@
 package domain;
 
 public class Point {
-    static final int LINE_SIZE = 51;
-    static final int MAX_POINT_VALUE = 24;
-    static final int UNIT_DIGIT_RANGE = 10;
-    static final int TWO = 2;
-    static final int ONE = 1;
+    private static final int LINE_SIZE = 51;
+    private static final int MAX_POINT_VALUE = 24;
+    private static final int UNIT_DIGIT_RANGE = 10;
+    private static final int TWO = 2;
+    private static final int ONE = 1;
 
     private int xPos;
     private int yPos;
@@ -17,11 +17,11 @@ public class Point {
         this.yPos = yPos;
     }
 
-    public int subtractXPoint(Point p) {
+    int subtractXPoint(Point p) {
         return xPos - p.xPos;
     }
 
-    public int subtractYPoint(Point p) {
+    int subtractYPoint(Point p) {
         return yPos - p.yPos;
     }
 
@@ -31,11 +31,11 @@ public class Point {
         return index;
     }
 
-    public double calculateLength(Point p) {
+    double calculateLength(Point p) {
         return Math.sqrt(Math.pow(this.subtractXPoint(p), 2) + Math.pow(this.subtractYPoint(p), 2));
     }
 
-    public double calculateSquareLength(Point p) {
-        return Math.pow(this.subtractXPoint(p), 2) + Math.pow(this.subtractYPoint(p), 2);
-    }
+//    public double calculateSquareLength(Point p) {
+//        return Math.pow(this.subtractXPoint(p), 2) + Math.pow(this.subtractYPoint(p), 2);
+//    }
 }
