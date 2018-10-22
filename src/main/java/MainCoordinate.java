@@ -1,4 +1,3 @@
-import domain.Line;
 import domain.Rectangle;
 import util.Parser;
 import domain.Point;
@@ -8,7 +7,6 @@ import java.util.List;
 
 import static view.InputView.getCoordinateValue;
 import static view.ResultView.printCoordinate;
-import static view.ResultView.printLineLength;
 
 public class MainCoordinate {
     public static void main(String[] args) {

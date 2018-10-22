@@ -32,6 +32,11 @@ public class Rectangle {
             threeLengths.clear();
             return;
         }
+        selectOnePoint(cnt,pointIndex);
+    }
+
+    //포인트 하나씩 선택
+    public void selectOnePoint(int cnt, int pointIndex){
         for (int i = pointIndex; i < FOUR; i++) {
             if (!checkPoint[i]) {
                 checkPoint[i] = true;
@@ -49,10 +54,15 @@ public class Rectangle {
             threeLengths.add(new Line().getSquareLength(twoPoints));
             return;
         }
+        selectOnePoint2(cnt, pointIndex);
+    }
+
+    //포인트 하나씩 선택하기
+    public void selectOnePoint2(int cnt, int pointIndex){
         for (int i = pointIndex; i < THREE; i++) {
             if (!checkPoint2[i]) {
                 checkPoint2[i] = true;
-                twoPoints.add(points.get(i));
+                twoPoints.add(threePoints.get(i));
                 findThreePointsLength(cnt + 1, i);
                 checkPoint2[i] = false;
                 twoPoints.remove(twoPoints.size() - 1);
@@ -63,20 +73,19 @@ public class Rectangle {
     //피타고라스 성립 체크
     public void checkRightTriangle() {
         Collections.sort(threeLengths);
-        if (threeLengths.get(ZERO) + threeLengths.get(ONE) == threeLengths.get(TWO)) {
+        if (threeLengths.get(ZERO) > 0 && threeLengths.get(ZERO) + threeLengths.get(ONE) == threeLengths.get(TWO)) {
             rightAngleNum++;
         }
-        area = (int)(Math.sqrt(threeLengths.get(ZERO))*Math.sqrt(threeLengths.get(ONE)));
+        area = (int) (Math.sqrt(threeLengths.get(ZERO)) * Math.sqrt(threeLengths.get(ONE)));
     }
 
     //직사각형 판단
     public void checkRectangle() {
         chooseThreePoint(0, 0);
-        if (rightAngleNum == FOUR) {
-            System.out.println("직사각형의 넓이는 " + area);
+        if (rightAngleNum == FOUR) {        //4개의 부분 직각삼각형이 성립되면 넓이 구하기
+            System.out.println("사각형의 넓이는 " + area);
             return;
         }
         System.out.println("사각형이 아닙니다");
-
     }
 }
