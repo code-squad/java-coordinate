@@ -25,7 +25,7 @@ public class RectangleTest {
         points.add(p3);
         points.add(p4);
         Rectangle rectangle = new Rectangle(points);
-        rectangle.checkRectangle();
+        //rectangle.checkRectangle();
     }
 
     @Test
