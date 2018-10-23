@@ -1,13 +1,10 @@
-import domain.Line;
+import domain.*;
 import util.Parser;
-import domain.Point;
-import domain.MakingPoints;
 
 import java.util.List;
 
 import static view.InputView.getCoordinateValue;
-import static view.ResultView.printCoordinate;
-import static view.ResultView.printLineLength;
+import static view.ResultView.*;
 
 public class MainCoordinate {
     public static void main(String[] args) {
@@ -16,12 +13,28 @@ public class MainCoordinate {
 
     private static void start() {
         try {
-            List<Point> pointList = MakingPoints.makePoints(Parser.makePosition(getCoordinateValue()));
-            printCoordinate(pointList);
-            printLineLength(new Line().getLength(pointList));
-        } catch (Exception e) {
+            List<Point> points = PointsFactory.makePoints(Parser.makePosition(getCoordinateValue()));
+            printCoordinate(points);
+            decideFigure(points);
+
+        } catch (IllegalArgumentException e) {
             System.out.println("좌표값을 잘못 입력했습니다. 다시 입력하세요.");
             start();
+        }
+    }
+
+    private static void decideFigure(List<Point> points) {
+        if (points.size() == 4) {
+            Rectangle rectangle = new Rectangle(points);
+            printRectangleArea(rectangle.calculateArea());
+        }
+        if (points.size() == 3) {
+            Triangle triangle = new Triangle(points);
+            printTriangleArea(triangle.calculateArea());
+        }
+        if (points.size() == 2) {
+            Line line = new Line(points);
+            printLineLength(line.calculateLength());
         }
     }
 }

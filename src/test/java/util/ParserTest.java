@@ -52,4 +52,8 @@ public class ParserTest {
         assertThat(v.get(1)[0]).isEqualTo(14);
         assertThat(v.get(1)[1]).isEqualTo(15);
     }
+    @Test
+    public void booleanTest(){
+        
+    }
 }
