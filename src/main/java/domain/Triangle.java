@@ -11,7 +11,14 @@ public class Triangle {
     private List<Point> points;
 
     public Triangle(List<Point> points) {
+        checkSize(points);
         this.points = points;
+    }
+
+    private void checkSize(List<Point> points) {
+        if (points.size() != 3) {
+            throw new IllegalArgumentException();
+        }
     }
 
     //삼각형 길이 구하기

@@ -17,7 +17,7 @@ public class MainCoordinate {
             printCoordinate(points);
             decideFigure(points);
 
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("좌표값을 잘못 입력했습니다. 다시 입력하세요.");
             start();
         }

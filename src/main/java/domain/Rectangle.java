@@ -12,21 +12,26 @@ public class Rectangle {
     private List<Point> points;
 
     public Rectangle(List<Point> points) {
+        check(points);
         this.points = points;
-        check();
     }
 
-    private void check() {
-        int xCnt = 0;
-        int yCnt = 0;
+    private void check(List<Point> points) {
+        checkSize(points);
         int check = 0;
         for (Point point : points) {
-            check += cntCoordinateValue(xCnt, yCnt, point);
+            check += cntCoordinateValue(0, 0, point, points);
         }
         checkRectangle(check);
     }
 
-    private int cntCoordinateValue(int xCnt, int yCnt, Point point) {
+    private void checkSize(List<Point> points) {
+        if (points.size() != 4) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private int cntCoordinateValue(int xCnt, int yCnt, Point point, List<Point> points) {
         for (Point other : points) {
             if (point.subtractXPoint(other) == ZERO) {
                 xCnt++;

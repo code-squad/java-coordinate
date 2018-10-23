@@ -8,7 +8,14 @@ public class Line {
     private List<Point> points;
 
     public Line(List<Point> points) {
+        checkSize(points);
         this.points = points;
+    }
+
+    private void checkSize(List<Point> points) {
+        if (points.size() != 2) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public double calculateLength() {
