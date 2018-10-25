@@ -10,14 +10,6 @@ public class Triangle extends Figure {
 
     public Triangle(List<Point> points) {
         super(points);
-        checkSize();
-    }
-
-    @Override
-    protected void checkSize() {
-        if (getPointsSize() != 3) {
-            throw new IllegalArgumentException();
-        }
     }
 
     //삼각형 길이 구하기

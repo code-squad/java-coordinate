@@ -15,12 +15,12 @@ public class MainCoordinate {
     private static void start() {
         try {
             List<Point> points = PointsFactory.makePoints(Parser.makePosition(getCoordinateValue()));
-            printCoordinate(points);
             decideFigure(points);
+            printCoordinate(points);
         } catch (IllegalArgumentException e) {
             System.out.println("좌표값을 잘못 입력했습니다. 다시 입력하세요.");
             start();
-        } catch (DuplicatePointException e){
+        } catch (DuplicatePointException e) {
             System.out.println(e.getMessage());
             start();
         }

@@ -15,19 +15,11 @@ public class Rectangle extends Figure {
     }
 
     private void check(List<Point> points) {
-        checkSize();
         int check = 0;
         for (Point point : points) {
             check += cntCoordinateValue(point, points);
         }
         checkRectangle(check);
-    }
-
-    @Override
-    public void checkSize() {
-        if (getPointsSize() != 4) {
-            throw new IllegalArgumentException();
-        }
     }
 
     private int cntCoordinateValue(Point point, List<Point> points) {

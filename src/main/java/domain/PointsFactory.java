@@ -17,13 +17,6 @@ public class PointsFactory {
             Point point = new Point(position[X_POSITION], position[Y_POSITION]);
             points.add(point);
         }
-        checkDuplicationPoint(points);
         return points;
-    }
-
-    private static void checkDuplicationPoint(List<Point> points) {
-        Set<Point> copyOfPoints = new HashSet<>(points);
-        if (points.size() != copyOfPoints.size())
-            throw new DuplicatePointException("위치가 같은 점(point)이 존재합니다. 세 점의 위치는 달라야 합니다.");
     }
 }
