@@ -21,7 +21,7 @@ public class RectangleTest {
         points.add(p3);
         points.add(p4);
         Rectangle rectangle = new Rectangle(points);
-        assertThat(rectangle.calculateArea()).isEqualTo(96) ;
+        assertThat(rectangle.area()).isEqualTo(96) ;
     }
 
     @Test

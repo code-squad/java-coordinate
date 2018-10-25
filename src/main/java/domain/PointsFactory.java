@@ -8,10 +8,11 @@ public class PointsFactory {
     private static final int Y_POSITION = 1;
 
     public static List<Point> makePoints(List<Integer[]> positions) {
-        List<Point> pointList = new ArrayList<>();
+        List<Point> points = new ArrayList<>();
         for (Integer[] position : positions) {
-            pointList.add(new Point(position[X_POSITION], position[Y_POSITION]));
+            Point point = new Point(position[X_POSITION], position[Y_POSITION]);
+            points.add(point);
         }
-        return pointList;
+        return points;
     }
 }

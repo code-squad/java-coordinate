@@ -4,45 +4,33 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Rectangle {
+public class Rectangle extends Figure {
     private static final int ZERO = 0;
     private static final int ONE = 1;
     private static final int FOUR = 4;
 
-    private List<Point> points;
-
     public Rectangle(List<Point> points) {
+        super(points);
+        checkSize(FOUR);
         check(points);
-        this.points = points;
     }
 
     private void check(List<Point> points) {
-        checkSize(points);
         int check = 0;
         for (Point point : points) {
-            check += cntCoordinateValue(0, 0, point, points);
+            check += cntCoordinateValue(point, points);
         }
         checkRectangle(check);
     }
 
-    private void checkSize(List<Point> points) {
-        if (points.size() != 4) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private int cntCoordinateValue(int xCnt, int yCnt, Point point, List<Point> points) {
+    private int cntCoordinateValue(Point point, List<Point> points) {
+        int xCnt = 0;
+        int yCnt = 0;
         for (Point other : points) {
-            if (point.subtractXPoint(other) == ZERO) {
-                xCnt++;
-            }
-            if (point.subtractYPoint(other) == ZERO) {
-                yCnt++;
-            }
+            if (point.subtractXPoint(other) == ZERO) xCnt++;
+            if (point.subtractYPoint(other) == ZERO) yCnt++;
         }
-        if (xCnt == 2 && yCnt == 2) {
-            return ONE;
-        }
+        if (xCnt == 2 && yCnt == 2) return ONE;
         return ZERO;
     }
 
@@ -53,12 +41,13 @@ public class Rectangle {
         throw new IllegalArgumentException("사각형이 아닙니다");
     }
 
-    public int calculateArea() {
+    @Override
+    public double area() {
         List<Double> length = new ArrayList<>();
-        for (int i = 0; i < points.size() - 1; i++) {
-            length.add(points.get(i).calculateLength(points.get(i + 1)));
+        for (int i = 0; i < getPointsSize() - 1; i++) {
+            length.add(getPoint(i).calculateLength(getPoint(i + 1)));
         }
         Collections.sort(length);
-        return (int) (length.get(ZERO) * length.get(ONE));
+        return (length.get(ZERO) * length.get(ONE));
     }
 }
