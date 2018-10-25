@@ -13,9 +13,9 @@ public class Point {
     private int yPos;
 
     public Point(int xPos, int yPos) {
-        if (xPos > MAX_POINT_VALUE || xPos < 0) throw new IllegalArgumentException();
+        if (xPos > MAX_POINT_VALUE || xPos < 0) throw new IllegalArgumentException("좌표값을 잘못 입력했습니다. 다시 입력하세요.");
         this.xPos = xPos;
-        if (yPos > MAX_POINT_VALUE || yPos < 0) throw new IllegalArgumentException();
+        if (yPos > MAX_POINT_VALUE || yPos < 0) throw new IllegalArgumentException("좌표값을 잘못 입력했습니다. 다시 입력하세요.");
         this.yPos = yPos;
     }
 

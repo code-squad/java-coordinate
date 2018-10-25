@@ -7,14 +7,10 @@ import java.util.List;
 import java.util.Set;
 
 public abstract class Figure {
-    private final int MIN_RANGE = 0;
-    private final int MAX_RANGE = 5;
-
     private List<Point> points;
 
     Figure(List<Point> points) {
         checkDuplicationPoint(points);
-        checkSize(points);
         this.points = points;
     }
 
@@ -32,8 +28,8 @@ public abstract class Figure {
             throw new DuplicatePointException("위치가 같은 점(point)이 존재합니다. 모든 점들의 위치는 달라야 합니다.");
     }
 
-    private void checkSize(List<Point> points) {
-        if (points.size() <= MIN_RANGE || points.size() >= MAX_RANGE) {
+    protected void checkSize(int size){
+        if(points.size()!=size){
             throw new IllegalArgumentException();
         }
     }

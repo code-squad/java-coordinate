@@ -16,6 +16,6 @@ public class LineTest {
         pl.add(p1);
         pl.add(p2);
         Line line = new Line(pl);
-        assertThat( line.calculateLength()).isEqualTo(5.0000);
+        assertThat( line.area()).isEqualTo(5.0000);
     }
 }

@@ -11,6 +11,7 @@ public class Rectangle extends Figure {
 
     public Rectangle(List<Point> points) {
         super(points);
+        checkSize(FOUR);
         check(points);
     }
 

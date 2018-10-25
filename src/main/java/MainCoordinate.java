@@ -17,10 +17,7 @@ public class MainCoordinate {
             List<Point> points = PointsFactory.makePoints(Parser.makePosition(getCoordinateValue()));
             decideFigure(points);
             printCoordinate(points);
-        } catch (IllegalArgumentException e) {
-            System.out.println("좌표값을 잘못 입력했습니다. 다시 입력하세요.");
-            start();
-        } catch (DuplicatePointException e) {
+        } catch (IllegalArgumentException | DuplicatePointException e) {
             System.out.println(e.getMessage());
             start();
         }
@@ -37,7 +34,7 @@ public class MainCoordinate {
         }
         if (points.size() == 2) {
             Line line = new Line(points);
-            printLineLength(line.calculateLength());
+            printLineLength(line.area());
         }
     }
 }

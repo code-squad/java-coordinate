@@ -2,23 +2,17 @@ package domain;
 
 import java.util.List;
 
-public class Line {
+public class Line extends Figure{
     private static final int FIRST_POINT = 0;
     private static final int SECOND_POINT = 1;
-    private List<Point> points;
+    private static final int TWO = 2;
 
     public Line(List<Point> points) {
-        checkSize(points);
-        this.points = points;
+        super(points);
+        checkSize(TWO);
     }
 
-    private void checkSize(List<Point> points) {
-        if (points.size() != 2) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public double calculateLength() {
-        return points.get(FIRST_POINT).calculateLength(points.get(SECOND_POINT));
+    public double area() {
+        return getPoint(FIRST_POINT).calculateLength(getPoint(SECOND_POINT));
     }
 }

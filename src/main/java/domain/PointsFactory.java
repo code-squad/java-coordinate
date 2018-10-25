@@ -1,11 +1,7 @@
 package domain;
 
-import additionalException.DuplicatePointException;
-
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class PointsFactory {
     private static final int X_POSITION = 0;
