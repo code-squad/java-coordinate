@@ -29,7 +29,7 @@ public class Parser {
         return pos;
     }
 
-    private static List<Integer[]> makePostionList(String[] temp) {
+    private static List<Integer[]> makePositionList(String[] temp) {
         List<Integer[]> pos = new ArrayList<>();
         for (String t : temp) {
             pos.add(stringToInteger(splitComma(t)));        //a,b,c,d
@@ -40,6 +40,6 @@ public class Parser {
     public static List<Integer[]> makePosition(String input) {
         String[] str = splitHyphen(input);           //"(a,b)","(c,d)"
         String[] temp = removeBracket(str);     //"a,b","c,d"
-        return makePostionList(temp);
+        return makePositionList(temp);
     }
 }

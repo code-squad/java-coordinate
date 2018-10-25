@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Objects;
+
 public class Point {
     private static final int LINE_SIZE = 51;
     private static final int MAX_POINT_VALUE = 24;
@@ -33,5 +35,19 @@ public class Point {
 
     double calculateLength(Point p) {
         return Math.sqrt(Math.pow(this.subtractXPoint(p), 2) + Math.pow(this.subtractYPoint(p), 2));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return xPos == point.xPos &&
+                yPos == point.yPos;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(xPos, yPos);
     }
 }
