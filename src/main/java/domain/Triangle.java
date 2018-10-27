@@ -36,9 +36,14 @@ public class Triangle extends Figure {
     }
 
     @Override
-    public double area() {
+    public String name() {
+        return "삼각형의 넓이는 ";
+    }
+
+    @Override
+    public String area() {
         List<Double> lengths = calculateTriangleLength();
         double s = findS(lengths);
-        return Math.sqrt(s * (s - lengths.get(ZERO)) * (s - lengths.get(ONE)) * (s - lengths.get(TWO)));
+        return String.format("%.1f", Math.sqrt(s * (s - lengths.get(ZERO)) * (s - lengths.get(ONE)) * (s - lengths.get(TWO))));
     }
 }

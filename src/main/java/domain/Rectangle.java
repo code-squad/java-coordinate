@@ -42,12 +42,17 @@ public class Rectangle extends Figure {
     }
 
     @Override
-    public double area() {
+    public String name() {
+        return "사각형의 넓이는 ";
+    }
+
+    @Override
+    public String area() {
         List<Double> length = new ArrayList<>();
         for (int i = 0; i < getPointsSize() - 1; i++) {
             length.add(getPoint(i).calculateLength(getPoint(i + 1)));
         }
         Collections.sort(length);
-        return (length.get(ZERO) * length.get(ONE));
+        return String.format("%.0f", length.get(ZERO) * length.get(ONE));
     }
 }
