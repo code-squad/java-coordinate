@@ -7,7 +7,7 @@ public class Line extends Figure {
     private static final int SECOND_POINT = 1;
     private static final int TWO = 2;
 
-    public Line(List<Point> points) {
+    Line(List<Point> points) {
         super(points);
         checkSize(TWO);
     }

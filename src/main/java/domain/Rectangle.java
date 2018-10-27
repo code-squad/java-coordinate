@@ -9,7 +9,7 @@ public class Rectangle extends Figure {
     private static final int ONE = 1;
     private static final int FOUR = 4;
 
-    public Rectangle(List<Point> points) {
+    Rectangle(List<Point> points) {
         super(points);
         checkSize(FOUR);
         check(points);

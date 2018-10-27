@@ -14,7 +14,7 @@ public abstract class Figure extends FigureFactory implements FigureInformation 
         this.points = points;
     }
 
-    protected Point getPoint(int index) {
+    Point getPoint(int index) {
         return points.get(index);
     }
 

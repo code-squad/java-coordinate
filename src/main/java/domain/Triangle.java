@@ -9,7 +9,7 @@ public class Triangle extends Figure {
     private static final int TWO = 2;
     private static final int THREE = 3;
 
-    public Triangle(List<Point> points) {
+    Triangle(List<Point> points) {
         super(points);
         checkSize(THREE);
     }
