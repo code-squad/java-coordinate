@@ -3,15 +3,15 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import static domain.FigureType.TRIANGLE;
+
 public class Triangle extends Figure {
     private static final int ZERO = 0;
     private static final int ONE = 1;
     private static final int TWO = 2;
-    private static final int THREE = 3;
 
     Triangle(List<Point> points) {
         super(points);
-        checkSize(THREE);
     }
 
     //삼각형 길이 구하기
@@ -38,6 +38,11 @@ public class Triangle extends Figure {
     @Override
     public String name() {
         return "삼각형의 넓이는 ";
+    }
+
+    @Override
+    public int size(){
+        return TRIANGLE.getSize();
     }
 
     @Override

@@ -15,4 +15,8 @@ public enum FigureType {
         }
         throw new IllegalArgumentException("포인트 개수를 잘 못 입력했습니다.");
     }
+
+    public int getSize(){
+        return size;
+    }
 }

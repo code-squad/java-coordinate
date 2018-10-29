@@ -9,7 +9,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class FigureFactoryTest {
     @Test
-    public void lineTest() {
+    public void LineTest() {
         Point point1 = new Point(1, 2);
         Point point2 = new Point(3, 4);
         List<Point> points = new ArrayList<>();
