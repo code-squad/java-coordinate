@@ -15,26 +15,12 @@ public class MainCoordinate {
     private static void start() {
         try {
             List<Point> points = PointsFactory.makePoints(Parser.makePosition(getCoordinateValue()));
-            decideFigure(points);
-            printCoordinate(points);
+            Figure figure = FigureFactory.decideFigure(points);
+            printCoordinate(figure.getPoints());
+            printArea(figure);
         } catch (IllegalArgumentException | DuplicatePointException e) {
             System.out.println(e.getMessage());
             start();
-        }
-    }
-
-    private static void decideFigure(List<Point> points) {
-        if (points.size() == 4) {
-            Rectangle rectangle = new Rectangle(points);
-            printRectangleArea(rectangle.area());
-        }
-        if (points.size() == 3) {
-            Triangle triangle = new Triangle(points);
-            printTriangleArea(triangle.area());
-        }
-        if (points.size() == 2) {
-            Line line = new Line(points);
-            printLineLength(line.area());
         }
     }
 }

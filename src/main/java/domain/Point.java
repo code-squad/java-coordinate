@@ -33,7 +33,7 @@ public class Point {
         return index;
     }
 
-    double calculateLength(Point p) {
+    public double calculateLength(Point p) {
         return Math.sqrt(Math.pow(this.subtractXPoint(p), 2) + Math.pow(this.subtractYPoint(p), 2));
     }
 

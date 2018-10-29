@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static domain.FigureType.RECTANGLE;
+
 public class Rectangle extends Figure {
     private static final int ZERO = 0;
     private static final int ONE = 1;
     private static final int FOUR = 4;
 
-    public Rectangle(List<Point> points) {
+    Rectangle(List<Point> points) {
         super(points);
-        checkSize(FOUR);
         check(points);
     }
 
@@ -42,12 +43,22 @@ public class Rectangle extends Figure {
     }
 
     @Override
-    public double area() {
+    public String name() {
+        return "사각형의 넓이는 ";
+    }
+
+    @Override
+    public int size(){
+        return RECTANGLE.getSize();
+    }
+
+    @Override
+    public String area() {
         List<Double> length = new ArrayList<>();
         for (int i = 0; i < getPointsSize() - 1; i++) {
             length.add(getPoint(i).calculateLength(getPoint(i + 1)));
         }
         Collections.sort(length);
-        return (length.get(ZERO) * length.get(ONE));
+        return String.format("%.0f", length.get(ZERO) * length.get(ONE));
     }
 }
