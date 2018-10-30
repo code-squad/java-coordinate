@@ -10,6 +10,14 @@ public class Line {
         this.b = b;
     }
 
+    public Point getA() {
+        return a;
+    }
+
+    public Point getB() {
+        return b;
+    }
+
     //Math.abs는 절대값
     public int minusX() {
         return Math.abs(a.getX() - b.getX());

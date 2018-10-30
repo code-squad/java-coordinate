@@ -1,7 +1,6 @@
 package view;
 
 import model.Line;
-import model.MakeLine;
 import model.Point;
 
 public class PrintView {
@@ -9,12 +8,12 @@ public class PrintView {
     public static final int COORDINATE = 24;
 
 
-    public void printAll(Line line, MakeLine parser) {
-        Point a = parser.getaPoints();
-        Point b = parser.getbPoints();
+    public void printAll(Line line) {
+        Point a = line.getA();
+        Point b = line.getB();
         printCoordinate(a, b);
         printDistance(line.lineDistance());
-        System.out.println(String.valueOf(coordinatePrint));
+        System.out.println(coordinatePrint.toString());
     }
 
     public static void printCoordinate(Point a, Point b) {
@@ -44,8 +43,8 @@ public class PrintView {
                 skipDot(a);
             }
             if (i == b.getY()) {
-                sameYBar(a, b);
-                diffrentYBar(a, b);
+                aMatchYBar(a, b);
+                aMisMatchYBar(a, b);
             }
             coordinatePrint.append("\n");
         }
@@ -58,7 +57,7 @@ public class PrintView {
         coordinatePrint.append("*");
     }
 
-    private static void sameYBar(Point a, Point b) {
+    private static void aMatchYBar(Point a, Point b) {
         if (a.getY() == b.getY()) {
             for (int j = 0; j < Math.abs(b.getX() - a.getX()); j++) {
                 coordinatePrint.append(String.format("%4s", " "));
@@ -67,9 +66,12 @@ public class PrintView {
         }
     }
 
-    private static void diffrentYBar(Point a, Point b) {
+    private static void aMisMatchYBar(Point a, Point b) {
         if (a.getY() != b.getY()) {
-            skipDot(b);
+            for (int j = 0; j < b.getX(); j++) {
+                coordinatePrint.append(String.format("%4s", " "));
+            }
+            coordinatePrint.append("*");
         }
     }
 

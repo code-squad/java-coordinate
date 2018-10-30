@@ -11,10 +11,9 @@ public class Main {
     public static void main(String[] args) {
         PrintView printView = new PrintView();
         String coordinateNum = InputView.inputCoordinate();
-        MakeLine parser = new MakeLine();
         try {
-            Line line = parser.makeLine(coordinateNum);
-            printView.printAll(line, parser);
+            Line line = MakeLine.makeLine(coordinateNum);
+            printView.printAll(line);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             main(args);

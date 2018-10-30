@@ -6,7 +6,6 @@ public class Point {
     private int y;
 
     private Point(int x, int y) throws Exception {
-
 //        IllegalArgumentException	매개변수가 의도하지 않은 상황을 유발시킬 때
 //        IllegalStateException	메소드를 호출하기 위한 상태가 아닐 때
         if (x < 0 || x > 24) {
