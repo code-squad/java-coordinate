@@ -1,17 +1,24 @@
 package view;
 
+import model.Line;
+import model.Point;
+
 public class PrintView {
-    private static StringBuilder stringBuilder = new StringBuilder();
+    private static StringBuilder coordinatePrint = new StringBuilder();
     public static final int COORDINATE = 24;
 
-    public static void printAll() {
-        printCoordinate();
-        System.out.println(String.valueOf(stringBuilder));
+
+    public void printAll(Line line) {
+        Point a = line.getA();
+        Point b = line.getB();
+        printCoordinate(a, b);
+        printDistance(line.lineDistance());
+        System.out.println(coordinatePrint.toString());
     }
 
-    public static void printCoordinate() {
-        printBarY();
-        stringBuilder.append(String.format("%3s", "┼"));
+    public static void printCoordinate(Point a, Point b) {
+        printBarY(a, b);
+        coordinatePrint.append(String.format("%3s", "┼"));
         printBarX();
     }
 
@@ -19,30 +26,76 @@ public class PrintView {
         for (int i = 0; i < COORDINATE; i++) {
             printRow();
         }
-        stringBuilder.append("\n");
+        coordinatePrint.append("\n");
+        coordinatePrint.append("    ");
         for (int j = 0; j <= COORDINATE; j += 2) {
-            stringBuilder.append(String.format("%2d", j));
-            stringBuilder.append(String.format("%6s", " "));
+            coordinatePrint.append(String.format("%2d", j));
+            coordinatePrint.append(String.format("%6s", " "));
+        }
+        coordinatePrint.append("\n");
+    }
+
+    private static void printBarY(Point a, Point b) {
+        for (int i = COORDINATE; i >= 1; i--) {
+            printNumY(i);
+            printHeight();
+            if (i == a.getY()) {
+                skipDot(a);
+            }
+            if (i == b.getY()) {
+                aMatchYBar(a, b);
+                aMisMatchYBar(a, b);
+            }
+            coordinatePrint.append("\n");
         }
     }
 
-    private static void printBarY() {
-        for (int i = COORDINATE; i > 0; i -= 2) {
-            stringBuilder.append(String.format("%2d", i));
-            printHeight();
-            stringBuilder.append("\n");
+    private static void skipDot(Point a) {
+        for (int j = 0; j < a.getX(); j++) {
+            coordinatePrint.append(String.format("%4s", " "));
+        }
+        coordinatePrint.append("*");
+    }
+
+    private static void aMatchYBar(Point a, Point b) {
+        if (a.getY() == b.getY()) {
+            for (int j = 0; j < Math.abs(b.getX() - a.getX()); j++) {
+                coordinatePrint.append(String.format("%4s", " "));
+            }
+            coordinatePrint.append("*");
+        }
+    }
+
+    private static void aMisMatchYBar(Point a, Point b) {
+        if (a.getY() != b.getY()) {
+            for (int j = 0; j < b.getX(); j++) {
+                coordinatePrint.append(String.format("%4s", " "));
+            }
+            coordinatePrint.append("*");
+        }
+    }
+
+    private static void printNumY(int i) {
+        if (i % 2 == 0) {
+            coordinatePrint.append(String.format("%2d", i));
+        }
+        if (i % 2 == 1) {
+            coordinatePrint.append(String.format("%2s", " "));
         }
     }
 
     public static void printRow() {
         for (int i = 0; i < 2; i++) {
-            stringBuilder.append("─");
+            coordinatePrint.append("─");
         }
     }
 
     public static void printHeight() {
-        stringBuilder.append("┃");
-        stringBuilder.append("\n");
-        stringBuilder.append(String.format("%3s", "┃"));
+        coordinatePrint.append("┃");
+    }
+
+    private static void printDistance(double lineDistance) {
+        coordinatePrint.append("점과 점사이의 간격 : ");
+        coordinatePrint.append(String.format("%-10.3f", lineDistance));
     }
 }
