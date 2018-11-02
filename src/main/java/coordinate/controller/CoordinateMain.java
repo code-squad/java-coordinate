@@ -1,6 +1,7 @@
 package coordinate.controller;
 
 import coordinate.domain.Movement;
+
 import coordinate.view.InputView;
 import coordinate.view.ResultView;
 

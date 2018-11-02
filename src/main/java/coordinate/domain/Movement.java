@@ -1,5 +1,6 @@
 package coordinate.domain;
 
+
 import coordinate.controller.Point;
 
 import java.util.ArrayList;
