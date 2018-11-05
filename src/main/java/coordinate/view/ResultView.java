@@ -2,8 +2,8 @@ package coordinate.view;
 
 import coordinate.controller.Point;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class ResultView {
 
@@ -14,7 +14,7 @@ public class ResultView {
 
     private static String input = "";
 
-    public static void height(ArrayList<Integer> y, ArrayList<Integer> x, ArrayList<Point> points) {
+    public static void height(List<Integer> y, List<Integer> x, List<Point> points) {
         Collections.reverse(y);
 
         for (int i = 0; i < y.size() - 1; i++) {
@@ -35,7 +35,7 @@ public class ResultView {
         return input;
     }
 
-    private static void pointDisplay(int y, ArrayList<Integer> x, ArrayList<Point> point) {
+    private static void pointDisplay(int y, List<Integer> x, List<Point> point) {
         for (int j = 1; j < x.size(); j++) {
             input = BLANK;
             pointRepetition(y, point, j);
@@ -43,7 +43,7 @@ public class ResultView {
         }
     }
 
-    private static void pointRepetition(int y, ArrayList<Point> point, int coordinatesX) {
+    private static void pointRepetition(int y, List<Point> point, int coordinatesX) {
         for (int k = 0; k < point.size(); k++) {
             locationCriteria(y, point.get(k).getX(), point.get(k).getY(), coordinatesX);
         }
@@ -59,7 +59,7 @@ public class ResultView {
         return point == index;
     }
 
-    public static void width(ArrayList<Integer> axisNum) {
+    public static void width(List<Integer> axisNum) {
         System.out.print(String.format("%3s", "+"));
         for (int i = 0; i < axisNum.size(); i++) {
             System.out.print(HEIGHT_LINE);
@@ -69,7 +69,7 @@ public class ResultView {
         System.out.println();
     }
 
-    private static void widthNum(ArrayList<Integer> axisNum) {
+    private static void widthNum(List<Integer> axisNum) {
         for (Integer integer : axisNum) {
             input = String.format("%2s", BLANK);
             input = multiple(integer, input);
@@ -77,7 +77,7 @@ public class ResultView {
         }
     }
 
-    public static void distance(ArrayList<Point> points) {
+    public static void distance(List<Point> points) {
         System.out.println("두 점 사이 거리는 : " + points.get(0).getDistance(points.get(1)));
     }
 }
