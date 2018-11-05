@@ -1,25 +1,27 @@
 package view;
 
-import model.Line;
+import model.Parser;
 import model.Point;
+
+import java.util.List;
+
 
 public class PrintView {
     private static StringBuilder coordinatePrint = new StringBuilder();
     public static final int COORDINATE = 24;
+    //이것도 마찬가지다.
+    private static List<Point> points = Parser.makePoints();
 
-
-    public void printAll(Line line) {
-        Point a = line.getA();
-        Point b = line.getB();
-        printCoordinate(a, b);
-        printDistance(line.lineDistance());
+    public void printAll(double figures) {
+        printCoordinate(figures);
         System.out.println(coordinatePrint.toString());
     }
 
-    public static void printCoordinate(Point a, Point b) {
-        printBarY(a, b);
+    public static void printCoordinate(double figures) {
+        printBarY();
         coordinatePrint.append(String.format("%3s", "┼"));
         printBarX();
+        coordinatePrint.append(String.format("value : " + "%-1.3f", figures));
     }
 
     private static void printBarX() {
@@ -35,43 +37,25 @@ public class PrintView {
         coordinatePrint.append("\n");
     }
 
-    private static void printBarY(Point a, Point b) {
+    private static void printBarY() {
         for (int i = COORDINATE; i >= 1; i--) {
             printNumY(i);
             printHeight();
-            if (i == a.getY()) {
-                skipDot(a);
-            }
-            if (i == b.getY()) {
-                aMatchYBar(a, b);
-                aMisMatchYBar(a, b);
+            for (int j = 0; j < COORDINATE; j++) {
+                for (int a = 0; a < points.size(); a++) {
+                    markingDot(i, j, a);
+                }
             }
             coordinatePrint.append("\n");
         }
     }
 
-    private static void skipDot(Point a) {
-        for (int j = 0; j < a.getX(); j++) {
-            coordinatePrint.append(String.format("%4s", " "));
-        }
-        coordinatePrint.append("*");
-    }
-
-    private static void aMatchYBar(Point a, Point b) {
-        if (a.getY() == b.getY()) {
-            for (int j = 0; j < Math.abs(b.getX() - a.getX()); j++) {
-                coordinatePrint.append(String.format("%4s", " "));
-            }
+    private static void markingDot(int i, int j, int a) {
+        if (points.get(a).getY() == i && points.get(a).getX() == j) {
             coordinatePrint.append("*");
         }
-    }
-
-    private static void aMisMatchYBar(Point a, Point b) {
-        if (a.getY() != b.getY()) {
-            for (int j = 0; j < b.getX(); j++) {
-                coordinatePrint.append(String.format("%4s", " "));
-            }
-            coordinatePrint.append("*");
+        if (points.get(a).getY() != i || points.get(a).getX() != j) {
+            coordinatePrint.append(String.format("%1s", " "));
         }
     }
 
@@ -92,10 +76,5 @@ public class PrintView {
 
     public static void printHeight() {
         coordinatePrint.append("┃");
-    }
-
-    private static void printDistance(double lineDistance) {
-        coordinatePrint.append("점과 점사이의 간격 : ");
-        coordinatePrint.append(String.format("%-10.3f", lineDistance));
     }
 }
