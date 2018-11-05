@@ -5,6 +5,7 @@ import coordinate.view.InputView;
 import coordinate.view.ResultView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CoordinateMain {
 
@@ -13,13 +14,13 @@ public class CoordinateMain {
 
         String temporaryPoint = InputView.inputPoint();
 
-        ArrayList<Point> points = new ArrayList<>(m.pointCreate(temporaryPoint));
+        List<Point> points = new ArrayList<>(m.pointCreate(temporaryPoint));
 
-        ArrayList<Integer> x = new ArrayList<>(m.axis());
-        ArrayList<Integer> y = new ArrayList<>(m.axis());
+        List<Integer> x = new ArrayList<>(m.axis());
+        List<Integer> y = new ArrayList<>(m.axis());
 
         ResultView.height(x, y, points);
-        ResultView.width(m.axis());
+        ResultView.width(Movement.axis());
         ResultView.distance(points);
     }
 }

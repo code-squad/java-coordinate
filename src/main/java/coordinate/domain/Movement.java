@@ -4,21 +4,21 @@ import coordinate.controller.Point;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Movement {
 
     private static final int MAX_NUM = 24;
-    private ArrayList<Point> points = new ArrayList<>();
 
-    public ArrayList<Integer> axis() {
-        ArrayList<Integer> axisNum = new ArrayList<>();
+    public static List<Integer> axis() {
+        List<Integer> axisNum = new ArrayList<>();
         for (int i = 0; i <= MAX_NUM; i++) {
             axisNum.add(i);
         }
         return axisNum;
     }
 
-    public ArrayList<Point> pointCreate(String temporaryPoint) {
+    public List<Point> pointCreate(String temporaryPoint) {
         return pointObject(cutPoint(conversion(temporaryPoint)));
     }
 
@@ -39,7 +39,9 @@ public class Movement {
         return input;
     }
 
-    private ArrayList<Point> pointObject(int[] temporaryPoint) {
+    private List<Point> pointObject(int[] temporaryPoint) {
+        List<Point> points = new ArrayList<>();
+
         for (int i = 0; i < temporaryPoint.length; i = i + 2) {
             points.add(new Point(temporaryPoint[i], temporaryPoint[i + 1]));
         }
