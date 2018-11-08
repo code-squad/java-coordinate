@@ -10,22 +10,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RectangleTest {
 
-    Point a = Point.position("1,7");
-    Point b = Point.position("1,5");
-    Point c = Point.position("5,7");
-    Point d = Point.position("5,5");
+    Point a = PointCreator.position("1,7");
+    Point b = PointCreator.position("1,5");
+    Point c = PointCreator.position("5,7");
+    Point d = PointCreator.position("5,5");
 
     List<Point> points = new ArrayList<>();
 
     Rectangle square;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         points.add(a);
         points.add(b);
         points.add(c);
         points.add(d);
-        square  = new Rectangle(points);
+        square = new Rectangle(points);
     }
 
     @Test
@@ -43,6 +43,11 @@ public class RectangleTest {
     public void minusY() {
         System.out.println(points.get(0).getY() - points.get(1).getY());
         assertThat(square.minusY(0)).isEqualTo(2);
+    }
+
+    @Test
+    public void area() {
+        assertThat(square.area()).isEqualTo(3);
     }
 
     @Test

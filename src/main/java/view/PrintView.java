@@ -1,27 +1,29 @@
 package view;
 
-import model.Parser;
-import model.Point;
+import model.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 
 public class PrintView {
     private static StringBuilder coordinatePrint = new StringBuilder();
     public static final int COORDINATE = 24;
-    //이것도 마찬가지다.
-    private static List<Point> points = Parser.makePoints();
 
-    public void printAll(double figures) {
+    private static List<Point> points;
+
+    public void printAll(AbstractFigures figures, List<Point> point) {
+        points = point;
+        System.out.println(points);
         printCoordinate(figures);
         System.out.println(coordinatePrint.toString());
     }
 
-    public static void printCoordinate(double figures) {
+    public static void printCoordinate(AbstractFigures figures) {
         printBarY();
         coordinatePrint.append(String.format("%3s", "┼"));
         printBarX();
-        coordinatePrint.append(String.format("value : " + "%-1.3f", figures));
+        coordinatePrint.append(String.format("value : " + "%-1.3f", figures.getValue()));
     }
 
     private static void printBarX() {
@@ -32,7 +34,7 @@ public class PrintView {
         coordinatePrint.append("    ");
         for (int j = 0; j <= COORDINATE; j += 2) {
             coordinatePrint.append(String.format("%2d", j));
-            coordinatePrint.append(String.format("%6s", " "));
+            coordinatePrint.append(String.format("%4s", " "));
         }
         coordinatePrint.append("\n");
     }
@@ -52,7 +54,8 @@ public class PrintView {
 
     private static void markingDot(int i, int j, int a) {
         if (points.get(a).getY() == i && points.get(a).getX() == j) {
-            coordinatePrint.append("*");
+            System.out.println(points.get(a).getY() + " : " + points.get(a).getX());
+            coordinatePrint.append(String.format("%1s","*"));
         }
         if (points.get(a).getY() != i || points.get(a).getX() != j) {
             coordinatePrint.append(String.format("%1s", " "));

@@ -57,6 +57,10 @@ public class Rectangle extends AbstractFigures {
         return pow(x) + pow(y);
     }
 
+    public int doubleSquare(int x, int y) {
+        return pow(x) * pow(y);
+    }
+
     public int differentFirst() {
         for (int i = 1; i < RECT_SIZE; i++) {
             if (pointFirst.isPassable(points.get(i))) {
@@ -74,6 +78,10 @@ public class Rectangle extends AbstractFigures {
 
     public int extent(int num) {
         return square(minusX(num), minusY(num));
+    }
+
+    public double area() {
+        return doubleSquare(minusX(FIRST_SIZE), minusY(FIRST_SIZE));
     }
 
     @Override

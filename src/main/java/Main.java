@@ -1,7 +1,6 @@
-import model.Parser;
+import model.*;
 import view.InputView;
 import view.PrintView;
-import model.Point;
 
 import java.util.List;
 
@@ -9,12 +8,13 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        try {
             String coordinateNum = InputView.inputCoordinate();
             Parser.makeStrings(coordinateNum);
-            double figures = Parser.makeFigures();
+        try {
+            List<Point> points = PointsFactory.makePoints(coordinateNum);
+            AbstractFigures figures = Parser.makeFigures(points);
             PrintView printView = new PrintView();
-            printView.printAll(figures);
+            printView.printAll(figures, points);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             main(args);
