@@ -23,7 +23,7 @@ public class PointTest {
     }
 
     @Test
-    public void getDistance() {
+    public void getDistanceTest() {
         Point other = Point.ofXY(4,4);
         assertThat(point.getDistance(other)).isEqualTo(Math.sqrt(13));
     }

@@ -14,9 +14,8 @@ public class Parse {
 
     public static ArrayList<String> removeBracket(ArrayList<String> input) {
         ArrayList<String> result = new ArrayList<>();
-        for (String i : input) {
-            result.add(i.substring(Coordinate.ONE, i.length() - Coordinate.ONE));
-        }
+        for (String i : input) result.add(i.substring(Coordinate.ONE, i.length() - Coordinate.ONE));
+
         return result;
     }
 }

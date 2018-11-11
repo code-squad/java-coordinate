@@ -1,8 +1,6 @@
 package coordinate;
 
-import coordinate.domain.Coordinate;
-import coordinate.domain.Line;
-import coordinate.domain.Point;
+import coordinate.domain.*;
 import coordinate.view.InputView;
 import coordinate.view.ResultView;
 import java.util.List;
@@ -19,8 +17,27 @@ public class Main {
         }
 
         List<Point> coordinates = coordinate.getCoordinate();
-        Line Lines = Line.ofCoordinate(coordinates);
+        ResultView.printCoordinate(coordinates, countCoordinate(coordinates));
+    }
 
-        ResultView.printCoordinate(coordinates, Lines.getLineLength());
+    private static double countCoordinate(List<Point> coordinates) {
+        double figureResult = 0;
+
+        if (coordinates.size() == 2) {
+            Line Lines = Line.ofCoordinate(coordinates);
+            figureResult = Lines.getLineLength();
+        }
+
+        if (coordinates.size() == 3) {
+            Triangle Triangles = Triangle.ofCoordinate(coordinates);
+            figureResult = Triangles.getArea();
+        }
+
+        if (coordinates.size() == 4) {
+            Rectangle Rectangles = Rectangle.ofCoordinate(coordinates);
+            figureResult = Rectangles.getArea();
+        }
+
+        return figureResult;
     }
 }

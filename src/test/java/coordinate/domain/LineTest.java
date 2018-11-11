@@ -2,7 +2,7 @@ package coordinate.domain;
 
 import org.junit.Before;
 import org.junit.Test;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
 
@@ -11,15 +11,12 @@ public class LineTest {
 
     @Before
     public void setUp() {
-        List<Point> coordinates = new ArrayList<>();
-        coordinates.add(Point.ofXY(1,1));
-        coordinates.add(Point.ofXY(2,2));
-
+        List<Point> coordinates = Arrays.asList(Point.ofXY(1,1), Point.ofXY(2,2));
         line = Line.ofCoordinate(coordinates);
     }
 
     @Test
-    public void getLineLength() {
+    public void getLineLengthTest() {
         assertEquals(1.4142, line.getLineLength(), 0.0001);
     }
 
