@@ -7,7 +7,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class LineTest {
-    Line line;
+    Figure line;
 
     @Before
     public void setUp() {
@@ -17,7 +17,7 @@ public class LineTest {
 
     @Test
     public void getLineLengthTest() {
-        assertEquals(1.4142, line.getLineLength(), 0.0001);
+        assertEquals(1.4142, line.getArea(), 0.0001);
     }
 
 }

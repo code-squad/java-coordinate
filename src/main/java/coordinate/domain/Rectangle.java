@@ -5,11 +5,10 @@ import java.util.Set;
 import java.util.Iterator;
 import java.util.List;
 
-public class Rectangle {
-    private List<Point> coordinate;
-
+public class Rectangle extends Figure {
     private Rectangle(List<Point> coordinate) {
-        this.coordinate = isRectangle(coordinate);
+        super(coordinate);
+        isRectangle(coordinate);
     }
 
     public static Rectangle ofCoordinate(List<Point> coordinate) {
@@ -21,7 +20,8 @@ public class Rectangle {
         return coordinate;
     }
 
-    public int getArea() {
+    @Override
+    public double getArea() {
         return calculateWidth() * calculateHeight();
     }
 

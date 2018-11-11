@@ -3,18 +3,17 @@ package coordinate.domain;
 import java.util.List;
 import java.util.Objects;
 
-public class Line {
-    private List<Point> coordinate;
-
+public class Line extends Figure{
     private Line(List<Point> coordinate) {
-        this.coordinate = coordinate;
+        super(coordinate);
     }
 
     public static Line ofCoordinate(List<Point> coordinate) {
         return new Line(coordinate);
     }
 
-    public double getLineLength() {
+    @Override
+    public double getArea() {
         return coordinate.get(Coordinate.ZERO).getDistance(coordinate.get(Coordinate.ONE));
     }
 

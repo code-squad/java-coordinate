@@ -11,8 +11,8 @@ public class Main {
 
         try {
             coordinate.run(InputView.inputCoordinate());
-        } catch(RuntimeException e) {
-            System.out.println("범위에 맞게 입력해주세요.");
+        } catch(Exception e) {
+            System.out.println(e.toString());
             main(args);
         }
 
@@ -24,17 +24,17 @@ public class Main {
         double figureResult = 0;
 
         if (coordinates.size() == 2) {
-            Line Lines = Line.ofCoordinate(coordinates);
-            figureResult = Lines.getLineLength();
+            Figure Lines = Line.ofCoordinate(coordinates);
+            figureResult = Lines.getArea();
         }
 
         if (coordinates.size() == 3) {
-            Triangle Triangles = Triangle.ofCoordinate(coordinates);
+            Figure Triangles = Triangle.ofCoordinate(coordinates);
             figureResult = Triangles.getArea();
         }
 
         if (coordinates.size() == 4) {
-            Rectangle Rectangles = Rectangle.ofCoordinate(coordinates);
+            Figure Rectangles = Rectangle.ofCoordinate(coordinates);
             figureResult = Rectangles.getArea();
         }
 

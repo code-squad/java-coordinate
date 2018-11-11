@@ -4,17 +4,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Triangle {
-    private List<Point> coordinate;
-
+public class Triangle extends Figure{
     private Triangle(List<Point> coordinate) {
-        this.coordinate = coordinate;
+        super(coordinate);
     }
 
     public static Triangle ofCoordinate(List<Point> coordinate) {
         return new Triangle(coordinate);
     }
 
+    @Override
     public double getArea() {
         List<Double> linesDistance = generateLinesDistance();
 
@@ -28,7 +27,7 @@ public class Triangle {
 
     List<Double> generateLinesDistance() {
         List<Double> linesDistance = new ArrayList<>();
-        for (Line line : generateLines()) linesDistance.add(line.getLineLength());
+        for (Line line : generateLines()) linesDistance.add(line.getArea());
 
         return linesDistance;
     }

@@ -19,8 +19,8 @@ public class Point {
         return new Point(x, y);
     }
 
-    int sizeCheck(int num) throws RuntimeException {
-        if (num > MAX_SIZE || num < MIN_SIZE) throw new RuntimeException();
+    int sizeCheck(int num) throws IllegalArgumentException {
+        if (num > MAX_SIZE || num < MIN_SIZE) throw new IllegalArgumentException("범위에 맞게 입력해주세요.");
         return num;
     }
 
