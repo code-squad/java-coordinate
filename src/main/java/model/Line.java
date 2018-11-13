@@ -1,47 +1,43 @@
 package model;
 
-public class Line {
+import java.util.List;
 
-    private Point a;
-    private Point b;
+public class Line extends AbstractFigures {
 
-    public Line(Point a, Point b) {
-        this.a = a;
-        this.b = b;
+    private List<Point> points;
+
+    public Line(List<Point> points) {
+        this.points = points;
     }
 
-    public Point getA() {
-        return a;
+    public Point getA(int x) {
+        return points.get(x);
     }
 
-    public Point getB() {
-        return b;
+    public Point getB(int y) {
+        return points.get(y);
     }
 
     //Math.abs는 절대값
     public int minusX() {
-        return Math.abs(a.getX() - b.getX());
+        return Math.abs(getA(0).minusXaxis(getB(1)));
     }
 
     public int minusY() {
-        return Math.abs(a.getY() - b.getY());
+        return Math.abs(getA(0).minusYaxis(getB(1)));
     }
 
-    public int square(int num) {
-        return num * num;
-    }
-
-    public double lineDistance() {
+    @Override
+    public double getValue() {
         int x = minusX();
         int y = minusY();
-        return Math.sqrt(square(x) + square(y));
+        return Math.sqrt(exponent(x) + exponent(y));
     }
 
     @Override
     public String toString() {
         return "Line{" +
-                "a=" + a +
-                ", b=" + b +
+                "points=" + points +
                 '}';
     }
 }
