@@ -54,11 +54,11 @@ public class Rectangle extends AbstractFigures {
     }
 
     public int square(int x, int y) {
-        return pow(x) + pow(y);
+        return exponent(x) + exponent(y);
     }
 
     public int doubleSquare(int x, int y) {
-        return pow(x) * pow(y);
+        return exponent(x) * exponent(y);
     }
 
     public int differentFirst() {

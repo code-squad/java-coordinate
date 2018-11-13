@@ -31,7 +31,7 @@ public class Line extends AbstractFigures {
     public double getValue() {
         int x = minusX();
         int y = minusY();
-        return Math.sqrt(pow(x) + pow(y));
+        return Math.sqrt(exponent(x) + exponent(y));
     }
 
     @Override

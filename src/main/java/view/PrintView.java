@@ -55,7 +55,7 @@ public class PrintView {
     private static void markingDot(int i, int j, int a) {
         if (points.get(a).getY() == i && points.get(a).getX() == j) {
             System.out.println(points.get(a).getY() + " : " + points.get(a).getX());
-            coordinatePrint.append(String.format("%1s","*"));
+            coordinatePrint.append(String.format("%1s", "*"));
         }
         if (points.get(a).getY() != i || points.get(a).getX() != j) {
             coordinatePrint.append(String.format("%1s", " "));

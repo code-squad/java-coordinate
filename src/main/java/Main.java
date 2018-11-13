@@ -8,8 +8,8 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-            String coordinateNum = InputView.inputCoordinate();
-            Parser.makeStrings(coordinateNum);
+        String coordinateNum = InputView.inputCoordinate();
+        Parser.makeStrings(coordinateNum);
         try {
             List<Point> points = PointsFactory.makePoints(coordinateNum);
             AbstractFigures figures = Parser.makeFigures(points);
