@@ -1,6 +1,8 @@
 package coordinate;
 
 import coordinate.domain.*;
+import coordinate.domain.Figure.Figure;
+import coordinate.domain.Figure.FigureFactory;
 import coordinate.view.InputView;
 import coordinate.view.ResultView;
 import java.util.List;
@@ -17,27 +19,8 @@ public class Main {
         }
 
         List<Point> coordinates = coordinate.getCoordinate();
-        ResultView.printCoordinate(coordinates, countCoordinate(coordinates));
-    }
+        Figure figure = FigureFactory.getInstance(coordinates);
 
-    private static double countCoordinate(List<Point> coordinates) {
-        double figureResult = 0;
-
-        if (coordinates.size() == 2) {
-            Figure Lines = Line.ofCoordinate(coordinates);
-            figureResult = Lines.getArea();
-        }
-
-        if (coordinates.size() == 3) {
-            Figure Triangles = Triangle.ofCoordinate(coordinates);
-            figureResult = Triangles.getArea();
-        }
-
-        if (coordinates.size() == 4) {
-            Figure Rectangles = Rectangle.ofCoordinate(coordinates);
-            figureResult = Rectangles.getArea();
-        }
-
-        return figureResult;
+        ResultView.printCoordinate(coordinates, figure.getArea());
     }
 }

@@ -1,15 +1,28 @@
-package coordinate.domain;
+package coordinate.domain.Figure;
+
+import coordinate.domain.Coordinate;
+import coordinate.domain.Point;
 
 import java.util.List;
 import java.util.Objects;
 
-public class Line extends Figure{
+public class Line extends AbstractFigure {
     private Line(List<Point> coordinate) {
         super(coordinate);
     }
 
-    public static Line ofCoordinate(List<Point> coordinate) {
+    static Line ofCoordinate(List<Point> coordinate) {
         return new Line(coordinate);
+    }
+
+    @Override
+    public int size() {
+        return 2;
+    }
+
+    @Override
+    public String getName() {
+        return "선";
     }
 
     @Override

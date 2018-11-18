@@ -1,23 +1,35 @@
-package coordinate.domain;
+package coordinate.domain.Figure;
+
+import coordinate.domain.Point;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Iterator;
 import java.util.List;
 
-public class Rectangle extends Figure {
+public class Rectangle extends AbstractFigure {
     private Rectangle(List<Point> coordinate) {
         super(coordinate);
         isRectangle(coordinate);
     }
 
-    public static Rectangle ofCoordinate(List<Point> coordinate) {
+    static Rectangle ofCoordinate(List<Point> coordinate) {
         return new Rectangle(coordinate);
     }
 
     List<Point> isRectangle(List<Point> coordinate) throws RuntimeException {
         if (makeWidthSet(coordinate).size() != Point.TWO || makeHeightSet(coordinate).size() != Point.TWO) throw new RuntimeException() {};
         return coordinate;
+    }
+
+    @Override
+    public int size() {
+        return 4;
+    }
+
+    @Override
+    public String getName() {
+        return "사각형";
     }
 
     @Override

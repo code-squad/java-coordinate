@@ -1,5 +1,6 @@
-package coordinate.domain;
+package coordinate.domain.Figure;
 
+import coordinate.domain.Point;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,7 +15,11 @@ public class TriangleTest {
 
     @Before
     public void setUp() {
-        coordinates = Arrays.asList(Point.ofXY(1,1), Point.ofXY(5,1), Point.ofXY(5,4));
+        coordinates = Arrays.asList(
+                Point.ofXY(1,1),
+                Point.ofXY(5,1),
+                Point.ofXY(5,4));
+
         triangle = Triangle.ofCoordinate(coordinates);
     }
 
@@ -36,9 +41,15 @@ public class TriangleTest {
     @Test
     public void generateLinesTest() {
         List<Line> lines = new ArrayList<>();
-        lines.add(Line.ofCoordinate(Arrays.asList(Point.ofXY(1,1), Point.ofXY(5,1))));
-        lines.add(Line.ofCoordinate(Arrays.asList(Point.ofXY(5,1), Point.ofXY(5,4))));
-        lines.add(Line.ofCoordinate(Arrays.asList(Point.ofXY(1,1), Point.ofXY(5,4))));
+        lines.add(Line.ofCoordinate(Arrays.asList(
+                Point.ofXY(1,1),
+                Point.ofXY(5,1))));
+        lines.add(Line.ofCoordinate(Arrays.asList(
+                Point.ofXY(5,1),
+                Point.ofXY(5,4))));
+        lines.add(Line.ofCoordinate(Arrays.asList(
+                Point.ofXY(1,1),
+                Point.ofXY(5,4))));
 
         assertThat(triangle.generateLines()).isEqualTo(lines);
     }

@@ -1,5 +1,6 @@
-package coordinate.domain;
+package coordinate.domain.Figure;
 
+import coordinate.domain.Point;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.*;
@@ -13,7 +14,12 @@ public class RectangleTest {
 
     @Before
     public void setUp() {
-        coordinates = Arrays.asList(Point.ofXY(1,1), Point.ofXY(1,3), Point.ofXY(3,1), Point.ofXY(3,3));
+        coordinates = Arrays.asList(
+                Point.ofXY(1,1),
+                Point.ofXY(1,3),
+                Point.ofXY(3,1),
+                Point.ofXY(3,3));
+
         rectangle = Rectangle.ofCoordinate(coordinates);
     }
 
@@ -24,13 +30,23 @@ public class RectangleTest {
 
     @Test(expected = RuntimeException.class)
     public void isTrapezoidTest() {
-        coordinates = Arrays.asList(Point.ofXY(1,1), Point.ofXY(1,3), Point.ofXY(3,1), Point.ofXY(3,10));
+        coordinates = Arrays.asList(
+                Point.ofXY(1,1),
+                Point.ofXY(1,3),
+                Point.ofXY(3,1),
+                Point.ofXY(3,10));
+
         rectangle = Rectangle.ofCoordinate(coordinates);
     }
 
     @Test(expected = RuntimeException.class)
     public void isDiamondTest() {
-        coordinates = Arrays.asList(Point.ofXY(1,1), Point.ofXY(1,3), Point.ofXY(2,0), Point.ofXY(2,4));
+        coordinates = Arrays.asList(
+                Point.ofXY(1,1),
+                Point.ofXY(1,3),
+                Point.ofXY(2,0),
+                Point.ofXY(2,4));
+
         rectangle = Rectangle.ofCoordinate(coordinates);
     }
 

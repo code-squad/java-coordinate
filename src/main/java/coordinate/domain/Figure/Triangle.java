@@ -1,16 +1,29 @@
-package coordinate.domain;
+package coordinate.domain.Figure;
+
+import coordinate.domain.Coordinate;
+import coordinate.domain.Point;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Triangle extends Figure{
+public class Triangle extends AbstractFigure {
     private Triangle(List<Point> coordinate) {
         super(coordinate);
     }
 
-    public static Triangle ofCoordinate(List<Point> coordinate) {
+    static Triangle ofCoordinate(List<Point> coordinate) {
         return new Triangle(coordinate);
+    }
+
+    @Override
+    public int size() {
+        return 3;
+    }
+
+    @Override
+    public String getName() {
+        return "삼각형";
     }
 
     @Override
@@ -27,16 +40,16 @@ public class Triangle extends Figure{
 
     List<Double> generateLinesDistance() {
         List<Double> linesDistance = new ArrayList<>();
-        for (Line line : generateLines()) linesDistance.add(line.getArea());
+        for (Figure line : generateLines()) linesDistance.add(line.getArea());
 
         return linesDistance;
     }
 
-    List<Line> generateLines() {
-        List<Line> lines = new ArrayList<>();
-        lines.add(Line.ofCoordinate(compareValue(Coordinate.ZERO, Coordinate.ONE)));
-        lines.add(Line.ofCoordinate(compareValue(Coordinate.ONE, Point.TWO)));
-        lines.add(Line.ofCoordinate(compareValue(Coordinate.ZERO, Point.TWO)));
+    List<Figure> generateLines() {
+        List<Figure> lines = new ArrayList<>();
+        lines.add(FigureFactory.getInstance(compareValue(Coordinate.ZERO, Coordinate.ONE)));
+        lines.add(FigureFactory.getInstance(compareValue(Coordinate.ONE, Point.TWO)));
+        lines.add(FigureFactory.getInstance(compareValue(Coordinate.ZERO, Point.TWO)));
 
         return lines;
     }

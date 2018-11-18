@@ -1,5 +1,6 @@
-package coordinate.domain;
+package coordinate.domain.Figure;
 
+import coordinate.domain.Point;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.Arrays;
@@ -7,11 +8,14 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class LineTest {
-    Figure line;
+    Line line;
 
     @Before
     public void setUp() {
-        List<Point> coordinates = Arrays.asList(Point.ofXY(1,1), Point.ofXY(2,2));
+        List<Point> coordinates = Arrays.asList(
+                Point.ofXY(1,1),
+                Point.ofXY(2,2));
+
         line = Line.ofCoordinate(coordinates);
     }
 

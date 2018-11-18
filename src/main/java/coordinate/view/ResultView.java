@@ -1,7 +1,6 @@
 package coordinate.view;
 
 import coordinate.domain.Coordinate;
-import coordinate.domain.Line;
 import coordinate.domain.Point;
 
 import java.util.List;
@@ -23,10 +22,10 @@ public class ResultView {
 
     public static void printCoordinate(List<Point> coordinate, double result) {
         printGrpah(coordinate);
-        printDistance(coordinate, result);
+        printArea(coordinate, result);
     }
 
-    private static void printDistance(List<Point> coordinate, double result) {
+    private static void printArea(List<Point> coordinate, double result) {
         if (coordinate.size() == 2) System.out.println(NEW_LINE + DISTANCE_MESSAGE + (float)result);
         if (coordinate.size() == 3) System.out.println(NEW_LINE + TRIANGLE_AREA_MESSAGE + (float)result);
         if (coordinate.size() == 4) System.out.println(NEW_LINE + RECTANGLE_AREA_MESSAGE + (float)result);
