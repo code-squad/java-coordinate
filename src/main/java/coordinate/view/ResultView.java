@@ -84,6 +84,7 @@ public class ResultView {
         sb.setLength(Coordinate.ZERO);
         sb.append(String.format(TRIPLE_LENGTH_FORMATTER, Coordinate.ZERO + BLANK));
         for (int i = 1; i <= size; i++) sb.append(decidePrintNumber(i));
+
         System.out.println(sb.toString());
     }
 
