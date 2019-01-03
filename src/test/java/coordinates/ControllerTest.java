@@ -11,16 +11,16 @@ public class ControllerTest {
 
     @Test
     public void axisNum() {
-        List<Integer> a = controller.axisNum();
+        List<Integer> axisNum = controller.axisNum();
 
-        assertThat(a.size()).isEqualTo(24);
+        assertThat(axisNum.size()).isEqualTo(24);
     }
 
     @Test
     public void reversalAxisNum() {
-        List<Integer> a = controller.reversalAxisNum();
+        List<Integer> reversalAxisNum = controller.reversalAxisNum();
 
-        assertThat(a.get(0)).isEqualTo(24);
+        assertThat(reversalAxisNum.get(0)).isEqualTo(24);
     }
 
     @Test
@@ -31,7 +31,7 @@ public class ControllerTest {
 
     @Test
     public void noBlankCondition() {
-        List<Integer> a = controller.axisNum();
+        List<Integer> axisNum = controller.axisNum();
         int i = 0;
          assertThat(controller.blankCondition(i)).isEqualTo(false);
     }
