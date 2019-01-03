@@ -29,7 +29,7 @@ public class CoordinatesServes {
 
     private void width(int axisSize) {
         for (int i = 0; i < axisSize; i++) {
-            int reversalAxis = controller.getReversalAxis(axiss, i);
+            int reversalAxis = controller.getReversalAxis(i);
             resultView.graphWidthLine(reversalAxis, blankCondition(reversalAxis));
         }
     }
