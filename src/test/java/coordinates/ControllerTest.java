@@ -1,6 +1,7 @@
 package coordinates;
 
 import org.junit.Test;
+
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,29 +12,28 @@ public class ControllerTest {
 
     @Test
     public void axisNum() {
-        List<Integer> axisNum = controller.axisNum();
+        List<Integer> a = controller.axisNum();
 
-        assertThat(axisNum.size()).isEqualTo(24);
+        assertThat(a.size()).isEqualTo(24);
     }
 
     @Test
     public void reversalAxisNum() {
-        List<Integer> reversalAxisNum = controller.reversalAxisNum();
+        List<Integer> a = controller.reversalAxisNum();
 
-        assertThat(reversalAxisNum.get(0)).isEqualTo(24);
+        assertThat(a.get(0)).isEqualTo(24);
     }
 
     @Test
     public void okBlankCondition() {
         int i = 1;
-         assertThat(controller.blankCondition(i)).isEqualTo(true);
+        assertThat(controller.blankCondition(i)).isEqualTo(false);
     }
 
     @Test
     public void noBlankCondition() {
-        List<Integer> axisNum = controller.axisNum();
+        List<Integer> a = controller.axisNum();
         int i = 0;
-         assertThat(controller.blankCondition(i)).isEqualTo(false);
+        assertThat(controller.blankCondition(i)).isEqualTo(true);
     }
-
 }

@@ -6,9 +6,9 @@ public class ResultView {
     private static final String HORIZONTAL = "￣";
     private static String biankNum = " ";
 
-    public void graphHeightLine(int axis, boolean a) {
+    public void graphHeightLine(int axis, boolean blank) {
         String input = "";
-        if (a == true) {
+        if (blank == true) {
             input = String.valueOf(axis);
             System.out.print(HORIZONTAL);
             System.out.print(HORIZONTAL);
@@ -16,9 +16,9 @@ public class ResultView {
         }
     }
 
-    public void graphWidthLine(int reversalAxis, boolean a) {
+    public void graphWidthLine(int reversalAxis, boolean blank) {
         String input = "";
-        if (a == true) {
+        if (blank == true) {
             input = String.valueOf(reversalAxis);
             System.out.print(String.format("%2d", reversalAxis));
             System.out.println(STICK);

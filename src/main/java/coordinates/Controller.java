@@ -44,7 +44,7 @@ public class Controller {
         return axis.get(i);
     }
 
-    public int getReversalAxis(int i) {
+    public int getReversalAxis(List<Integer> reversalAxis, int i) {
         return reversalAxisNum().get(i);
     }
 }
