@@ -2,10 +2,9 @@ package coordinates;
 
 public class MainController {
 
-    private static CoordinatesServes coordinatesServes = new CoordinatesServes();
+    private static Controller controller = new Controller();
 
     public static void main(String[] args) {
-        coordinatesServes.main();
-
+        controller.main();
     }
 }

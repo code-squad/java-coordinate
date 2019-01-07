@@ -1,50 +1,57 @@
 package coordinates;
 
+import coordinates.domain.Point;
+import coordinates.view.ResultView;
 import org.slf4j.Logger;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
 public class Controller {
 
+    private MainControllerUtil mainControllerUtil = new MainControllerUtil();
+    private ResultView resultView = new ResultView();
+    private List<Integer> axiss = mainControllerUtil.axisNum();
+    private static final int START_NUM = 0;
+
     private static final Logger log = getLogger(Controller.class);
 
-    private static final int LAST_NUMBER = 24;
+    public void main() {
+        int axisSize = mainControllerUtil.getAxisSize();
+        width(axisSize);
+        System.out.print(String.format("%3d", START_NUM));
+        height(axisSize);
 
-    public List<Integer> axisNum() {
-        List<Integer> axis = new ArrayList<>();
-        for (int i = 1; i <= LAST_NUMBER; i++) {
-            axis.add(i);
+    }
+
+    private void height(int axisSize) {
+        for (int i = 0; i < axisSize; i++) {
+            int axis = mainControllerUtil.getAxis(axiss, i);
+            resultView.graphHeightLine(axis, blankCondition(axis));
         }
-        return axis;
+        System.out.println();
     }
 
-    public List<Integer> reversalAxisNum() {
-        List<Integer> reversalAxis = axisNum();
-        Collections.reverse(reversalAxis);
-
-        return reversalAxis;
-    }
-
-    public boolean blankCondition(int axis) {
-        if (axis % 2 != 0) {
-            return false;
+    private void width(int axisSize) {
+        for (int i = 0; i < axisSize; i++) {
+            int reversalAxis = mainControllerUtil.getReversalAxis(i);
+            resultView.graphWidthLine(reversalAxis, blankCondition(reversalAxis));
+            mainControllerUtil.blankCondition(axisSize);
         }
-        return true;
     }
 
-    public int getAxisSize() {
-        return axisNum().size();
+    // TODO: 2019-01-07 height, width + objectPoint => 출력
+
+    private boolean blankCondition(int axis) {
+        return mainControllerUtil.blankCondition(axis);
     }
 
-    public int getAxis(List<Integer> axis, int i) {
-        return axis.get(i);
+    public void a(Point point, int i) {
+
     }
 
-    public int getReversalAxis(List<Integer> reversalAxis, int i) {
-        return reversalAxisNum().get(i);
-    }
+
+
+
 }
