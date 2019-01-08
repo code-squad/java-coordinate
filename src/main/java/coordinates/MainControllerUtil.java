@@ -2,6 +2,7 @@ package coordinates;
 
 import com.sun.xml.internal.bind.v2.runtime.Coordinator;
 import coordinates.domain.Point;
+import coordinates.util.SplitUtil;
 import org.slf4j.Logger;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.List;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class MainControllerUtil {
+public class MainControllerUtil extends SplitUtil {
 
     private static final int LAST_NUMBER = 24;
     private static final int OBJECT_SIZE = 2;
@@ -49,19 +50,24 @@ public class MainControllerUtil {
         return reversalAxisNum().get(i);
     }
 
-    public List<Point> objectCoordinates(int[] input){
+    public List<Integer> inputNumber (String input){
+        return super.changeNum(input);
+    }
+
+    public List<Point> objectCoordinates(String input){
         List<Point> coordinates = new ArrayList<>();
-        for (int i = 0; i < input.length; i= i+OBJECT_SIZE) {
-            coordinates.add(new Point(input[i], input[i+OBJECT_NUM]));
+        for (int i = 0; i < inputNumber(input).size(); i= i+OBJECT_SIZE) {
+            coordinates.add(new Point(inputNumber(input).get(i), inputNumber(input).get(i+1)));
         }
         return coordinates;
     }
 
-    public Point splitCoordinate(int i, int[] input){
+    public Point splitCoordinate(int i, String input){
        return objectCoordinates(input).get(i);
     }
 
-    public double mathPoint(int[] input){
+    public double mathPoint(String input){
+        //이거 확인할 것
         return splitCoordinate(0, input).getMath(splitCoordinate(OBJECT_NUM, input));
     }
 

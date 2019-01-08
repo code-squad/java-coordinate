@@ -20,15 +20,22 @@ public class ResultView {
         }
     }
 
-    public void point(){
-        System.out.print(String.format("%3s", STICK));
-        System.out.print("");
-    }
-
-    public void graphWidthLine(int reversalAxis, boolean blank) {
+    public void max(int reversalAxis, boolean blank){
         if (blank == true) {
             System.out.print(String.format("%2d", reversalAxis));
             System.out.print(STICK);
+        } else {
+            System.out.println(biankNum);
+            System.out.println(String.format("%3s", STICK));
+        }
+    }
+
+    public void graphWidthLine(int reversalAxis, boolean blank, int pointSize,boolean x, boolean y) {
+        if (blank == true) {
+            System.out.print(String.format("%2d", reversalAxis));
+            System.out.print(STICK);
+
+
         } else {
             System.out.println(biankNum);
             System.out.println(String.format("%3s", STICK));
@@ -44,7 +51,5 @@ public class ResultView {
     public void mathPrint(double point){
         System.out.println("두 점 사이 거리는 "+point);
     }
-
-
 
 }
