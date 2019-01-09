@@ -2,13 +2,13 @@ package coordinates.view;
 
 import coordinates.domain.Point;
 
+import java.util.List;
+
 public class ResultView {
 
     private static final String STICK = "｜";
     private static final String HORIZONTAL = "￣";
     private static final String POINT = "ㆍ";
-    private static String biankNum = " ";
-
 
     public void graphHeightLine(int axis, boolean blank) {
         String input = "";
@@ -20,36 +20,36 @@ public class ResultView {
         }
     }
 
-    public void max(int reversalAxis, boolean blank){
-        if (blank == true) {
-            System.out.print(String.format("%2d", reversalAxis));
+    public void graphWidthLin(List<Point> points, List<Integer> reversalAxis, List<Integer> axis) {
+        for (int i = 0; i < 24; i++) {
+            System.out.print(String.format("%2d", reversalAxis.get(i)));
             System.out.print(STICK);
-        } else {
-            System.out.println(biankNum);
-            System.out.println(String.format("%3s", STICK));
+
+            twoLine(points, reversalAxis.get(i), axis);
+
+            System.out.println();
         }
     }
 
-    public void graphWidthLine(int reversalAxis, boolean blank, int pointSize,boolean x, boolean y) {
-        if (blank == true) {
-            System.out.print(String.format("%2d", reversalAxis));
-            System.out.print(STICK);
-
-
-        } else {
-            System.out.println(biankNum);
-            System.out.println(String.format("%3s", STICK));
+    private void twoLine(List<Point> points, int reversalAxis, List<Integer> axis) {
+        for (int k = 0; k < 2; k++) {
+            if (points.get(k).getY() == reversalAxis) {
+                oneLine(points.get(k), axis);
+            }
         }
     }
 
-    public void noGraphWidthLine(){
-        System.out.println(biankNum);
-        System.out.print(String.format("%3s", STICK));
-        System.out.println();
+    private void oneLine(Point points, List<Integer> axis) {
+        for (int j = 0; j < 24; j++) {
+            String blankNum = " ";
+            if (points.getX() == axis.get(j)) {
+                blankNum = POINT;
+            }
+            System.out.print(blankNum);
+        }
     }
 
-    public void mathPrint(double point){
-        System.out.println("두 점 사이 거리는 "+point);
+    public void mathLine(double line) {
+        System.out.println("두 점의 길이는 : " + line);
     }
-
 }

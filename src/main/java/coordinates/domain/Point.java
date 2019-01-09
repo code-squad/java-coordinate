@@ -18,20 +18,6 @@ public class Point {
         return y;
     }
 
-    public boolean getObjectX(int i){
-        if(x == i){
-            return true;
-        }
-        return false;
-    }
-
-    public boolean getObjectY(int i){
-        if(y == i){
-            return true;
-        }
-        return false;
-    }
-
     public double getMath(Point point){
         return Math.sqrt(Math.pow(Math.abs(point.getX()-x),2)+Math.pow(Math.abs(point.getY()-y),2));
     }
