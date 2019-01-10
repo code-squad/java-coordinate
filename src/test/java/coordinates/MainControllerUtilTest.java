@@ -1,8 +1,7 @@
 package coordinates;
 
-import coordinates.domain.Line;
+import coordinates.util.MainControllerUtil;
 import org.junit.Test;
-import org.omg.PortableInterceptor.ServerRequestInfo;
 
 import java.util.List;
 

@@ -5,17 +5,17 @@ import java.util.List;
 
 public class SplitUtil {
 
-    private String input(String input){
+    private static String input(String input){
         input = input.replace("(", "").replace(")","").replace("-",",");
         return input;
     }
 
-    private String[] splitNum(String input){
+    private static String[] splitNum(String input){
         String[] split = input(input).split(",");
         return split;
     }
 
-    public List<Integer> changeNum(String input){
+    public static List<Integer> changeNum(String input){
         List<Integer> pointNum = new ArrayList<>();
 
         for (String number : splitNum(input)){

@@ -12,5 +12,4 @@ public class Line {
     public double mathPoint(){
         return point.getMath(distinctPoint);
     }
-
 }

@@ -1,8 +1,7 @@
-package coordinates;
+package coordinates.util;
 
 import coordinates.domain.Line;
 import coordinates.domain.Point;
-import coordinates.util.SplitUtil;
 import org.slf4j.Logger;
 
 import java.util.ArrayList;
@@ -11,7 +10,7 @@ import java.util.List;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class MainControllerUtil extends SplitUtil {
+public class MainControllerUtil {
     private static final int ZERO = 0;
     private static final int ONE = 1;
     private static final int TWO = 2;
@@ -35,24 +34,9 @@ public class MainControllerUtil extends SplitUtil {
         return reversalAxis;
     }
 
-    public boolean blankCondition(int axis) {
-        //1~24까지의 %2는 true
-        return axis % 2 == 0;
-    }
-
-    public int getAxisSize() {
-        //numListSize 구하기
-        return axisNum().size();
-    }
-
-    public int getAxis(List<Integer> axis, int i) {
-        //특정 ListNum 구하기
-        return axis.get(i);
-    }
-
     public List<Integer> inputNumber(String input) {
         //Scnner 입력값 객체 상속 받아 List로 변환
-        return super.changeNum(input);
+        return SplitUtil.changeNum(input);
     }
 
     public List<Point> objectCoordinates(String input) {
