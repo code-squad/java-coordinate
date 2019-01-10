@@ -1,11 +1,11 @@
 package coordinates;
 
 import coordinates.domain.Point;
-import coordinates.util.MainControllerUtil;
 import coordinates.view.InputView;
 import coordinates.view.ResultView;
 import org.slf4j.Logger;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.slf4j.LoggerFactory.getLogger;
@@ -22,10 +22,13 @@ public class MainController {
         List<Integer> reversalAxis = mainControllerUtil.reversalAxisNum();
         List<Point> points = mainControllerUtil.objectCoordinates(inputPoint);
 
+        mainControllerUtil.alignmentNumber(inputPoint);
+
+
         ResultView.graphWidthLin(points, reversalAxis, axiss);
         System.out.print(String.format("%3d", ZERO));
         ResultView.height(axiss);
 
-        ResultView.mathLine(mainControllerUtil.getMathPoint(mainControllerUtil.objectLine(points)));
+//        ResultView.mathLine(mainControllerUtil.getMathPoint(mainControllerUtil.objectLine(points);
     }
 }

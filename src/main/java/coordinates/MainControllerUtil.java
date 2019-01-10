@@ -1,7 +1,8 @@
-package coordinates.util;
+package coordinates;
 
 import coordinates.domain.Line;
 import coordinates.domain.Point;
+import coordinates.util.SplitUtil;
 import org.slf4j.Logger;
 
 import java.util.ArrayList;
@@ -11,7 +12,6 @@ import java.util.List;
 import static org.slf4j.LoggerFactory.getLogger;
 
 public class MainControllerUtil {
-    private static final int ZERO = 0;
     private static final int ONE = 1;
     private static final int TWO = 2;
 
@@ -48,9 +48,18 @@ public class MainControllerUtil {
         return coordinates;
     }
 
-    public Line objectLine(List<Point> points) {
-        return new Line(points.get(ZERO), points.get(ONE));
+    public List<Point> alignmentNumber(String input){
+        List<Point> sortPoint = objectCoordinates(input);
+        Collections.sort(sortPoint);
+        log.debug("아 진짜 : {}", sortPoint);
+        return sortPoint;
     }
+
+    public Line objectLine(List<Point> points, int i) {
+        return new Line(points.get(i), points.get(i+ONE));
+    }
+
+
 
     public double getMathPoint(Line line) {
         return line.mathPoint();

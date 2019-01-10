@@ -1,6 +1,5 @@
 package coordinates;
 
-import coordinates.util.MainControllerUtil;
 import org.junit.Test;
 
 import java.util.List;

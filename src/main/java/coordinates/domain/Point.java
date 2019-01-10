@@ -1,6 +1,6 @@
 package coordinates.domain;
 
-public class Point {
+public class Point implements Comparable<Point> {
 
     private int x;
     private int y;
@@ -23,11 +23,15 @@ public class Point {
     }
 
     @Override
+    public int compareTo(Point point) {
+        return point.getY() - y;
+    }
+
+    @Override
     public String toString() {
         return "Point{" +
                 "x=" + x +
                 ", y=" + y +
                 '}';
     }
-
 }
