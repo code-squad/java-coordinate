@@ -14,9 +14,11 @@ public class Point implements Comparable<Point> {
         return x;
     }
 
+
     public int getY() {
         return y;
     }
+
 
     public double getMath(Point point){
         return Math.sqrt(Math.pow(Math.abs(point.getX()-x),2)+Math.pow(Math.abs(point.getY()-y),2));

@@ -2,6 +2,7 @@ package coordinates;
 
 import coordinates.domain.Line;
 import coordinates.domain.Point;
+import coordinates.domain.Rectangle;
 import coordinates.util.SplitUtil;
 import org.slf4j.Logger;
 
@@ -51,17 +52,26 @@ public class MainControllerUtil {
     public List<Point> alignmentNumber(String input){
         List<Point> sortPoint = objectCoordinates(input);
         Collections.sort(sortPoint);
-        log.debug("아 진짜 : {}", sortPoint);
         return sortPoint;
     }
 
-    public Line objectLine(List<Point> points, int i) {
+    public Line createLine(List<Point> points, int i) {
         return new Line(points.get(i), points.get(i+ONE));
     }
 
-
+    public List<Line> objectLines(List<Point> points){
+        List<Line> lines = new ArrayList<>();
+        for (int i = 0; i < points.size() / TWO ; i++) {
+            lines.add(createLine(points, i));
+        }
+        return lines;
+    }
 
     public double getMathPoint(Line line) {
         return line.mathPoint();
+    }
+
+    public boolean lineSize(List<Line> lines){
+        return lines.size() < 2;
     }
 }

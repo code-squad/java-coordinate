@@ -4,15 +4,16 @@ import java.util.List;
 
 public class Rectangle {
 
-    private List<Line> point;
+    private List<Point> point;
 
-    public Rectangle(List<Line> point){
-        this.point = point;
+    public List<Point> getPoint() {
+        return point;
     }
 
-    public double a (int i){
-        return point.get(i).mathPoint();
+    @Override
+    public String toString() {
+        return "Rectangle{" +
+                "point=" + point +
+                '}';
     }
-
-
 }
