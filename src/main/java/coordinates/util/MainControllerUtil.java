@@ -1,9 +1,7 @@
-package coordinates;
+package coordinates.util;
 
 import coordinates.domain.Line;
 import coordinates.domain.Point;
-import coordinates.domain.Rectangle;
-import coordinates.util.SplitUtil;
 import org.slf4j.Logger;
 
 import java.util.ArrayList;
@@ -13,6 +11,7 @@ import java.util.List;
 import static org.slf4j.LoggerFactory.getLogger;
 
 public class MainControllerUtil {
+    private static final int ZERO = 0;
     private static final int ONE = 1;
     private static final int TWO = 2;
 
@@ -49,29 +48,37 @@ public class MainControllerUtil {
         return coordinates;
     }
 
-    public List<Point> alignmentNumber(String input){
+    public List<Point> alignmentNumber(String input) {
         List<Point> sortPoint = objectCoordinates(input);
         Collections.sort(sortPoint);
         return sortPoint;
     }
 
-    public Line createLine(List<Point> points, int i) {
-        return new Line(points.get(i), points.get(i+ONE));
+    public Line createLine(List<Point> points) {
+        return new Line(points.get(ZERO), points.get(ONE));
     }
 
-    public List<Line> objectLines(List<Point> points){
-        List<Line> lines = new ArrayList<>();
-        for (int i = 0; i < points.size() / TWO ; i++) {
-            lines.add(createLine(points, i));
+    public double widthLength(List<Point> points) {
+        List<Point> input = new ArrayList<>();
+
+        for (int i = TWO; i < points.size(); i++) {
+            if (points.get(0).getX() == points.get(i).getX()) {
+                input.add(points.get(i));
+            }
         }
-        return lines;
+        Line line = new Line(points.get(0), input.get(0));
+
+        return createLine(points).area(line);
     }
 
-    public double getMathPoint(Line line) {
-        return line.mathPoint();
+    public double areaAndLength(List<Point> points) {
+        if (points.size() > 2) {
+            return widthLength(points);
+        }
+        return lengeth(points);
     }
 
-    public boolean lineSize(List<Line> lines){
-        return lines.size() < 2;
+    public double lengeth(List<Point> points) {
+        return createLine(points).mathPoint();
     }
 }

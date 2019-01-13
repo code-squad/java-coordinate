@@ -12,4 +12,8 @@ public class Line {
     public double mathPoint(){
         return point.getMath(distinctPoint);
     }
+
+    public double area(Line line){
+        return line.mathPoint() * mathPoint();
+    }
 }

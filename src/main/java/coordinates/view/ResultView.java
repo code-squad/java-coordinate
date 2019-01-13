@@ -16,39 +16,33 @@ public class ResultView {
 
     public static void graphWidthLin(List<Point> points, List<Integer> reversalAxis, List<Integer> axis) {
         for (int i = 0; i < 24; i++) {
-            System.out.print(String.format("%2d", reversalAxis.get(i)));
-            System.out.print(STICK);
+            blankNumber(reversalAxis.get(i));
 
             figureForm(points, reversalAxis.get(i), axis);
             System.out.println();
+
+            // TODO: point 2개일 경우 x축이 동일 할 경우 48번이 돌고 찍히는 경우의 수 처리해야함.
         }
+    }
+
+    private static void blankNumber(int reversalAxis) {
+        String blank = " ";
+        if(blankCondition(reversalAxis) == true){
+            blank = Integer.toString(reversalAxis);
+        }
+        System.out.print(String.format("%2s", blank));
+        System.out.print(STICK);
+    }
+
+    private static boolean figureSize(List<Point> point){
+        return point.size() > 2;
     }
 
     private static void figureForm(List<Point> points, int reversalAxis, List<Integer> axis) {
-        if (points.size() > 2) {
+        if (figureSize(points) == true) {
             rectangleTwoLine(points, reversalAxis, axis);
         } else {
             twoLine(points, reversalAxis, axis);
-        }
-    }
-
-    private static void rectangleTwoLine(List<Point> points, int reversalAxis, List<Integer> axis) {
-        for (int k = 0; k < points.size(); k = k + 2) {
-            for (int j = 0; j < 24; j++) {
-                rectangleOneLine(points, reversalAxis, axis.get(j), k);
-            }
-        }
-    }
-
-    private static void rectangleOneLine(List<Point> points, int reversalAxis, int axis, int k) {
-        if (points.get(k).getY() == reversalAxis && points.get(k + 1).getY() == reversalAxis) {
-            String blankNum = " ";
-
-            if (points.get(k).getX() == axis || points.get(k + 1).getX() == axis) {
-
-                blankNum = POINT;
-            }
-            System.out.print(blankNum);
         }
     }
 
@@ -69,6 +63,28 @@ public class ResultView {
             System.out.print(blankNum);
         }
     }
+
+    private static void rectangleTwoLine(List<Point> points, int reversalAxis, List<Integer> axis) {
+        for (int k = 0; k < points.size(); k = k + 2) {
+            for (int j = 0; j < 24; j++) {
+                rectangleOneLine(points, reversalAxis, axis.get(j), k);
+            }
+        }
+    }
+
+    private static void rectangleOneLine(List<Point> points, int reversalAxis, int axis, int k) {
+        if (points.get(k).getY() == reversalAxis && points.get(k + 1).getY() == reversalAxis) {
+            String blankNum = " ";
+
+            if (points.get(k).getX() == axis || points.get(k + 1).getX() == axis) {
+                blankNum = POINT;
+            }
+            System.out.print(blankNum);
+        }
+
+        // TODO: 매개변수를 줄일 방법이 없을까?
+    }
+
 
     public static void graphHeightLine(int axis, boolean blank) {
         String input = "";
@@ -93,7 +109,11 @@ public class ResultView {
         return axis % 2 == 0;
     }
 
-    public static void mathLine(double line) {
-        System.out.println("두 점의 길이는 : " + line);
+    public static void mathLine(List<Point> points, double input) {
+        String message = "두 점의 길이는 : ";
+        if(figureSize(points) == true){
+            message = "사각형 넓이는 ";
+        }
+        System.out.println(message+input);
     }
 }

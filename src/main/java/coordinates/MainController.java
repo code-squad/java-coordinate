@@ -1,8 +1,7 @@
 package coordinates;
 
-import coordinates.domain.Line;
 import coordinates.domain.Point;
-import coordinates.domain.Rectangle;
+import coordinates.util.MainControllerUtil;
 import coordinates.view.InputView;
 import coordinates.view.ResultView;
 import org.slf4j.Logger;
@@ -23,10 +22,10 @@ public class MainController {
         List<Integer> reversalAxis = mainControllerUtil.reversalAxisNum();
         List<Point> points = mainControllerUtil.alignmentNumber(inputPoint);
 
-        ResultView.graphWidthLin(points, reversalAxis,axiss);
+        ResultView.graphWidthLin(points, reversalAxis, axiss);
         System.out.print(String.format("%3d", ZERO));
         ResultView.height(axiss);
-//
-//        ResultView.mathLine(mainControllerUtil.getMathPoint());
+
+        ResultView.mathLine(points, mainControllerUtil.areaAndLength(points));
     }
 }
