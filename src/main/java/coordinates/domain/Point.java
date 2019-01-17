@@ -24,7 +24,11 @@ public class Point implements Comparable<Point> {
 
     @Override
     public int compareTo(Point point) {
-        return point.getY() - y;
+        if(this.y > point.y) return -1;
+        if(this.y < point.y) return 1;
+        if(this.x > point.x) return 1;
+        if(this.x < point.x) return -1;
+        return 0;
     }
 
     @Override
@@ -32,6 +36,6 @@ public class Point implements Comparable<Point> {
         return "Point{" +
                 "x=" + x +
                 ", y=" + y +
-                '}';
+                '}' + System.lineSeparator();
     }
 }

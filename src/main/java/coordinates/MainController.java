@@ -18,13 +18,14 @@ public class MainController {
 
     public static void main(String[] args) {
         String inputPoint = InputView.pointInput();
-        List<Integer> axiss = mainControllerUtil.axisNum();
-        List<Integer> reversalAxis = mainControllerUtil.reversalAxisNum();
         List<Point> points = mainControllerUtil.alignmentNumber(inputPoint);
 
-        ResultView.graphWidthLin(points, reversalAxis, axiss);
+        Object figure = mainControllerUtil.figure(points);
+
+
+//        view.graphWidthLine(points);
         System.out.print(String.format("%3d", ZERO));
-        ResultView.height(axiss);
+        ResultView.height();
 
         ResultView.mathLine(points, mainControllerUtil.areaAndLength(points));
     }

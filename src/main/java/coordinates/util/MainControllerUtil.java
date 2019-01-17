@@ -2,6 +2,7 @@ package coordinates.util;
 
 import coordinates.domain.Line;
 import coordinates.domain.Point;
+import coordinates.domain.Rectangle;
 import org.slf4j.Logger;
 
 import java.util.ArrayList;
@@ -16,23 +17,6 @@ public class MainControllerUtil {
     private static final int TWO = 2;
 
     private static final Logger log = getLogger(MainControllerUtil.class);
-
-    public List<Integer> axisNum() {
-        //List 1~24까지 숫자 넣기
-        List<Integer> axis = new ArrayList<>();
-        for (int i = 1; i <= 24; i++) {
-            axis.add(i);
-        }
-        return axis;
-    }
-
-    public List<Integer> reversalAxisNum() {
-        //List에 1~24를 24~1로 자리수 변환하기
-        List<Integer> reversalAxis = axisNum();
-        Collections.reverse(reversalAxis);
-
-        return reversalAxis;
-    }
 
     public List<Integer> inputNumber(String input) {
         //Scnner 입력값 객체 상속 받아 List로 변환
@@ -58,6 +42,27 @@ public class MainControllerUtil {
         return new Line(points.get(ZERO), points.get(ONE));
     }
 
+    public Rectangle createRectangle(List<Point> points){
+        List<Line> lines = new ArrayList<>();
+        for (int i = 0; i < points.size(); i= i+2) {
+             lines.add(new Line(points.get(i), points.get(i+ONE)));
+        }
+
+        log.debug("라인:{}",lines);
+
+        return new Rectangle(lines.get(0), lines.get(1));
+    }
+
+    public Object figure(List<Point> points){
+        log.debug("호에에:{}",sizeCheck(points));
+        if(sizeCheck(points) == true){
+            Rectangle r = createRectangle(points);
+            return r;
+            //return createRectangle(points);
+        }
+        return createLine(points);
+    }
+
     public double widthLength(List<Point> points) {
         List<Point> input = new ArrayList<>();
 
@@ -71,8 +76,13 @@ public class MainControllerUtil {
         return createLine(points).area(line);
     }
 
+    public boolean sizeCheck(List<Point> points) {
+        log.debug("ㅇㅇㅇㅇ사이즈:{}", points.size());
+        return points.size() > 2;
+    }
+
     public double areaAndLength(List<Point> points) {
-        if (points.size() > 2) {
+        if (sizeCheck(points) == true) {
             return widthLength(points);
         }
         return lengeth(points);
