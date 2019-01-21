@@ -1,4 +1,4 @@
-package coordinates.view;
+package connrdinates.view;
 
 import java.util.Scanner;
 
