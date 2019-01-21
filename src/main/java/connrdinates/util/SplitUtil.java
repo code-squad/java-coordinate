@@ -1,4 +1,4 @@
-package coordinates.util;
+package connrdinates.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ public class SplitUtil {
     }
 
     public static List<Integer> changeNum(String input){
-        List<Integer> pointNum = new ArrayList<>();
+        List<Integer> pointNum = new ArrayList<> ();
 
         for (String number : splitNum(input)){
             pointNum.add(Integer.parseInt(number));

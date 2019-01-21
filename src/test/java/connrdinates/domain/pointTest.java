@@ -1,4 +1,4 @@
-package coordinates.domain;
+package connrdinates.domain;
 
 import org.junit.Test;
 
@@ -7,9 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
-public class PointTest {
+public class pointTest {
 
     @Test
     public void compareTo() {

@@ -13,14 +13,11 @@ public class RentCompany {
 
     private List<Car> cars = new ArrayList<>();
 
-    private List<String> name = new ArrayList<>();
-
     public static RentCompany create(){
         return new RentCompany();
     }
 
     public void addCar(Car car){
-        name.add(car.getName());
         cars.add(CarFactory.objectCar(car.getTripDistance(), car.getName()));
     }
 

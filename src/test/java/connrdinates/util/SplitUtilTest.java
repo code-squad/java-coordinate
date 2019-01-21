@@ -1,4 +1,4 @@
-package coordinates.util;
+package connrdinates.util;
 
 import org.junit.Test;
 
